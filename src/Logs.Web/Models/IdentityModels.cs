@@ -21,7 +21,7 @@ namespace Logs.Web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("LogsDb", throwIfV1Schema: false)
         {
         }
 
