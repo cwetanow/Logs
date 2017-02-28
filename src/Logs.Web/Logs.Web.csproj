@@ -209,6 +209,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectModules\AuthNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -293,6 +294,12 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logs.Authentication\Logs.Authentication.csproj">
+      <Project>{911FB23D-C230-4581-94FF-212E574BFF36}</Project>
+      <Name>Logs.Authentication</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
