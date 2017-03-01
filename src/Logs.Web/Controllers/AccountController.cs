@@ -24,7 +24,7 @@ namespace Logs.Web.Controllers
 
             this.provider = provider;
         }
-        
+            
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
