@@ -1,10 +1,11 @@
 ﻿using System.Data.Entity;
+using Logs.Data.Contracts;
 using Logs.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Logs.Data
 {
-    public class LogsDbContext : IdentityDbContext<User>
+    public class LogsDbContext : IdentityDbContext<User>, ILogsDbContext
     {
         public LogsDbContext()
             : base("LogsDb", throwIfV1Schema: false)
