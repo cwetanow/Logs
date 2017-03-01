@@ -12,6 +12,15 @@ namespace Logs.Models
             this.Entries = new HashSet<LogEntry>();
         }
 
+        public TrainingLog(string name, string description, DateTime dateCreated, User user)
+            : this()
+        {
+            this.Name = name;
+            this.Description = description;
+            this.DateCreated = dateCreated;
+            this.User = user;
+        }
+
         [Key]
         public int LogId { get; set; }
 
@@ -20,7 +29,7 @@ namespace Logs.Models
         public string Name { get; set; }
 
         public DateTime DateCreated { get; set; }
-        
+
         public virtual User User { get; set; }
 
         public virtual ICollection<Vote> Votes { get; set; }
