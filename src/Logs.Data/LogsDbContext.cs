@@ -29,8 +29,8 @@ namespace Logs.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TrainingLog>()
-                .HasRequired(log => log.User)
-                .WithRequiredDependent();
+                .HasOptional(log => log.User)
+                .WithOptionalDependent();
 
             base.OnModelCreating(modelBuilder);
         }
