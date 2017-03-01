@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.7.1.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.1\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,10 +52,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogsServiceTests\GetTrainingLogByIdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LogsServiceTests\" />
+    <ProjectReference Include="..\Logs.Data\Logs.Data.csproj">
+      <Project>{CEC6230F-980F-427C-AE27-4436648E60A2}</Project>
+      <Name>Logs.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logs.Factories\Logs.Factories.csproj">
+      <Project>{9CDE063E-931B-4E7A-A7A9-2452B9C92A4E}</Project>
+      <Name>Logs.Factories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logs.Models\Logs.Models.csproj">
+      <Project>{42C607C4-8FB1-490C-AAD4-5AC9921F91FC}</Project>
+      <Name>Logs.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logs.Services\Logs.Services.csproj">
+      <Project>{4BD34CDB-E6CE-415C-95EF-5E04CC0A2FA0}</Project>
+      <Name>Logs.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
