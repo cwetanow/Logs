@@ -1,9 +1,12 @@
-﻿using Logs.Models;
+﻿using System;
+using Logs.Models;
 
 namespace Logs.Services.Contracts
 {
     public interface ILogService
     {
-        TrainingLog GeTrainingLogById(int id);
+        TrainingLog GetTrainingLogById(int id);
+
+        TrainingLog CreateTrainingLog(string name, string description, string userId);
     }
 }

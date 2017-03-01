@@ -20,7 +20,7 @@ namespace Logs.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var log = this.logService.GeTrainingLogById(id);
+            var log = this.logService.GetTrainingLogById(id);
 
             return this.View();
         }
