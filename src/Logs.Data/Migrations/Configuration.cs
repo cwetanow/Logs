@@ -12,6 +12,7 @@ namespace Logs.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Logs.Data.LogsDbContext context)
