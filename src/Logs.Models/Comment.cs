@@ -11,15 +11,15 @@ namespace Logs.Models
 
         public DateTime Date { get; set; }
 
+        [ForeignKey("User")]
         public string UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public int EntryId { get; set; }
 
         [ForeignKey("EntryId")]
-        public LogEntry Entry { get; set; }
+        public virtual LogEntry Entry { get; set; }
 
         public string Content { get; set; }
     }

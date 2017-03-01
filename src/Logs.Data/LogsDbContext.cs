@@ -24,5 +24,14 @@ namespace Logs.Data
         public DbSet<TrainingLog> Logs { get; set; }
 
         public DbSet<Vote> Votes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TrainingLog>()
+                .HasRequired(log => log.User)
+                .WithRequiredDependent();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

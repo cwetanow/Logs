@@ -11,11 +11,11 @@ namespace Logs.Models
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public int LogId { get; set; }
 
         [ForeignKey("LogId")]
-        public TrainingLog Log { get; set; }
+        public virtual TrainingLog Log { get; set; }
     }
 }

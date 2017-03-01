@@ -22,14 +22,11 @@ namespace Logs.Models
         public string Name { get; set; }
 
         public DateTime DateCreated { get; set; }
+        
+        public virtual User User { get; set; }
 
-        public string UserId { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-
-        public ICollection<Vote> Votes { get; set; }
-
-        public ICollection<LogEntry> Entries { get; set; }
+        public virtual ICollection<LogEntry> Entries { get; set; }
     }
 }

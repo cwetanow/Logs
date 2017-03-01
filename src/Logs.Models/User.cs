@@ -13,14 +13,11 @@ namespace Logs.Models
         }
 
         public string Name { get; set; }
+        
+        public virtual TrainingLog Log { get; set; }
 
-        public int LogId { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
-        [ForeignKey("LogId")]
-        public TrainingLog Log { get; set; }
-
-        public ICollection<Comment> Comments { get; set; }
-
-        public ICollection<LogEntry> Entries { get; set; }
+        public virtual ICollection<LogEntry> Entries { get; set; }
     }
 }
