@@ -8,6 +8,8 @@ namespace Logs.Authentication.Contracts
     {
         bool IsAuthenticated { get; }
 
+        string CurrentUserId { get; }
+
         IdentityResult CreateUser(User user, string password);
 
         void SignIn(User user, bool isPersistent, bool rememberBrowser);

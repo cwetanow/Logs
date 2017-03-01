@@ -17,6 +17,14 @@ namespace Logs.Authentication
             }
         }
 
+        public string CurrentUserId
+        {
+            get
+            {
+                return HttpContext.Current.User.Identity.GetUserId();
+            }
+        }
+
         public IdentityResult CreateUser(string email, string password)
         {
             var user = new User { Email = email, UserName = email };
