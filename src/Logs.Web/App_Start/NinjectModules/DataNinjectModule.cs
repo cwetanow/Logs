@@ -1,5 +1,8 @@
-﻿using Logs.Data;
+﻿using System.IO;
+using System.Reflection;
+using Logs.Data;
 using Logs.Data.Contracts;
+using Ninject.Extensions.Conventions;
 using Ninject.Modules;
 using Ninject.Web.Common;
 
