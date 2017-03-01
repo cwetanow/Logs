@@ -6,6 +6,7 @@ namespace Logs.Web.Controllers
     {
         public ActionResult Index(string name)
         {
+            // TODO
             return View();
         }
     }
