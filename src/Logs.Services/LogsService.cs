@@ -61,7 +61,7 @@ namespace Logs.Services
             return log;
         }
 
-        public IEnumerable<TrainingLog> GetAll()
+        public IEnumerable<TrainingLog> GetLogs()
         {
             return this.logRepository.Entities;
         }

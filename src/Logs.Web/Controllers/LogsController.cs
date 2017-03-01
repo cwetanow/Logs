@@ -44,7 +44,7 @@ namespace Logs.Web.Controllers
 
         public ActionResult List()
         {
-            var model = this.logService.GetAll();
+            var model = this.logService.GetLogs();
             return this.View(model);
         }
     }
