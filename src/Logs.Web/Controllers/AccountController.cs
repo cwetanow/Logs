@@ -24,7 +24,7 @@ namespace Logs.Web.Controllers
 
             this.provider = provider;
         }
-            
+
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -79,12 +79,10 @@ namespace Logs.Web.Controllers
             if (ModelState.IsValid)
             {
                 var user = new User { UserName = model.Email, Email = model.Email };
-                var result = this.provider.CreateUser(user, model.Password);
-
+                var result = this.provider.RegisterAndLoginUser(user, model.Password, isPersistent: false, rememberBrowser: false);
+                
                 if (result.Succeeded)
                 {
-                    this.provider.SignIn(user, isPersistent: false, rememberBrowser: false);
-
                     return RedirectToAction("Index", "Home");
                 }
 
