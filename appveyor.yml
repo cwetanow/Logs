@@ -5,6 +5,7 @@ branches:
   
 build:
   verbosity: minimal
+  project: src\Logs.sln
 
 before_build:
 - ps: nuget restore ./src/Logs.sln
