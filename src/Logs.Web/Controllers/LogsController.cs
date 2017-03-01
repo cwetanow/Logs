@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
+using Logs.Web.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Logs.Web.Controllers
 {
@@ -23,6 +25,21 @@ namespace Logs.Web.Controllers
             var log = this.logService.GetTrainingLogById(id);
 
             return this.View();
+        }
+
+        [Authorize]
+        public ActionResult CreateLog()
+        {
+            return this.View(new CreateLogViewModel());
+        }
+
+        [Authorize]
+        [HttpPost]
+        public RedirectToRouteResult CreateLog(CreateLogViewModel model)
+        {
+            var log = this.logService.CreateTrainingLog(model.Name, model.Description, this.HttpContext.User.Identity.GetUserId());
+
+            return this.RedirectToAction("Details", new { id = log.LogId });
         }
     }
 }
