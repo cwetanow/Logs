@@ -66,6 +66,7 @@ namespace Logs.Web.App_Start
         {
             kernel.Load(new AuthNinjectModule());
             kernel.Load(new DataNinjectModule());
+            kernel.Load(new ServiceNinjectModule());
         }
     }
 }
