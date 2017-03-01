@@ -10,8 +10,8 @@ namespace Logs.Web.App_Start.NinjectModules
         public override void Load()
         {
             this.Bind<ILogsDbContext>().To<LogsDbContext>().InRequestScope();
-            this.Bind<IUnitOfWork>().To<UnitOfWork>();
-            this.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>));
+            this.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            this.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>)).InRequestScope();
         }
     }
 }
