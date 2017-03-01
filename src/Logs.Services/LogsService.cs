@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Logs.Data.Contracts;
 using Logs.Factories;
 using Logs.Models;
@@ -58,6 +59,11 @@ namespace Logs.Services
             this.unitOfWork.Commit();
 
             return log;
+        }
+
+        public IEnumerable<TrainingLog> GetAll()
+        {
+            return this.logRepository.Entities;
         }
     }
 }
