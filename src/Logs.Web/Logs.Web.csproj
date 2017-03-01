@@ -281,6 +281,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Logs\CreateLog.cshtml" />
+    <Content Include="Views\Shared\_ShortLogPartial.cshtml" />
+    <Content Include="Views\Logs\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

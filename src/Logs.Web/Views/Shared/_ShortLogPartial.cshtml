@@ -1,0 +1,24 @@
+﻿@model Logs.Models.TrainingLog
+
+<div class="well">
+    <div class="media">
+        <div class="media-body">
+            <h4 class="media-heading">
+                @Html.ActionLink(Model.Name, "Details", new { controller = "Logs", id = Model.LogId })
+            </h4>
+            @*By  @Html.ActionLink(Model.User.Name,
+                "Index",
+                new { controller = "Profile", username = Model.Author.Name },
+                new { @class = "text-right" })*@
+            <ul class="list-inline list-unstyled">
+                <li><span><i class="glyphicon glyphicon-calendar"></i> @Model.DateCreated</span></li>
+                <li>|</li>
+                <li> <span><i class="glyphicon glyphicon-comment"></i> @Model.Entries.Count</span></li>
+                <li>|</li>
+                <li>
+                    <span class="glyphicon glyphicon-star"></span> Rating: @Model.Votes.Count
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

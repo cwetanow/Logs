@@ -41,5 +41,11 @@ namespace Logs.Web.Controllers
 
             return this.RedirectToAction("Details", new { id = log.LogId });
         }
+
+        public ActionResult List()
+        {
+            var model = this.logService.GetAll();
+            return this.View(model);
+        }
     }
 }
