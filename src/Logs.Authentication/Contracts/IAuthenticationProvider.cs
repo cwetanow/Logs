@@ -10,9 +10,7 @@ namespace Logs.Authentication.Contracts
 
         string CurrentUserId { get; }
 
-        IdentityResult CreateUser(User user, string password);
-
-        void SignIn(User user, bool isPersistent, bool rememberBrowser);
+        IdentityResult RegisterAndLoginUser(User user, string password, bool isPersistent, bool rememberBrowser);
 
         SignInStatus SignInWithPassword(string email, string password, bool rememberMe, bool shouldLockout);
 

@@ -44,11 +44,20 @@ namespace Logs.Authentication
             return result;
         }
 
-        public void SignIn(User user, bool isPersistent, bool rememberBrowser)
+        public IdentityResult RegisterAndLoginUser(User user, string password, bool isPersistent, bool rememberBrowser)
         {
-            var manager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+            var manager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-            manager.SignIn(user, isPersistent, rememberBrowser);
+            var result = manager.Create(user, password);
+
+            if (result.Succeeded)
+            {
+                var signInManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+
+                signInManager.SignIn(user, isPersistent, rememberBrowser);
+            }
+
+            return result;
         }
 
         public SignInStatus SignInWithPassword(string email, string password, bool rememberMe, bool shouldLockout)
