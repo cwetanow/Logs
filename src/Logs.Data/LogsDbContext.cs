@@ -16,5 +16,13 @@ namespace Logs.Data
         {
             return new LogsDbContext();
         }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<LogEntry> Entries { get; set; }
+
+        public DbSet<TrainingLog> Logs { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
     }
 }
