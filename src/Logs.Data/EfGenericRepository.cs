@@ -81,12 +81,21 @@ namespace Logs.Data
                    .ToList();
         }
 
-        public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression)
+        public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, bool isDescending)
         {
-            return this.Entities
-                   .Where(filterExpression)
-                   .OrderBy(sortExpression)
-                   .ToList();
+            var result = this.Entities
+                .Where(filterExpression);
+
+            if (isDescending)
+            {
+                result = result.OrderByDescending(sortExpression);
+            }
+            else
+            {
+                result = result.OrderBy(sortExpression);
+            }
+
+            return result.ToList();
         }
 
         public IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression)

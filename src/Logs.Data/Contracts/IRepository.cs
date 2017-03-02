@@ -13,7 +13,9 @@ namespace Logs.Data.Contracts
 
         IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression);
 
-        IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression);
+        IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression,
+            Expression<Func<T, T1>> sortExpression,
+            bool isDescending = false);
 
         IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression,
             Expression<Func<T, T1>> sortExpression,
