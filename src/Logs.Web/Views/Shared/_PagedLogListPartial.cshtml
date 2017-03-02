@@ -1,0 +1,21 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<Logs.Models.TrainingLog>
+
+<div id="list">
+    @Html.Partial("_LogListPartial", Model)
+
+    <div class="pages total">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("PartialList", "Logs",
+        new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+            new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "list",
+                InsertionMode = InsertionMode.Replace
+            }))
+    </div>
+</div>
+
