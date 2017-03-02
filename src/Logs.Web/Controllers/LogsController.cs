@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web.Caching;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Models;
@@ -45,17 +47,20 @@ namespace Logs.Web.Controllers
             return this.RedirectToAction("Details", new { id = log.LogId });
         }
 
-        public ActionResult PartialList(int count = 1, int page = 1)
+        public ActionResult PartialList(int count = 10, int page = 1)
         {
-            var logs = this.logService.GetPaged(page, count);
-            var model = logs.ToPagedList(page, count);
+            var logs = this.logService.GetAllSortedByDate();
+            var model = logs
+                .Select(l => new ShortLogViewModel(l))
+                .ToPagedList(page, count);
 
             return this.PartialView("_PagedLogListPartial", model);
         }
 
-        public ActionResult List(int count = 1, int page = 1)
+        // TODO: FIX COUNT
+        public ActionResult List(int count = 10, int page = 1)
         {
-            var logs = this.logService.GetPaged(page, count);
+            var logs = this.logService.GetAllSortedByDate();
             var model = logs
                 .Select(l => new ShortLogViewModel(l))
                 .ToPagedList(page, count);
