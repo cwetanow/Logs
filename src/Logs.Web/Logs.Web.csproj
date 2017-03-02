@@ -245,6 +245,7 @@
     </Compile>
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\Account\RegisterViewModel.cs" />
+    <Compile Include="Models\Home\HomeViewModel.cs" />
     <Compile Include="Models\Logs\CreateLogViewModel.cs" />
     <Compile Include="Models\Logs\ShortLogViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
