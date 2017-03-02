@@ -6,7 +6,7 @@ using Logs.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Logs.Web.Models;
+using Logs.Web.Models.Account;
 
 namespace Logs.Web.Controllers
 {
