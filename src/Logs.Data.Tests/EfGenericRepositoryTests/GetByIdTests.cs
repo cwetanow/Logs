@@ -14,7 +14,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
         public void TestGetById_ShouldCallDbContextSetFind(int id)
         {
             // Arrange
-            var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
+            var mockedSet = new Mock<DbSet<FakeGenericRepositoryType>>();
 
             var mockedDbContext = new Mock<ILogsDbContext>();
             mockedDbContext.Setup(x => x.Set<FakeGenericRepositoryType>()).Returns(mockedSet.Object);

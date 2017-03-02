@@ -35,11 +35,6 @@ namespace Logs.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public IDbSet<TEntity> Set<TEntity>() where TEntity : class
-        {
-            return Set<TEntity>();
-        }
-
         public void SetAdded<TEntry>(TEntry entity) where TEntry : class
         {
             var entry = this.Entry(entity);
