@@ -78,11 +78,6 @@ namespace Logs.Services
             return this.logRepository.GetPaged(null, (TrainingLog l) => l.LastEntry, page, count, true);
         }
 
-        public IEnumerable<TrainingLog> GetAll()
-        {
-            return this.logRepository.GetAll();
-        }
-
         public IEnumerable<TrainingLog> GetAllSortedByDate()
         {
             return this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog l) => l.DateCreated, true);

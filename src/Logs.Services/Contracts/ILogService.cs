@@ -12,8 +12,6 @@ namespace Logs.Services.Contracts
 
         IEnumerable<TrainingLog> GetPaged(int page, int count);
 
-        IEnumerable<TrainingLog> GetAll();
-
         IEnumerable<TrainingLog> GetAllSortedByDate();
 
         IEnumerable<TrainingLog> GetLatestLogs(int count);
