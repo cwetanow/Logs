@@ -14,18 +14,18 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
         public void TestGetById_ShouldCallDbContextSetFind(int id)
         {
             // Arrange
-            var setMock = new Mock<DbSet<FakeGenericRepositoryType>>();
+            var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
 
-            var dbContext = new Mock<ILogsDbContext>();
-            dbContext.Setup(x => x.Set<FakeGenericRepositoryType>()).Returns(setMock.Object);
+            var mockedDbContext = new Mock<ILogsDbContext>();
+            mockedDbContext.Setup(x => x.Set<FakeGenericRepositoryType>()).Returns(mockedSet.Object);
 
-            var repository = new EfGenericRepository<FakeGenericRepositoryType>(dbContext.Object);
+            var repository = new EfGenericRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
 
             // Act
             repository.GetById(id);
 
             // Assert
-            setMock.Verify(x => x.Find(id), Times.Once);
+            mockedSet.Verify(x => x.Find(id), Times.Once);
         }
 
         [TestCase(1)]
