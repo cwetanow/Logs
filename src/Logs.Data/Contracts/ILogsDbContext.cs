@@ -4,7 +4,7 @@ namespace Logs.Data.Contracts
 {
     public interface ILogsDbContext
     {
-        DbSet<TEntity> Set<TEntity>()
+        IDbSet<TEntity> Set<TEntity>()
             where TEntity : class;
 
         int SaveChanges();
