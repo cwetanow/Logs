@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Factories;
 using Logs.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,15 +15,22 @@ namespace Logs.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IAuthenticationProvider provider;
+        private readonly IUserFactory userFactory;
 
-        public AccountController(IAuthenticationProvider provider)
+        public AccountController(IAuthenticationProvider provider, IUserFactory userFactory)
         {
             if (provider == null)
             {
                 throw new ArgumentNullException("provider cannot be null");
             }
 
+            if (userFactory == null)
+            {
+                throw new ArgumentNullException("userFactory cannot be null");
+            }
+
             this.provider = provider;
+            this.userFactory = userFactory;
         }
 
         // GET: /Account/Login
@@ -78,7 +86,7 @@ namespace Logs.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, Name = model.Username };
+                var user = this.userFactory.CreateUser(model.Email, model.Email, model.Username);
                 var result = this.provider.RegisterAndLoginUser(user, model.Password, isPersistent: false, rememberBrowser: false);
 
                 if (result.Succeeded)
