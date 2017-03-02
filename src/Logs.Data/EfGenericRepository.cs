@@ -78,16 +78,14 @@ namespace Logs.Data
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression)
         {
-            return this.dbContext
-                   .Set<T>()
+            return this.Entities
                    .Where(filterExpression)
                    .ToList();
         }
 
         public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression)
         {
-            return this.dbContext
-                   .Set<T>()
+            return this.Entities
                    .Where(filterExpression)
                    .OrderBy(sortExpression)
                    .ToList();
@@ -95,8 +93,7 @@ namespace Logs.Data
 
         public IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression)
         {
-            return this.dbContext
-                  .Set<T>()
+            return this.Entities
                   .Where(filterExpression)
                   .OrderBy(sortExpression)
                   .Select(selectExpression)
