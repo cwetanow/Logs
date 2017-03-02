@@ -60,14 +60,12 @@ namespace Logs.Data
 
         public void Add(T entity)
         {
-            var entry = this.dbContext.Entry(entity);
-            entry.State = EntityState.Added;
+            this.dbContext.SetAdded(entity);
         }
 
         public void Delete(T entity)
         {
-            var entry = this.dbContext.Entry(entity);
-            entry.State = EntityState.Deleted;
+            this.dbContext.SetDeleted(entity);
         }
 
         public IEnumerable<T> GetAll()
@@ -107,8 +105,7 @@ namespace Logs.Data
 
         public void Update(T entity)
         {
-            var entry = this.dbContext.Entry(entity);
-            entry.State = EntityState.Modified;
+            this.dbContext.SetUpdated(entity);
         }
     }
 }
