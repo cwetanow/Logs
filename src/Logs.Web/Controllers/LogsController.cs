@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Models;
+using Logs.Web.Models.Logs;
 using Microsoft.AspNet.Identity;
 using PagedList;
 
@@ -54,7 +56,18 @@ namespace Logs.Web.Controllers
         public ActionResult List(int count = 1, int page = 1)
         {
             var logs = this.logService.GetPaged(page, count);
-            var model = logs.ToPagedList(page, count);
+            var model = logs
+                .Select(l => new ShortLogViewModel
+                {
+                    DateCreated = l.DateCreated,
+                    Entries = l.Entries.Count,
+                    LastActivity = l.LastEntry,
+                    Name = l.Name,
+                    LastActivityUser = l.LastActivityUser,
+                    LogId = l.LogId,
+                    Username = l.User.Name
+                })
+                .ToPagedList(page, count);
 
             return this.View("List", model);
         }
@@ -62,15 +75,37 @@ namespace Logs.Web.Controllers
         public ActionResult TopLogs(int count = 3)
         {
             var logs = this.logService.GetTopLogs(count);
+            var model = logs
+                .Select(l => new ShortLogViewModel
+                {
+                    DateCreated = l.DateCreated,
+                    Entries = l.Entries.Count,
+                    LastActivity = l.LastEntry,
+                    Name = l.Name,
+                    LastActivityUser = l.LastActivityUser,
+                    LogId = l.LogId,
+                    Username = l.User.Name
+                });
 
-            return this.PartialView("_LogListPartial", logs);
+            return this.PartialView("_LogListPartial", model);
         }
 
         public ActionResult Latest(int count = 3)
         {
             var logs = this.logService.GetLatestLogs(count);
+            var model = logs
+                            .Select(l => new ShortLogViewModel
+                            {
+                                DateCreated = l.DateCreated,
+                                Entries = l.Entries.Count,
+                                LastActivity = l.LastEntry,
+                                Name = l.Name,
+                                LastActivityUser = l.LastActivityUser,
+                                LogId = l.LogId,
+                                Username = l.User.Name
+                            });
 
-            return this.PartialView("_LogListPartial", logs);
+            return this.PartialView("_LogListPartial", model);
         }
     }
 }

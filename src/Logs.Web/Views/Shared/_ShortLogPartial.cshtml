@@ -1,4 +1,4 @@
-﻿@model Logs.Models.TrainingLog
+﻿@model Logs.Web.Models.Logs.ShortLogViewModel
 
 <div class="well">
     <div class="media">
@@ -6,18 +6,24 @@
             <h4 class="media-heading">
                 @Html.ActionLink(Model.Name, "Details", new { controller = "Logs", id = Model.LogId })
             </h4>
-            By  @Html.ActionLink(Model.User.Name,
+            By  @Html.ActionLink(Model.Username,
                 "Index",
-                new { controller = "Profile", name = Model.User.Name },
+                new { controller = "Profile", name = Model.Username },
                 new { @class = "text-right" })
             <ul class="list-inline list-unstyled">
                 <li><span><i class="glyphicon glyphicon-calendar"></i> @Model.DateCreated</span></li>
                 <li>|</li>
-                <li> <span><i class="glyphicon glyphicon-comment"></i> @Model.Entries.Count</span></li>
+                <li> <span><i class="glyphicon glyphicon-comment"></i> @Model.Entries</span></li>
                 <li>|</li>
                 <li>
-                    <span class="glyphicon glyphicon-star"></span> Rating: @Model.Votes.Count
+                    <span class="glyphicon glyphicon-star"></span> Rating: @Model.Votes
                 </li>
+                @Html.ActionLink(Model.Username,
+                    "Index",
+                    new { controller = "Profile", name = Model.LastActivityUser },
+                    new { @class = "text-right pull-right" })
+                <li class="pull-right"><span><i class="glyphicon glyphicon-calendar"></i> @Model.LastActivity</span></li>
+                <li class="pull-right">Latest activity:</li>
             </ul>
         </div>
     </div>

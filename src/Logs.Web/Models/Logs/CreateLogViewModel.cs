@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Logs.Web.Models
+namespace Logs.Web.Models.Logs
 {
     public class CreateLogViewModel
     {
