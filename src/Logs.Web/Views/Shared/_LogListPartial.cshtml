@@ -1,0 +1,16 @@
+﻿@using PagedList.Mvc
+
+@model PagedList.IPagedList<Logs.Models.TrainingLog>
+
+@foreach (var log in Model)
+{
+    Html.RenderPartial("_ShortLogPartial", log);
+}
+
+<div class="pages total">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("List","Logs",
+    new { page = page }))
+
+</div>

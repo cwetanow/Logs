@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace Logs.Web.Controllers
 {
@@ -42,10 +43,12 @@ namespace Logs.Web.Controllers
             return this.RedirectToAction("Details", new { id = log.LogId });
         }
 
-        public ActionResult List()
+        public ActionResult List(int count = 1, int page = 1)
         {
-            var model = this.logService.GetLogs();
-            return this.View(model);
+            var logs = this.logService.GetLogs();
+            var model = logs.ToPagedList(page, count);
+
+            return this.View("_LogListPartial", model);
         }
     }
 }
