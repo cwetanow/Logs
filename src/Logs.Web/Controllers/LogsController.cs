@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web.Caching;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Models;
