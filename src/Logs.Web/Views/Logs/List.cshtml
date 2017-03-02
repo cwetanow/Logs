@@ -1,10 +1,7 @@
-﻿@model IEnumerable<Logs.Models.TrainingLog>
+﻿@model PagedList.IPagedList<Logs.Models.TrainingLog>
 
 @{
     ViewBag.Title = "List";
 }
 
-@foreach (var log in Model)
-{
-    Html.RenderPartial("_ShortLogPartial", log);
-}
+@Html.Partial("_LogListPartial", Model)

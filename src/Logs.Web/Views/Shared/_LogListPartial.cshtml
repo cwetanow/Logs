@@ -2,15 +2,25 @@
 
 @model PagedList.IPagedList<Logs.Models.TrainingLog>
 
-@foreach (var log in Model)
-{
-    Html.RenderPartial("_ShortLogPartial", log);
-}
+<div id="list">
+    @foreach (var log in Model)
+    {
+        Html.RenderPartial("_ShortLogPartial", log);
+    }
 
-<div class="pages total">
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    <div class="pages total">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("List","Logs",
-    new { page = page }))
-
+        @Html.PagedListPager(Model, page => Url.Action("PartialList", "Logs",
+        new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+            new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "list",
+                InsertionMode = InsertionMode.Replace
+            }))
+    </div>
 </div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

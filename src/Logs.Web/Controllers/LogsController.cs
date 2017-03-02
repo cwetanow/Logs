@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Caching;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Models;
@@ -43,12 +44,20 @@ namespace Logs.Web.Controllers
             return this.RedirectToAction("Details", new { id = log.LogId });
         }
 
+        public ActionResult PartialList(int count = 1, int page = 1)
+        {
+            var logs = this.logService.GetLogs();
+            var model = logs.ToPagedList(page, count);
+
+            return this.PartialView("_LogListPartial", model);
+        }
+
         public ActionResult List(int count = 1, int page = 1)
         {
             var logs = this.logService.GetLogs();
             var model = logs.ToPagedList(page, count);
 
-            return this.View("_LogListPartial", model);
+            return this.View("List", model);
         }
     }
 }
