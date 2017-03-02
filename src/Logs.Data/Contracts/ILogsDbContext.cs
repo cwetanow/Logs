@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 
 namespace Logs.Data.Contracts
 {
@@ -10,7 +9,13 @@ namespace Logs.Data.Contracts
 
         int SaveChanges();
 
-        DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity)
-            where TEntity : class;
+        void SetAdded<TEntry>(TEntry entity)
+            where TEntry : class;
+
+        void SetDeleted<TEntry>(TEntry entity)
+            where TEntry : class;
+
+        void SetUpdated<TEntry>(TEntry entity)
+            where TEntry : class;
     }
 }
