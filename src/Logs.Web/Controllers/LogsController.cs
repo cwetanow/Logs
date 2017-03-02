@@ -63,6 +63,7 @@ namespace Logs.Web.Controllers
             return this.View("List", model);
         }
 
+        [OutputCache(Duration = 60 * 10)]
         public ActionResult TopLogs(int count = 3)
         {
             var logs = this.logService.GetTopLogs(count);
@@ -72,6 +73,7 @@ namespace Logs.Web.Controllers
             return this.PartialView("_LogListPartial", model);
         }
 
+        [OutputCache(Duration = 60 * 10)]
         public ActionResult Latest(int count = 3)
         {
             var logs = this.logService.GetLatestLogs(count);
