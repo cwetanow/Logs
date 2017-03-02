@@ -18,10 +18,10 @@ namespace Logs.Services.Tests.LogsServiceTests
         [TestCase(2)]
         public void TestGetTopLogs_ShouldCallRepositoryGetPagedCorrectly(int count)
         {
+            // Arrange
             var expectedPage = 1;
             var expectedDescending = false;
 
-            // Arrange
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedLogFactory = new Mock<ITrainingLogFactory>();

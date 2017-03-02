@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogsServiceTests\ConstructorTests.cs" />
     <Compile Include="LogsServiceTests\CreateTrainingLogTests.cs" />
     <Compile Include="LogsServiceTests\GetLatestLogsTests.cs" />
     <Compile Include="LogsServiceTests\GetPagedTests.cs" />
