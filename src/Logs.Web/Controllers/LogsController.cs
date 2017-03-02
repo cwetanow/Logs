@@ -45,7 +45,7 @@ namespace Logs.Web.Controllers
 
         public ActionResult PartialList(int count = 1, int page = 1)
         {
-            var logs = this.logService.GetLogs();
+            var logs = this.logService.GetPaged(page, count);
             var model = logs.ToPagedList(page, count);
 
             return this.PartialView("_PagedLogListPartial", model);
