@@ -19,6 +19,7 @@ namespace Logs.Models
             this.Description = description;
             this.DateCreated = dateCreated;
             this.User = user;
+            this.User.Log = this;
 
             this.LastEntry = this.DateCreated;
             this.LastActivityUser = this.User.Name;

@@ -11,6 +11,9 @@ namespace Logs.Data
             : base("LogsDb", throwIfV1Schema: false)
         {
             this.Database.CreateIfNotExists();
+
+            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.ProxyCreationEnabled = true;
         }
 
         public static LogsDbContext Create()
