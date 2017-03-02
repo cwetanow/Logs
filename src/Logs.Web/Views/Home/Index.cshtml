@@ -9,14 +9,14 @@
     <p class="lead">If you haven't been keeping a workout log, it's about time you start.</p>
     @if (Model.IsAuthenticated)
     {
-        <a href="mylog" class="btn btn-primary btn-lg">My Log &raquo;</a>
+        @Html.ActionLink("My Log", "MyLog", "Profile", null, new { @class = "btn btn-primary btn-lg" })
     }
     else
     {
         @Html.ActionLink("Get Started", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-lg" })
     }
-     @Html.ActionLink("Browse", "List", "Logs", null, new { @class = "btn btn-primary btn-lg" })
 
+    @Html.ActionLink("Browse", "List", "Logs", null, new { @class = "btn btn-primary btn-lg" })
 </div>
 
 <div class="row">
