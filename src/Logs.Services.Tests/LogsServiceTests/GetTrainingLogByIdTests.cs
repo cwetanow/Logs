@@ -1,6 +1,7 @@
 ﻿using Logs.Data.Contracts;
 using Logs.Factories;
 using Logs.Models;
+using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 using Moq;
 using NUnit.Framework;
@@ -20,8 +21,13 @@ namespace Logs.Services.Tests.LogsServiceTests
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedLogFactory = new Mock<ITrainingLogFactory>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
-            var service = new LogsService(mockedLogRepository.Object, mockedUnitOfWork.Object, mockedLogFactory.Object, mockedUserService.Object);
+            var service = new LogsService(mockedLogRepository.Object,
+                mockedUnitOfWork.Object,
+                mockedLogFactory.Object,
+                mockedUserService.Object,
+                mockedDateTimeProvider.Object);
 
             // Act
             service.GetTrainingLogById(id);
@@ -44,8 +50,13 @@ namespace Logs.Services.Tests.LogsServiceTests
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedLogFactory = new Mock<ITrainingLogFactory>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
-            var service = new LogsService(mockedLogRepository.Object, mockedUnitOfWork.Object, mockedLogFactory.Object, mockedUserService.Object);
+            var service = new LogsService(mockedLogRepository.Object,
+                mockedUnitOfWork.Object,
+                mockedLogFactory.Object,
+                mockedUserService.Object,
+                mockedDateTimeProvider.Object);
 
             // Act
             var result = service.GetTrainingLogById(id);
