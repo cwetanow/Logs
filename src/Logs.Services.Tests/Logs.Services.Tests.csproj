@@ -76,6 +76,8 @@
     <Compile Include="LogsServiceTests\GetTopLogsTests.cs" />
     <Compile Include="LogsServiceTests\GetTrainingLogByIdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserServiceTests\ConstructorTests.cs" />
+    <Compile Include="UserServiceTests\GetByIdTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logs.Data\Logs.Data.csproj">
