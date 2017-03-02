@@ -9,6 +9,7 @@ namespace Logs.Web.App_Start.NinjectModules
         public override void Load()
         {
             this.Bind<ITrainingLogFactory>().ToFactory().InSingletonScope();
+            this.Bind<IUserFactory>().ToFactory().InSingletonScope();
         }
     }
 }
