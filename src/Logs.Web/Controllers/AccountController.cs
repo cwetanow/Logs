@@ -78,7 +78,7 @@ namespace Logs.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, Name = model.Name };
+                var user = new User { UserName = model.Email, Email = model.Email, Name = model.Username };
                 var result = this.provider.RegisterAndLoginUser(user, model.Password, isPersistent: false, rememberBrowser: false);
 
                 if (result.Succeeded)
