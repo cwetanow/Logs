@@ -30,6 +30,8 @@ namespace Logs.Models
 
         public DateTime DateCreated { get; set; }
 
+        public DateTime? LastEntry { get; set; }
+
         public virtual User User { get; set; }
 
         public virtual ICollection<Vote> Votes { get; set; }
