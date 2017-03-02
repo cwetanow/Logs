@@ -17,11 +17,6 @@ namespace Logs.Data
             this.dbContext = dbContext;
         }
 
-        public void Dispose()
-        {
-
-        }
-
         public void Commit()
         {
             this.dbContext.SaveChanges();

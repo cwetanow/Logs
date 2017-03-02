@@ -69,7 +69,6 @@ namespace Logs.Services
 
         public IEnumerable<TrainingLog> GetPaged(int page, int count)
         {
-            // FIX
             return this.logRepository.GetPaged(null, (TrainingLog l) => l.LastEntry, page, count, true);
         }
 

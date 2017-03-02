@@ -2,7 +2,7 @@
 
 namespace Logs.Data.Contracts
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         void Commit();
     }
