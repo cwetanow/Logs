@@ -73,11 +73,6 @@ namespace Logs.Services
             return log;
         }
 
-        public IEnumerable<TrainingLog> GetLogs()
-        {
-            return this.logRepository.GetAll();
-        }
-
         public IEnumerable<TrainingLog> GetPaged(int page, int count)
         {
             return this.logRepository.GetPaged(null, (TrainingLog l) => l.LastEntry, page, count, true);
