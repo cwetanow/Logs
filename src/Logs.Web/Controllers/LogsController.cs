@@ -57,16 +57,7 @@ namespace Logs.Web.Controllers
         {
             var logs = this.logService.GetPaged(page, count);
             var model = logs
-                .Select(l => new ShortLogViewModel
-                {
-                    DateCreated = l.DateCreated,
-                    Entries = l.Entries.Count,
-                    LastActivity = l.LastEntry,
-                    Name = l.Name,
-                    LastActivityUser = l.LastActivityUser,
-                    LogId = l.LogId,
-                    Username = l.User.Name
-                })
+                .Select(l => new ShortLogViewModel(l))
                 .ToPagedList(page, count);
 
             return this.View("List", model);
@@ -76,16 +67,7 @@ namespace Logs.Web.Controllers
         {
             var logs = this.logService.GetTopLogs(count);
             var model = logs
-                .Select(l => new ShortLogViewModel
-                {
-                    DateCreated = l.DateCreated,
-                    Entries = l.Entries.Count,
-                    LastActivity = l.LastEntry,
-                    Name = l.Name,
-                    LastActivityUser = l.LastActivityUser,
-                    LogId = l.LogId,
-                    Username = l.User.Name
-                });
+                .Select(l => new ShortLogViewModel(l));
 
             return this.PartialView("_LogListPartial", model);
         }
@@ -94,16 +76,7 @@ namespace Logs.Web.Controllers
         {
             var logs = this.logService.GetLatestLogs(count);
             var model = logs
-                            .Select(l => new ShortLogViewModel
-                            {
-                                DateCreated = l.DateCreated,
-                                Entries = l.Entries.Count,
-                                LastActivity = l.LastEntry,
-                                Name = l.Name,
-                                LastActivityUser = l.LastActivityUser,
-                                LogId = l.LogId,
-                                Username = l.User.Name
-                            });
+                .Select(l => new ShortLogViewModel(l));
 
             return this.PartialView("_LogListPartial", model);
         }

@@ -1,9 +1,21 @@
 ﻿using System;
+using Logs.Models;
 
 namespace Logs.Web.Models.Logs
 {
     public class ShortLogViewModel
     {
+        public ShortLogViewModel(TrainingLog log)
+        {
+            this.DateCreated = log.DateCreated;
+            this.Entries = log.Entries.Count;
+            this.LastActivity = log.LastEntry;
+            this.Name = log.Name;
+            this.LastActivityUser = log.LastActivityUser;
+            this.LogId = log.LogId;
+            this.Username = log.User.Name;
+        }
+
         public string Name { get; set; }
 
         public int LogId { get; set; }
