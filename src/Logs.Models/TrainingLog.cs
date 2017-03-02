@@ -19,6 +19,9 @@ namespace Logs.Models
             this.Description = description;
             this.DateCreated = dateCreated;
             this.User = user;
+
+            this.LastEntry = this.DateCreated;
+            this.LastActivityUser = this.User.Name;
         }
 
         [Key]
@@ -27,6 +30,8 @@ namespace Logs.Models
         public string Description { get; set; }
 
         public string Name { get; set; }
+
+        public string LastActivityUser { get; set; }
 
         public DateTime DateCreated { get; set; }
 
