@@ -3,9 +3,9 @@
 <div class="well">
     <div class="media">
         <div class="media-body">
-            <h4 class="media-heading">
+            <h2 class="media-heading">
                 @Html.ActionLink(Model.Name, "Details", new { controller = "Logs", id = Model.LogId })
-            </h4>
+            </h2>
             By  @Html.ActionLink(Model.Username,
                 "Index",
                 new { controller = "Profile", name = Model.Username },
