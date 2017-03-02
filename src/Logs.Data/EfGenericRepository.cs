@@ -22,13 +22,9 @@ namespace Logs.Data
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<T> Entities
+        protected IEnumerable<T> Entities
         {
-            get
-            {
-                return this.dbContext.Set<T>()
-                    .ToList();
-            }
+            get { return this.dbContext.Set<T>(); }
         }
 
         public void Add(T entity)
@@ -41,6 +37,11 @@ namespace Logs.Data
         {
             var entry = this.dbContext.Entry(entity);
             entry.State = EntityState.Deleted;
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return this.Entities.ToList();
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression)
