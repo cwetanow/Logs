@@ -4,6 +4,7 @@ using System.Linq;
 using Logs.Data.Contracts;
 using Logs.Factories;
 using Logs.Models;
+using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 
 namespace Logs.Services
@@ -14,11 +15,13 @@ namespace Logs.Services
         private readonly IUserService userService;
         private readonly IUnitOfWork unitOfWork;
         private readonly ITrainingLogFactory logFactory;
+        private readonly IDateTimeProvider provider;
 
         public LogsService(IRepository<TrainingLog> logRepository,
             IUnitOfWork unitOfWork,
             ITrainingLogFactory logFactory,
-            IUserService userService)
+            IUserService userService,
+            IDateTimeProvider provider)
         {
             if (logRepository == null)
             {
@@ -40,6 +43,12 @@ namespace Logs.Services
                 throw new ArgumentNullException("userService");
             }
 
+            if (provider == null)
+            {
+                throw new ArgumentNullException("provider");
+            }
+
+            this.provider = provider;
             this.logRepository = logRepository;
             this.userService = userService;
             this.logFactory = logFactory;
@@ -54,7 +63,9 @@ namespace Logs.Services
         public TrainingLog CreateTrainingLog(string name, string description, string userId)
         {
             var user = this.userService.GetUserById(userId);
-            var log = this.logFactory.CreateTrainingLog(name, description, DateTime.Now, user);
+
+            var currentTime = this.provider.GetCurrenTime();
+            var log = this.logFactory.CreateTrainingLog(name, description, currentTime, user);
 
             this.logRepository.Add(log);
             this.unitOfWork.Commit();
