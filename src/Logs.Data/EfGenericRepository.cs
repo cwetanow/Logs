@@ -22,9 +22,40 @@ namespace Logs.Data
             this.dbContext = dbContext;
         }
 
-        protected IEnumerable<T> Entities
+        protected IQueryable<T> Entities
         {
             get { return this.dbContext.Set<T>(); }
+        }
+
+        public IEnumerable<T> GetPaged<T1>(Expression<Func<T, bool>> filterExpression,
+            Expression<Func<T, T1>> sortExpression,
+            int page,
+            int count,
+            bool descending)
+        {
+            var result = this.Entities;
+
+            if (filterExpression != null)
+            {
+                result = result.Where(filterExpression);
+            }
+
+            if (sortExpression != null)
+            {
+                if (descending)
+                {
+                    result = result.OrderByDescending(sortExpression);
+                }
+                else
+                {
+                    result = result.OrderBy(sortExpression);
+                }
+            }
+
+            result = result.Skip((page - 1) * count)
+                .Take(count);
+
+            return result.ToList();
         }
 
         public void Add(T entity)
@@ -41,7 +72,8 @@ namespace Logs.Data
 
         public IEnumerable<T> GetAll()
         {
-            return this.Entities.ToList();
+            return this.Entities
+                .ToList();
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression)
