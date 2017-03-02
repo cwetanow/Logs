@@ -70,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogsServiceTests\CreateTrainingLogTests.cs" />
+    <Compile Include="LogsServiceTests\GetLatestLogsTests.cs" />
+    <Compile Include="LogsServiceTests\GetPagedTests.cs" />
+    <Compile Include="LogsServiceTests\GetTopLogsTests.cs" />
     <Compile Include="LogsServiceTests\GetTrainingLogByIdTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
