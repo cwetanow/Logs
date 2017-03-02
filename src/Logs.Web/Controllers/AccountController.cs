@@ -78,9 +78,9 @@ namespace Logs.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email, Name = model.Name };
                 var result = this.provider.RegisterAndLoginUser(user, model.Password, isPersistent: false, rememberBrowser: false);
-                
+
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
