@@ -92,6 +92,10 @@
       <Project>{911FB23D-C230-4581-94FF-212E574BFF36}</Project>
       <Name>Logs.Authentication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logs.Factories\Logs.Factories.csproj">
+      <Project>{9CDE063E-931B-4E7A-A7A9-2452B9C92A4E}</Project>
+      <Name>Logs.Factories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logs.Web\Logs.Web.csproj">
       <Project>{6A9F8991-43BB-4BFA-812E-03691632351B}</Project>
       <Name>Logs.Web</Name>
