@@ -6,5 +6,7 @@
 
 @Html.Partial("_PagedLogListPartial", Model)
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jquery-unobtrusive")
+@section scripts
+{
+    @Scripts.Render("~/bundles/jquery-unobtrusive")
+}
