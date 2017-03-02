@@ -12,7 +12,15 @@ namespace Logs.Models
             this.Comments = new HashSet<Comment>();
             this.Entries = new HashSet<LogEntry>();
         }
-        
+
+        public User(string username, string email, string name)
+            : this()
+        {
+            this.UserName = username;
+            this.Email = email;
+            this.Name = name;
+        }
+
         [Index(IsUnique = true)]
         [StringLength(20)]
         public string Name { get; set; }
