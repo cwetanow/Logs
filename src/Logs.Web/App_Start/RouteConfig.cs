@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Logs.Web
@@ -12,12 +8,6 @@ namespace Logs.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-               name: "Profile",
-               url: "Profile/{name}",
-               defaults: new { controller = "Profile", action = "Index", id = UrlParameter.Optional }
-           );
 
             routes.MapRoute(
                 name: "Default",
