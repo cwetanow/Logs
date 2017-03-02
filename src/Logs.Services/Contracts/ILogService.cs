@@ -11,5 +11,11 @@ namespace Logs.Services.Contracts
         TrainingLog CreateTrainingLog(string name, string description, string userId);
 
         IEnumerable<TrainingLog> GetLogs();
+
+        IEnumerable<TrainingLog> GetPaged(int page, int count);
+
+        IEnumerable<TrainingLog> GetLatestLogs(int count);
+
+        IEnumerable<TrainingLog> GetTopLogs(int count);
     }
 }

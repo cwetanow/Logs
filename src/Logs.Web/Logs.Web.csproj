@@ -296,6 +296,7 @@
     <Content Include="Views\Shared\_ShortLogPartial.cshtml" />
     <Content Include="Views\Logs\List.cshtml" />
     <Content Include="Views\Shared\_LogListPartial.cshtml" />
+    <Content Include="Views\Shared\_PagedLogListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

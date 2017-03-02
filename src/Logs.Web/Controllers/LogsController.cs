@@ -48,15 +48,29 @@ namespace Logs.Web.Controllers
             var logs = this.logService.GetLogs();
             var model = logs.ToPagedList(page, count);
 
-            return this.PartialView("_LogListPartial", model);
+            return this.PartialView("_PagedLogListPartial", model);
         }
 
         public ActionResult List(int count = 1, int page = 1)
         {
-            var logs = this.logService.GetLogs();
+            var logs = this.logService.GetPaged(page, count);
             var model = logs.ToPagedList(page, count);
 
             return this.View("List", model);
+        }
+
+        public ActionResult TopLogs(int count = 3)
+        {
+            var logs = this.logService.GetTopLogs(count);
+
+            return this.PartialView("_LogListPartial", logs);
+        }
+
+        public ActionResult Latest(int count = 3)
+        {
+            var logs = this.logService.GetLatestLogs(count);
+
+            return this.PartialView("_LogListPartial", logs);
         }
     }
 }

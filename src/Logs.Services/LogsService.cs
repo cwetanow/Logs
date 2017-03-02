@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Logs.Data.Contracts;
 using Logs.Factories;
 using Logs.Models;
@@ -64,6 +65,21 @@ namespace Logs.Services
         public IEnumerable<TrainingLog> GetLogs()
         {
             return this.logRepository.GetAll();
+        }
+
+        public IEnumerable<TrainingLog> GetPaged(int page, int count)
+        {
+            return this.logRepository.GetPaged(null, (TrainingLog l) => l.Entries.Last().EntryDate, page, count, true);
+        }
+
+        public IEnumerable<TrainingLog> GetLatestLogs(int count)
+        {
+            return this.logRepository.GetPaged(null, (TrainingLog t) => t.DateCreated, 1, count, true);
+        }
+
+        public IEnumerable<TrainingLog> GetTopLogs(int count)
+        {
+            return this.logRepository.GetPaged(null, (TrainingLog t) => t.Votes.Count, 1, count);
         }
     }
 }
