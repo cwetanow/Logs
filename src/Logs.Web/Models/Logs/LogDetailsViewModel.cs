@@ -14,11 +14,14 @@ namespace Logs.Web.Models.Logs
             this.DateCreated = log.DateCreated;
             this.User = log.User.Name;
             this.VotesCount = log.Votes.Count;
+            this.LogId = log.LogId;
 
             this.Entries = log.Entries
                 .Select(e => new LogEntryViewModel(e))
                 .ToPagedList(1, 10);
         }
+
+        public int LogId { get; set; }
 
         public string Description { get; set; }
 
