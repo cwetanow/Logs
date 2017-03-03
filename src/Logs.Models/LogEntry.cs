@@ -9,7 +9,6 @@ namespace Logs.Models
     {
         public LogEntry()
         {
-            this.Votes = new HashSet<Vote>();
             this.Comments = new HashSet<Comment>();
         }
 
@@ -27,9 +26,6 @@ namespace Logs.Models
 
         [ForeignKey("LogId")]
         public virtual TrainingLog Log { get; set; }
-
-        // TODO: Remove this
-        public virtual ICollection<Vote> Votes { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 
