@@ -9,6 +9,7 @@ namespace Logs.Web.App_Start.NinjectModules
         public override void Load()
         {
             this.Bind<ILogService>().To<LogsService>();
+            this.Bind<IEntryService>().To<EntryService>();
             this.Bind<IUserService>().To<UserService>();
         }
     }
