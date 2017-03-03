@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Models.Entries;
 using Logs.Web.Models.Logs;
@@ -13,13 +17,6 @@ namespace Logs.Web.Controllers
         public EntriesController(IEntryService entryService)
         {
             this.entryService = entryService;
-        }
-
-        public ActionResult List(int page, LogDetailsViewModel model, int count = 2)
-        {
-            model.Entries = model.Entries.ToPagedList(page, count);
-
-            return this.PartialView("_LogEntriesPartial", model);
         }
 
         public ActionResult NewEntry(NewEntryViewModel model)
