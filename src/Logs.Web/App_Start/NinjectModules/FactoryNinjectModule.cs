@@ -10,6 +10,7 @@ namespace Logs.Web.App_Start.NinjectModules
         {
             this.Bind<ITrainingLogFactory>().ToFactory().InSingletonScope();
             this.Bind<IUserFactory>().ToFactory().InSingletonScope();
+            this.Bind<ILogEntryFactory>().ToFactory().InSingletonScope();
         }
     }
 }
