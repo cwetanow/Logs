@@ -1,0 +1,16 @@
+﻿@model Logs.Web.Models.Entries.NewCommentViewModel
+
+@using (Ajax.BeginForm("Comment",
+                                                    new { controller = "Entries" },
+                                                    new AjaxOptions
+                                                    {
+                                                        HttpMethod = "Post",
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        UpdateTargetId = "comments"
+                                                    }))
+{
+    @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 5 });
+    @Html.HiddenFor(m => m.LogId)
+    @Html.ValidationSummary()
+    <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+}
