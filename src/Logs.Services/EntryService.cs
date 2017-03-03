@@ -18,6 +18,16 @@ namespace Logs.Services
                 throw new ArgumentNullException("logService");
             }
 
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException("dateTimeProvider");
+            }
+
+            if (factory == null)
+            {
+                throw new ArgumentNullException("factory");
+            }
+
             this.logService = logService;
             this.factory = factory;
             this.dateTimeProvider = dateTimeProvider;
