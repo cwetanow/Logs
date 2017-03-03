@@ -28,7 +28,7 @@
 
         <hr>
         <p class="lead">
-            @Html.Raw(Model.Description)
+            @Html.Raw("<pre>" + Html.Encode(Model.Description) + "</pre>")
         </p><hr>
 
         <p>

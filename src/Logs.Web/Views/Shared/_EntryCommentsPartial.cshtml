@@ -14,7 +14,7 @@
 
                     <small>@string.Format("{0:MM dd, yyyy} at {0:HH:mm}", comment.Date)</small>
                 </h4>
-                @comment.Content
+               @Html.Raw("<pre>" + Html.Encode(comment.Content) + "</pre>")
 
             </div>
         </div>
