@@ -38,6 +38,8 @@
         <div id="entry-form">
             @Html.Partial("_NewEntryBoxPartial", new NewEntryViewModel { LogId = Model.LogId })
         </div>
+        
+        <hr/>
 
         <div id="comments">
             @if (Model.Entries.Count > 0)
