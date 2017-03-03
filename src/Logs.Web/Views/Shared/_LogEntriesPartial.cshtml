@@ -12,8 +12,8 @@
             </span>
         </h3>
 
-        <span class="lead"> @entry.Content</span>
-
+        <span class="lead"> @Html.Raw("<pre>" + Html.Encode(entry.Content) + "</pre>")</span>
+        <hr/>
         @Html.Partial("_EntryCommentsPartial", entry.Comments)
         <hr />
     }
