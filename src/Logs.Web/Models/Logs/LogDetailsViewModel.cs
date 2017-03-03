@@ -18,7 +18,7 @@ namespace Logs.Web.Models.Logs
 
             this.Entries = log.Entries
                 .Select(e => new LogEntryViewModel(e))
-                .ToPagedList(1, 10);
+                .ToPagedList(1, 2);
         }
 
         public int LogId { get; set; }

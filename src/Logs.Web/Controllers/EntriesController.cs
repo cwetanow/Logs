@@ -15,7 +15,7 @@ namespace Logs.Web.Controllers
             this.entryService = entryService;
         }
 
-        public ActionResult List(int page, LogDetailsViewModel model, int count = 10)
+        public ActionResult List(int page, LogDetailsViewModel model, int count = 2)
         {
             model.Entries = model.Entries.ToPagedList(page, count);
 
