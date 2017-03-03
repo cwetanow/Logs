@@ -29,7 +29,9 @@ namespace Logs.Web.Controllers
         {
             var log = this.logService.GetTrainingLogById(id);
 
-            return this.View();
+            var model = new LogDetailsViewModel(log);
+
+            return this.View(model);
         }
 
         [Authorize]
