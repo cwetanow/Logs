@@ -33,6 +33,7 @@ namespace Logs.Web.Controllers
         //}
 
         [HttpGet]
+        [Authorize]
         public RedirectToRouteResult MyLog()
         {
             var currentUserId = this.provider.CurrentUserId;

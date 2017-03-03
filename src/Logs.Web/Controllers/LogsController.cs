@@ -56,8 +56,7 @@ namespace Logs.Web.Controllers
 
             return this.PartialView("_PagedLogListPartial", model);
         }
-
-        // TODO: FIX COUNT
+        
         public ActionResult List(int count = 10, int page = 1)
         {
             var logs = this.logService.GetAllSortedByDate();
