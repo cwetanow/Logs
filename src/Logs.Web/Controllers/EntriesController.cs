@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Logs.Web.Models.Entries;
 using Logs.Web.Models.Logs;
 using PagedList;
 
@@ -11,6 +12,11 @@ namespace Logs.Web.Controllers
             model.Entries = model.Entries.ToPagedList(page, count);
 
             return this.PartialView("_LogEntriesPartial", model);
+        }
+
+        public ActionResult NewEntry(NewEntryViewModel model)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
