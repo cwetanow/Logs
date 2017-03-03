@@ -24,7 +24,7 @@ namespace Logs.Web.Controllers
 
         public ActionResult NewEntry(NewEntryViewModel model)
         {
-            var entry = this.entryService.CreateNewEntry(model.Content, model.LogId);
+            this.entryService.AddEntryToLog(model.Content, model.LogId);
 
             return null;
         }
