@@ -1,5 +1,4 @@
-﻿@using PagedList.Mvc
-@model Logs.Web.Models.Logs.LogDetailsViewModel
+﻿@model Logs.Web.Models.Logs.LogDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,11 +6,8 @@
 
 <div class="row">
 
-    <!-- Blog Post Content Column -->
-    <div class="col-lg-8">
+    <div class="col-lg-12">
 
-        <!-- Blog Post -->
-        <!-- Title -->
         <h1>@Model.Name</h1>
 
         <p class="lead">
@@ -22,31 +18,27 @@
         </p>
 
         <hr>
-        <!-- Date/Time -->
         <span class="pull-right">
-            <span class="glyphicon glyphicon-time"></span> @string.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.DateCreated)
+            <span class="glyphicon glyphicon-time"></span> @string.Format("Created on {0:MM dd, yyyy} at {0:HH:mm}", Model.DateCreated)
         </span>
 
-        <p><span class="glyphicon glyphicon-star"></span> Rating: <span id="rating">@Model.VotesCount</span></p>
+        <p><span class="glyphicon glyphicon-star"></span> @Model.VotesCount</p>
 
         <hr>
-        <!-- Post Content -->
         <p class="lead">
             @Html.Raw(Model.Description)
+        </p><hr>
+
+        <p>
+            @Html.ActionLink("New Entry", "MyLog", "Profile", null, new { @class = "btn btn-primary btn-lg" })
+            @Html.ActionLink("Comment", "MyLog", "Profile", null, new { @class = "btn btn-primary btn-lg" })
         </p>
 
-        <hr>
-
         <div id="comments">
-
             @if (Model.Entries.Count > 0)
             {
                 @Html.Partial("_LogEntriesPartial", Model)
             }
-
         </div>
-
-
-
     </div>
 </div>
