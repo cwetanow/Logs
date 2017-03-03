@@ -9,7 +9,7 @@ namespace Logs.Web.Models.Logs
         {
             this.DateCreated = log.DateCreated;
             this.Entries = log.Entries.Count;
-            this.LastActivity = log.LastEntry;
+            this.LastActivity = log.LastEntryDate;
             this.Name = log.Name;
             this.LastActivityUser = log.LastActivityUser;
             this.LogId = log.LogId;

@@ -21,7 +21,7 @@ namespace Logs.Models
             this.User = user;
             this.User.Log = this;
 
-            this.LastEntry = this.DateCreated;
+            this.LastEntryDate = this.DateCreated;
             this.LastActivityUser = this.User.Name;
         }
 
@@ -36,7 +36,9 @@ namespace Logs.Models
 
         public DateTime DateCreated { get; set; }
 
-        public DateTime? LastEntry { get; set; }
+        public DateTime LastEntryDate { get; set; }
+
+        public virtual LogEntry LastEntry { get; set; }
 
         public virtual User User { get; set; }
 
