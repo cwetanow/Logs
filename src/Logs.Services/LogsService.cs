@@ -75,7 +75,7 @@ namespace Logs.Services
 
         public IEnumerable<TrainingLog> GetPaged(int page, int count)
         {
-            return this.logRepository.GetPaged(null, (TrainingLog l) => l.LastEntry, page, count, true);
+            return this.logRepository.GetPaged(null, (TrainingLog l) => l.LastEntryDate, page, count, true);
         }
 
         public IEnumerable<TrainingLog> GetAllSortedByDate()

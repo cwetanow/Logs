@@ -37,7 +37,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             service.GetPaged(page, count);
 
             // Assert
-            mockedLogRepository.Verify(r => r.GetPaged(null, It.IsAny<Expression<Func<TrainingLog, DateTime?>>>(), page,
+            mockedLogRepository.Verify(r => r.GetPaged(null, It.IsAny<Expression<Func<TrainingLog, DateTime>>>(), page,
                 count, expectedDescending), Times.Once);
         }
 
