@@ -24,6 +24,7 @@ textarea {
     max-width: 280px;
 }
 
-#entry-form {
-    display: none
+#entry-form,
+#comment-form {
+    display: none;
 }
