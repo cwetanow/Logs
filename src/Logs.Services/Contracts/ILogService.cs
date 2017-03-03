@@ -17,5 +17,7 @@ namespace Logs.Services.Contracts
         IEnumerable<TrainingLog> GetTopLogs(int count);
 
         void AddEntryToLog(int logId, LogEntry entry);
+
+        void AddCommentToLog(int logId, Comment comment);
     }
 }

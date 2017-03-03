@@ -96,10 +96,26 @@ namespace Logs.Services
             {
                 log.Entries.Add(entry);
                 log.LastEntryDate = entry.EntryDate;
+                log.LastEntry = entry;
                 log.LastActivityUser = log.User.Name;
 
                 this.unitOfWork.Commit();
             }
+        }
+
+        public void AddCommentToLog(int logId, Comment comment)
+        {
+            var log = this.logRepository.GetById(logId);
+
+            if (log != null)
+            {
+                log.LastEntry.Comments.Add(comment);
+                log.LastEntryDate = comment.Date;
+                log.LastActivityUser = comment.User.Name;
+
+                this.unitOfWork.Commit();
+            }
+
         }
     }
 }
