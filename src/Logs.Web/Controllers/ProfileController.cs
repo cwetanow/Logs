@@ -39,7 +39,17 @@ namespace Logs.Web.Controllers
             var currentUserId = this.provider.CurrentUserId;
             var currentUser = this.userService.GetUserById(currentUserId);
 
-            return this.RedirectToAction("Details", "Logs", new { id = currentUser.Log.LogId });
+            if (currentUser.Log != null)
+            {
+                return this.RedirectToAction("Details", "Logs", new { id = currentUser.Log.LogId });
+            }
+
+            return this.RedirectToAction("NoLog");
+        }
+
+        public ActionResult NoLog()
+        {
+            return this.View();
         }
     }
 }
