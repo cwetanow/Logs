@@ -5,7 +5,6 @@
     @:Comments:
     foreach (var comment in Model)
     {
-        <div class="media">
             <div class="media-body">
                 <h4 class="media-heading">
                     @Html.ActionLink(@comment.User,
@@ -17,6 +16,5 @@
                @Html.Raw("<pre>" + Html.Encode(comment.Content) + "</pre>")
 
             </div>
-        </div>
     }
 }
