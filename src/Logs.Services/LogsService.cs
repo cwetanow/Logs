@@ -73,11 +73,6 @@ namespace Logs.Services
             return log;
         }
 
-        public IEnumerable<TrainingLog> GetPaged(int page, int count)
-        {
-            return this.logRepository.GetPaged(null, (TrainingLog l) => l.LastEntryDate, page, count, true);
-        }
-
         public IEnumerable<TrainingLog> GetAllSortedByDate()
         {
             return this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog l) => l.DateCreated, true);
@@ -91,6 +86,15 @@ namespace Logs.Services
         public IEnumerable<TrainingLog> GetTopLogs(int count)
         {
             return this.logRepository.GetPaged(null, (TrainingLog t) => t.Votes.Count, 1, count);
+        }
+
+        public void AddEntryToLog(int logId, LogEntry entry)
+        {
+            var log = this.logRepository.GetById(logId);
+            // TODO: Add stuff
+            log?.Entries.Add(entry);
+
+            this.unitOfWork.Commit();
         }
     }
 }
