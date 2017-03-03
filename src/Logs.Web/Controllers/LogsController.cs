@@ -22,7 +22,7 @@ namespace Logs.Web.Controllers
             this.logService = logService;
         }
 
-        public ActionResult Details(int id, int page = 1, int count = 2)
+        public ActionResult Details(int id, int page = 1, int count = 25)
         {
             var log = this.logService.GetTrainingLogById(id);
 
