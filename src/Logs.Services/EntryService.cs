@@ -1,45 +1,35 @@
 ﻿using System;
-using Logs.Data.Contracts;
-using Logs.Models;
+using Logs.Factories;
+using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 
 namespace Logs.Services
 {
     public class EntryService : IEntryService
     {
-        private readonly IRepository<LogEntry> entryRepository;
-        private readonly IUnitOfWork unitOfWork;
         private readonly ILogService logService;
+        private readonly IDateTimeProvider dateTimeProvider;
+        private readonly ILogEntryFactory factory;
 
-        public EntryService(IRepository<LogEntry> entryRepository,
-            IUnitOfWork unitOfWork, ILogService logService)
+        public EntryService(ILogService logService, IDateTimeProvider dateTimeProvider, ILogEntryFactory factory)
         {
-            if (entryRepository == null)
+            if (logService == null)
             {
-                throw new ArgumentNullException("entryRepository");
+                throw new ArgumentNullException("logService");
             }
 
-            if (unitOfWork == null)
-            {
-                throw new ArgumentNullException("unitOfWork");
-            }
-
-            this.entryRepository = entryRepository;
-            this.unitOfWork = unitOfWork;
             this.logService = logService;
+            this.factory = factory;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
-        public LogEntry CreateNewEntry(string content, int logId)
+        public void AddEntryToLog(string content, int logId)
         {
-            var entry = new LogEntry { Content = content, LogId = logId, EntryDate = DateTime.Now };
+            var currentDate = this.dateTimeProvider.GetCurrenTime();
 
-            var log = this.logService.GetTrainingLogById(logId);
-            log?.Entries.Add(entry);
+            var entry = this.factory.CreateLogEntry(content, currentDate);
 
-            this.entryRepository.Add(entry);
-            this.unitOfWork.Commit();
-
-            return entry;
+            this.logService.AddEntryToLog(logId, entry);
         }
     }
 }
