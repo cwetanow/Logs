@@ -7,6 +7,13 @@ namespace Logs.Models
 {
     public class LogEntry
     {
+        public LogEntry(string content, DateTime entryDate)
+            : this()
+        {
+            this.Content = content;
+            this.EntryDate = entryDate;
+        }
+
         public LogEntry()
         {
             this.Comments = new HashSet<Comment>();
@@ -16,11 +23,6 @@ namespace Logs.Models
         public int LogEntryId { get; set; }
 
         public DateTime EntryDate { get; set; }
-
-        public string UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
 
         public int LogId { get; set; }
 
