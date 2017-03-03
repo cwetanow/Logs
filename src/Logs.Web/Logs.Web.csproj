@@ -301,6 +301,7 @@
     <Content Include="Views\Shared\_LogListPartial.cshtml" />
     <Content Include="Views\Shared\_PagedLogListPartial.cshtml" />
     <Content Include="Views\Profile\NoLog.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

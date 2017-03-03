@@ -7,7 +7,7 @@
                 @Html.ActionLink(Model.Name, "Details", new { controller = "Logs", id = Model.LogId })
             </h2>
             By  @Html.ActionLink(Model.Username,
-                "Index",
+                "Details",
                 new { controller = "Profile", name = Model.Username },
                 new { @class = "text-right" })
             <ul class="list-inline list-unstyled">
@@ -19,7 +19,7 @@
                     <span class="glyphicon glyphicon-star"></span> Rating: @Model.Votes
                 </li>
                 @Html.ActionLink(Model.Username,
-                    "Index",
+                    "Details",
                     new { controller = "Profile", name = Model.LastActivityUser },
                     new { @class = "text-right pull-right" })
                 <li class="pull-right"><span><i class="glyphicon glyphicon-calendar"></i> @Model.LastActivity</span></li>

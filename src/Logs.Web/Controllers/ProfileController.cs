@@ -26,12 +26,6 @@ namespace Logs.Web.Controllers
             this.provider = provider;
         }
 
-        //public ActionResult Index(string name)
-        //{
-        //    // TODO
-        //    return View("~/Views/Home/Index");
-        //}
-
         [HttpGet]
         [Authorize]
         public RedirectToRouteResult MyLog()
@@ -48,6 +42,11 @@ namespace Logs.Web.Controllers
         }
 
         public ActionResult NoLog()
+        {
+            return this.View();
+        }
+
+        public ActionResult Details(string name)
         {
             return this.View();
         }
