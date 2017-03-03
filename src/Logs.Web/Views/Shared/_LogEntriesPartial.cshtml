@@ -1,0 +1,31 @@
+﻿@using System.Web.Mvc.Html
+@using PagedList.Mvc
+@model Logs.Web.Models.Logs.LogDetailsViewModel
+
+<div class="well">
+    @foreach (var entry in Model.Entries)
+    {
+        <h3>
+            <span class="pull-right label label-primary">
+                <span class="glyphicon glyphicon-time"></span> @string.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", entry.EntryDate)
+            </span>
+        </h3>
+
+        <span class="lead"> @entry.Content</span>
+
+        @Html.Partial("_EntryCommentsPartial", entry.Comments)
+    }
+
+    <div class="pages total">
+        Page @(Model.Entries.PageCount < Model.Entries.PageNumber ? 0 : Model.Entries.PageNumber) of @Model.Entries.PageCount
+
+        @Html.PagedListPager(Model.Entries, page => Url.Action("List", "Entries",
+                            new { page = page, model = Model }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                                new AjaxOptions()
+                                {
+                                    HttpMethod = "GET",
+                                    UpdateTargetId = "well",
+                                    InsertionMode = InsertionMode.Replace
+                                }))
+    </div>
+</div>

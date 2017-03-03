@@ -1,0 +1,15 @@
+﻿@model Logs.Web.Models.Logs.CommentViewModel
+
+<div class="media">
+    <div class="media-body">
+        <h4 class="media-heading">
+            @Html.ActionLink(@Model.User,
+           "Details",
+           new { controller = "Profile", name = Model.User })
+
+            <small>@string.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</small>
+        </h4>
+        @Model.Content
+
+    </div>
+</div>

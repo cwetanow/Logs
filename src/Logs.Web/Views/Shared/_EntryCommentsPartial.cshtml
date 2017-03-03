@@ -1,0 +1,9 @@
+﻿@model System.Collections.Generic.IEnumerable<Logs.Web.Models.Logs.CommentViewModel>
+
+@if (Model.Any())
+{
+    foreach (var comment in Model)
+    {
+        @Html.DisplayFor(c => comment)
+    }
+}
