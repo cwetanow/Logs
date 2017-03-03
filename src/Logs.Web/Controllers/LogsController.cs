@@ -33,7 +33,7 @@ namespace Logs.Web.Controllers
         }
 
         [Authorize]
-        public ActionResult CreateLog()
+        public ActionResult Create()
         {
             return this.View(new CreateLogViewModel());
         }
