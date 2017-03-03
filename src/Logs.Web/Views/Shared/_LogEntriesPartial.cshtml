@@ -1,9 +1,10 @@
 ﻿@using System.Web.Mvc.Html
 @using PagedList.Mvc
-@model Logs.Web.Models.Logs.LogDetailsViewModel
 
-<div class="well">
-    @foreach (var entry in Model.Entries)
+@model PagedList.IPagedList<Logs.Web.Models.Logs.LogEntryViewModel>
+
+<div class="well" id="entries">
+    @foreach (var entry in Model)
     {
         <h3>
             <span class="pull-right label label-primary">
@@ -14,19 +15,12 @@
         <span class="lead"> @entry.Content</span>
 
         @Html.Partial("_EntryCommentsPartial", entry.Comments)
-        <hr/>
+        <hr />
     }
 
     <div class="pages total">
-        Page @(Model.Entries.PageCount < Model.Entries.PageNumber ? 0 : Model.Entries.PageNumber) of @Model.Entries.PageCount
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-        @Html.PagedListPager(Model.Entries, page => Url.Action("List", "Entries",
-                            new { page = page, model = Model }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
-                                new AjaxOptions()
-                                {
-                                    HttpMethod = "GET",
-                                    UpdateTargetId = "well",
-                                    InsertionMode = InsertionMode.Replace
-                                }))
+        @Html.PagedListPager(Model, page => Url.Action("Details", "Logs", new { page = page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
     </div>
 </div>

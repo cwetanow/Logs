@@ -38,13 +38,13 @@
         <div id="entry-form">
             @Html.Partial("_NewEntryBoxPartial", new NewEntryViewModel { LogId = Model.LogId })
         </div>
-        
-        <hr/>
+
+        <hr />
 
         <div id="comments">
             @if (Model.Entries.Count > 0)
             {
-                @Html.Partial("_LogEntriesPartial", Model)
+                @Html.Partial("_LogEntriesPartial", Model.Entries)
             }
         </div>
     </div>
@@ -52,8 +52,6 @@
 
 @section scripts{
     <script>
-        $('#entry-form').hide();
-
         $("#entries-btn")
             .click(function () {
                 $('#entry-form').toggle();
