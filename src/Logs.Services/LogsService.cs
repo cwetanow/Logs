@@ -91,10 +91,15 @@ namespace Logs.Services
         public void AddEntryToLog(int logId, LogEntry entry)
         {
             var log = this.logRepository.GetById(logId);
-            // TODO: Add stuff
-            log?.Entries.Add(entry);
 
-            this.unitOfWork.Commit();
+            if (log != null)
+            {
+                log.Entries.Add(entry);
+                log.LastEntryDate = entry.EntryDate;
+                log.LastActivityUser = log.User.Name;
+
+                this.unitOfWork.Commit();
+            }
         }
     }
 }
