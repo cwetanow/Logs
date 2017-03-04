@@ -22,11 +22,12 @@ namespace Logs.Web.Controllers
             this.logService = logService;
         }
 
-        public ActionResult Details(int id, int page = 1, int count = 25)
+        public ActionResult Details(int id, int page = 1, int count = 3)
         {
             var log = this.logService.GetTrainingLogById(id);
 
             var model = new LogDetailsViewModel(log);
+
             model.Entries = log.Entries
                 .Select(e => new LogEntryViewModel(e))
                 .ToPagedList(page, count);

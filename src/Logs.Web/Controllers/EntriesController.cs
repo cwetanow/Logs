@@ -20,7 +20,7 @@ namespace Logs.Web.Controllers
         {
             this.entryService.AddEntryToLog(model.Content, model.LogId);
 
-            return null;
+            return this.RedirectToAction("Details", "Logs", new { id = model.LogId });
         }
 
         public ActionResult Comment(NewCommentViewModel model)
@@ -29,7 +29,7 @@ namespace Logs.Web.Controllers
 
             this.entryService.AddCommentToLog(model.Content, model.LogId, model.UserId);
 
-            return null;
+            return this.RedirectToAction("Details", "Logs", new { id = model.LogId });
         }
     }
 }
