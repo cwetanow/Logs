@@ -20,11 +20,13 @@ namespace Logs.Services.Tests.EntryServiceTests
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
             var mockedFactory = new Mock<ILogEntryFactory>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedCommentFactory = new Mock<ICommentFactory>();
 
             var service = new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
-                mockedUserService.Object);
+                mockedUserService.Object,
+                mockedCommentFactory.Object);
 
             // Act
             service.AddEntryToLog(content, logId);
@@ -48,11 +50,13 @@ namespace Logs.Services.Tests.EntryServiceTests
 
             var mockedFactory = new Mock<ILogEntryFactory>();
             var mockedUserService = new Mock<IUserService>();
+            var mockedCommentFactory = new Mock<ICommentFactory>();
 
             var service = new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
-                mockedUserService.Object);
+                mockedUserService.Object,
+                mockedCommentFactory.Object);
 
             // Act
             service.AddEntryToLog(content, logId);
@@ -74,12 +78,15 @@ namespace Logs.Services.Tests.EntryServiceTests
             var mockedFactory = new Mock<ILogEntryFactory>();
             mockedFactory.Setup(f => f.CreateLogEntry(It.IsAny<string>(), It.IsAny<DateTime>()))
                 .Returns(entry);
+
             var mockedUserService = new Mock<IUserService>();
+            var mockedCommentFactory = new Mock<ICommentFactory>();
 
             var service = new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
-                mockedUserService.Object);
+                mockedUserService.Object,
+                mockedCommentFactory.Object);
 
             // Act
             service.AddEntryToLog(content, logId);
