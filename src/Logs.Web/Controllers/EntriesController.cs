@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Logs.Authentication.Contracts;
-using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Models.Entries;
-using Logs.Web.Models.Logs;
-using PagedList;
 
 namespace Logs.Web.Controllers
 {
