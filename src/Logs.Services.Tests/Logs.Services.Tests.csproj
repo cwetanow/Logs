@@ -72,6 +72,7 @@
     <Compile Include="EntryServiceTests\AddCommentToLogTests.cs" />
     <Compile Include="EntryServiceTests\AddEntryToLogTests.cs" />
     <Compile Include="EntryServiceTests\ConstructorTests.cs" />
+    <Compile Include="LogsServiceTests\AddCommentToLogTests.cs" />
     <Compile Include="LogsServiceTests\AddEntryToLogTests.cs" />
     <Compile Include="LogsServiceTests\ConstructorTests.cs" />
     <Compile Include="LogsServiceTests\CreateTrainingLogTests.cs" />
