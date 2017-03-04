@@ -6,6 +6,13 @@ namespace Logs.Models
 {
     public class Comment
     {
+        public Comment(string content, DateTime date, User user)
+        {
+            this.Content = content;
+            this.Date = date;
+            this.User = user;
+        }
+
         [Key]
         public int CommentId { get; set; }
 
