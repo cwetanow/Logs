@@ -12,3 +12,7 @@
 - User profile
 - Verify that user has only 1 log
 - Votes
+- Fix view after new entry
+- Fix view after new comment
+- User info
+- User profile picture
