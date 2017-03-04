@@ -9,6 +9,21 @@ namespace Logs.Authentication
 {
     public class HttpContextAuthenticationProvider : IAuthenticationProvider
     {
+        protected ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+            }
+        }
+        protected ApplicationUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+        }
+
         public bool IsAuthenticated
         {
             get
@@ -25,36 +40,13 @@ namespace Logs.Authentication
             }
         }
 
-        public IdentityResult CreateUser(string email, string password)
-        {
-            var user = new User { Email = email, UserName = email };
-            var manager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-            var result = manager.Create(user, password);
-
-            return result;
-        }
-
-        public IdentityResult CreateUser(User user, string password)
-        {
-            var manager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-            var result = manager.Create(user, password);
-
-            return result;
-        }
-
         public IdentityResult RegisterAndLoginUser(User user, string password, bool isPersistent, bool rememberBrowser)
         {
-            var manager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-            var result = manager.Create(user, password);
+            var result = this.UserManager.Create(user, password);
 
             if (result.Succeeded)
             {
-                var signInManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-                signInManager.SignIn(user, isPersistent, rememberBrowser);
+                this.SignInManager.SignIn(user, isPersistent, rememberBrowser);
             }
 
             return result;
@@ -62,9 +54,7 @@ namespace Logs.Authentication
 
         public SignInStatus SignInWithPassword(string email, string password, bool rememberMe, bool shouldLockout)
         {
-            var manager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-            return manager.PasswordSignIn(email, password, rememberMe, shouldLockout);
+            return this.SignInManager.PasswordSignIn(email, password, rememberMe, shouldLockout);
         }
 
         public void SignOut()
