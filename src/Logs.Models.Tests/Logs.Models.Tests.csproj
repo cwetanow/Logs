@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommentTests\ConstructorTests.cs" />
+    <Compile Include="CommentTests\PropertiesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserTests\ConstructorTests.cs" />
     <Compile Include="UserTests\PropertiesTests.cs" />
