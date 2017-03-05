@@ -14,15 +14,21 @@ namespace Logs.Web.Controllers
             this.voteService = voteService;
             this.authenticationProvider = authenticationProvider;
         }
-        
+
         [Authorize]
-        public ActionResult Vote(int logId)
+        [HttpPost]
+        public ActionResult Vote(int logId, int currentVoteCount)
         {
             var currentUserId = this.authenticationProvider.CurrentUserId;
 
-            this.voteService.VoteLog(logId, currentUserId);
+            var rating = this.voteService.VoteLog(logId, currentUserId);
 
-            return this.RedirectToAction("Details", "Logs", new { id = logId });
+            if (rating < 0)
+            {
+                rating = currentVoteCount;
+            }
+
+            return this.PartialView(rating);
         }
     }
 }
