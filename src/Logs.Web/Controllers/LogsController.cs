@@ -41,6 +41,8 @@ namespace Logs.Web.Controllers
             {
                 var currentUserId = this.authenticationProvider.CurrentUserId;
                 model.IsOwner = log.User.Id.Equals(currentUserId);
+                model.CanVote = (log.Votes
+                    .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null;
             }
 
             model.Entries = log.Entries
