@@ -38,5 +38,7 @@ namespace Logs.Web.Models.Logs
         public bool IsOwner { get; set; }
 
         public bool IsAuthenticated { get; set; }
+
+        public bool CanVote { get; set; }
     }
 }
