@@ -5,6 +5,12 @@ namespace Logs.Models
 {
     public class Vote
     {
+        public Vote(int logId, string userId)
+        {
+            this.LogId = logId;
+            this.UserId = userId;
+        }
+
         [Key]
         public int LogVoteId { get; set; }
 
