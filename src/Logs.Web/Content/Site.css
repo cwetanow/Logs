@@ -42,3 +42,7 @@ pre {
 .media-body {
     padding-left: 10%;
 }
+
+.glyphicon-thumbs-up {
+    font-size: 35px;
+}

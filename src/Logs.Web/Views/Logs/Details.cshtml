@@ -40,8 +40,7 @@
             {
                 <button class="btn btn-primary btn-lg" id="comment-btn">Comment</button>
             }
-
-            @Html.ActionLink("Vote", "Vote", "Vote", new { logId = Model.LogId }, null)
+            @Html.ActionLink(" ", "Vote", "Vote", new { logId = Model.LogId }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg" })
         </p>
         @if (Model.IsOwner)
         {
