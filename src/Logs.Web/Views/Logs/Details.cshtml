@@ -32,16 +32,27 @@
         </p><hr>
 
         <p>
-            <button class="btn btn-primary btn-lg" id="entries-btn">New Entry</button>
-            <button class="btn btn-primary btn-lg" id="comment-btn">Comment</button>
+            @if (Model.IsOwner)
+            {
+                <button class="btn btn-primary btn-lg" id="entries-btn">New Entry</button>
+            }
+            @if (Model.IsAuthenticated)
+            {
+                <button class="btn btn-primary btn-lg" id="comment-btn">Comment</button>
+            }
         </p>
-        <div id="entry-form">
-            @Html.Partial("_NewEntryBoxPartial", new NewEntryViewModel { LogId = Model.LogId })
-        </div>
-        <div id="comment-form">
-            @Html.Partial("_CommentBoxPartial", new NewCommentViewModel { LogId = Model.LogId })
-        </div>
-
+        @if (Model.IsOwner)
+        {
+            <div id="entry-form">
+                @Html.Partial("_NewEntryBoxPartial", new NewEntryViewModel { LogId = Model.LogId })
+            </div>
+        }
+        @if (Model.IsAuthenticated)
+        {
+            <div id="comment-form">
+                @Html.Partial("_CommentBoxPartial", new NewCommentViewModel { LogId = Model.LogId })
+            </div>
+        }
         <hr />
 
         <div id="comments">
