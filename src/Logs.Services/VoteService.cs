@@ -22,7 +22,7 @@ namespace Logs.Services
             this.voteFactory = voteFactory;
         }
 
-        public bool VoteLog(int logId, string userId)
+        public int VoteLog(int logId, string userId)
         {
             var userVoteOnLog = this.voteRepository
                 .GetAll(v => v.LogId.Equals(logId) && v.UserId.Equals(userId))
@@ -41,11 +41,11 @@ namespace Logs.Services
                     this.voteRepository.Add(vote);
                     this.unitOfWork.Commit();
 
-                    return true;
+                    return log.Votes.Count;
                 }
             }
 
-            return false;
+            return -1;
         }
     }
 }

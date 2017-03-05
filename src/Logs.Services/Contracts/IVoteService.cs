@@ -2,6 +2,6 @@
 {
     public interface IVoteService
     {
-        bool VoteLog(int logId, string userId);
+        int VoteLog(int logId, string userId);
     }
 }
