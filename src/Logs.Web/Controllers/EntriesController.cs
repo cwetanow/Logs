@@ -16,16 +16,20 @@ namespace Logs.Web.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
+        [Authorize]
         public ActionResult NewEntry(NewEntryViewModel model)
         {
-            this.entryService.AddEntryToLog(model.Content, model.LogId);
+            var userId = this.authenticationProvider.CurrentUserId;
+
+            this.entryService.AddEntryToLog(model.Content, model.LogId, userId);
 
             return this.RedirectToAction("Details", "Logs", new { id = model.LogId });
         }
 
+        [Authorize]
         public ActionResult Comment(NewCommentViewModel model)
         {
-            model.UserId = authenticationProvider.CurrentUserId;
+            model.UserId = this.authenticationProvider.CurrentUserId;
 
             this.entryService.AddCommentToLog(model.Content, model.LogId, model.UserId);
 
