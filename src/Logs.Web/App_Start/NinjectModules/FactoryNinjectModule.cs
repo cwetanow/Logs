@@ -12,6 +12,7 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<IUserFactory>().ToFactory().InSingletonScope();
             this.Bind<ILogEntryFactory>().ToFactory().InSingletonScope();
             this.Bind<ICommentFactory>().ToFactory().InSingletonScope();
+            this.Bind<IVoteFactory>().ToFactory().InSingletonScope();
         }
     }
 }
