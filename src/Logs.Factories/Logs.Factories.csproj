@@ -61,6 +61,7 @@
     <Compile Include="ILogEntryFactory.cs" />
     <Compile Include="ITrainingLogFactory.cs" />
     <Compile Include="IUserFactory.cs" />
+    <Compile Include="IVoteFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
