@@ -2,6 +2,7 @@
 using Logs.Factories;
 using Logs.Models;
 using Logs.Services.Contracts;
+using System.Linq;
 
 namespace Logs.Services
 {
@@ -23,7 +24,28 @@ namespace Logs.Services
 
         public bool VoteLog(int logId, string userId)
         {
-            throw new System.NotImplementedException();
+            var userVoteOnLog = this.voteRepository
+                .GetAll(v => v.LogId.Equals(logId) && v.UserId.Equals(userId))
+                .FirstOrDefault();
+
+            var userHasNotVoted = (userVoteOnLog == null);
+
+            if (userHasNotVoted)
+            {
+                var log = this.logService.GetTrainingLogById(logId);
+
+                if (log != null)
+                {
+                    var vote = this.voteFactory.CreateVote(logId, userId);
+
+                    this.voteRepository.Add(vote);
+                    this.unitOfWork.Commit();
+
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
