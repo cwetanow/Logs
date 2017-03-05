@@ -41,7 +41,7 @@
                 <button class="btn btn-primary btn-lg" id="comment-btn">Comment</button>
             }
 
-            @Html.ActionLink("Vote", "Vote", "Vote", new { logId = Model.LogId })
+            @Html.ActionLink("Vote", "Vote", "Vote", new { logId = Model.LogId }, null)
         </p>
         @if (Model.IsOwner)
         {
