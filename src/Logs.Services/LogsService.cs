@@ -88,11 +88,11 @@ namespace Logs.Services
             return this.logRepository.GetPaged(null, (TrainingLog t) => t.Votes.Count, 1, count);
         }
 
-        public void AddEntryToLog(int logId, LogEntry entry)
+        public void AddEntryToLog(int logId, LogEntry entry, string userId)
         {
             var log = this.logRepository.GetById(logId);
 
-            if (log != null)
+            if (log != null && log.User.Id == userId)
             {
                 log.Entries.Add(entry);
                 log.LastEntryDate = entry.EntryDate;
@@ -115,7 +115,6 @@ namespace Logs.Services
 
                 this.unitOfWork.Commit();
             }
-
         }
     }
 }

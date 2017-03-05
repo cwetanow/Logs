@@ -52,13 +52,13 @@ namespace Logs.Services
             this.commentFactory = commentFactory;
         }
 
-        public void AddEntryToLog(string content, int logId)
+        public void AddEntryToLog(string content, int logId, string userId)
         {
             var currentDate = this.dateTimeProvider.GetCurrenTime();
 
             var entry = this.logEntryFactoryfactory.CreateLogEntry(content, currentDate);
 
-            this.logService.AddEntryToLog(logId, entry);
+            this.logService.AddEntryToLog(logId, entry, userId);
         }
 
         public void AddCommentToLog(string content, int logId, string userId)
