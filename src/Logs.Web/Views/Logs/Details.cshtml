@@ -24,7 +24,7 @@
             <span class="glyphicon glyphicon-time"></span> @string.Format("Created on {0:MM dd, yyyy} at {0:HH:mm}", Model.DateCreated)
         </span>
 
-        <p><span class="glyphicon glyphicon-star"></span> @Model.VotesCount</p>
+        @Html.Partial("~/Views/Vote/Vote.cshtml", Model.VotesCount)
 
         <hr>
         <p class="lead">
@@ -36,11 +36,25 @@
             {
                 <button class="btn btn-primary btn-lg" id="entries-btn">New Entry</button>
             }
+
             @if (Model.IsAuthenticated)
             {
                 <button class="btn btn-primary btn-lg" id="comment-btn">Comment</button>
             }
-            @Html.ActionLink(" ", "Vote", "Vote", new { logId = Model.LogId }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg" })
+
+            @if (Model.CanVote)
+            {
+                @Ajax.ActionLink(" ",
+                "Vote",
+                new { controller = "Vote", logId = Model.LogId, currentVoteCount = Model.VotesCount },
+                new AjaxOptions
+                {
+                    UpdateTargetId = "rating",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST"
+                }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg", id = "rating-btn" })
+            }
+
         </p>
         @if (Model.IsOwner)
         {
@@ -75,5 +89,12 @@
             .click(function () {
                 $('#comment-form').toggle();
             });
+
+        $('#rating-btn')
+            .click(function () {
+                $('#rating-btn').hide();
+            });
     </script>
+
+    @Scripts.Render("~/bundles/jquery-unobtrusive")
 }
