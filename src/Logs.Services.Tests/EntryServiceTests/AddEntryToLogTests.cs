@@ -29,7 +29,7 @@ namespace Logs.Services.Tests.EntryServiceTests
                 mockedCommentFactory.Object);
 
             // Act
-            service.AddEntryToLog(content, logId);
+            service.AddEntryToLog(content, logId, null);
 
             // Assert
             mockedDateTimeProvider.Verify(p => p.GetCurrenTime(), Times.Once);
@@ -59,7 +59,7 @@ namespace Logs.Services.Tests.EntryServiceTests
                 mockedCommentFactory.Object);
 
             // Act
-            service.AddEntryToLog(content, logId);
+            service.AddEntryToLog(content, logId, null);
 
             // Assert
             mockedFactory.Verify(f => f.CreateLogEntry(content, date), Times.Once);
@@ -89,10 +89,11 @@ namespace Logs.Services.Tests.EntryServiceTests
                 mockedCommentFactory.Object);
 
             // Act
-            service.AddEntryToLog(content, logId);
+            service.AddEntryToLog(content, logId, null);
+
 
             // Assert
-            mockedLogService.Verify(s => s.AddEntryToLog(logId, entry), Times.Once);
+            mockedLogService.Verify(s => s.AddEntryToLog(logId, entry, null), Times.Once);
         }
     }
 }
