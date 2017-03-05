@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Models.Logs;
 using Microsoft.AspNet.Identity;
@@ -11,22 +12,36 @@ namespace Logs.Web.Controllers
     public class LogsController : Controller
     {
         private readonly ILogService logService;
+        private readonly IAuthenticationProvider authenticationProvider;
 
-        public LogsController(ILogService logService)
+        public LogsController(ILogService logService, IAuthenticationProvider authenticationProvider)
         {
             if (logService == null)
             {
                 throw new ArgumentNullException("logService");
             }
 
+            if (authenticationProvider == null)
+            {
+                throw new ArgumentNullException("authenticationProvider");
+            }
+
             this.logService = logService;
+            this.authenticationProvider = authenticationProvider;
         }
 
         public ActionResult Details(int id, int page = 1, int count = 3)
         {
             var log = this.logService.GetTrainingLogById(id);
-
             var model = new LogDetailsViewModel(log);
+
+            model.IsAuthenticated = this.authenticationProvider.IsAuthenticated;
+
+            if (model.IsAuthenticated)
+            {
+                var currentUserId = this.authenticationProvider.CurrentUserId;
+                model.IsOwner = log.User.Id.Equals(currentUserId);
+            }
 
             model.Entries = log.Entries
                 .Select(e => new LogEntryViewModel(e))
