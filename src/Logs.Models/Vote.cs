@@ -5,6 +5,11 @@ namespace Logs.Models
 {
     public class Vote
     {
+        public Vote()
+        {
+
+        }
+
         public Vote(int logId, string userId)
         {
             this.LogId = logId;
