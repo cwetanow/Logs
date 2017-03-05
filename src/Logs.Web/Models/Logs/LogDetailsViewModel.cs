@@ -33,5 +33,10 @@ namespace Logs.Web.Models.Logs
         public int VotesCount { get; set; }
 
         public virtual IPagedList<LogEntryViewModel> Entries { get; set; }
+
+
+        public bool IsOwner { get; set; }
+
+        public bool IsAuthenticated { get; set; }
     }
 }
