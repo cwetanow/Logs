@@ -81,7 +81,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountControllerTests\ConstructorTests.cs" />
+    <Compile Include="HomeControllerTests\AboutTests.cs" />
     <Compile Include="HomeControllerTests\ConstructorTests.cs" />
+    <Compile Include="HomeControllerTests\IndexTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
