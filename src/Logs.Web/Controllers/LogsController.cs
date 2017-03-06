@@ -33,22 +33,26 @@ namespace Logs.Web.Controllers
         public ActionResult Details(int id, int page = 1, int count = 3)
         {
             var log = this.logService.GetTrainingLogById(id);
-            var model = new LogDetailsViewModel(log);
 
-            model.IsAuthenticated = this.authenticationProvider.IsAuthenticated;
+            var isAuthenticated = this.authenticationProvider.IsAuthenticated;
 
-            if (model.IsAuthenticated)
+            var isOwner = false;
+            var canVote = false;
+
+            var entries = log.Entries
+                .Select(e => new LogEntryViewModel(e))
+                .ToPagedList(page, count);
+
+            if (isAuthenticated)
             {
                 var currentUserId = this.authenticationProvider.CurrentUserId;
 
-                model.IsOwner = log.User.Id.Equals(currentUserId);
-                model.CanVote = (log.Votes
+                isOwner = log.User.Id.Equals(currentUserId);
+                canVote = (log.Votes
                     .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null;
             }
 
-            model.Entries = log.Entries
-                .Select(e => new LogEntryViewModel(e))
-                .ToPagedList(page, count);
+            var model = new LogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
 
             return this.View(model);
         }
