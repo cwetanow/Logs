@@ -66,7 +66,7 @@ namespace Logs.Web.Tests.HomeControllerTests
             var result = controller.Index();
 
             // Assert
-            Assert.IsNotNull((ViewResult)result);
+            Assert.IsInstanceOf<ViewResult>(result);
         }
 
         [TestCase(true)]
