@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Web.Infrastructure.Factories;
-using Logs.Web.Models.Home;
 
 namespace Logs.Web.Controllers
 {
@@ -38,8 +37,6 @@ namespace Logs.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
     }
