@@ -1,4 +1,5 @@
-﻿using Logs.Data.Contracts;
+﻿using System;
+using Logs.Data.Contracts;
 using Logs.Factories;
 using Logs.Models;
 using Logs.Services.Contracts;
@@ -15,7 +16,26 @@ namespace Logs.Services
 
         public VoteService(IRepository<Vote> voteRepository, IUnitOfWork unitOfWork, ILogService logService, IVoteFactory voteFactory)
         {
-            // TODO: Null checks
+            if (voteRepository == null)
+            {
+                throw new ArgumentNullException("voteRepository");
+            }
+
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException("unitOfWork");
+            }
+
+            if (logService == null)
+            {
+                throw new ArgumentNullException("logService");
+            }
+
+            if (voteFactory == null)
+            {
+                throw new ArgumentNullException("voteFactory");
+            }
+
             this.voteRepository = voteRepository;
             this.unitOfWork = unitOfWork;
             this.logService = logService;
