@@ -49,7 +49,7 @@ namespace Logs.Web.Controllers
 
                 isOwner = log.User.Id.Equals(currentUserId);
                 canVote = (log.Votes
-                    .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null;
+                    .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner;
             }
 
             var model = new LogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
