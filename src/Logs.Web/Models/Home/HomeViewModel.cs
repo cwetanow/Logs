@@ -2,6 +2,11 @@
 {
     public class HomeViewModel
     {
+        public HomeViewModel()
+        {
+            
+        }
+
         public HomeViewModel(bool isAuthenticated)
         {
             this.IsAuthenticated = isAuthenticated;
