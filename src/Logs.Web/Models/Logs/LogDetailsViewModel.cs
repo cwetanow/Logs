@@ -7,7 +7,7 @@ namespace Logs.Web.Models.Logs
 {
     public class LogDetailsViewModel
     {
-        public LogDetailsViewModel(TrainingLog log)
+        public LogDetailsViewModel(TrainingLog log, bool isAuthenticated, bool isOwner, bool canVote, IPagedList<LogEntryViewModel> entries)
         {
             this.Description = log.Description;
             this.Name = log.Name;
@@ -15,9 +15,10 @@ namespace Logs.Web.Models.Logs
             this.User = log.User.Name;
             this.VotesCount = log.Votes.Count;
             this.LogId = log.LogId;
-
-            //this.Entries = log.Entries.Select(e => new LogEntryViewModel(e))
-            //    .ToPagedList(1, 2);
+            this.IsAuthenticated = isAuthenticated;
+            this.IsOwner = isOwner;
+            this.CanVote = canVote;
+            this.Entries = entries;
         }
 
         public int LogId { get; set; }
@@ -32,8 +33,7 @@ namespace Logs.Web.Models.Logs
 
         public int VotesCount { get; set; }
 
-        public virtual IPagedList<LogEntryViewModel> Entries { get; set; }
-
+        public IPagedList<LogEntryViewModel> Entries { get; set; }
 
         public bool IsOwner { get; set; }
 
