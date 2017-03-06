@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
 
@@ -11,6 +12,16 @@ namespace Logs.Web.Controllers
 
         public VoteController(IVoteService voteService, IAuthenticationProvider authenticationProvider)
         {
+            if (voteService == null)
+            {
+                throw new ArgumentNullException("voteService");
+            }
+
+            if (authenticationProvider == null)
+            {
+                throw new ArgumentNullException("authenticationProvider");
+            }
+
             this.voteService = voteService;
             this.authenticationProvider = authenticationProvider;
         }
