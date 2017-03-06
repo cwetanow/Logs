@@ -85,6 +85,7 @@
     <Compile Include="HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="HomeControllerTests\IndexTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VoteControllerTests\ConstructorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -98,6 +99,10 @@
     <ProjectReference Include="..\Logs.Factories\Logs.Factories.csproj">
       <Project>{9CDE063E-931B-4E7A-A7A9-2452B9C92A4E}</Project>
       <Name>Logs.Factories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logs.Services\Logs.Services.csproj">
+      <Project>{4BD34CDB-E6CE-415C-95EF-5E04CC0A2FA0}</Project>
+      <Name>Logs.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logs.Web\Logs.Web.csproj">
       <Project>{6A9F8991-43BB-4BFA-812E-03691632351B}</Project>
