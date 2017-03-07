@@ -39,6 +39,11 @@ namespace Logs.Web.Controllers
             var isOwner = false;
             var canVote = false;
 
+            if (page < 0)
+            {
+                page = (log.Entries.Count - 1) / count + 1;
+            }
+
             var entries = log.Entries
                 .Select(e => new LogEntryViewModel(e))
                 .ToPagedList(page, count);
