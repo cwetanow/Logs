@@ -47,7 +47,7 @@ namespace Logs.Web.Controllers
 
             isOwner = log.User.Id.Equals(currentUserId);
             canVote = (log.Votes
-                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner;
+                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner && isAuthenticated;
 
             var model = new LogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
 
