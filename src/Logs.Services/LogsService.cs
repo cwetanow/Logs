@@ -80,12 +80,18 @@ namespace Logs.Services
 
         public IEnumerable<TrainingLog> GetLatestLogs(int count)
         {
-            return this.logRepository.GetPaged(null, (TrainingLog t) => t.DateCreated, 1, count, true);
+            var result = this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog t) => t.DateCreated, true)
+                 .Take(count);
+
+            return result;
         }
 
         public IEnumerable<TrainingLog> GetTopLogs(int count)
         {
-            return this.logRepository.GetPaged(null, (TrainingLog t) => t.Votes.Count, 1, count);
+            var result = this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog t) => t.Votes.Count)
+                 .Take(count);
+
+            return result;
         }
 
         public void AddEntryToLog(int logId, LogEntry entry, string userId)
