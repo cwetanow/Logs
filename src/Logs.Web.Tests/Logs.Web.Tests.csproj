@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountControllerTests\ConstructorTests.cs" />
+    <Compile Include="AccountControllerTests\LoginTests.cs" />
     <Compile Include="AccountControllerTests\LogOffTests.cs" />
     <Compile Include="EntriesControllerTests\ConstructorTests.cs" />
     <Compile Include="EntriesControllerTests\NewEntryTests.cs" />
