@@ -40,9 +40,9 @@ namespace Logs.Web.Controllers
         [Authorize]
         public ActionResult Comment(NewCommentViewModel model)
         {
-            model.UserId = this.authenticationProvider.CurrentUserId;
+            var userId = this.authenticationProvider.CurrentUserId;
 
-            this.entryService.AddCommentToLog(model.Content, model.LogId, model.UserId);
+            this.entryService.AddCommentToLog(model.Content, model.LogId, userId);
 
             return this.RedirectToAction("Details", "Logs", new { id = model.LogId });
         }
