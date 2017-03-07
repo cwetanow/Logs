@@ -14,7 +14,7 @@ namespace Logs.Web.App_Start.NinjectModules
         {
             this.Bind<ILogsDbContext>().To<LogsDbContext>().InRequestScope();
             this.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
-            this.Bind(typeof(IRepository<>)).To(typeof(EfGenericRepository<>)).InRequestScope();
+            this.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>)).InRequestScope();
         }
     }
 }

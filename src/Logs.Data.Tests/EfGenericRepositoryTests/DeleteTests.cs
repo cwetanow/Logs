@@ -14,7 +14,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
             // Arrange
             var mockedDbContext = new Mock<ILogsDbContext>();
 
-            var repository = new EfGenericRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
+            var repository = new GenericRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
 
             var entity = new Mock<FakeGenericRepositoryType>();
 

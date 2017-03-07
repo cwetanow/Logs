@@ -7,12 +7,12 @@ using Logs.Data.Contracts;
 
 namespace Logs.Data
 {
-    public class EfGenericRepository<T> : IRepository<T>
+    public class GenericRepository<T> : IRepository<T>
           where T : class
     {
         private readonly ILogsDbContext dbContext;
 
-        public EfGenericRepository(ILogsDbContext dbContext)
+        public GenericRepository(ILogsDbContext dbContext)
         {
             if (dbContext == null)
             {

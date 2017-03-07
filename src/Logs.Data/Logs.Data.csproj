@@ -60,7 +60,7 @@
     <Compile Include="Contracts\ILogsDbContext.cs" />
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\IUnitOfWork.cs" />
-    <Compile Include="EfGenericRepository.cs" />
+    <Compile Include="GenericRepository.cs" />
     <Compile Include="LogsDbContext.cs" />
     <Compile Include="Migrations\201703031008037_Initial.cs" />
     <Compile Include="Migrations\201703031008037_Initial.Designer.cs">
