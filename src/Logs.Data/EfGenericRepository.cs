@@ -22,35 +22,6 @@ namespace Logs.Data
             this.dbContext = dbContext;
         }
 
-        protected IQueryable<T> Entities
-        {
-            get { return this.dbContext.Set<T>(); }
-        }
-
-        public IEnumerable<T> GetPaged<T1>(Expression<Func<T, bool>> filterExpression,
-            Expression<Func<T, T1>> sortExpression,
-            int page,
-            int count,
-            bool descending)
-        {
-            var result = this.Entities;
-
-            if (filterExpression != null)
-            {
-                result = result.Where(filterExpression);
-            }
-
-            if (sortExpression != null)
-            {
-                result = descending ? result.OrderByDescending(sortExpression) : result.OrderBy(sortExpression);
-            }
-
-            result = result.Skip((page - 1) * count)
-                .Take(count);
-
-            return result.ToList();
-        }
-
         public void Add(T entity)
         {
             this.dbContext.SetAdded(entity);
@@ -63,20 +34,23 @@ namespace Logs.Data
 
         public IEnumerable<T> GetAll()
         {
-            return this.Entities
+            return this.dbContext
+                .Set<T>()
                 .ToList();
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression)
         {
-            return this.Entities
-                   .Where(filterExpression)
-                   .ToList();
+            return this.dbContext
+                .Set<T>()
+                .Where(filterExpression)
+                .ToList();
         }
 
         public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, bool isDescending)
         {
-            var result = this.Entities
+            var result = this.dbContext
+                .Set<T>()
                 .Where(filterExpression);
 
             if (isDescending)
@@ -93,11 +67,12 @@ namespace Logs.Data
 
         public IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression)
         {
-            return this.Entities
-                  .Where(filterExpression)
-                  .OrderBy(sortExpression)
-                  .Select(selectExpression)
-                   .ToList();
+            return this.dbContext
+                .Set<T>()
+                .Where(filterExpression)
+                .OrderBy(sortExpression)
+                .Select(selectExpression)
+                .ToList();
         }
 
         public T GetById(object id)
