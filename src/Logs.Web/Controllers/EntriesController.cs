@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Models.Entries;
@@ -12,6 +13,16 @@ namespace Logs.Web.Controllers
 
         public EntriesController(IEntryService entryService, IAuthenticationProvider authenticationProvider)
         {
+            if (entryService == null)
+            {
+                throw new ArgumentNullException(nameof(entryService));
+            }
+
+            if (authenticationProvider == null)
+            {
+                throw new ArgumentNullException(nameof(authenticationProvider));
+            }
+
             this.entryService = entryService;
             this.authenticationProvider = authenticationProvider;
         }

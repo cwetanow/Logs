@@ -43,14 +43,11 @@ namespace Logs.Web.Controllers
                 .Select(e => new LogEntryViewModel(e))
                 .ToPagedList(page, count);
 
-            if (isAuthenticated)
-            {
-                var currentUserId = this.authenticationProvider.CurrentUserId;
+            var currentUserId = this.authenticationProvider.CurrentUserId;
 
-                isOwner = log.User.Id.Equals(currentUserId);
-                canVote = (log.Votes
-                    .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner;
-            }
+            isOwner = log.User.Id.Equals(currentUserId);
+            canVote = (log.Votes
+                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner;
 
             var model = new LogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
 
