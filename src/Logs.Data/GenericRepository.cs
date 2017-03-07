@@ -35,14 +35,14 @@ namespace Logs.Data
         public IEnumerable<T> GetAll()
         {
             return this.dbContext
-                .Set<T>()
+                .DbSet<T>()
                 .ToList();
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression)
         {
             return this.dbContext
-                .Set<T>()
+                .DbSet<T>()
                 .Where(filterExpression)
                 .ToList();
         }
@@ -50,7 +50,7 @@ namespace Logs.Data
         public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, bool isDescending)
         {
             var result = this.dbContext
-                .Set<T>()
+                .DbSet<T>()
                 .Where(filterExpression);
 
             if (isDescending)
@@ -68,7 +68,7 @@ namespace Logs.Data
         public IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression)
         {
             return this.dbContext
-                .Set<T>()
+                .DbSet<T>()
                 .Where(filterExpression)
                 .OrderBy(sortExpression)
                 .Select(selectExpression)
@@ -77,7 +77,7 @@ namespace Logs.Data
 
         public T GetById(object id)
         {
-            return this.dbContext.Set<T>().Find(id);
+            return this.dbContext.DbSet<T>().Find(id);
         }
 
         public void Update(T entity)
