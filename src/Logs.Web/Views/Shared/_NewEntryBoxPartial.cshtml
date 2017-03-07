@@ -1,13 +1,6 @@
 ﻿@model Logs.Web.Models.Entries.NewEntryViewModel
 
-@using (Ajax.BeginForm("NewEntry",
-                            new { controller = "Entries" },
-                            new AjaxOptions
-                            {
-                                HttpMethod = "Post",
-                                InsertionMode = InsertionMode.Replace,
-                                UpdateTargetId = "comments"
-                            }))
+@using (Html.BeginForm("NewEntry", "Entries", FormMethod.Post))
 {
     @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 5 });
     @Html.HiddenFor(m => m.LogId)
