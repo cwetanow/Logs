@@ -16,10 +16,9 @@ namespace Logs.Services.Tests.LogsServiceTests
     {
         [TestCase(1)]
         [TestCase(2)]
-        public void TestGetTopLogs_ShouldCallRepositoryGetPagedCorrectly(int count)
+        public void TestGetTopLogs_ShouldCallRepositoryGetAllCorrectly(int count)
         {
             // Arrange
-            var expectedPage = 1;
             var expectedDescending = false;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
@@ -38,8 +37,10 @@ namespace Logs.Services.Tests.LogsServiceTests
             service.GetTopLogs(count);
 
             // Assert
-            mockedLogRepository.Verify(r => r.GetPaged(null, It.IsAny<Expression<Func<TrainingLog, int>>>(), expectedPage,
-                count, expectedDescending), Times.Once);
+            mockedLogRepository.Verify(r => r.GetAll(It.IsAny<Expression<Func<TrainingLog, bool>>>(),
+                It.IsAny<Expression<Func<TrainingLog, int>>>(), 
+                expectedDescending),
+                Times.Once);
         }
 
         [TestCase(1)]
@@ -50,10 +51,8 @@ namespace Logs.Services.Tests.LogsServiceTests
             var logs = new List<TrainingLog>();
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
-            mockedLogRepository.Setup(r => r.GetPaged(It.IsAny<Expression<Func<TrainingLog, bool>>>(),
+            mockedLogRepository.Setup(r => r.GetAll(It.IsAny<Expression<Func<TrainingLog, bool>>>(),
                     It.IsAny<Expression<Func<TrainingLog, int>>>(),
-                    It.IsAny<int>(),
-                    It.IsAny<int>(),
                     It.IsAny<bool>()))
                 .Returns(logs);
 
