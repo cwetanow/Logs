@@ -2,5 +2,6 @@
 {
     public class FakeGenericRepositoryType
     {
+        public bool BooleanProperty { get; set; }
     }
 }
