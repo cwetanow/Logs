@@ -34,7 +34,7 @@ namespace Logs.Web.Controllers
 
             this.entryService.AddEntryToLog(model.Content, model.LogId, userId);
 
-            return this.RedirectToAction("Details", "Logs", new { id = model.LogId });
+            return this.RedirectToAction("Details", "Logs", new { id = model.LogId, page = -1 });
         }
 
         [Authorize]
@@ -44,7 +44,7 @@ namespace Logs.Web.Controllers
 
             this.entryService.AddCommentToLog(model.Content, model.LogId, userId);
 
-            return this.RedirectToAction("Details", "Logs", new { id = model.LogId });
+            return this.RedirectToAction("Details", "Logs", new { id = model.LogId, page = -1 });
         }
     }
 }
