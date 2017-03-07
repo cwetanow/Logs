@@ -42,14 +42,7 @@ namespace Logs.Data
 
             if (sortExpression != null)
             {
-                if (descending)
-                {
-                    result = result.OrderByDescending(sortExpression);
-                }
-                else
-                {
-                    result = result.OrderBy(sortExpression);
-                }
+                result = descending ? result.OrderByDescending(sortExpression) : result.OrderBy(sortExpression);
             }
 
             result = result.Skip((page - 1) * count)

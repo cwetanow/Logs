@@ -21,12 +21,6 @@ namespace Logs.Data.Contracts
             Expression<Func<T, T1>> sortExpression,
             Expression<Func<T, T2>> selectExpression);
 
-        IEnumerable<T> GetPaged<T1>(Expression<Func<T, bool>> filterExpression,
-            Expression<Func<T, T1>> sortExpression,
-            int page,
-            int count,
-            bool descending = false);
-
         void Add(T entity);
 
         void Update(T entity);
