@@ -105,7 +105,7 @@ namespace Logs.Web.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOut()
         {
             this.provider.SignOut();
 

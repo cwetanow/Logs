@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Logs.Web.Tests.AccountControllerTests
 {
     [TestFixture]
-    public class LogOffTests
+    public class LogOut
     {
         [Test]
         public void TestLogOff_ShouldCallProviderSignOut()
@@ -20,7 +20,7 @@ namespace Logs.Web.Tests.AccountControllerTests
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
             // Act
-            controller.LogOff();
+            controller.LogOut();
 
             // Assert
             mockedProvider.Verify(p => p.SignOut(), Times.Once);
@@ -36,7 +36,7 @@ namespace Logs.Web.Tests.AccountControllerTests
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
             // Act
-            var result = controller.LogOff();
+            var result = controller.LogOut();
 
             // Assert
             Assert.IsInstanceOf<RedirectToRouteResult>(result);
