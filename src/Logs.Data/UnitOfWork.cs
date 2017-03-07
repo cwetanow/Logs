@@ -11,7 +11,7 @@ namespace Logs.Data
         {
             if (dbContext == null)
             {
-                throw new ArgumentNullException("dbContext cannot be null");
+                throw new ArgumentNullException(nameof(dbContext));
             }
 
             this.dbContext = dbContext;

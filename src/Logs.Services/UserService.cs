@@ -15,12 +15,12 @@ namespace Logs.Services
         {
             if (userRepository == null)
             {
-                throw new ArgumentNullException("userRepository");
+                throw new ArgumentNullException(nameof(userRepository));
             }
 
             if (unitOfWork == null)
             {
-                throw new ArgumentNullException("unitOfWork");
+                throw new ArgumentNullException(nameof(unitOfWork));
             }
 
             this.userRepository = userRepository;

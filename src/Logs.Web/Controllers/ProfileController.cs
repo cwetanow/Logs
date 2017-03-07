@@ -14,12 +14,12 @@ namespace Logs.Web.Controllers
         {
             if (provider == null)
             {
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             }
 
             if (userService == null)
             {
-                throw new ArgumentNullException("userService");
+                throw new ArgumentNullException(nameof(userService));
             }
 
             this.userService = userService;

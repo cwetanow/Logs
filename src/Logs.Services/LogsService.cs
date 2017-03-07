@@ -25,27 +25,27 @@ namespace Logs.Services
         {
             if (logRepository == null)
             {
-                throw new ArgumentNullException("logRepository");
+                throw new ArgumentNullException(nameof(logRepository));
             }
 
             if (logFactory == null)
             {
-                throw new ArgumentNullException("logFactory");
+                throw new ArgumentNullException(nameof(logFactory));
             }
 
             if (unitOfWork == null)
             {
-                throw new ArgumentNullException("unitOfWork");
+                throw new ArgumentNullException(nameof(unitOfWork));
             }
 
             if (userService == null)
             {
-                throw new ArgumentNullException("userService");
+                throw new ArgumentNullException(nameof(userService));
             }
 
             if (provider == null)
             {
-                throw new ArgumentNullException("provider");
+                throw new ArgumentNullException(nameof(provider));
             }
 
             this.provider = provider;

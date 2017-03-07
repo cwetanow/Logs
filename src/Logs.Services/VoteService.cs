@@ -18,22 +18,22 @@ namespace Logs.Services
         {
             if (voteRepository == null)
             {
-                throw new ArgumentNullException("voteRepository");
+                throw new ArgumentNullException(nameof(voteRepository));
             }
 
             if (unitOfWork == null)
             {
-                throw new ArgumentNullException("unitOfWork");
+                throw new ArgumentNullException(nameof(unitOfWork));
             }
 
             if (logService == null)
             {
-                throw new ArgumentNullException("logService");
+                throw new ArgumentNullException(nameof(logService));
             }
 
             if (voteFactory == null)
             {
-                throw new ArgumentNullException("voteFactory");
+                throw new ArgumentNullException(nameof(voteFactory));
             }
 
             this.voteRepository = voteRepository;

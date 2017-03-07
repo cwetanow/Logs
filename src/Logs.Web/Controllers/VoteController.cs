@@ -14,12 +14,12 @@ namespace Logs.Web.Controllers
         {
             if (voteService == null)
             {
-                throw new ArgumentNullException("voteService");
+                throw new ArgumentNullException(nameof(voteService));
             }
 
             if (authenticationProvider == null)
             {
-                throw new ArgumentNullException("authenticationProvider");
+                throw new ArgumentNullException(nameof(authenticationProvider));
             }
 
             this.voteService = voteService;

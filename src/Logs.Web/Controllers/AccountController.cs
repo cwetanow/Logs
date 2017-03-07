@@ -21,12 +21,12 @@ namespace Logs.Web.Controllers
         {
             if (provider == null)
             {
-                throw new ArgumentNullException("provider cannot be null");
+                throw new ArgumentNullException(nameof(provider));
             }
 
             if (userFactory == null)
             {
-                throw new ArgumentNullException("userFactory cannot be null");
+                throw new ArgumentNullException(nameof(userFactory));
             }
 
             this.provider = provider;

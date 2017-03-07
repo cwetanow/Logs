@@ -18,12 +18,12 @@ namespace Logs.Web.Controllers
         {
             if (logService == null)
             {
-                throw new ArgumentNullException("logService");
+                throw new ArgumentNullException(nameof(logService));
             }
 
             if (authenticationProvider == null)
             {
-                throw new ArgumentNullException("authenticationProvider");
+                throw new ArgumentNullException(nameof(authenticationProvider));
             }
 
             this.logService = logService;
