@@ -59,7 +59,7 @@ namespace Logs.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return this.RedirectToLocal(returnUrl);
+                    return this.Redirect(returnUrl);
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
                 case SignInStatus.Failure:
@@ -118,16 +118,6 @@ namespace Logs.Web.Controllers
             {
                 ModelState.AddModelError("", error);
             }
-        }
-
-        private ActionResult RedirectToLocal(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return this.Redirect(returnUrl);
-            }
-
-            return this.RedirectToAction("Index", "Home");
         }
     }
 }
