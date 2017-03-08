@@ -138,6 +138,7 @@
     <Compile Include="HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="HomeControllerTests\IndexTests.cs" />
     <Compile Include="ProfileControllerTests\ConstructorTests.cs" />
+    <Compile Include="ProfileControllerTests\MyLogTests.cs" />
     <Compile Include="ProfileControllerTests\NoLogTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntriesControllerTests\CommentTests.cs" />
