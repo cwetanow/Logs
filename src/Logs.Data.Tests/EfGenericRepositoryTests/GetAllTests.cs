@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Logs.Data.Contracts;
-using Logs.Data.Tests.Fakes;
+using Logs.Data.Tests.EfGenericRepositoryTests.Fakes;
 using Moq;
 using NUnit.Framework;
 

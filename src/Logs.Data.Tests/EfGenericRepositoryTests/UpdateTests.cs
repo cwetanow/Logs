@@ -1,5 +1,5 @@
 ﻿using Logs.Data.Contracts;
-using Logs.Data.Tests.Fakes;
+using Logs.Data.Tests.EfGenericRepositoryTests.Fakes;
 using Moq;
 using NUnit.Framework;
 

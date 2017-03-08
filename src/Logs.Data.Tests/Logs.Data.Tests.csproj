@@ -67,7 +67,7 @@
     <Compile Include="EfGenericRepositoryTests\GetAllTests.cs" />
     <Compile Include="EfGenericRepositoryTests\GetByIdTests.cs" />
     <Compile Include="EfGenericRepositoryTests\UpdateTests.cs" />
-    <Compile Include="Fakes\FakeGenericRepositoryType.cs" />
+    <Compile Include="EfGenericRepositoryTests\Fakes\FakeGenericRepositoryType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWorkTests\CommitTests.cs" />
     <Compile Include="UnitOfWorkTests\ConstructorTests.cs" />
