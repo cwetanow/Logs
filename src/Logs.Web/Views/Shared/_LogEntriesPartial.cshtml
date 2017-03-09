@@ -6,11 +6,13 @@
 <div class="well" id="entries">
     @foreach (var entry in Model)
     {
-        <div id="@($"entry{entry.EntryId}")">
-            @Html.Partial("_EntryPartial", entry)
-            
-        </div>
+        @Html.Partial("_EntryPartial", entry)
+
+        <hr />
+        @Html.Partial("_EntryCommentsPartial", entry.Comments)
+        <hr />
     }
+
 
     <div class="pages total">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
