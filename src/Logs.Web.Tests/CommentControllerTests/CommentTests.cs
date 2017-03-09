@@ -6,7 +6,7 @@ using Logs.Web.Models.Entries;
 using Moq;
 using NUnit.Framework;
 
-namespace Logs.Web.Tests.EntriesControllerTests
+namespace Logs.Web.Tests.CommentControllerTests
 {
     [TestFixture]
     public class CommentTests
@@ -17,10 +17,10 @@ namespace Logs.Web.Tests.EntriesControllerTests
             // Arrange
             var model = new NewCommentViewModel();
 
-            var mockedService = new Mock<IEntryService>();
+            var mockedService = new Mock<ICommentService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new EntriesController(mockedService.Object, mockedAuthenticationProvider.Object);
+            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
 
             // Act
             controller.Comment(model);
@@ -40,11 +40,11 @@ namespace Logs.Web.Tests.EntriesControllerTests
                 Content = content
             };
 
-            var mockedService = new Mock<IEntryService>();
+            var mockedService = new Mock<ICommentService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             mockedAuthenticationProvider.Setup(p => p.CurrentUserId).Returns(userId);
 
-            var controller = new EntriesController(mockedService.Object, mockedAuthenticationProvider.Object);
+            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
 
             // Act
             controller.Comment(model);
@@ -59,10 +59,10 @@ namespace Logs.Web.Tests.EntriesControllerTests
             // Arrange
             var model = new NewCommentViewModel();
 
-            var mockedService = new Mock<IEntryService>();
+            var mockedService = new Mock<ICommentService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new EntriesController(mockedService.Object, mockedAuthenticationProvider.Object);
+            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
 
             // Act
             var result = controller.Comment(model);
@@ -80,10 +80,10 @@ namespace Logs.Web.Tests.EntriesControllerTests
 
             var model = new NewCommentViewModel { LogId = logId };
 
-            var mockedService = new Mock<IEntryService>();
+            var mockedService = new Mock<ICommentService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new EntriesController(mockedService.Object, mockedAuthenticationProvider.Object);
+            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
 
             // Act
             var result = (RedirectToRouteResult)controller.Comment(model);
