@@ -7,10 +7,10 @@
 <h2>Start Loggin your training Today !</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("CreateLog", "Logs"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

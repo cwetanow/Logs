@@ -9,18 +9,21 @@ namespace Logs.Web.Models.Logs
     {
         public LogEntryViewModel()
         {
-            
+
         }
 
-        public LogEntryViewModel(LogEntry entry)
+        public LogEntryViewModel(LogEntry entry, string userId)
         {
             this.EntryDate = entry.EntryDate;
             this.Content = entry.Content;
             this.EntryId = entry.LogEntryId;
+            this.CanEdit = entry.Log.User.Id.Equals(userId);
 
             this.Comments = entry.Comments
-                .Select(c => new CommentViewModel(c));
+                .Select(c => new CommentViewModel(c, userId));
         }
+
+        public bool CanEdit { get; set; }
 
         public int EntryId { get; set; }
 

@@ -7,16 +7,19 @@ namespace Logs.Web.Models.Logs
     {
         public CommentViewModel()
         {
-            
+
         }
 
-        public CommentViewModel(Comment comment)
+        public CommentViewModel(Comment comment, string userId)
         {
             this.Date = comment.Date;
             this.User = comment.User.Name;
             this.Content = comment.Content;
             this.CommentId = comment.CommentId;
+            this.CanEdit = comment.UserId.Equals(userId);
         }
+
+        public bool CanEdit { get; set; }
 
         public int CommentId { get; set; }
 
