@@ -12,6 +12,7 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<IEntryService>().To<EntryService>();
             this.Bind<IUserService>().To<UserService>();
             this.Bind<IVoteService>().To<VoteService>();
+            this.Bind<ICommentService>().To<CommentService>();
         }
     }
 }
