@@ -42,6 +42,20 @@
                 <button class="btn btn-primary btn-lg" id="comment-btn">Comment</button>
             }
 
+            @using (Ajax.BeginForm("Edit", "Logs", new AjaxOptions
+            {
+                UpdateTargetId = "description",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST"
+            }))
+            {
+                @Html.TextBoxFor(m => m.Description)
+                @Html.HiddenFor(m => m.LogId)
+                <input type="submit" value="Edit" class="btn" />
+            }
+
+
+
             @if (Model.CanVote)
             {
                 @Ajax.ActionLink(" ",
