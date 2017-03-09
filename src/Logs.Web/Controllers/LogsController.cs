@@ -122,6 +122,7 @@ namespace Logs.Web.Controllers
             return this.PartialView("_LogListPartial", model);
         }
 
+        [Authorize]
         [HttpPost]
         public PartialViewResult Edit(LogDetailsViewModel model)
         {

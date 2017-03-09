@@ -12,6 +12,8 @@
 
         <h1>@Model.Name</h1>
 
+        <a class="pull-right glyphicon glyphicon-edit btn-lg" id="edit-button"></a>
+
         <p class="lead">
             @Html.ActionLink(Model.User,
                 "Details",
@@ -24,12 +26,31 @@
             <span class="glyphicon glyphicon-time"></span> @string.Format("Created on {0:MM dd, yyyy} at {0:HH:mm}", Model.DateCreated)
         </span>
 
+
         @Html.Partial("~/Views/Vote/Vote.cshtml", Model.VotesCount)
 
         <hr>
         <p class="lead">
             @Html.Raw("<pre id=\"description\">" + Html.Encode(Model.Description) + "</pre>")
-        </p><hr>
+        </p>
+        @if (Model.IsOwner)
+            {
+            <div id="edit-form">
+                @using (Ajax.BeginForm("Edit", "Logs",
+ new AjaxOptions
+ {
+     UpdateTargetId = "description",
+     InsertionMode = InsertionMode.Replace,
+     HttpMethod = "POST"
+ }))
+                {
+                    @Html.TextAreaFor(m => m.Description)
+                    @Html.HiddenFor(m => m.LogId)
+                    <input type="submit" value="Edit" class="btn edit-btn btn-primary" />
+                }
+            </div>
+        }
+        <hr>
 
         <p>
             @if (Model.IsOwner)
@@ -40,18 +61,6 @@
             @if (Model.IsAuthenticated)
             {
                 <button class="btn btn-primary btn-lg" id="comment-btn">Comment</button>
-            }
-
-            @using (Ajax.BeginForm("Edit", "Logs", new AjaxOptions
-            {
-                UpdateTargetId = "description",
-                InsertionMode = InsertionMode.Replace,
-                HttpMethod = "POST"
-            }))
-            {
-                @Html.TextBoxFor(m => m.Description)
-                @Html.HiddenFor(m => m.LogId)
-                <input type="submit" value="Edit" class="btn" />
             }
 
 
@@ -107,6 +116,11 @@
         $('#rating-btn')
             .click(function () {
                 $('#rating-btn').hide();
+            });
+
+        $('#edit-button')
+            .click(function () {
+                $('#edit-form').toggle();
             });
     </script>
 
