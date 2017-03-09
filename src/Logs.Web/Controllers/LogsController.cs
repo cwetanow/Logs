@@ -79,6 +79,8 @@ namespace Logs.Web.Controllers
         {
             var log = this.logService.CreateTrainingLog(model.Name, model.Description, this.HttpContext.User.Identity.GetUserId());
 
+            this.HttpContext.Cache[CachedLogsKey] = null;
+
             return this.RedirectToAction("Details", new { id = log.LogId });
         }
 
