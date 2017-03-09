@@ -88,16 +88,16 @@ namespace Logs.Web.Controllers
 
         public ActionResult PartialList(int count = 10, int page = 1)
         {
-            var logs = this.HttpContext.Cache[CachedLogsKey] as IEnumerable<TrainingLog>;
+            var logs = this.HttpContext.Cache[CachedLogsKey] as IEnumerable<ShortLogViewModel>;
 
             if (logs == null)
             {
-                logs = this.logService.GetAllSortedByDate();
+                logs = this.logService.GetAllSortedByDate()
+                    .Select(l => new ShortLogViewModel(l));
                 this.HttpContext.Cache[CachedLogsKey] = logs;
             }
 
             var model = logs
-                .Select(l => new ShortLogViewModel(l))
                 .ToPagedList(page, count);
 
             return this.PartialView("_PagedLogListPartial", model);
@@ -105,16 +105,16 @@ namespace Logs.Web.Controllers
 
         public ActionResult List(int count = 10, int page = 1)
         {
-            var logs = this.HttpContext.Cache[CachedLogsKey] as IEnumerable<TrainingLog>;
+            var logs = this.HttpContext.Cache[CachedLogsKey] as IEnumerable<ShortLogViewModel>;
 
             if (logs == null)
             {
-                logs = this.logService.GetAllSortedByDate();
+                logs = this.logService.GetAllSortedByDate()
+                    .Select(l => new ShortLogViewModel(l));
                 this.HttpContext.Cache[CachedLogsKey] = logs;
             }
 
             var model = logs
-                .Select(l => new ShortLogViewModel(l))
                 .ToPagedList(page, count);
 
             return this.View("List", model);
