@@ -11,10 +11,13 @@ namespace Logs.Web.Models.Logs
         {
             this.EntryDate = entry.EntryDate;
             this.Content = entry.Content;
+            this.EntryId = entry.LogEntryId;
 
             this.Comments = entry.Comments
                 .Select(c => new CommentViewModel(c));
         }
+
+        public int EntryId { get; set; }
 
         public DateTime EntryDate { get; set; }
 

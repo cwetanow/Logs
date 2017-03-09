@@ -10,7 +10,10 @@ namespace Logs.Web.Models.Logs
             this.Date = comment.Date;
             this.User = comment.User.Name;
             this.Content = comment.Content;
+            this.CommentId = comment.CommentId;
         }
+
+        public int CommentId { get; set; }
 
         public DateTime Date { get; set; }
 
