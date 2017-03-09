@@ -93,7 +93,8 @@ namespace Logs.Web.Controllers
             if (logs == null)
             {
                 logs = this.logService.GetAllSortedByDate()
-                    .Select(l => new ShortLogViewModel(l));
+                    .Select(l => this.factory.CreateShortLogViewModel(l));
+
                 this.HttpContext.Cache[CachedLogsKey] = logs;
             }
 
@@ -110,7 +111,8 @@ namespace Logs.Web.Controllers
             if (logs == null)
             {
                 logs = this.logService.GetAllSortedByDate()
-                    .Select(l => new ShortLogViewModel(l));
+                    .Select(l => this.factory.CreateShortLogViewModel(l));
+
                 this.HttpContext.Cache[CachedLogsKey] = logs;
             }
 
