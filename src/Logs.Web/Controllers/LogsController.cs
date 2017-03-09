@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
@@ -12,6 +14,8 @@ namespace Logs.Web.Controllers
 {
     public class LogsController : Controller
     {
+        private const string CachedLogsKey = "logs";
+
         private readonly ILogService logService;
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IViewModelFactory factory;
@@ -84,7 +88,14 @@ namespace Logs.Web.Controllers
 
         public ActionResult PartialList(int count = 10, int page = 1)
         {
-            var logs = this.logService.GetAllSortedByDate();
+            var logs = this.HttpContext.Cache[CachedLogsKey] as IEnumerable<TrainingLog>;
+
+            if (logs == null)
+            {
+                logs = this.logService.GetAllSortedByDate();
+                this.HttpContext.Cache[CachedLogsKey] = logs;
+            }
+
             var model = logs
                 .Select(l => new ShortLogViewModel(l))
                 .ToPagedList(page, count);
@@ -94,7 +105,14 @@ namespace Logs.Web.Controllers
 
         public ActionResult List(int count = 10, int page = 1)
         {
-            var logs = this.logService.GetAllSortedByDate();
+            var logs = this.HttpContext.Cache[CachedLogsKey] as IEnumerable<TrainingLog>;
+
+            if (logs == null)
+            {
+                logs = this.logService.GetAllSortedByDate();
+                this.HttpContext.Cache[CachedLogsKey] = logs;
+            }
+
             var model = logs
                 .Select(l => new ShortLogViewModel(l))
                 .ToPagedList(page, count);
