@@ -316,6 +316,7 @@
     <Content Include="Views\Shared\_NewEntryBoxPartial.cshtml" />
     <Content Include="Views\Shared\_CommentBoxPartial.cshtml" />
     <Content Include="Views\Vote\Vote.cshtml" />
+    <Content Include="Views\Logs\_LogDescription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
