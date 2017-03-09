@@ -5,7 +5,7 @@
     @:Comments:
     foreach (var comment in Model)
     {
-        <div class="media-body" id="@($"comment{comment.CommentId}")">
+        <div class="media-body">
             @Html.Partial("_CommentPartial", comment)
         </div>
     }

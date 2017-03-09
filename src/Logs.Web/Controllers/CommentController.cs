@@ -43,7 +43,7 @@ namespace Logs.Web.Controllers
         {
             this.commentService.EditComment(model.CommentId, model.Content);
 
-            return this.PartialView("_CommentPartial", model);
+            return this.PartialView("_CommentContentPartial", model);
         }
     }
 }
