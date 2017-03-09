@@ -9,7 +9,7 @@ namespace Logs.Web.Infrastructure.Factories
     {
         HomeViewModel CreateHomeViewModel(bool isAuthenticated);
 
-        LogEntryViewModel CreateLogEntryViewModel(LogEntry entry);
+        LogEntryViewModel CreateLogEntryViewModel(LogEntry entry, string userId);
 
         LogDetailsViewModel CreateLogDetailsViewModel(TrainingLog log,
             bool isAuthenticated,
