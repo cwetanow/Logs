@@ -121,5 +121,13 @@ namespace Logs.Web.Controllers
 
             return this.PartialView("_LogListPartial", model);
         }
+
+        [HttpPost]
+        public PartialViewResult Edit(LogDetailsViewModel model)
+        {
+            this.logService.EditLogDescription(model.LogId, model.Description);
+
+            return this.PartialView("_LogDescription", model.Description);
+        }
     }
 }
