@@ -47,3 +47,11 @@ pre {
 .glyphicon-thumbs-up {
     font-size: 35px;
 }
+
+textarea {
+    resize: none;
+    width: 100%;
+    height: 400px;
+    max-width: none;
+    font-size: 18px;
+}

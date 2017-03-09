@@ -36,17 +36,19 @@
         @if (Model.IsOwner)
             {
             <div id="edit-form">
-                @using (Ajax.BeginForm("Edit", "Logs",
- new AjaxOptions
- {
-     UpdateTargetId = "description",
-     InsertionMode = InsertionMode.Replace,
-     HttpMethod = "POST"
- }))
+                <hr />
+                @using (Ajax.BeginForm("Edit", "Logs", null,
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = "description",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "POST"
+                        }, new { id = "edit" }))
                 {
-                    @Html.TextAreaFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { cols = "40", rows = "20" })
+                    <br />
                     @Html.HiddenFor(m => m.LogId)
-                    <input type="submit" value="Edit" class="btn edit-btn btn-primary" />
+                    <input type="submit" value="Edit" class="btn btn-primary" />
                 }
             </div>
         }
@@ -120,6 +122,11 @@
 
         $('#edit-button')
             .click(function () {
+                $('#edit-form').toggle();
+            });
+
+        $('#edit')
+            .submit(function() {
                 $('#edit-form').toggle();
             });
     </script>
