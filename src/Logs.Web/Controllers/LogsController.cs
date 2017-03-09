@@ -47,9 +47,11 @@ namespace Logs.Web.Controllers
             var log = this.logService.GetTrainingLogById(id);
 
             var isAuthenticated = this.authenticationProvider.IsAuthenticated;
+            var currentUserId = this.authenticationProvider.CurrentUserId;
 
-            var isOwner = false;
-            var canVote = false;
+            var isOwner = log.User.Id.Equals(currentUserId);
+            var canVote = (log.Votes
+                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner && isAuthenticated; ;
 
             if (page < 0)
             {
@@ -57,14 +59,8 @@ namespace Logs.Web.Controllers
             }
 
             var entries = log.Entries
-                .Select(e => this.factory.CreateLogEntryViewModel(e))
+                .Select(e => this.factory.CreateLogEntryViewModel(e, currentUserId))
                 .ToPagedList(page, count);
-
-            var currentUserId = this.authenticationProvider.CurrentUserId;
-
-            isOwner = log.User.Id.Equals(currentUserId);
-            canVote = (log.Votes
-                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner && isAuthenticated;
 
             var model = this.factory.CreateLogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
 
