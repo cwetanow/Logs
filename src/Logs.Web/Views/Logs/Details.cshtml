@@ -12,8 +12,10 @@
 
         <h1>@Model.Name</h1>
 
-        <a class="pull-right glyphicon glyphicon-edit btn-lg" id="edit-button"></a>
-
+        @if (Model.IsOwner)
+        {
+            <a class="pull-right glyphicon glyphicon-edit btn-lg" id="edit-button"></a>
+        }
         <p class="lead">
             @Html.ActionLink(Model.User,
                 "Details",
@@ -140,7 +142,7 @@
 
         $('.edit-entry-button')
            .click(function () {
-                $(this.parentElement.children[3]).toggle();
+               $(this.parentElement.children[3]).toggle();
            });
 
         $('.edit-comment-button')

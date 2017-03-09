@@ -1,8 +1,10 @@
 ﻿@model Logs.Web.Models.Logs.LogEntryViewModel
 
 <div>
-
-    <a class="pull-right glyphicon glyphicon-edit btn-lg edit-entry-button"></a>
+    @if (Model.CanEdit)
+    {
+        <a class="pull-right glyphicon glyphicon-edit btn-lg edit-entry-button"></a>
+    }
 
     <h3>
         <span class="pull-right label label-primary">
@@ -11,19 +13,20 @@
     </h3>
 
     <span id="@($"entry{Model.EntryId}")" class="lead"> @Html.Raw("<pre>" + Html.Encode(Model.Content) + "</pre>")</span>
-
-    @using (Ajax.BeginForm("EditEntry", "Entries", null,
-                                new AjaxOptions
-                                {
-                                    UpdateTargetId = $"entry{Model.EntryId}",
-                                    InsertionMode = InsertionMode.Replace,
-                                    HttpMethod = "POST"
-                                }, new { @class = "edit-entry" }))
+    @if (Model.CanEdit)
     {
-        @Html.TextAreaFor(m => m.Content, new { cols = "40", rows = "20" })
-        <br />
-        @Html.HiddenFor(m => m.EntryId)
-        <input type="submit" value="Edit" class="btn btn-primary" />
+        using (Ajax.BeginForm("EditEntry", "Entries", null,
+                 new AjaxOptions
+                 {
+                     UpdateTargetId = $"entry{Model.EntryId}",
+                     InsertionMode = InsertionMode.Replace,
+                     HttpMethod = "POST"
+                 }, new { @class = "edit-entry" }))
+        {
+            @Html.TextAreaFor(m => m.Content, new { cols = "40", rows = "20" })
+            <br />
+            @Html.HiddenFor(m => m.EntryId)
+            <input type="submit" value="Edit" class="btn btn-primary" />
+        }
     }
 </div>
-
