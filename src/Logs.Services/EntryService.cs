@@ -1,4 +1,5 @@
 ﻿using System;
+using Logs.Data.Contracts;
 using Logs.Factories;
 using Logs.Models;
 using Logs.Providers.Contracts;
@@ -11,23 +12,18 @@ namespace Logs.Services
         private readonly ILogService logService;
         private readonly IDateTimeProvider dateTimeProvider;
         private readonly ILogEntryFactory logEntryFactoryfactory;
-        private readonly ICommentFactory commentFactory;
-        private readonly IUserService userService;
+        private readonly IRepository<LogEntry> entryRepository;
+        private readonly IUnitOfWork unitOfWork;
 
         public EntryService(ILogService logService,
             IDateTimeProvider dateTimeProvider,
             ILogEntryFactory logEntryFactoryfactory,
-            IUserService userService,
-            ICommentFactory commentFactory)
+            IRepository<LogEntry> entryRepository,
+            IUnitOfWork unitOfWork)
         {
             if (logService == null)
             {
                 throw new ArgumentNullException(nameof(logService));
-            }
-
-            if (userService == null)
-            {
-                throw new ArgumentNullException(nameof(userService));
             }
 
             if (dateTimeProvider == null)
@@ -40,16 +36,12 @@ namespace Logs.Services
                 throw new ArgumentNullException(nameof(logEntryFactoryfactory));
             }
 
-            if (commentFactory == null)
-            {
-                throw new ArgumentNullException(nameof(commentFactory));
-            }
-
             this.logService = logService;
             this.logEntryFactoryfactory = logEntryFactoryfactory;
             this.dateTimeProvider = dateTimeProvider;
-            this.userService = userService;
-            this.commentFactory = commentFactory;
+
+            this.entryRepository = entryRepository;
+            this.unitOfWork = unitOfWork;
         }
 
         public void AddEntryToLog(string content, int logId, string userId)
@@ -61,15 +53,17 @@ namespace Logs.Services
             this.logService.AddEntryToLog(logId, entry, userId);
         }
 
-        public void AddCommentToLog(string content, int logId, string userId)
+        public void EditEntry(int entryId, string newContent)
         {
-            var currentDate = this.dateTimeProvider.GetCurrenTime();
+            var entry = this.entryRepository.GetById(entryId);
 
-            var user = this.userService.GetUserById(userId);
+            if (entry != null)
+            {
+                entry.Content = newContent;
 
-            var comment = this.commentFactory.CreateComment(content, currentDate, user);
-
-            this.logService.AddCommentToLog(logId, comment);
+                this.entryRepository.Update(entry);
+                this.unitOfWork.Commit();
+            }
         }
     }
 }
