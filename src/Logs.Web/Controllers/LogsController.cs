@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
+using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
 using Microsoft.AspNet.Identity;
 using PagedList;
@@ -13,8 +14,9 @@ namespace Logs.Web.Controllers
     {
         private readonly ILogService logService;
         private readonly IAuthenticationProvider authenticationProvider;
+        private readonly IViewModelFactory factory;
 
-        public LogsController(ILogService logService, IAuthenticationProvider authenticationProvider)
+        public LogsController(ILogService logService, IAuthenticationProvider authenticationProvider, IViewModelFactory factory)
         {
             if (logService == null)
             {
@@ -26,7 +28,13 @@ namespace Logs.Web.Controllers
                 throw new ArgumentNullException(nameof(authenticationProvider));
             }
 
+            if (factory == null)
+            {
+                throw new ArgumentNullException(nameof(factory));
+            }
+
             this.logService = logService;
+            this.factory = factory;
             this.authenticationProvider = authenticationProvider;
         }
 
@@ -45,7 +53,7 @@ namespace Logs.Web.Controllers
             }
 
             var entries = log.Entries
-                .Select(e => new LogEntryViewModel(e))
+                .Select(e => this.factory.CreateLogEntryViewModel(e))
                 .ToPagedList(page, count);
 
             var currentUserId = this.authenticationProvider.CurrentUserId;
@@ -54,7 +62,7 @@ namespace Logs.Web.Controllers
             canVote = (log.Votes
                 .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner && isAuthenticated;
 
-            var model = new LogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
+            var model = this.factory.CreateLogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
 
             return this.View(model);
         }
