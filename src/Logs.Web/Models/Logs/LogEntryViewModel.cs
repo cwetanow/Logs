@@ -7,6 +7,11 @@ namespace Logs.Web.Models.Logs
 {
     public class LogEntryViewModel
     {
+        public LogEntryViewModel()
+        {
+            
+        }
+
         public LogEntryViewModel(LogEntry entry)
         {
             this.EntryDate = entry.EntryDate;

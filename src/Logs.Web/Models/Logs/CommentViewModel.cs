@@ -5,6 +5,11 @@ namespace Logs.Web.Models.Logs
 {
     public class CommentViewModel
     {
+        public CommentViewModel()
+        {
+            
+        }
+
         public CommentViewModel(Comment comment)
         {
             this.Date = comment.Date;
