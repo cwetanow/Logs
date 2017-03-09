@@ -7,6 +7,11 @@ namespace Logs.Web.Models.Logs
 {
     public class LogDetailsViewModel
     {
+        public LogDetailsViewModel()
+        {
+            
+        }
+
         public LogDetailsViewModel(TrainingLog log, bool isAuthenticated, bool isOwner, bool canVote, IPagedList<LogEntryViewModel> entries)
         {
             this.Description = log.Description;
