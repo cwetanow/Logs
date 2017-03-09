@@ -13,6 +13,7 @@ namespace Logs.Web.Models.Logs
             this.Name = log.Name;
             this.LastActivityUser = log.LastActivityUser;
             this.LogId = log.LogId;
+            this.Votes = log.Votes.Count;
             this.Username = log.User.Name;
         }
 
