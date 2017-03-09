@@ -5,6 +5,6 @@ namespace Logs.Factories
 {
     public interface ILogEntryFactory
     {
-        LogEntry CreateLogEntry(string content, DateTime entryDate);
+        LogEntry CreateLogEntry(string content, DateTime entryDate, int logId);
     }
 }

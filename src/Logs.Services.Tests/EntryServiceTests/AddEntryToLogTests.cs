@@ -22,7 +22,7 @@ namespace Logs.Services.Tests.EntryServiceTests
             var mockedFactory = new Mock<ILogEntryFactory>();
             var mockedRepository = new Mock<IRepository<LogEntry>>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            
+
             var service = new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
@@ -63,7 +63,7 @@ namespace Logs.Services.Tests.EntryServiceTests
             service.AddEntryToLog(content, logId, null);
 
             // Assert
-            mockedFactory.Verify(f => f.CreateLogEntry(content, date), Times.Once);
+            mockedFactory.Verify(f => f.CreateLogEntry(content, date, logId), Times.Once);
         }
 
         [TestCase("content", 1)]
@@ -77,7 +77,7 @@ namespace Logs.Services.Tests.EntryServiceTests
             var entry = new LogEntry();
 
             var mockedFactory = new Mock<ILogEntryFactory>();
-            mockedFactory.Setup(f => f.CreateLogEntry(It.IsAny<string>(), It.IsAny<DateTime>()))
+            mockedFactory.Setup(f => f.CreateLogEntry(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<int>()))
                 .Returns(entry);
 
             var mockedRepository = new Mock<IRepository<LogEntry>>();

@@ -7,11 +7,12 @@ namespace Logs.Models
 {
     public class LogEntry
     {
-        public LogEntry(string content, DateTime entryDate)
+        public LogEntry(string content, DateTime entryDate, int logId)
             : this()
         {
             this.Content = content;
             this.EntryDate = entryDate;
+            this.LogId = logId;
         }
 
         public LogEntry()
