@@ -7,16 +7,16 @@ using Logs.Web.Models.Logs;
 
 namespace Logs.Web.Controllers
 {
-    public class EntriesController : Controller
+    public class CommentController : Controller
     {
-        private readonly IEntryService entryService;
+        private readonly ICommentService commentService;
         private readonly IAuthenticationProvider authenticationProvider;
 
-        public EntriesController(IEntryService entryService, IAuthenticationProvider authenticationProvider)
+        public CommentController(ICommentService commentService, IAuthenticationProvider authenticationProvider)
         {
-            if (entryService == null)
+            if (commentService == null)
             {
-                throw new ArgumentNullException(nameof(entryService));
+                throw new ArgumentNullException(nameof(commentService));
             }
 
             if (authenticationProvider == null)
@@ -24,27 +24,26 @@ namespace Logs.Web.Controllers
                 throw new ArgumentNullException(nameof(authenticationProvider));
             }
 
-            this.entryService = entryService;
+            this.commentService = commentService;
             this.authenticationProvider = authenticationProvider;
         }
 
         [Authorize]
-        public ActionResult NewEntry(NewEntryViewModel model)
+        public ActionResult Comment(NewCommentViewModel model)
         {
             var userId = this.authenticationProvider.CurrentUserId;
 
-            this.entryService.AddEntryToLog(model.Content, model.LogId, userId);
+            this.commentService.AddCommentToLog(model.Content, model.LogId, userId);
 
             return this.RedirectToAction("Details", "Logs", new { id = model.LogId, page = -1 });
         }
 
         [Authorize]
-        [HttpPost]
-        public PartialViewResult EditEntry(LogEntryViewModel model)
+        public ActionResult Edit(CommentViewModel model)
         {
-            this.entryService.EditEntry(model.EntryId, model.Content);
+            this.commentService.EditComment(model.CommentId, model.Content);
 
-            return this.PartialView("_EntryPartial", model);
+            return this.PartialView("_CommentPartial", model);
         }
     }
 }
