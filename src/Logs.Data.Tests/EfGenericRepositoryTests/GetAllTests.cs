@@ -13,16 +13,21 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
     [TestFixture]
     public class GetAllTests
     {
-        [Test]
-        public void TestGetAll_ShouldCallDbContextSet()
+        private IQueryable<FakeGenericRepositoryType> GetData()
         {
-            // Arrange
-            var data = new List<FakeGenericRepositoryType>
+            return new List<FakeGenericRepositoryType>
             {
                new FakeGenericRepositoryType(),
                new FakeGenericRepositoryType(),
                new FakeGenericRepositoryType()
             }.AsQueryable();
+        }
+
+        [Test]
+        public void TestGetAll_ShouldCallDbContextSet()
+        {
+            // Arrange
+            var data = this.GetData();
 
             var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
             mockedSet.Setup(m => m.Provider).Returns(data.Provider);
@@ -46,12 +51,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
         public void TestGetAll_WithoutExpressions_ShouldReturnCorrectly()
         {
             // Arrange
-            var data = new List<FakeGenericRepositoryType>
-            {
-               new FakeGenericRepositoryType(),
-               new FakeGenericRepositoryType(),
-               new FakeGenericRepositoryType()
-            }.AsQueryable();
+            var data = this.GetData();
 
             var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
             mockedSet.Setup(m => m.Provider).Returns(data.Provider);
@@ -78,11 +78,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
         public void TestGetAll_WithSortingExpression_ShouldReturnCorrectly(bool firstBoolean, bool secondBooleran)
         {
             // Arrange
-            var data = new List<FakeGenericRepositoryType>
-            {
-               new FakeGenericRepositoryType {BooleanProperty = firstBoolean},
-               new FakeGenericRepositoryType {BooleanProperty = secondBooleran}
-            }.AsQueryable();
+            var data = this.GetData();
 
             var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
             mockedSet.Setup(m => m.Provider).Returns(data.Provider);
@@ -113,11 +109,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
         public void TestGetAll_WithSortingAndOrderByExpression_ShouldReturnCorrectly(bool firstBoolean, bool secondBooleran)
         {
             // Arrange
-            var data = new List<FakeGenericRepositoryType>
-            {
-               new FakeGenericRepositoryType {BooleanProperty = firstBoolean},
-               new FakeGenericRepositoryType {BooleanProperty = secondBooleran}
-            }.AsQueryable();
+            var data = this.GetData();
 
             var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
             mockedSet.Setup(m => m.Provider).Returns(data.Provider);
@@ -150,11 +142,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
         public void TestGetAll_WithSortingAndOrderByDescendingExpression_ShouldReturnCorrectly(bool firstBoolean, bool secondBooleran)
         {
             // Arrange
-            var data = new List<FakeGenericRepositoryType>
-            {
-               new FakeGenericRepositoryType {BooleanProperty = firstBoolean},
-               new FakeGenericRepositoryType {BooleanProperty = secondBooleran}
-            }.AsQueryable();
+            var data = this.GetData();
 
             var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
             mockedSet.Setup(m => m.Provider).Returns(data.Provider);
@@ -187,11 +175,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
         public void TestGetAll_WithSortingOrderByAndSelectExpression_ShouldReturnCorrectly(bool firstBoolean, bool secondBooleran)
         {
             // Arrange
-            var data = new List<FakeGenericRepositoryType>
-            {
-               new FakeGenericRepositoryType {BooleanProperty = firstBoolean},
-               new FakeGenericRepositoryType {BooleanProperty = secondBooleran}
-            }.AsQueryable();
+            var data = this.GetData();
 
             var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
             mockedSet.Setup(m => m.Provider).Returns(data.Provider);
