@@ -19,5 +19,7 @@ namespace Logs.Services.Contracts
         void AddEntryToLog(int logId, LogEntry entry, string userId);
 
         void AddCommentToLog(int logId, Comment comment);
+
+        void EditLogDescription(int logId, string newDescription);
     }
 }

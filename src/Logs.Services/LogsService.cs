@@ -122,5 +122,18 @@ namespace Logs.Services
                 this.unitOfWork.Commit();
             }
         }
+
+        public void EditLogDescription(int logId, string newDescription)
+        {
+            var log = this.logRepository.GetById(logId);
+
+            if (log != null)
+            {
+                log.Description = newDescription;
+
+                this.logRepository.Update(log);
+                this.unitOfWork.Commit();
+            }
+        }
     }
 }
