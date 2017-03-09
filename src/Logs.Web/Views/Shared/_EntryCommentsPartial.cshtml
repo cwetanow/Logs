@@ -5,16 +5,8 @@
     @:Comments:
     foreach (var comment in Model)
     {
-            <div class="media-body">
-                <h4 class="media-heading">
-                    @Html.ActionLink(@comment.User,
-           "Details",
-           new { controller = "Profile", name = comment.User })
-
-                    <small>@string.Format("{0:MM dd, yyyy} at {0:HH:mm}", comment.Date)</small>
-                </h4>
-               @Html.Raw("<pre>" + Html.Encode(comment.Content) + "</pre>")
-
-            </div>
+        <div class="media-body" id="@($"comment{comment.CommentId}")">
+            @Html.Partial("_CommentPartial", comment)
+        </div>
     }
 }

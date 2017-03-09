@@ -6,16 +6,10 @@
 <div class="well" id="entries">
     @foreach (var entry in Model)
     {
-        <h3>
-            <span class="pull-right label label-primary">
-                <span class="glyphicon glyphicon-time"></span> @string.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", entry.EntryDate)
-            </span>
-        </h3>
-
-        <span class="lead"> @Html.Raw("<pre>" + Html.Encode(entry.Content) + "</pre>")</span>
-        <hr/>
-        @Html.Partial("_EntryCommentsPartial", entry.Comments)
-        <hr />
+        <div id="@($"entry{entry.EntryId}")">
+            @Html.Partial("_EntryPartial", entry)
+            
+        </div>
     }
 
     <div class="pages total">

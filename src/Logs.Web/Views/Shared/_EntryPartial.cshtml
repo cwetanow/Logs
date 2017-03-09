@@ -1,0 +1,12 @@
+﻿@model Logs.Web.Models.Logs.LogEntryViewModel
+
+<h3>
+    <span class="pull-right label label-primary">
+        <span class="glyphicon glyphicon-time"></span> @string.Format("Posted on {0:MM dd, yyyy} at {0:HH:mm}", Model.EntryDate)
+    </span>
+</h3>
+
+<span class="lead"> @Html.Raw("<pre>" + Html.Encode(Model.Content) + "</pre>")</span>
+<hr />
+@Html.Partial("_EntryCommentsPartial", Model.Comments)
+<hr />
