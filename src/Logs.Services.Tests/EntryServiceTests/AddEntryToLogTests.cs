@@ -1,4 +1,5 @@
 ﻿using System;
+using Logs.Data.Contracts;
 using Logs.Factories;
 using Logs.Models;
 using Logs.Providers.Contracts;
@@ -19,14 +20,14 @@ namespace Logs.Services.Tests.EntryServiceTests
             var mockedLogService = new Mock<ILogService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
             var mockedFactory = new Mock<ILogEntryFactory>();
-            var mockedUserService = new Mock<IUserService>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
-
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            
             var service = new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
-                mockedUserService.Object,
-                mockedCommentFactory.Object);
+                mockedRepository.Object,
+                mockedUnitOfWork.Object);
 
             // Act
             service.AddEntryToLog(content, logId, null);
@@ -49,14 +50,14 @@ namespace Logs.Services.Tests.EntryServiceTests
                 .Returns(date);
 
             var mockedFactory = new Mock<ILogEntryFactory>();
-            var mockedUserService = new Mock<IUserService>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             var service = new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
-                mockedUserService.Object,
-                mockedCommentFactory.Object);
+                mockedRepository.Object,
+                mockedUnitOfWork.Object);
 
             // Act
             service.AddEntryToLog(content, logId, null);
@@ -79,14 +80,14 @@ namespace Logs.Services.Tests.EntryServiceTests
             mockedFactory.Setup(f => f.CreateLogEntry(It.IsAny<string>(), It.IsAny<DateTime>()))
                 .Returns(entry);
 
-            var mockedUserService = new Mock<IUserService>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             var service = new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
-                mockedUserService.Object,
-                mockedCommentFactory.Object);
+                mockedRepository.Object,
+                mockedUnitOfWork.Object);
 
             // Act
             service.AddEntryToLog(content, logId, null);
