@@ -88,7 +88,7 @@ namespace Logs.Services
 
         public IEnumerable<TrainingLog> GetTopLogs(int count)
         {
-            var result = this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog t) => t.Votes.Count)
+            var result = this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog t) => t.Votes.Count, true)
                  .Take(count);
 
             return result;

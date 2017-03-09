@@ -19,7 +19,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestGetTopLogs_ShouldCallRepositoryGetAllCorrectly(int count)
         {
             // Arrange
-            var expectedDescending = false;
+            var expectedDescending = true;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
