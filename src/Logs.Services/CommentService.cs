@@ -43,6 +43,16 @@ namespace Logs.Services
                 throw new ArgumentNullException(nameof(commentFactory));
             }
 
+            if (commentRepository == null)
+            {
+                throw new ArgumentNullException(nameof(commentRepository));
+            }
+
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException(nameof(unitOfWork));
+            }
+
             this.logService = logService;
             this.dateTimeProvider = dateTimeProvider;
             this.userService = userService;

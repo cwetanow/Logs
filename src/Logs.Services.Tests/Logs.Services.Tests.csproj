@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommentServiceTests\AddCommentToLogTests.cs" />
+    <Compile Include="CommentServiceTests\ConstructorTests.cs" />
     <Compile Include="EntryServiceTests\AddEntryToLogTests.cs" />
     <Compile Include="EntryServiceTests\ConstructorTests.cs" />
     <Compile Include="EntryServiceTests\EditEntryTests.cs" />
