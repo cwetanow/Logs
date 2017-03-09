@@ -181,8 +181,6 @@ namespace Logs.Web.Tests.AccountControllerTests
            string returnUrl)
         {
             // Arrange
-            var lockoutViewName = "Lockout";
-
             var mockedProvider = new Mock<IAuthenticationProvider>();
             mockedProvider.Setup(
                     p =>
@@ -216,8 +214,6 @@ namespace Logs.Web.Tests.AccountControllerTests
            string returnUrl)
         {
             // Arrange
-            var lockoutViewName = "Lockout";
-
             var mockedProvider = new Mock<IAuthenticationProvider>();
             mockedProvider.Setup(
                     p =>
