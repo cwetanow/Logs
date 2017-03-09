@@ -62,9 +62,9 @@
     <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="LogsDbContext.cs" />
-    <Compile Include="Migrations\201703031008037_Initial.cs" />
-    <Compile Include="Migrations\201703031008037_Initial.Designer.cs">
-      <DependentUpon>201703031008037_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201703091658546_Initial.cs" />
+    <Compile Include="Migrations\201703091658546_Initial.Designer.cs">
+      <DependentUpon>201703091658546_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703031008037_Initial.resx">
-      <DependentUpon>201703031008037_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703091658546_Initial.resx">
+      <DependentUpon>201703091658546_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
