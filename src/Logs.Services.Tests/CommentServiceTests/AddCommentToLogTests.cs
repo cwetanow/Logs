@@ -1,4 +1,5 @@
 ﻿using System;
+using Logs.Data.Contracts;
 using Logs.Factories;
 using Logs.Models;
 using Logs.Providers.Contracts;
@@ -6,7 +7,7 @@ using Logs.Services.Contracts;
 using Moq;
 using NUnit.Framework;
 
-namespace Logs.Services.Tests.EntryServiceTests
+namespace Logs.Services.Tests.CommentServiceTests
 {
     [TestFixture]
     public class AddCommentToLogTests
@@ -18,15 +19,17 @@ namespace Logs.Services.Tests.EntryServiceTests
             // Arrange
             var mockedLogService = new Mock<ILogService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            var mockedFactory = new Mock<ILogEntryFactory>();
             var mockedUserService = new Mock<IUserService>();
             var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<Comment>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
-            var service = new EntryService(mockedLogService.Object,
+            var service = new CommentService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
-                mockedFactory.Object,
                 mockedUserService.Object,
-                mockedCommentFactory.Object);
+                mockedCommentFactory.Object,
+                mockedRepository.Object,
+                mockedUnitOfWork.Object);
 
             // Act
             service.AddCommentToLog(content, logId, userId);
@@ -42,15 +45,17 @@ namespace Logs.Services.Tests.EntryServiceTests
             // Arrange
             var mockedLogService = new Mock<ILogService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            var mockedFactory = new Mock<ILogEntryFactory>();
             var mockedUserService = new Mock<IUserService>();
             var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<Comment>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
-            var service = new EntryService(mockedLogService.Object,
+            var service = new CommentService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
-                mockedFactory.Object,
                 mockedUserService.Object,
-                mockedCommentFactory.Object);
+                mockedCommentFactory.Object,
+                mockedRepository.Object,
+                mockedUnitOfWork.Object);
 
             // Act
             service.AddCommentToLog(content, logId, userId);
@@ -72,8 +77,6 @@ namespace Logs.Services.Tests.EntryServiceTests
             mockedDateTimeProvider.Setup(p => p.GetCurrenTime())
                 .Returns(date);
 
-            var mockedFactory = new Mock<ILogEntryFactory>();
-
             var user = new User();
 
             var mockedUserService = new Mock<IUserService>();
@@ -81,12 +84,15 @@ namespace Logs.Services.Tests.EntryServiceTests
                 .Returns(user);
 
             var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<Comment>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
-            var service = new EntryService(mockedLogService.Object,
+            var service = new CommentService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
-                mockedFactory.Object,
                 mockedUserService.Object,
-                mockedCommentFactory.Object);
+                mockedCommentFactory.Object,
+                mockedRepository.Object,
+                mockedUnitOfWork.Object);
 
             // Act
             service.AddCommentToLog(content, logId, userId);
@@ -108,8 +114,6 @@ namespace Logs.Services.Tests.EntryServiceTests
             mockedDateTimeProvider.Setup(p => p.GetCurrenTime())
                 .Returns(date);
 
-            var mockedFactory = new Mock<ILogEntryFactory>();
-
             var user = new User();
 
             var mockedUserService = new Mock<IUserService>();
@@ -121,12 +125,15 @@ namespace Logs.Services.Tests.EntryServiceTests
             var mockedCommentFactory = new Mock<ICommentFactory>();
             mockedCommentFactory.Setup(f => f.CreateComment(It.IsAny<string>(), It.IsAny<DateTime>(), It.IsAny<User>()))
                 .Returns(comment);
+            var mockedRepository = new Mock<IRepository<Comment>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
-            var service = new EntryService(mockedLogService.Object,
+            var service = new CommentService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
-                mockedFactory.Object,
                 mockedUserService.Object,
-                mockedCommentFactory.Object);
+                mockedCommentFactory.Object,
+                mockedRepository.Object,
+                mockedUnitOfWork.Object);
 
             // Act
             service.AddCommentToLog(content, logId, userId);
