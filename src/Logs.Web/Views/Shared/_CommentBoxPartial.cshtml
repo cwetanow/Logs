@@ -1,6 +1,6 @@
 ﻿@model Logs.Web.Models.Entries.NewCommentViewModel
 
-@using (Html.BeginForm("Comment", "Entries", FormMethod.Post))
+@using (Html.BeginForm("Comment", "Comment", FormMethod.Post))
 {
     @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 5 });
     @Html.HiddenFor(m => m.LogId)
