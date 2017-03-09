@@ -1,5 +1,7 @@
 ﻿using System;
+using Logs.Data.Contracts;
 using Logs.Factories;
+using Logs.Models;
 using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 using Moq;
@@ -17,15 +19,15 @@ namespace Logs.Services.Tests.EntryServiceTests
             var mockedLogService = new Mock<ILogService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
             var mockedFactory = new Mock<ILogEntryFactory>();
-            var mockedUserService = new Mock<IUserService>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             // Act
             var service = new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
-                mockedUserService.Object,
-                mockedCommentFactory.Object);
+                mockedRepository.Object,
+                mockedUnitOfWork.Object);
 
             // Assert
             Assert.IsNotNull(service);
@@ -38,15 +40,15 @@ namespace Logs.Services.Tests.EntryServiceTests
             var mockedLogService = new Mock<ILogService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
             var mockedFactory = new Mock<ILogEntryFactory>();
-            var mockedUserService = new Mock<IUserService>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             // Act, Assert
             Assert.DoesNotThrow(() => new EntryService(mockedLogService.Object,
                 mockedDateTimeProvider.Object,
                 mockedFactory.Object,
-                mockedUserService.Object,
-                mockedCommentFactory.Object));
+                mockedRepository.Object,
+                mockedUnitOfWork.Object));
         }
 
         [Test]
@@ -55,33 +57,15 @@ namespace Logs.Services.Tests.EntryServiceTests
             // Arrange
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
             var mockedFactory = new Mock<ILogEntryFactory>();
-            var mockedUserService = new Mock<IUserService>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             // Act, Assert
-            Assert.Throws<ArgumentNullException>(() =>
-                         new EntryService(null, mockedDateTimeProvider.Object, 
-                         mockedFactory.Object, 
-                         mockedUserService.Object,
-                         mockedCommentFactory.Object));
-        }
-
-        [Test]
-        public void TestConstructor_PassCommentFactoryNull_ShouldThrowArgumentNullException()
-        {
-            // Arrange
-            var mockedLogService = new Mock<ILogService>();
-            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            var mockedFactory = new Mock<ILogEntryFactory>();
-            var mockedUserService = new Mock<IUserService>();
-
-            // Act, Assert
-            Assert.Throws<ArgumentNullException>(() =>
-                         new EntryService(mockedLogService.Object,
-                         mockedDateTimeProvider.Object,
-                         mockedFactory.Object,
-                         mockedUserService.Object,
-                         null));
+            Assert.Throws<ArgumentNullException>(() => new EntryService(null,
+                mockedDateTimeProvider.Object,
+                mockedFactory.Object,
+                mockedRepository.Object,
+                mockedUnitOfWork.Object));
         }
 
         [Test]
@@ -90,52 +74,66 @@ namespace Logs.Services.Tests.EntryServiceTests
             // Arrange
             var mockedLogService = new Mock<ILogService>();
             var mockedFactory = new Mock<ILogEntryFactory>();
-            var mockedUserService = new Mock<IUserService>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             // Act, Assert
-            Assert.Throws<ArgumentNullException>(() =>
-                         new EntryService(mockedLogService.Object, 
-                         null,
-                         mockedFactory.Object,
-                         mockedUserService.Object,
-                         mockedCommentFactory.Object));
+            Assert.Throws<ArgumentNullException>(() => new EntryService(mockedLogService.Object,
+                null,
+                mockedFactory.Object,
+                mockedRepository.Object,
+                mockedUnitOfWork.Object));
         }
 
         [Test]
-        public void TestConstructor_PassFactoryNull_ShouldThrowArgumentNullException()
+        public void TestConstructor_PassLogEntryFactoryNull_ShouldThrowArgumentNullException()
         {
             // Arrange
             var mockedLogService = new Mock<ILogService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            var mockedUserService = new Mock<IUserService>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             // Act, Assert
-            Assert.Throws<ArgumentNullException>(() =>
-                         new EntryService(mockedLogService.Object, 
-                         mockedDateTimeProvider.Object,
-                         null,
-                         mockedUserService.Object,
-                         mockedCommentFactory.Object));
+            Assert.Throws<ArgumentNullException>(() => new EntryService(mockedLogService.Object,
+                mockedDateTimeProvider.Object,
+                null,
+                mockedRepository.Object,
+                mockedUnitOfWork.Object));
         }
 
         [Test]
-        public void TestConstructor_PassUserServiceNull_ShouldThrowArgumentNullException()
+        public void TestConstructor_PassRepositoryNull_ShouldThrowArgumentNullException()
         {
             // Arrange
             var mockedLogService = new Mock<ILogService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
             var mockedFactory = new Mock<ILogEntryFactory>();
-            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            var mockedCommentFactory = new Mock<ICommentFactory>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             // Act, Assert
-            Assert.Throws<ArgumentNullException>(() =>
-                         new EntryService(mockedLogService.Object,
-                         mockedDateTimeProvider.Object,
-                         mockedFactory.Object, 
-                         null,
-                         mockedCommentFactory.Object));
+            Assert.Throws<ArgumentNullException>(() => new EntryService(mockedLogService.Object,
+                mockedDateTimeProvider.Object,
+                mockedFactory.Object,
+                null,
+                mockedUnitOfWork.Object));
+        }
+
+        [Test]
+        public void TestConstructor_PassUnitOfWorkNull_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            var mockedLogService = new Mock<ILogService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+            var mockedFactory = new Mock<ILogEntryFactory>();
+            var mockedRepository = new Mock<IRepository<LogEntry>>();
+
+            // Act, Assert
+            Assert.Throws<ArgumentNullException>(() => new EntryService(mockedLogService.Object,
+                mockedDateTimeProvider.Object,
+                mockedFactory.Object,
+                mockedRepository.Object,
+                null));
         }
     }
 }
