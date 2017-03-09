@@ -16,5 +16,7 @@ namespace Logs.Web.Infrastructure.Factories
             bool isOwner,
             bool canVote,
             IPagedList<LogEntryViewModel> entries);
+
+        ShortLogViewModel CreateShortLogViewModel(TrainingLog log);
     }
 }

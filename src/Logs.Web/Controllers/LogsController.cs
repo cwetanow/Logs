@@ -107,7 +107,7 @@ namespace Logs.Web.Controllers
         {
             var logs = this.logService.GetTopLogs(count);
             var model = logs
-                .Select(l => new ShortLogViewModel(l));
+                .Select(l => this.factory.CreateShortLogViewModel(l));
 
             return this.PartialView("_LogListPartial", model);
         }
@@ -117,7 +117,7 @@ namespace Logs.Web.Controllers
         {
             var logs = this.logService.GetLatestLogs(count);
             var model = logs
-                .Select(l => new ShortLogViewModel(l));
+                .Select(l => this.factory.CreateShortLogViewModel(l));
 
             return this.PartialView("_LogListPartial", model);
         }
