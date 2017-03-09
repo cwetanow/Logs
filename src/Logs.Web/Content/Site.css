@@ -27,7 +27,8 @@ textarea {
 #entry-form,
 #comment-form,
 #edit-form,
-.edit-entry {
+.edit-entry,
+.edit-comment {
     display: none;
 }
 
