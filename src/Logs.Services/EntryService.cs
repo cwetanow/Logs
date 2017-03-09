@@ -36,6 +36,16 @@ namespace Logs.Services
                 throw new ArgumentNullException(nameof(logEntryFactoryfactory));
             }
 
+            if (entryRepository == null)
+            {
+                throw new ArgumentNullException(nameof(entryRepository));
+            }
+
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException(nameof(unitOfWork));
+            }
+
             this.logService = logService;
             this.logEntryFactoryfactory = logEntryFactoryfactory;
             this.dateTimeProvider = dateTimeProvider;
