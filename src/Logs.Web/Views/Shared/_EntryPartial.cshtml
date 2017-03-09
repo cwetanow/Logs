@@ -1,6 +1,6 @@
 ﻿@model Logs.Web.Models.Logs.LogEntryViewModel
 
-<div id="@($"entry{Model.EntryId}")">
+<div>
 
     <a class="pull-right glyphicon glyphicon-edit btn-lg edit-entry-button"></a>
 
@@ -10,7 +10,7 @@
         </span>
     </h3>
 
-    <span class="lead"> @Html.Raw("<pre>" + Html.Encode(Model.Content) + "</pre>")</span>
+    <span id="@($"entry{Model.EntryId}")" class="lead"> @Html.Raw("<pre>" + Html.Encode(Model.Content) + "</pre>")</span>
 
     @using (Ajax.BeginForm("EditEntry", "Entries", null,
                                 new AjaxOptions

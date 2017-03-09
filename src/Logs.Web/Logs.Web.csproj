@@ -320,10 +320,11 @@
     <Content Include="Views\Logs\_LogDescription.cshtml" />
     <Content Include="Views\Shared\_CommentPartial.cshtml" />
     <Content Include="Views\Shared\_EntryPartial.cshtml" />
+    <Content Include="Views\Entries\_EntryContentPartial.cshtml" />
+    <Content Include="Views\Comment\_CommentContentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -44,7 +44,7 @@ namespace Logs.Web.Controllers
         {
             this.entryService.EditEntry(model.EntryId, model.Content);
 
-            return this.PartialView("_EntryPartial", model);
+            return this.PartialView("_EntryContentPartial", model);
         }
     }
 }
