@@ -79,7 +79,9 @@ namespace Logs.Web.Controllers
         [HttpPost]
         public RedirectToRouteResult CreateLog(CreateLogViewModel model)
         {
-            var log = this.logService.CreateTrainingLog(model.Name, model.Description, this.HttpContext.User.Identity.GetUserId());
+            var userId = this.authenticationProvider.CurrentUserId;
+
+            var log = this.logService.CreateTrainingLog(model.Name, model.Description, userId);
 
             this.HttpContext.Cache[CachedLogsKey] = null;
 
