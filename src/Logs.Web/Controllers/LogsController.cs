@@ -51,7 +51,7 @@ namespace Logs.Web.Controllers
 
             var isOwner = log.User.Id.Equals(currentUserId);
             var canVote = (log.Votes
-                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner && isAuthenticated; ;
+                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner && isAuthenticated;
 
             if (page < 0)
             {

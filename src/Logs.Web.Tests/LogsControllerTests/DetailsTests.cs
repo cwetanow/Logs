@@ -174,5 +174,45 @@ namespace Logs.Web.Tests.LogsControllerTests
             // Assert
             Assert.AreEqual(model, result.Model);
         }
+
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", true)]
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", false)]
+        public void TestDetails_LogContainsViewWithCurrentUser_ShouldNotBeAbleToVote(int id, string userId, bool isAuthenticated)
+        {
+            // Arrange 
+            var vote = new Vote { UserId = userId };
+
+            var user = new User { Id = userId };
+            var log = new TrainingLog { User = user };
+            log.Votes.Add(vote);
+
+            var mockedLogService = new Mock<ILogService>();
+            mockedLogService.Setup(s => s.GetTrainingLogById(It.IsAny<int>())).Returns(log);
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var model = new LogDetailsViewModel();
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+            mockedFactory.Setup(f => f.CreateLogDetailsViewModel(It.IsAny<TrainingLog>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<IPagedList<LogEntryViewModel>>()))
+                .Returns(model);
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object);
+
+            var expectedIsOwner = log.User.Id.Equals(userId);
+            var expectedCanVote = (log.Votes
+                .FirstOrDefault(v => v.UserId.Equals(userId))) == null && !expectedIsOwner && isAuthenticated;
+
+            // Act
+            var result = controller.Details(id) as ViewResult;
+
+            // Assert
+            Assert.AreEqual(expectedCanVote, ((LogDetailsViewModel)result.Model).CanVote);
+        }
     }
 }
