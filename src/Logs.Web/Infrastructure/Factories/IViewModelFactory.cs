@@ -18,5 +18,7 @@ namespace Logs.Web.Infrastructure.Factories
             IPagedList<LogEntryViewModel> entries);
 
         ShortLogViewModel CreateShortLogViewModel(TrainingLog log);
+
+        CreateLogViewModel CreateCreateLogViewModel();
     }
 }
