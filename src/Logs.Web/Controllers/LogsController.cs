@@ -70,7 +70,9 @@ namespace Logs.Web.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            return this.View(new CreateLogViewModel());
+            var model = this.factory.CreateCreateLogViewModel();
+
+            return this.View(model);
         }
 
         [Authorize]
