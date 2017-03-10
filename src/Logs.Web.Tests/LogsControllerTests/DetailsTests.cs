@@ -142,6 +142,30 @@ namespace Logs.Web.Tests.LogsControllerTests
             Assert.IsInstanceOf<ViewResult>(result);
         }
 
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        public void TestDetails_ShouldCallFactoryCreateLogEntryViewModel_AsManyTimesAsLogEntriesCount(int id, string userId)
+        {
+            // Arrange 
+            var user = new User { Id = userId };
+            var log = new TrainingLog { User = user };
+
+            var mockedLogService = new Mock<ILogService>();
+            mockedLogService.Setup(s => s.GetTrainingLogById(It.IsAny<int>())).Returns(log);
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object);
+
+            // Act
+            var result = controller.Details(id);
+
+            // Assert
+            mockedFactory.Verify(f => f.CreateLogEntryViewModel(It.IsAny<LogEntry>(), It.IsAny<string>()), Times.Exactly(log.Entries.Count));
+        }
+
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         public void TestDetails_ShouldSetViewModel(int id, string userId)
@@ -213,6 +237,52 @@ namespace Logs.Web.Tests.LogsControllerTests
 
             // Assert
             Assert.AreEqual(expectedCanVote, ((LogDetailsViewModel)result.Model).CanVote);
+        }
+
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", -10)]
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", -124)]
+        public void TestDetails_PageIsNegative_ShouldSetPageToLastPage(int id, string userId, int page)
+        {
+            // Arrange 
+            var vote = new Vote { UserId = userId };
+
+            var user = new User { Id = userId };
+            var log = new TrainingLog { User = user };
+            log.Votes.Add(vote);
+
+            var mockedLogService = new Mock<ILogService>();
+            mockedLogService.Setup(s => s.GetTrainingLogById(It.IsAny<int>())).Returns(log);
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var model = new LogDetailsViewModel();
+
+            var currentPage = page;
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+            mockedFactory.Setup(f => f.CreateLogDetailsViewModel(It.IsAny<TrainingLog>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<IPagedList<LogEntryViewModel>>()))
+                .Returns((TrainingLog trainingLog,
+                        bool isAuthenticated,
+                        bool isOwner,
+                        bool canVote,
+                        IPagedList<LogEntryViewModel> entries) =>
+                    {
+                        currentPage = entries.PageNumber;
+                        return model;
+                    });
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object);
+
+            // Act
+            var result = controller.Details(id, page) as ViewResult;
+
+            // Assert
+            Assert.AreNotEqual(page, currentPage);
         }
     }
 }
