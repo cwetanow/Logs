@@ -163,7 +163,7 @@ namespace Logs.Web.Tests.LogsControllerTests
             var result = controller.Details(id);
 
             // Assert
-            mockedFactory.Verify(f => f.CreateLogEntryViewModel(It.IsAny<LogEntry>(), It.IsAny<string>()), Times.Exactly(log.Entries.Count));
+            mockedFactory.Verify(f => f.CreateLogEntryViewModel(It.IsAny<LogEntry>(), userId), Times.Exactly(log.Entries.Count));
         }
 
 
