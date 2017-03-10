@@ -140,6 +140,7 @@
     <Compile Include="HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="HomeControllerTests\IndexTests.cs" />
     <Compile Include="LogsControllerTests\ConstructorTests.cs" />
+    <Compile Include="LogsControllerTests\CreateTests.cs" />
     <Compile Include="ProfileControllerTests\ConstructorTests.cs" />
     <Compile Include="ProfileControllerTests\MyLogTests.cs" />
     <Compile Include="ProfileControllerTests\NoLogTests.cs" />
