@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Models;
@@ -166,7 +167,6 @@ namespace Logs.Web.Tests.LogsControllerTests
             mockedFactory.Verify(f => f.CreateLogEntryViewModel(It.IsAny<LogEntry>(), userId), Times.Exactly(log.Entries.Count));
         }
 
-
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         public void TestDetails_ShouldSetViewModel(int id, string userId)
         {
@@ -197,6 +197,48 @@ namespace Logs.Web.Tests.LogsControllerTests
 
             // Assert
             Assert.AreEqual(model, result.Model);
+        }
+
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        public void TestDetails_ShouldSetCorrectEntriesToModel(int id, string userId)
+        {
+            // Arrange 
+            var entry = new LogEntry();
+            var entries = new List<LogEntry> { entry };
+
+            var user = new User { Id = userId };
+            var log = new TrainingLog { User = user, Entries = entries };
+
+            var mockedLogService = new Mock<ILogService>();
+            mockedLogService.Setup(s => s.GetTrainingLogById(It.IsAny<int>())).Returns(log);
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var entryViewModel = new LogEntryViewModel();
+            var viewModelEntries = new List<LogEntryViewModel> { entryViewModel };
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+            mockedFactory.Setup(f => f.CreateLogEntryViewModel(It.IsAny<LogEntry>(), It.IsAny<string>()))
+                .Returns(entryViewModel);
+            mockedFactory.Setup(f => f.CreateLogDetailsViewModel(It.IsAny<TrainingLog>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<bool>(),
+                    It.IsAny<IPagedList<LogEntryViewModel>>()))
+                .Returns((TrainingLog trainingLog,
+                        bool isAuthenticated,
+                        bool isOwner,
+                        bool canVote,
+                        IPagedList<LogEntryViewModel> entriesPagedList) => new LogDetailsViewModel { Entries = entriesPagedList });
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object);
+
+            // Act
+            var result = controller.Details(id) as ViewResult;
+
+            // Assert
+            CollectionAssert.AreEqual(viewModelEntries, ((LogDetailsViewModel)result.Model).Entries);
         }
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", true)]
