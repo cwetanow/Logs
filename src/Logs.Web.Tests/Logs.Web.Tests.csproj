@@ -147,6 +147,7 @@
     <Compile Include="LogsControllerTests\CreateTests.cs" />
     <Compile Include="LogsControllerTests\DetailsTests.cs" />
     <Compile Include="LogsControllerTests\EditTests.cs" />
+    <Compile Include="LogsControllerTests\LatestTests.cs" />
     <Compile Include="ProfileControllerTests\ConstructorTests.cs" />
     <Compile Include="ProfileControllerTests\MyLogTests.cs" />
     <Compile Include="ProfileControllerTests\NoLogTests.cs" />
