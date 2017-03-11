@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Models;
 using Logs.Providers.Contracts;
@@ -100,6 +101,36 @@ namespace Logs.Web.Tests.LogsControllerTests
 
             // Assert
             mockedLogService.Verify(s => s.GetAllSortedByDate(), Times.Never);
+        }
+
+        [Test]
+        public void TestPartialList_CachingProviderDoesNotReturnLogs_ShouldSetCorrectViewModel()
+        {
+            // Arrange
+            var logs = new List<TrainingLog> { new TrainingLog() };
+
+            var mockedLogService = new Mock<ILogService>();
+            mockedLogService.Setup(s => s.GetAllSortedByDate()).Returns(logs);
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var model = new ShortLogViewModel();
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+            mockedFactory.Setup(f => f.CreateShortLogViewModel(It.IsAny<TrainingLog>())).Returns(model);
+
+            var mockedCachingProvider = new Mock<ICachingProvider>();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object, mockedCachingProvider.Object);
+
+            var expectedList = new List<ShortLogViewModel> { model };
+
+            // Act
+            var result = controller.PartialList() as PartialViewResult;
+
+            // Assert
+            CollectionAssert.AreEqual(expectedList, (IEnumerable<ShortLogViewModel>)result.Model);
         }
     }
 }
