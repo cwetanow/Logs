@@ -139,6 +139,7 @@
     <Compile Include="CommentControllerTests\ConstructorTests.cs" />
     <Compile Include="CommentControllerTests\EditTests.cs" />
     <Compile Include="EntriesControllerTests\ConstructorTests.cs" />
+    <Compile Include="EntriesControllerTests\EditEntryTests.cs" />
     <Compile Include="EntriesControllerTests\NewEntryTests.cs" />
     <Compile Include="HomeControllerTests\AboutTests.cs" />
     <Compile Include="HomeControllerTests\ConstructorTests.cs" />
