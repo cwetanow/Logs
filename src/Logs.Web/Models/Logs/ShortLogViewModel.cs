@@ -5,6 +5,11 @@ namespace Logs.Web.Models.Logs
 {
     public class ShortLogViewModel
     {
+        public ShortLogViewModel()
+        {
+            
+        }
+
         public ShortLogViewModel(TrainingLog log)
         {
             this.DateCreated = log.DateCreated;
