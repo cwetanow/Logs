@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Models;
+using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
 using Logs.Web.Infrastructure.Factories;
@@ -28,9 +29,10 @@ namespace Logs.Web.Tests.LogsControllerTests
 
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             controller.Details(id);
@@ -51,9 +53,10 @@ namespace Logs.Web.Tests.LogsControllerTests
 
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             controller.Details(id);
@@ -74,9 +77,10 @@ namespace Logs.Web.Tests.LogsControllerTests
 
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             controller.Details(id);
@@ -100,9 +104,10 @@ namespace Logs.Web.Tests.LogsControllerTests
             mockedAuthenticationProvider.Setup(p => p.IsAuthenticated).Returns(isAuthenticated);
 
             var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             var expectedIsOwner = userId.Equals(user.Id);
             var expectedCanVote = (log.Votes
@@ -132,9 +137,10 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             var result = controller.Details(id);
@@ -156,9 +162,10 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             var result = controller.Details(id);
@@ -188,9 +195,10 @@ namespace Logs.Web.Tests.LogsControllerTests
                     It.IsAny<bool>(),
                     It.IsAny<IPagedList<LogEntryViewModel>>()))
                 .Returns(model);
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             var result = controller.Details(id) as ViewResult;
@@ -231,8 +239,10 @@ namespace Logs.Web.Tests.LogsControllerTests
                         bool canVote,
                         IPagedList<LogEntryViewModel> entriesPagedList) => new LogDetailsViewModel { Entries = entriesPagedList });
 
+            var mockedCachingProvider = new Mock<ICachingProvider>();
+
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             var result = controller.Details(id) as ViewResult;
@@ -267,8 +277,10 @@ namespace Logs.Web.Tests.LogsControllerTests
                     It.IsAny<IPagedList<LogEntryViewModel>>()))
                 .Returns(model);
 
+            var mockedCachingProvider = new Mock<ICachingProvider>();
+
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             var expectedIsOwner = log.User.Id.Equals(userId);
             var expectedCanVote = (log.Votes
@@ -317,8 +329,10 @@ namespace Logs.Web.Tests.LogsControllerTests
                         return model;
                     });
 
+            var mockedCachingProvider = new Mock<ICachingProvider>();
+
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             var result = controller.Details(id, page) as ViewResult;

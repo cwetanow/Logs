@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
 using Logs.Web.Infrastructure.Factories;
@@ -19,9 +20,10 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedLogService = new Mock<ILogService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             controller.Create();
@@ -37,8 +39,10 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedLogService = new Mock<ILogService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedCachingProvider = new Mock<ICachingProvider>();
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object, mockedFactory.Object);
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             var result = controller.Create();
@@ -59,7 +63,10 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedFactory = new Mock<IViewModelFactory>();
             mockedFactory.Setup(f => f.CreateCreateLogViewModel()).Returns(model);
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object, mockedFactory.Object);
+            var mockedCachingProvider = new Mock<ICachingProvider>();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object, mockedCachingProvider.Object);
 
             // Act
             var result = controller.Create() as ViewResult;

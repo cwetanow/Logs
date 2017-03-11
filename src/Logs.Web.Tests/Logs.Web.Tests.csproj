@@ -144,6 +144,7 @@
     <Compile Include="HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="HomeControllerTests\IndexTests.cs" />
     <Compile Include="LogsControllerTests\ConstructorTests.cs" />
+    <Compile Include="LogsControllerTests\CreateLogTests.cs" />
     <Compile Include="LogsControllerTests\CreateTests.cs" />
     <Compile Include="LogsControllerTests\DetailsTests.cs" />
     <Compile Include="LogsControllerTests\EditTests.cs" />
@@ -174,6 +175,10 @@
     <ProjectReference Include="..\Logs.Models\Logs.Models.csproj">
       <Project>{42C607C4-8FB1-490C-AAD4-5AC9921F91FC}</Project>
       <Name>Logs.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logs.Providers\Logs.Providers.csproj">
+      <Project>{FB8CF5FD-A33C-44D0-8517-A2D55CC7B470}</Project>
+      <Name>Logs.Providers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logs.Services\Logs.Services.csproj">
       <Project>{4BD34CDB-E6CE-415C-95EF-5E04CC0A2FA0}</Project>
