@@ -108,20 +108,7 @@ namespace Logs.Web.Controllers
 
         public ActionResult List(int count = 10, int page = 1)
         {
-            var logs = this.HttpContext.Cache[CachedLogsKey] as IEnumerable<ShortLogViewModel>;
-
-            if (logs == null)
-            {
-                logs = this.logService.GetAllSortedByDate()
-                    .Select(l => this.factory.CreateShortLogViewModel(l));
-
-                this.HttpContext.Cache[CachedLogsKey] = logs;
-            }
-
-            var model = logs
-                .ToPagedList(page, count);
-
-            return this.View("List", model);
+           return this.View("List");
         }
 
         [OutputCache(Duration = 60 * 5)]
