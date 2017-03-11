@@ -82,8 +82,6 @@ namespace Logs.Web.Tests.LogsControllerTests
             string description, string userId)
         {
             // Arrange
-            var expectedKey = "logs";
-
             var log = new TrainingLog { LogId = logId };
 
             var mockedLogService = new Mock<ILogService>();
@@ -115,8 +113,6 @@ namespace Logs.Web.Tests.LogsControllerTests
             string description, string userId)
         {
             // Arrange
-            var expectedKey = "logs";
-
             var log = new TrainingLog { LogId = logId };
 
             var mockedLogService = new Mock<ILogService>();
