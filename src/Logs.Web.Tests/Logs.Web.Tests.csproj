@@ -150,6 +150,7 @@
     <Compile Include="LogsControllerTests\EditTests.cs" />
     <Compile Include="LogsControllerTests\LatestTests.cs" />
     <Compile Include="LogsControllerTests\ListTests.cs" />
+    <Compile Include="LogsControllerTests\PartialListTests.cs" />
     <Compile Include="LogsControllerTests\TopLogsTests.cs" />
     <Compile Include="ProfileControllerTests\ConstructorTests.cs" />
     <Compile Include="ProfileControllerTests\MyLogTests.cs" />
