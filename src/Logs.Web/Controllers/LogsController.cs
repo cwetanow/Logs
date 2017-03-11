@@ -106,9 +106,9 @@ namespace Logs.Web.Controllers
             return this.PartialView("_PagedLogListPartial", model);
         }
 
-        public ActionResult List(int count = 10, int page = 1)
+        public ActionResult List()
         {
-           return this.View("List");
+           return this.View();
         }
 
         [OutputCache(Duration = 60 * 5)]
