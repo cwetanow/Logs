@@ -20,21 +20,14 @@ namespace Logs.Web.Controllers
         private readonly ILogService logService;
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IViewModelFactory factory;
-        private readonly ICachingProvider cachingProvider;
 
         public LogsController(ILogService logService,
             IAuthenticationProvider authenticationProvider,
-            IViewModelFactory factory,
-            ICachingProvider cachingProvider)
+            IViewModelFactory factory)
         {
             if (logService == null)
             {
                 throw new ArgumentNullException(nameof(logService));
-            }
-
-            if (cachingProvider == null)
-            {
-                throw new ArgumentNullException(nameof(cachingProvider));
             }
 
             if (authenticationProvider == null)
@@ -49,7 +42,6 @@ namespace Logs.Web.Controllers
 
             this.logService = logService;
             this.factory = factory;
-            this.cachingProvider = cachingProvider;
             this.authenticationProvider = authenticationProvider;
         }
 
