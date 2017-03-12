@@ -101,15 +101,8 @@ namespace Logs.Web.Controllers
 
         public ActionResult PartialList(int count = 10, int page = 1)
         {
-            var logs = this.cachingProvider.GetItem(CachedLogsKey) as IEnumerable<ShortLogViewModel>;
-
-            if (logs == null)
-            {
-                logs = this.logService.GetAllSortedByDate()
+            var logs = this.logService.GetAllSortedByDate()
                     .Select(l => this.factory.CreateShortLogViewModel(l));
-
-                this.cachingProvider.AddItem(CachedLogsKey, logs);
-            }
 
             var model = logs
                 .ToPagedList(page, count);

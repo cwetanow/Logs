@@ -64,11 +64,11 @@ namespace Logs.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load(new ProvidersNinjectModule());
             kernel.Load(new AuthNinjectModule());
             kernel.Load(new DataNinjectModule());
             kernel.Load(new FactoryNinjectModule());
             kernel.Load(new ServiceNinjectModule());
-            kernel.Load(new ProvidersNinjectModule());
         }
     }
 }
