@@ -75,12 +75,12 @@ namespace Logs.Services
 
         public IEnumerable<TrainingLog> GetAllSortedByDate()
         {
-            return this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog l) => l.DateCreated, true);
+            return this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog l) => l.LastEntryDate, true);
         }
 
         public IEnumerable<TrainingLog> GetLatestLogs(int count)
         {
-            var result = this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog t) => t.DateCreated, true)
+            var result = this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog t) => t.LastEntryDate, true)
                  .Take(count);
 
             return result;

@@ -1,4 +1,3 @@
-using System.Web.Mvc;
 using Logs.Web.App_Start.NinjectModules;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Logs.Web.App_Start.NinjectWebCommon), "Start")]
