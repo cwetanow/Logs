@@ -18,10 +18,6 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<ICommentService>().To<CommentService>();
 
             this.Bind<CachingInterceptor>().ToSelf();
-
-            var interceptor = this.Kernel.Get<CachingInterceptor>();
-
-            this.Kernel.AddMethodInterceptor(typeof(ILogService).GetMethod("GetAllSortedByDate"), interceptor.Intercept);
         }
     }
 }

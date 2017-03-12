@@ -20,8 +20,6 @@ namespace Logs.Web.Tests.LogsControllerTests
         public void TestList_ShouldReturnCorrectView()
         {
             // Arrange
-            var expectedViewName = "List";
-
             var mockedLogService = new Mock<ILogService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
