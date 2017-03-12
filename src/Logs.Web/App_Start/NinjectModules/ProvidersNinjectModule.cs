@@ -9,7 +9,6 @@ namespace Logs.Web.App_Start.NinjectModules
         public override void Load()
         {
             this.Bind<IDateTimeProvider>().To<DateTimeProvider>().InSingletonScope();
-            this.Bind<ICachingProvider>().To<HttpContextCachingProvider>();
         }
     }
 }

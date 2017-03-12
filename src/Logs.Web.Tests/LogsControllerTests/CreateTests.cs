@@ -20,7 +20,6 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedLogService = new Mock<ILogService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                 mockedFactory.Object);
@@ -39,7 +38,6 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedLogService = new Mock<ILogService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                 mockedFactory.Object);
@@ -62,8 +60,6 @@ namespace Logs.Web.Tests.LogsControllerTests
 
             var mockedFactory = new Mock<IViewModelFactory>();
             mockedFactory.Setup(f => f.CreateCreateLogViewModel()).Returns(model);
-
-            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                mockedFactory.Object);

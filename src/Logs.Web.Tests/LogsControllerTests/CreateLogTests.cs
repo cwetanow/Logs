@@ -62,8 +62,6 @@ namespace Logs.Web.Tests.LogsControllerTests
 
             var model = new CreateLogViewModel { Description = description, Name = name };
 
-            var mockedCachingProvider = new Mock<ICachingProvider>();
-
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                mockedFactory.Object);
 
