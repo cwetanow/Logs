@@ -26,7 +26,7 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
+                 mockedFactory.Object);
 
             // Act
             controller.TopLogs(count);
@@ -48,7 +48,7 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
+                mockedFactory.Object);
 
             // Act
             var result = controller.TopLogs(count) as PartialViewResult;
@@ -78,7 +78,7 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
+                mockedFactory.Object);
 
             // Act
             var result = controller.TopLogs(count) as PartialViewResult;

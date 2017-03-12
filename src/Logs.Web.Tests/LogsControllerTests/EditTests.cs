@@ -24,7 +24,7 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
+                 mockedFactory.Object);
 
             var model = new LogDetailsViewModel
             {
@@ -50,7 +50,7 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
+                mockedFactory.Object);
 
             var model = new LogDetailsViewModel
             {

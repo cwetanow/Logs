@@ -86,8 +86,6 @@ namespace Logs.Web.Controllers
 
             var log = this.logService.CreateTrainingLog(model.Name, model.Description, userId);
 
-            this.cachingProvider.RemoveItem(CachedLogsKey);
-
             return this.RedirectToAction("Details", new { id = log.LogId });
         }
 
