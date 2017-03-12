@@ -7,6 +7,7 @@ namespace Logs.Web.Infrastructure.Interceptors
     public class CachingInterceptor : IInterceptor
     {
         private const string InterceptedMethodName = "GetAllSortedByDate";
+        private const string InterceptedRemoveCacheMethodName = "CreateTrainingLog";
 
         private readonly ICachingProvider cachingProvider;
 
@@ -35,6 +36,16 @@ namespace Logs.Web.Infrastructure.Interceptors
                 }
 
                 return;
+            }
+            else if (invocation.Request.Method.Name.Equals(InterceptedRemoveCacheMethodName))
+            {
+                invocation.Proceed();
+                var result = invocation.ReturnValue;
+
+                if (result != null)
+                {
+                    this.cachingProvider.RemoveItem(InterceptedMethodName);
+                }
             }
 
             invocation.Proceed();
