@@ -8,7 +8,7 @@
             </h2>
             By  @Html.ActionLink(Model.Username,
                 "Details",
-                new { controller = "Profile", name = Model.Username },
+                new { controller = "Profile", username = Model.Username },
                 new { @class = "text-right" })
             <ul class="list-inline list-unstyled">
                 <li><span><i class="glyphicon glyphicon-calendar"></i> @Model.DateCreated</span></li>
