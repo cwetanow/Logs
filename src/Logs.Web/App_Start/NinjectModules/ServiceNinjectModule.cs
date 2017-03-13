@@ -21,6 +21,8 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<IVoteService>().To<VoteService>();
             this.Bind<ICommentService>().To<CommentService>();
 
+            this.Bind<CachingInterceptor>().ToSelf();
+
             var interceptor = this.Kernel.Get<CachingInterceptor>();
 
             Kernel.AddMethodInterceptor(typeof(LogsService).GetMethod("GetAllSortedByDate"), interceptor.Intercept);
