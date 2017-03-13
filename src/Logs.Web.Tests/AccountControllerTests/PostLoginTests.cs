@@ -16,7 +16,7 @@ namespace Logs.Web.Tests.AccountControllerTests
     {
         [TestCase("pesho@pesho.com", "1234qwerty", true)]
         [TestCase("pesho@pesho.com", "1234qwerty", false)]
-        public void TestPostLogin_ModelStateIsNotValid_ShouldReturnViewWithModel(string email,
+        public void TestPostLogin_ModelStateIsNotValid_ShouldReturnViewWithModel(string username,
             string password,
             bool remember)
         {
@@ -27,7 +27,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
             var model = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = remember
             };
@@ -44,7 +44,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
         [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
         [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
-        public void TestPostLogin_ModelStateIstValid_ShouldCallProviderSignInWithPassword(string email,
+        public void TestPostLogin_ModelStateIstValid_ShouldCallProviderSignInWithPassword(string username,
            string password,
            bool remember,
            string returnUrl)
@@ -56,7 +56,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
             var model = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = remember
             };
@@ -67,12 +67,12 @@ namespace Logs.Web.Tests.AccountControllerTests
             controller.Login(model, returnUrl);
 
             // Assert
-            mockedProvider.Verify(p => p.SignInWithPassword(email, password, remember, It.IsAny<bool>()), Times.Once);
+            mockedProvider.Verify(p => p.SignInWithPassword(username, password, remember, It.IsAny<bool>()), Times.Once);
         }
 
         [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
         [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
-        public void TestPostLogin_ProviderReturnsSuccess_ShouldReturnRedirectResultWithCorrectUrl(string email,
+        public void TestPostLogin_ProviderReturnsSuccess_ShouldReturnRedirectResultWithCorrectUrl(string username,
            string password,
            bool remember,
            string returnUrl)
@@ -89,7 +89,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
             var model = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = remember
             };
@@ -105,7 +105,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
         [TestCase("pesho@pesho.com", "1234qwerty", true, null)]
         [TestCase("pesho@pesho.com", "1234qwerty", false, null)]
-        public void TestPostLogin_SuccessReturnUrlIsEmty_ShouldReturnRedirectResultWithHomeIndex(string email,
+        public void TestPostLogin_SuccessReturnUrlIsEmty_ShouldReturnRedirectResultWithHomeIndex(string username,
            string password,
            bool remember,
            string returnUrl)
@@ -124,7 +124,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
             var model = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = remember
             };
@@ -140,7 +140,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
         [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
         [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
-        public void TestPostLogin_ProviderReturnsLockedOut_ShouldReturnLockoutView(string email,
+        public void TestPostLogin_ProviderReturnsLockedOut_ShouldReturnLockoutView(string username,
            string password,
            bool remember,
            string returnUrl)
@@ -159,7 +159,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
             var model = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = remember
             };
@@ -175,7 +175,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
         [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
         [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
-        public void TestPostLogin_ProviderReturnsFailure_ShouldAddModelError(string email,
+        public void TestPostLogin_ProviderReturnsFailure_ShouldAddModelError(string username,
            string password,
            bool remember,
            string returnUrl)
@@ -192,7 +192,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
             var model = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = remember
             };
@@ -208,7 +208,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
         [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
         [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
-        public void TestPostLogin_ProviderReturnsFailure_ShouldReturnViewWithModel(string email,
+        public void TestPostLogin_ProviderReturnsFailure_ShouldReturnViewWithModel(string username,
            string password,
            bool remember,
            string returnUrl)
@@ -225,7 +225,7 @@ namespace Logs.Web.Tests.AccountControllerTests
 
             var model = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = remember
             };
