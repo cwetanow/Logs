@@ -266,6 +266,7 @@
     <Compile Include="Models\Logs\LogDetailsViewModel.cs" />
     <Compile Include="Models\Logs\LogEntryViewModel.cs" />
     <Compile Include="Models\Logs\ShortLogViewModel.cs" />
+    <Compile Include="Models\Profile\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
