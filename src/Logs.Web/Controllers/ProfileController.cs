@@ -55,11 +55,11 @@ namespace Logs.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(User model)
+        public PartialViewResult Edit(User model)
         {
             this.userService.EditUser(model.Id, model.Description, model.Age, model.Weight, model.Height, model.BodyFatPercent);
 
-            return this.PartialView("_UserStatsPartial",model);
+            return this.PartialView("_UserStatsPartial", model);
         }
     }
 }
