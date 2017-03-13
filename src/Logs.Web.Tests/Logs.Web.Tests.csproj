@@ -154,6 +154,8 @@
     <Compile Include="LogsControllerTests\PartialListTests.cs" />
     <Compile Include="LogsControllerTests\TopLogsTests.cs" />
     <Compile Include="ProfileControllerTests\ConstructorTests.cs" />
+    <Compile Include="ProfileControllerTests\DetailsTests.cs" />
+    <Compile Include="ProfileControllerTests\EditTests.cs" />
     <Compile Include="ProfileControllerTests\MyLogTests.cs" />
     <Compile Include="ProfileControllerTests\NoLogTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
