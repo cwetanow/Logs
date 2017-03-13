@@ -1,5 +1,12 @@
-﻿using Logs.Services;
+﻿using System;
+using System.Web;
+using System.Web.Caching;
+using Logs.Services;
 using Logs.Services.Contracts;
+using Logs.Web.Infrastructure.Interceptors;
+using Ninject;
+using Ninject.Extensions.Interception;
+using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 
 namespace Logs.Web.App_Start.NinjectModules
@@ -13,6 +20,12 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<IUserService>().To<UserService>();
             this.Bind<IVoteService>().To<VoteService>();
             this.Bind<ICommentService>().To<CommentService>();
+
+            this.Bind<CachingInterceptor>().ToSelf();
+
+            var interceptor = this.Kernel.Get<CachingInterceptor>();
+
+            Kernel.AddMethodInterceptor(typeof(LogsService).GetMethod("GetAllSortedByDate"), interceptor.Intercept);
         }
     }
 }

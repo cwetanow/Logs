@@ -16,91 +16,21 @@ namespace Logs.Web.Tests.LogsControllerTests
     public class PartialListTests
     {
         [Test]
-        public void TestPartialList_ShouldCallCachingProvider()
-        {
-            // Arrange
-            var expectedKey = "logs";
-
-            var mockedLogService = new Mock<ILogService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-            var mockedFactory = new Mock<IViewModelFactory>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
-
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
-
-            // Act
-            controller.PartialList();
-
-            // Assert
-            mockedCachingProvider.Verify(p => p.GetItem(expectedKey), Times.Once);
-        }
-
-        [Test]
-        public void TestPartialList_CachingProviderDoesNotReturn_ShouldCallServiceGetAllSortedByDate()
+        public void TestPartialList_ShouldCallServiceGetAllSortedByDate()
         {
             // Arrange
             var mockedLogService = new Mock<ILogService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
+                    mockedFactory.Object);
 
             // Act
             controller.PartialList();
 
             // Assert
             mockedLogService.Verify(s => s.GetAllSortedByDate(), Times.Once);
-        }
-
-        [Test]
-        public void TestPartialList_CachingProviderDoesNotReturn_ShouldCallCachingProviderAddItem()
-        {
-            // Arrange
-            var expectedKey = "logs";
-
-            var logs = new List<TrainingLog>();
-
-            var mockedLogService = new Mock<ILogService>();
-            mockedLogService.Setup(s => s.GetAllSortedByDate()).Returns(logs);
-
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-            var mockedFactory = new Mock<IViewModelFactory>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
-
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
-
-            // Act
-            controller.PartialList();
-
-            // Assert
-            mockedCachingProvider.Verify(p => p.AddItem(expectedKey, logs), Times.Once);
-        }
-
-        [Test]
-        public void TestPartialList_CachingProviderReturnsLogs_ShouldNotCallServiceGetAllSortedByDate()
-        {
-            // Arrange
-            var logs = new List<ShortLogViewModel>();
-
-            var mockedLogService = new Mock<ILogService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-            var mockedFactory = new Mock<IViewModelFactory>();
-
-            var mockedCachingProvider = new Mock<ICachingProvider>();
-            mockedCachingProvider.Setup(p => p.GetItem(It.IsAny<string>())).Returns(logs);
-
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
-
-            // Act
-            controller.PartialList();
-
-            // Assert
-            mockedLogService.Verify(s => s.GetAllSortedByDate(), Times.Never);
         }
 
         [Test]
@@ -119,10 +49,8 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedFactory = new Mock<IViewModelFactory>();
             mockedFactory.Setup(f => f.CreateShortLogViewModel(It.IsAny<TrainingLog>())).Returns(model);
 
-            var mockedCachingProvider = new Mock<ICachingProvider>();
-
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
+                           mockedFactory.Object);
 
             var expectedList = new List<ShortLogViewModel> { model };
 

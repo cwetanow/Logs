@@ -9,19 +9,15 @@ namespace Logs.Providers
     {
         protected Cache Cache => HttpContext.Current.Cache;
 
-        public void AddItem(string key, object item)
+        public void AddItem(string key, object item, DateTime expirationDateTime)
         {
-            this.Cache[key] = item;
+            this.Cache.Add(key, item, null, expirationDateTime, Cache.NoSlidingExpiration, CacheItemPriority.Default,
+                null);
         }
 
         public object GetItem(string key)
         {
             return this.Cache.Get(key);
-        }
-
-        public void RemoveItem(string key)
-        {
-            this.Cache.Remove(key);
         }
     }
 }

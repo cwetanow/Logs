@@ -20,21 +20,14 @@ namespace Logs.Web.Controllers
         private readonly ILogService logService;
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IViewModelFactory factory;
-        private readonly ICachingProvider cachingProvider;
 
         public LogsController(ILogService logService,
             IAuthenticationProvider authenticationProvider,
-            IViewModelFactory factory,
-            ICachingProvider cachingProvider)
+            IViewModelFactory factory)
         {
             if (logService == null)
             {
                 throw new ArgumentNullException(nameof(logService));
-            }
-
-            if (cachingProvider == null)
-            {
-                throw new ArgumentNullException(nameof(cachingProvider));
             }
 
             if (authenticationProvider == null)
@@ -49,7 +42,6 @@ namespace Logs.Web.Controllers
 
             this.logService = logService;
             this.factory = factory;
-            this.cachingProvider = cachingProvider;
             this.authenticationProvider = authenticationProvider;
         }
 
@@ -94,22 +86,13 @@ namespace Logs.Web.Controllers
 
             var log = this.logService.CreateTrainingLog(model.Name, model.Description, userId);
 
-            this.cachingProvider.RemoveItem(CachedLogsKey);
-
             return this.RedirectToAction("Details", new { id = log.LogId });
         }
 
         public ActionResult PartialList(int count = 10, int page = 1)
         {
-            var logs = this.cachingProvider.GetItem(CachedLogsKey) as IEnumerable<ShortLogViewModel>;
-
-            if (logs == null)
-            {
-                logs = this.logService.GetAllSortedByDate()
+            var logs = this.logService.GetAllSortedByDate()
                     .Select(l => this.factory.CreateShortLogViewModel(l));
-
-                this.cachingProvider.AddItem(CachedLogsKey, logs);
-            }
 
             var model = logs
                 .ToPagedList(page, count);

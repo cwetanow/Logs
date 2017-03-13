@@ -19,11 +19,10 @@ namespace Logs.Web.Tests.LogsControllerTests
             var mockedLogService = new Mock<ILogService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             // Act
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object, mockedCachingProvider.Object);
+                mockedFactory.Object);
 
             // Assert
             Assert.IsNotNull(controller);
@@ -35,13 +34,11 @@ namespace Logs.Web.Tests.LogsControllerTests
             // Arrange
             var mockedFactory = new Mock<IViewModelFactory>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => new LogsController(null,
                 mockedAuthenticationProvider.Object,
-                mockedFactory.Object,
-                mockedCachingProvider.Object));
+                mockedFactory.Object));
         }
 
         [Test]
@@ -50,13 +47,11 @@ namespace Logs.Web.Tests.LogsControllerTests
             // Arrange
             var mockedLogService = new Mock<ILogService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => new LogsController(mockedLogService.Object,
                 mockedAuthenticationProvider.Object,
-                null,
-                mockedCachingProvider.Object));
+                null));
         }
 
         [Test]
@@ -65,28 +60,11 @@ namespace Logs.Web.Tests.LogsControllerTests
             // Arrange
             var mockedFactory = new Mock<IViewModelFactory>();
             var mockedLogService = new Mock<ILogService>();
-            var mockedCachingProvider = new Mock<ICachingProvider>();
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() => new LogsController(mockedLogService.Object,
                 null,
-                mockedFactory.Object,
-                mockedCachingProvider.Object));
-        }
-
-        [Test]
-        public void TestConstructor_PassCachingProviderNull_ShouldThrowArgumentNullException()
-        {
-            // Arrange
-            var mockedFactory = new Mock<IViewModelFactory>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-            var mockedLogService = new Mock<ILogService>();
-
-            // Act, Assert
-            Assert.Throws<ArgumentNullException>(() => new LogsController(mockedLogService.Object,
-                mockedAuthenticationProvider.Object,
-                mockedFactory.Object,
-                null));
+                mockedFactory.Object));
         }
     }
 }
