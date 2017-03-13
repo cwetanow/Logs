@@ -58,3 +58,11 @@ textarea {
     max-width: none;
     font-size: 18px;
 }
+
+#user-description {
+    height: 150px;
+}
+
+.user-stats-input {
+    width: 50px;
+}

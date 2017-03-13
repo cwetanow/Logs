@@ -29,12 +29,16 @@
             HttpMethod = "POST"
         }, new { id = "edit-stats-form" }))
         {
-            @Html.TextAreaFor(m => m.Description, new { cols = "20", rows = "10" })
-            @Html.TextBoxFor(m => m.Age);
-            @Html.TextBoxFor(m => m.Weight);
-            @Html.TextBoxFor(m => m.Height);
-            @Html.TextBoxFor(m => m.BodyFatPercent);
-            <br />
+            @Html.TextAreaFor(m => m.Description, new { id = "user-description" })
+            <hr />
+            @:Age @Html.TextBoxFor(m => m.Age, new { @class = "user-stats-input" })
+            <hr />
+            @:Weight  @Html.TextBoxFor(m => m.Weight, new { @class = "user-stats-input" })
+            <hr />
+            @:Height   @Html.TextBoxFor(m => m.Height, new { @class = "user-stats-input" })
+            <hr />
+            @:Body Fat %  @Html.TextBoxFor(m => m.BodyFatPercent, new { @class = "user-stats-input" })
+            <hr />
             @Html.HiddenFor(m => m.Id)
             @Html.HiddenFor(m => m.GenderType)
             <input type="submit" value="Edit" class="btn btn-primary" />
