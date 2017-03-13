@@ -62,7 +62,7 @@
                 <button class="btn btn-primary btn-lg" id="entries-btn">New Entry</button>
             }
 
-            @if (Model.IsAuthenticated)
+            @if (Model.IsAuthenticated && Model.Entries.Any())
             {
                 <button class="btn btn-primary btn-lg" id="comment-btn">Comment</button>
             }
