@@ -10,7 +10,7 @@ namespace Logs.Models.Tests.UserTests
         public void TestConstructor_ShouldSetUsernameCorrectly(string username, string email, string name)
         {
             // Arrange. Act
-            var user = new User(username, email, name);
+            var user = new User(username, email);
 
             // Assert
             Assert.AreEqual(user.UserName, username);
@@ -21,21 +21,10 @@ namespace Logs.Models.Tests.UserTests
         public void TestConstructor_ShouldSetEmailCorrectly(string username, string email, string name)
         {
             // Arrange. Act
-            var user = new User(username, email, name);
+            var user = new User(username, email);
 
             // Assert
             Assert.AreEqual(user.Email, email);
-        }
-
-        [TestCase("username", "email", "name")]
-        [TestCase("other-username", "other-email", "other-name")]
-        public void TestConstructor_ShouldSetNameCorrectly(string username, string email, string name)
-        {
-            // Arrange. Act
-            var user = new User(username, email, name);
-
-            // Assert
-            Assert.AreEqual(user.Name, name);
         }
     }
 }

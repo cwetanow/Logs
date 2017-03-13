@@ -7,7 +7,7 @@
     }
     @Html.ActionLink(@Model.User,
         "Details",
-        new { controller = "Profile", name = Model.User })
+        new { controller = "Profile", username = Model.User })
 
     <small>@string.Format("{0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</small>
 </h4>

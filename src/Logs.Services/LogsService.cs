@@ -103,7 +103,7 @@ namespace Logs.Services
                 log.Entries.Add(entry);
                 log.LastEntryDate = entry.EntryDate;
                 log.LastEntry = entry;
-                log.LastActivityUser = log.User.Name;
+                log.LastActivityUser = log.User.UserName;
 
                 this.unitOfWork.Commit();
             }
@@ -117,7 +117,7 @@ namespace Logs.Services
             {
                 log.LastEntry.Comments.Add(comment);
                 log.LastEntryDate = comment.Date;
-                log.LastActivityUser = comment.User.Name;
+                log.LastActivityUser = comment.User.UserName;
 
                 this.unitOfWork.Commit();
             }

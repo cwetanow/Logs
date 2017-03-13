@@ -88,7 +88,7 @@ namespace Logs.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = this.userFactory.CreateUser(model.Email, model.Email, model.Username);
+                var user = this.userFactory.CreateUser(model.Username, model.Email);
                 var result = this.provider.RegisterAndLoginUser(user, model.Password, isPersistent: false, rememberBrowser: false);
 
                 if (result.Succeeded)

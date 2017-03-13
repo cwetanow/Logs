@@ -39,7 +39,7 @@ namespace Logs.Web.Tests.AccountControllerTests
             controller.Register(model);
 
             // Assert
-            mockedFactory.Verify(f => f.CreateUser(email, email, username), Times.Once);
+            mockedFactory.Verify(f => f.CreateUser(username, email), Times.Once);
         }
 
         [TestCase("pesho@pesho.com", "pesho", "1234qwerty")]
@@ -58,7 +58,7 @@ namespace Logs.Web.Tests.AccountControllerTests
             var user = new User();
 
             var mockedFactory = new Mock<IUserFactory>();
-            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(user);
 
             var model = new RegisterViewModel
@@ -93,7 +93,7 @@ namespace Logs.Web.Tests.AccountControllerTests
             var user = new User();
 
             var mockedFactory = new Mock<IUserFactory>();
-            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(user);
 
             var model = new RegisterViewModel
@@ -128,7 +128,7 @@ namespace Logs.Web.Tests.AccountControllerTests
             var user = new User();
 
             var mockedFactory = new Mock<IUserFactory>();
-            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(user);
 
             var model = new RegisterViewModel
@@ -163,7 +163,7 @@ namespace Logs.Web.Tests.AccountControllerTests
             var user = new User();
 
             var mockedFactory = new Mock<IUserFactory>();
-            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(user);
 
             var model = new RegisterViewModel
@@ -198,7 +198,7 @@ namespace Logs.Web.Tests.AccountControllerTests
             var user = new User();
 
             var mockedFactory = new Mock<IUserFactory>();
-            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(user);
 
             var model = new RegisterViewModel
@@ -234,8 +234,8 @@ namespace Logs.Web.Tests.AccountControllerTests
             var user = new User();
 
             var mockedFactory = new Mock<IUserFactory>();
-            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(user);
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>()))
+               .Returns(user);
 
             var model = new RegisterViewModel
             {

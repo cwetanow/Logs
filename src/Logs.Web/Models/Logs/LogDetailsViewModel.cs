@@ -17,7 +17,7 @@ namespace Logs.Web.Models.Logs
             this.Description = log.Description;
             this.Name = log.Name;
             this.DateCreated = log.DateCreated;
-            this.User = log.User.Name;
+            this.User = log.User.UserName;
             this.VotesCount = log.Votes.Count;
             this.LogId = log.LogId;
             this.IsAuthenticated = isAuthenticated;

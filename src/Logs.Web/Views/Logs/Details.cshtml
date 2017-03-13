@@ -87,7 +87,7 @@
                 @Html.Partial("_NewEntryBoxPartial", new NewEntryViewModel { LogId = Model.LogId })
             </div>
         }
-        @if (Model.IsAuthenticated)
+        @if (Model.IsAuthenticated && Model.Entries.Any())
         {
             <div id="comment-form">
                 @Html.Partial("_CommentBoxPartial", new NewCommentViewModel { LogId = Model.LogId })

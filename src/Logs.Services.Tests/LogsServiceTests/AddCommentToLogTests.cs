@@ -66,7 +66,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestAddCommentToLog_RepositoryReturnsLog_ShouldAddCommentToLogEntries(int logId, string username)
         {
             // Arrange
-            var user = new User { Name = username };
+            var user = new User { UserName = username };
 
             var entry = new Comment { User = user };
 
@@ -101,7 +101,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestAddCommentToLog_RepositoryReturnsLog_ShouldSetLogLastEntryDate(int logId, string username)
         {
             // Arrange
-            var user = new User { Name = username };
+            var user = new User { UserName = username };
 
             var entry = new Comment { User = user, Date = new DateTime() };
 
@@ -136,7 +136,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestAddCommentToLog_RepositoryReturnsLog_ShouldSetLogLastActivityUser(int logId, string username)
         {
             // Arrange
-            var user = new User { Name = username };
+            var user = new User { UserName = username };
 
             var entry = new Comment { User = user, Date = new DateTime() };
 
@@ -171,7 +171,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestAddCommentToLog_RepositoryReturnsLog_ShouldCallUnitOfWorkCommit(int logId, string username)
         {
             // Arrange
-            var user = new User { Name = username };
+            var user = new User { UserName = username };
 
             var entry = new Comment { User = user, Date = new DateTime() };
 

@@ -22,7 +22,7 @@ namespace Logs.Models
             this.User.Log = this;
 
             this.LastEntryDate = this.DateCreated;
-            this.LastActivityUser = this.User.Name;
+            this.LastActivityUser = this.User.UserName;
         }
 
         [Key]

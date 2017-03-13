@@ -13,17 +13,12 @@ namespace Logs.Models
             this.Entries = new HashSet<LogEntry>();
         }
 
-        public User(string username, string email, string name)
+        public User(string username, string email)
             : this()
         {
             this.UserName = username;
             this.Email = email;
-            this.Name = name;
         }
-
-        [Index(IsUnique = true)]
-        [StringLength(20)]
-        public string Name { get; set; }
 
         public virtual TrainingLog Log { get; set; }
 

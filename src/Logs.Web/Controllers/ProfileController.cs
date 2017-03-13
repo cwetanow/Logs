@@ -46,8 +46,10 @@ namespace Logs.Web.Controllers
             return this.View();
         }
 
-        public ActionResult Details(string name)
+        public ActionResult Details(string username)
         {
+
+
             return this.View();
         }
     }

@@ -96,7 +96,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestAddEntryToLog_RepositoryReturnsLog_ShouldAddEntryToLogEntries(int logId, string username, string userId)
         {
             // Arrange
-            var user = new User { Name = username, Id = userId };
+            var user = new User { UserName = username, Id = userId };
             var entry = new LogEntry();
             var log = new TrainingLog { User = user };
 
@@ -126,7 +126,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestAddEntryToLog_RepositoryReturnsLog_ShouldSetLogLastEntryDate(int logId, string username)
         {
             // Arrange
-            var user = new User { Name = username };
+            var user = new User { UserName = username };
             var entry = new LogEntry { EntryDate = new DateTime() };
             var log = new TrainingLog { User = user };
 
@@ -156,7 +156,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestAddEntryToLog_RepositoryReturnsLog_ShouldSetLogLastActivityUser(int logId, string username, string userId)
         {
             // Arrange
-            var user = new User { Name = username, Id = userId };
+            var user = new User { UserName = username, Id = userId };
             var entry = new LogEntry { EntryDate = new DateTime() };
             var log = new TrainingLog { User = user };
 
@@ -186,7 +186,7 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestAddEntryToLog_RepositoryReturnsLog_ShouldCallUnitOfWorkCommit(int logId, string username, string userId)
         {
             // Arrange
-            var user = new User { Name = username, Id = userId };
+            var user = new User { UserName = username, Id = userId };
             var entry = new LogEntry { EntryDate = new DateTime() };
             var log = new TrainingLog { User = user };
 
