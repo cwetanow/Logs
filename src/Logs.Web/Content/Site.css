@@ -28,7 +28,8 @@ textarea {
 #comment-form,
 #edit-form,
 .edit-entry,
-.edit-comment {
+.edit-comment,
+#edit-stats {
     display: none;
 }
 

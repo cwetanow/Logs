@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Models;
 using Logs.Services.Contracts;
 
 namespace Logs.Web.Controllers
@@ -51,6 +52,14 @@ namespace Logs.Web.Controllers
             var user = this.userService.GetUserByUsername(username);
 
             return this.View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User model)
+        {
+            this.userService.EditUser(model.Id, model.Description, model.Age, model.Weight, model.Height, model.BodyFatPercent);
+
+            return this.PartialView("_UserStatsPartial",model);
         }
     }
 }
