@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Logs.Data.Contracts;
 using Logs.Models;
 using Logs.Services.Contracts;
@@ -30,6 +31,15 @@ namespace Logs.Services
         public User GetUserById(string id)
         {
             return this.userRepository.GetById(id);
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            var user = this.userRepository
+                .GetAll(u => u.UserName.Equals(username))
+                .FirstOrDefault();
+
+            return user;
         }
     }
 }

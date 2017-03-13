@@ -6,6 +6,6 @@ namespace Logs.Services.Contracts
     {
         User GetUserById(string id);
 
-      //  User GetUserByName(string name);
+        User GetUserByUsername(string username);
     }
 }
