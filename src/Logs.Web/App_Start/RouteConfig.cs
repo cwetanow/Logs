@@ -11,7 +11,7 @@ namespace Logs.Web
 
             routes.MapRoute(
                 name: "UserDetails",
-                url: "Profile/Details/{name}",
+                url: "Profile/Details/{username}",
                 defaults: new { controller = "Profile", action = "Details" });
 
             routes.MapRoute(
