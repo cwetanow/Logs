@@ -9,5 +9,12 @@ namespace Logs.Providers
         {
             return DateTime.Now;
         }
+
+        public DateTime GetTimeFromCurrentTime(int hours, int minutes, int seconds)
+        {
+            var timeSpan = new TimeSpan(hours, minutes, seconds);
+
+            return DateTime.Now.Add(timeSpan);
+        }
     }
 }
