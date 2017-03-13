@@ -5,6 +5,7 @@
     ViewBag.Title = "Details";
 }
 
+
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
@@ -15,49 +16,50 @@
 </div>
 <div class="row">
     <a class="pull-right glyphicon glyphicon-edit btn-lg edit-button"></a>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <img class="img-responsive" src="http://placehold.it/750x500" alt="">
     </div>
-    <div class="col-md-4" id="stats">
+    <div class="col-md-6" id="stats">
         @Html.Partial("_UserStatsPartial", Model)
     </div>
-    <div id="edit-stats" class="col-md-4">
-        @using (Ajax.BeginForm("Edit", "Profile", null, new AjaxOptions
-        {
-            UpdateTargetId = "stats",
-            InsertionMode = InsertionMode.Replace,
-            HttpMethod = "POST"
-        }, new { id = "edit-stats-form" }))
-        {
-            @Html.TextAreaFor(m => m.Description, new { id = "user-description" })
-            <hr />
-            @:Age @Html.TextBoxFor(m => m.Age, new { @class = "user-stats-input" })
-            <hr />
-            @:Weight  @Html.TextBoxFor(m => m.Weight, new { @class = "user-stats-input" })
-            <hr />
-            @:Height   @Html.TextBoxFor(m => m.Height, new { @class = "user-stats-input" })
-            <hr />
-            @:Body Fat %  @Html.TextBoxFor(m => m.BodyFatPercent, new { @class = "user-stats-input" })
-            <hr />
-            @Html.HiddenFor(m => m.Id)
-            @Html.HiddenFor(m => m.GenderType)
-            <input type="submit" value="Edit" class="btn btn-primary" />
-        }
-    </div>
 
+
+</div>
+
+<div id="edit-stats" class="row">
+    <hr />
+    @using (Ajax.BeginForm("Edit", "Profile", null, new AjaxOptions
+    {
+        UpdateTargetId = "stats",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST"
+    }, new { id = "edit-stats-form" }))
+    {
+        @Html.TextAreaFor(m => m.Description, new { id = "user-description" })
+        @:Age @Html.TextBoxFor(m => m.Age, new { @class = "user-stats-input" }) 
+        @:Weight  @Html.TextBoxFor(m => m.Weight, new { @class = "user-stats-input" }) 
+        @:Height   @Html.TextBoxFor(m => m.Height, new { @class = "user-stats-input" }) 
+        @:Body Fat %  @Html.TextBoxFor(m => m.BodyFatPercent, new { @class = "user-stats-input" })
+        <hr />
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.GenderType)
+        <input type="submit" value="Edit" class="btn btn-primary" id="send" />
+    }
 </div>
 
 @section scripts{
     <script>
         $('.edit-button')
             .click(function () {
+                $('#send').show();
                 $("#edit-stats").toggle();
             });
 
         $('#edit-stats-form')
            .submit(function () {
                $('#edit-stats').hide();
-           });
+                $('#send').hide();
+            });
     </script>
 
     @Scripts.Render("~/bundles/jquery-unobtrusive")
