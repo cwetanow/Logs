@@ -19,5 +19,33 @@ namespace Logs.Models.Tests.VoteTests
             // Assert
             Assert.AreEqual(voteId, vote.LogVoteId);
         }
+
+        [Test]
+        public void TestLog_ShouldSetCorrectly()
+        {
+            // Arrange
+            var log = new TrainingLog();
+            var vote = new Vote();
+
+            // Act
+            vote.Log = log;
+
+            // Assert
+            Assert.AreSame(log, vote.Log);
+        }
+
+        [Test]
+        public void TestUser_ShouldSetCorrectly()
+        {
+            // Arrange
+            var user = new User();
+            var vote = new Vote();
+
+            // Act
+            vote.User = user;
+
+            // Assert
+            Assert.AreSame(user, vote.User);
+        }
     }
 }
