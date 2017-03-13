@@ -13,33 +13,47 @@
         </h1>
     </div>
 </div>
-<!-- /.row -->
-<!-- Portfolio Item Row -->
 <div class="row">
-
+    <a class="pull-right glyphicon glyphicon-edit btn-lg edit-button"></a>
     <div class="col-md-4">
         <img class="img-responsive" src="http://placehold.it/750x500" alt="">
     </div>
-
-    <div class="col-md-4">
-
-        <h3>Stats</h3>
-        <ul>
-            <li>@Model.Age years old</li>
-
-            @if (Model.GenderType != GenderType.NotSelected)
-            {
-                <li>@Model.GenderType </li>
-            }
-
-            <li>Height: @Model.Height cm</li>
-            <li>@Model.Weight kg</li>
-            <li>@Model.BodyFatPercent % bodyfat</li>
-        </ul>
-        <h3>Description</h3>
-        <p>
-            @Model.Description
-        </p>
+    <div class="col-md-4" id="stats">
+        @Html.Partial("_UserStatsPartial", Model)
+    </div>
+    <div id="edit-stats" class="col-md-4">
+        @using (Ajax.BeginForm("Edit", "Profile", null, new AjaxOptions
+        {
+            UpdateTargetId = "stats",
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "POST"
+        }, new { id = "edit-stats-form" }))
+        {
+            @Html.TextAreaFor(m => m.Description, new { cols = "20", rows = "10" })
+            @Html.TextBoxFor(m => m.Age);
+            @Html.TextBoxFor(m => m.Weight);
+            @Html.TextBoxFor(m => m.Height);
+            @Html.TextBoxFor(m => m.BodyFatPercent);
+            <br />
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.GenderType)
+            <input type="submit" value="Edit" class="btn btn-primary" />
+        }
     </div>
 
 </div>
+
+@section scripts{
+    <script>
+        $('.edit-button')
+            .click(function () {
+                $("#edit-stats").toggle();
+            });
+        $('#edit-stats-form')
+           .submit(function () {
+               $('#edit-stats').hide();
+           });
+    </script>
+
+    @Scripts.Render("~/bundles/jquery-unobtrusive")
+}

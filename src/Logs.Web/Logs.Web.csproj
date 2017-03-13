@@ -331,6 +331,7 @@
     <Content Include="Views\Shared\_EntryPartial.cshtml" />
     <Content Include="Views\Entries\_EntryContentPartial.cshtml" />
     <Content Include="Views\Comment\_CommentContentPartial.cshtml" />
+    <Content Include="Views\Profile\_UserStatsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
