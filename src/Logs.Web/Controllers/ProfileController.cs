@@ -48,9 +48,9 @@ namespace Logs.Web.Controllers
 
         public ActionResult Details(string username)
         {
+            var user = this.userService.GetUserByUsername(username);
 
-
-            return this.View();
+            return this.View(user);
         }
     }
 }
