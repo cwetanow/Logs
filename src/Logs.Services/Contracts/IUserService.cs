@@ -7,5 +7,7 @@ namespace Logs.Services.Contracts
         User GetUserById(string id);
 
         User GetUserByUsername(string username);
+
+        void EditUser(string userId, string description, int age, double weight, int height, double bodyFat);
     }
 }

@@ -41,5 +41,22 @@ namespace Logs.Services
 
             return user;
         }
+
+        public void EditUser(string userId, string description, int age, double weight, int height, double bodyFat)
+        {
+            var user = this.userRepository.GetById(userId);
+
+            if (user != null)
+            {
+                user.Description = description;
+                user.Age = age;
+                user.Weight = weight;
+                user.Height = height;
+                user.BodyFatPercent = bodyFat;
+
+                this.userRepository.Update(user);
+                this.unitOfWork.Commit();
+            }
+        }
     }
 }
