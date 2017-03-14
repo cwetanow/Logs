@@ -54,7 +54,12 @@ namespace Logs.Web.Controllers
 
             var currentUserId = this.provider.CurrentUserId;
 
-            var canEdit = user.Id == currentUserId;
+            var canEdit = false;
+
+            if (currentUserId != null)
+            {
+                canEdit = user.Id == currentUserId;
+            }
 
             var model = new UserProfileViewModel(user, canEdit);
 
