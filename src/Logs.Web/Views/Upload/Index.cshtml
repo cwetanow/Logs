@@ -6,7 +6,7 @@
 
 @if (!string.IsNullOrEmpty(Model.ImageUrl))
 {
-    <img src="@Model.ImageUrl" />
+    <img src="@Model.ImageUrl" id="profile-pic"/>
 }
 
 @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -30,62 +30,12 @@
     </div>
     <div class="form-group" id="upload-btn">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Upload" />
+            <input type="submit" class="btn btn-default" value="Change" />
         </div>
     </div>
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
-
-    <script type="text/javascript" src="~/Scripts/jquery.ui.widget.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.iframe-transport.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.fileupload.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.cloudinary.js"></script>
-
-    <script>
-        $.cloudinary.config("cloud_name", "cwetanow");
-        $(function () {
-            if ($.fn.cloudinary_fileupload !== undefined) {
-                $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
-            }
-            $('.cloudinary-fileupload')
-                .fileupload({
-                    dropZone: '#direct_upload',
-                    start: function () {
-                        $('.status_value').text('Starting direct upload...');
-                    },
-                    progress: function () {
-                        $('.status_value').text('Uploading...');
-                    },
-                })
-                .on('cloudinarydone',
-                    function (e, data) {
-                        $('.status_value').text('Selected Picture');
-                        $('.upload-box').hide();
-
-                        var info = $('<div class="uploaded_info"/>');
-                        console.log(data.result);
-
-                        $("#pic-url").val(data.result.url);
-
-                        $(info)
-                            .append($('<div class="image"/>')
-                                .append(
-                                    $.cloudinary.image(data.result.public_id,
-                                    {
-                                        format: data.result.format,
-                                        width: 100,
-                                        height: 100,
-                                        crop: "fill"
-                                    })
-                                ));
-                        $('.uploaded_info_holder').append(info);
-                        $('#upload-btn').toggle();
-                    });
-        });
-
-    </script>
-
+    @Scripts.Render("~/bundles/cloudinary")
 }
