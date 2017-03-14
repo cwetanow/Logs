@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Logs.Web.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CloudName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">cwetanow</Value>
+    </Setting>
+    <Setting Name="CloudApiKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">7dLDYfT_LfNCGI9FPtyEG7G8dm0</Value>
+    </Setting>
+    <Setting Name="CloudApiSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">742665798753294</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
