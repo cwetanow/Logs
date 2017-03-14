@@ -15,8 +15,6 @@ namespace Logs.Web.Controllers
 {
     public class LogsController : Controller
     {
-        private const string CachedLogsKey = "logs";
-
         private readonly ILogService logService;
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IViewModelFactory factory;
