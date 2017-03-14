@@ -30,6 +30,11 @@ namespace Logs.Web.Controllers
                 throw new ArgumentNullException(nameof(authenticationProvider));
             }
 
+            if (cloudinaryFactory == null)
+            {
+                throw new ArgumentNullException(nameof(cloudinaryFactory));
+            }
+
             this.userService = userService;
             this.authenticationProvider = authenticationProvider;
             this.cloudinaryFactory = cloudinaryFactory;
