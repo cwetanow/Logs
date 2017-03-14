@@ -14,11 +14,13 @@ namespace Logs.Web.Controllers
         private readonly IUserService userService;
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly ICloudinaryFactory cloudinaryFactory;
+        private readonly IViewModelFactory viewModelFactory;
 
         public UploadController(IUserService userService,
-            IAuthenticationProvider authenticationProvider,
-            ICloudinaryFactory cloudinaryFactory
-            )
+             IAuthenticationProvider authenticationProvider,
+             ICloudinaryFactory cloudinaryFactory,
+             IViewModelFactory viewModelFactory
+             )
         {
             if (userService == null)
             {
@@ -35,9 +37,15 @@ namespace Logs.Web.Controllers
                 throw new ArgumentNullException(nameof(cloudinaryFactory));
             }
 
+            if (viewModelFactory == null)
+            {
+                throw new ArgumentNullException(nameof(viewModelFactory));
+            }
+
             this.userService = userService;
             this.authenticationProvider = authenticationProvider;
             this.cloudinaryFactory = cloudinaryFactory;
+            this.viewModelFactory = viewModelFactory;
         }
 
         public ActionResult Index()
@@ -48,7 +56,7 @@ namespace Logs.Web.Controllers
 
             var cloudinary = this.cloudinaryFactory.GetCloudinary();
 
-            var model = new UploadViewModel(cloudinary, user.ProfileImageUrl);
+            var model = this.viewModelFactory.CreateUploadViewModel(cloudinary, user.ProfileImageUrl);
 
             return this.View(model);
         }
@@ -60,8 +68,7 @@ namespace Logs.Web.Controllers
 
             this.userService.ChangeProfilePicture(userId, model.ImageUrl);
 
-            var cloudinary = this.cloudinaryFactory.GetCloudinary();
-            model.Cloudinary = cloudinary;
+            model.Cloudinary = this.cloudinaryFactory.GetCloudinary();
 
             return this.View(model);
         }
