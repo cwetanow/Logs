@@ -1,5 +1,7 @@
-﻿using Logs.Factories;
+﻿using CloudinaryDotNet;
+using Logs.Factories;
 using Logs.Web.Infrastructure.Factories;
+using Ninject.Activation;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
@@ -16,6 +18,21 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<IVoteFactory>().ToFactory().InSingletonScope();
 
             this.Bind<IViewModelFactory>().ToFactory().InSingletonScope();
+            this.Bind<ICloudinaryFactory>().ToFactory().InSingletonScope();
+
+            this.Bind<Cloudinary>()
+                .ToMethod(this.GetCloudinary)
+                .NamedLikeFactoryMethod((ICloudinaryFactory f) => f.GetCloudinary());
+        }
+
+        private Cloudinary GetCloudinary(IContext arg)
+        {
+            var account = new Account(
+                 Properties.Settings.Default.CloudName,
+                  Properties.Settings.Default.CloudApiKey,
+                  Properties.Settings.Default.CloudApiSecret);
+
+            return new Cloudinary(account);
         }
     }
 }
