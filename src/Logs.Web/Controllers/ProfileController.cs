@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Models;
 using Logs.Services.Contracts;
+using Logs.Web.Models.Profile;
 
 namespace Logs.Web.Controllers
 {
@@ -51,11 +52,18 @@ namespace Logs.Web.Controllers
         {
             var user = this.userService.GetUserByUsername(username);
 
-            return this.View(user);
+            var currentUserId = this.provider.CurrentUserId;
+
+            var canEdit = user.Id == currentUserId;
+
+            var model = new UserProfileViewModel(user, canEdit);
+
+            return this.View(model);
         }
 
+        [Authorize]
         [HttpPost]
-        public PartialViewResult Edit(User model)
+        public PartialViewResult Edit(UserProfileViewModel model)
         {
             this.userService.EditUser(model.Id, model.Description, model.Age, model.Weight, model.Height, model.BodyFatPercent);
 
