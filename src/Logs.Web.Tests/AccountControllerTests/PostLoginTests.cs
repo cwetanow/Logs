@@ -14,8 +14,8 @@ namespace Logs.Web.Tests.AccountControllerTests
     [TestFixture]
     public class PostLoginTests
     {
-        [TestCase("pesho@pesho.com", "1234qwerty", true)]
-        [TestCase("pesho@pesho.com", "1234qwerty", false)]
+        [TestCase("pesho", "1234qwerty", true)]
+        [TestCase("pesho", "1234qwerty", false)]
         public void TestPostLogin_ModelStateIsNotValid_ShouldReturnViewWithModel(string username,
             string password,
             bool remember)
@@ -42,8 +42,8 @@ namespace Logs.Web.Tests.AccountControllerTests
             Assert.AreSame(model, result.Model);
         }
 
-        [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
-        [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
+        [TestCase("pesho", "1234qwerty", true, "url")]
+        [TestCase("pesho", "1234qwerty", false, "return url")]
         public void TestPostLogin_ModelStateIstValid_ShouldCallProviderSignInWithPassword(string username,
            string password,
            bool remember,
@@ -70,8 +70,8 @@ namespace Logs.Web.Tests.AccountControllerTests
             mockedProvider.Verify(p => p.SignInWithPassword(username, password, remember, It.IsAny<bool>()), Times.Once);
         }
 
-        [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
-        [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
+        [TestCase("pesho", "1234qwerty", true, "url")]
+        [TestCase("pesho", "1234qwerty", false, "return url")]
         public void TestPostLogin_ProviderReturnsSuccess_ShouldReturnRedirectResultWithCorrectUrl(string username,
            string password,
            bool remember,
@@ -103,8 +103,8 @@ namespace Logs.Web.Tests.AccountControllerTests
             Assert.AreEqual(returnUrl, result.Url);
         }
 
-        [TestCase("pesho@pesho.com", "1234qwerty", true, null)]
-        [TestCase("pesho@pesho.com", "1234qwerty", false, null)]
+        [TestCase("pesho", "1234qwerty", true, null)]
+        [TestCase("pesho", "1234qwerty", false, null)]
         public void TestPostLogin_SuccessReturnUrlIsEmty_ShouldReturnRedirectResultWithHomeIndex(string username,
            string password,
            bool remember,
@@ -138,8 +138,8 @@ namespace Logs.Web.Tests.AccountControllerTests
             Assert.AreEqual(expectedUrl, result.Url);
         }
 
-        [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
-        [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
+        [TestCase("pesho", "1234qwerty", true, "url")]
+        [TestCase("pesho", "1234qwerty", false, "return url")]
         public void TestPostLogin_ProviderReturnsLockedOut_ShouldReturnLockoutView(string username,
            string password,
            bool remember,
@@ -173,8 +173,8 @@ namespace Logs.Web.Tests.AccountControllerTests
             Assert.AreEqual(lockoutViewName, result.ViewName);
         }
 
-        [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
-        [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
+        [TestCase("pesho", "1234qwerty", true, "url")]
+        [TestCase("pesho", "1234qwerty", false, "return url")]
         public void TestPostLogin_ProviderReturnsFailure_ShouldAddModelError(string username,
            string password,
            bool remember,
@@ -206,8 +206,8 @@ namespace Logs.Web.Tests.AccountControllerTests
             Assert.IsFalse(controller.ModelState.IsValid);
         }
 
-        [TestCase("pesho@pesho.com", "1234qwerty", true, "url")]
-        [TestCase("pesho@pesho.com", "1234qwerty", false, "return url")]
+        [TestCase("pesho", "1234qwerty", true, "url")]
+        [TestCase("pesho", "1234qwerty", false, "return url")]
         public void TestPostLogin_ProviderReturnsFailure_ShouldReturnViewWithModel(string username,
            string password,
            bool remember,
