@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Logs.Authentication.IdentityMessageServices;
 using Logs.Data;
 using Logs.Models;
 using Microsoft.AspNet.Identity;
@@ -55,8 +54,7 @@ namespace Logs.Authentication.Managers
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
             });
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
+
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
