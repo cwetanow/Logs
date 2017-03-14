@@ -2,6 +2,7 @@
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
+using Logs.Web.Models.Profile;
 using Moq;
 using NUnit.Framework;
 
@@ -24,7 +25,7 @@ namespace Logs.Web.Tests.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
 
-            var model = new User { Id = userId, Description = description, Age = age, Weight = weight, Height = height, BodyFatPercent = bodyFat };
+            var model = new UserProfileViewModel { Id = userId, Description = description, Age = age, Weight = weight, Height = height, BodyFatPercent = bodyFat };
 
             // Act
             controller.Edit(model);
@@ -47,7 +48,7 @@ namespace Logs.Web.Tests.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
 
-            var model = new User { Id = userId, Description = description, Age = age, Weight = weight, Height = height, BodyFatPercent = bodyFat };
+            var model = new UserProfileViewModel { Id = userId, Description = description, Age = age, Weight = weight, Height = height, BodyFatPercent = bodyFat };
 
             // Act
             var result = controller.Edit(model);
