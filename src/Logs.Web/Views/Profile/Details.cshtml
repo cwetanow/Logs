@@ -18,7 +18,10 @@
     </div>
 </div>
 <div class="row">
-    <a class="pull-right glyphicon glyphicon-edit btn-lg edit-button"></a>
+    @if (Model.CanEdit)
+    {
+        <a class="pull-right glyphicon glyphicon-edit btn-lg edit-button"></a>
+    }
     <div class="col-md-6" id="picture-display">
         @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
         {
