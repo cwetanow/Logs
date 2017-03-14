@@ -10,7 +10,11 @@
 
     <div class="col-lg-12">
         <h1>
-            <img id="profile-img" src="@Model.ProfileImageUrl" alt="">
+            @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+            {
+                <img id="profile-img" src="@Model.ProfileImageUrl" alt="">
+            }
+
             @Model.Name
         </h1>
 
@@ -19,12 +23,12 @@
             <a class="pull-right glyphicon glyphicon-edit btn-lg" id="edit-button"></a>
         }
         <p class="lead">
-          
-            
+
+
             @Html.ActionLink(Model.User,
                 "Details",
-                new {controller = "Profile", username = Model.User},
-                new {@class = "text-right"})
+                new { controller = "Profile", username = Model.User },
+                new { @class = "text-right" })
         </p>
 
         <hr>

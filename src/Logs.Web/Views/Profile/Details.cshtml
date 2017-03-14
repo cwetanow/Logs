@@ -17,8 +17,15 @@
 <div class="row">
     <a class="pull-right glyphicon glyphicon-edit btn-lg edit-button"></a>
     <div class="col-md-6" id="picture-display">
-        <img id="profile-pic-img" src="@Model.ProfileImageUrl" alt="">
-        <hr/>
+        @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+        {
+            <img id="profile-pic-img" src="@Model.ProfileImageUrl" alt="">
+        }
+        else
+        {
+            <img id="profile-pic-img" src="http://res.cloudinary.com/cwetanow/image/upload/v1489497076/download_gtavl2.png" alt="">
+        }
+        <hr />
         @Html.ActionLink("Change image", "Index", "Upload", null, new { @class = "btn btn-default" })
     </div>
     <div class="col-md-6" id="stats">
@@ -43,9 +50,9 @@
         @:Height   @Html.TextBoxFor(m => m.Height, new { @class = "user-stats-input" })
         @:Body Fat %  @Html.TextBoxFor(m => m.BodyFatPercent, new { @class = "user-stats-input" })
         <hr />
-        @Html.HiddenFor(m => m.Id)
-        @Html.HiddenFor(m => m.GenderType)
-        <input type="submit" value="Edit" class="btn btn-primary" id="send" />
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.GenderType)
+            <input type="submit" value="Edit" class="btn btn-primary" id="send" />
     }
 </div>
 
