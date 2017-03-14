@@ -47,6 +47,11 @@ namespace Logs.Web.Controllers
         {
             var log = this.logService.GetTrainingLogById(id);
 
+            if (log == null)
+            {
+                return HttpNotFound();
+            }
+
             var isAuthenticated = this.authenticationProvider.IsAuthenticated;
             var currentUserId = this.authenticationProvider.CurrentUserId;
 
