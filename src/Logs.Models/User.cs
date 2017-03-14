@@ -42,5 +42,7 @@ namespace Logs.Models
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<LogEntry> Entries { get; set; }
+
+        public string ProfileImageUrl { get; set; }
     }
 }

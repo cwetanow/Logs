@@ -1,5 +1,4 @@
-﻿@using Logs.Models.Enumerations
-@model Logs.Models.User
+﻿@model Logs.Web.Models.Profile.UserProfileViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -9,21 +8,35 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            @Model.UserName
+            @Model.Username
             <small>@Model.Email</small>
         </h1>
+        @if (Model.HasLog)
+        {
+            @Html.ActionLink("Log", "Details", "Logs", new { id = Model.LogId }, new { @class = "btn btn-default pull-right" })
+        }
     </div>
 </div>
 <div class="row">
-    <a class="pull-right glyphicon glyphicon-edit btn-lg edit-button"></a>
-    <div class="col-md-6">
-        <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+    @if (Model.CanEdit)
+    {
+        <a class="pull-right glyphicon glyphicon-edit btn-lg edit-button"></a>
+    }
+    <div class="col-md-6" id="picture-display">
+        @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+        {
+            <img id="profile-pic-img" src="@Model.ProfileImageUrl" alt="">
+        }
+        else
+        {
+            <img id="profile-pic-img" src="http://res.cloudinary.com/cwetanow/image/upload/v1489497076/download_gtavl2.png" alt="">
+        }
+        <hr />
+        @Html.ActionLink("Change image", "Index", "Upload", null, new { @class = "btn btn-default" })
     </div>
     <div class="col-md-6" id="stats">
         @Html.Partial("_UserStatsPartial", Model)
     </div>
-
-
 </div>
 
 <div id="edit-stats" class="row">
@@ -33,12 +46,12 @@
         UpdateTargetId = "stats",
         InsertionMode = InsertionMode.Replace,
         HttpMethod = "POST"
-    }, new { id = "edit-stats-form" }))
+    }, new { id = "edit-stats-form", enctype = "multipart/form-data" }))
     {
         @Html.TextAreaFor(m => m.Description, new { id = "user-description" })
-        @:Age @Html.TextBoxFor(m => m.Age, new { @class = "user-stats-input" }) 
-        @:Weight  @Html.TextBoxFor(m => m.Weight, new { @class = "user-stats-input" }) 
-        @:Height   @Html.TextBoxFor(m => m.Height, new { @class = "user-stats-input" }) 
+        @:Age @Html.TextBoxFor(m => m.Age, new { @class = "user-stats-input" })
+        @:Weight  @Html.TextBoxFor(m => m.Weight, new { @class = "user-stats-input" })
+        @:Height   @Html.TextBoxFor(m => m.Height, new { @class = "user-stats-input" })
         @:Body Fat %  @Html.TextBoxFor(m => m.BodyFatPercent, new { @class = "user-stats-input" })
         <hr />
         @Html.HiddenFor(m => m.Id)
@@ -58,8 +71,8 @@
         $('#edit-stats-form')
            .submit(function () {
                $('#edit-stats').hide();
-                $('#send').hide();
-            });
+               $('#send').hide();
+           });
     </script>
 
     @Scripts.Render("~/bundles/jquery-unobtrusive")

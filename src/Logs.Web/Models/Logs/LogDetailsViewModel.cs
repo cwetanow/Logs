@@ -9,7 +9,7 @@ namespace Logs.Web.Models.Logs
     {
         public LogDetailsViewModel()
         {
-            
+
         }
 
         public LogDetailsViewModel(TrainingLog log, bool isAuthenticated, bool isOwner, bool canVote, IPagedList<LogEntryViewModel> entries)
@@ -24,11 +24,14 @@ namespace Logs.Web.Models.Logs
             this.IsOwner = isOwner;
             this.CanVote = canVote;
             this.Entries = entries;
+            this.ProfileImageUrl = log.User.ProfileImageUrl;
         }
 
         public int LogId { get; set; }
 
         public string Description { get; set; }
+
+        public string ProfileImageUrl { get; set; }
 
         public string Name { get; set; }
 

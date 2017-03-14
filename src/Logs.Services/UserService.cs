@@ -58,5 +58,18 @@ namespace Logs.Services
                 this.unitOfWork.Commit();
             }
         }
+
+        public void ChangeProfilePicture(string userId, string newUrl)
+        {
+            var user = this.userRepository.GetById(userId);
+
+            if (user != null)
+            {
+                user.ProfileImageUrl = newUrl;
+
+                this.userRepository.Update(user);
+                this.unitOfWork.Commit();
+            }
+        }
     }
 }
