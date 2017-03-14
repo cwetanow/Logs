@@ -29,7 +29,8 @@ textarea {
 #edit-form,
 .edit-entry,
 .edit-comment,
-#edit-stats {
+#edit-stats,
+#upload-btn {
     display: none;
 }
 
@@ -65,4 +66,22 @@ textarea {
 
 .user-stats-input {
     width: 50px;
+}
+
+#profile-img {
+    object-fit: cover;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+}
+
+#profile-pic-img {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
+
+#picture-display {
+    text-align: center
 }

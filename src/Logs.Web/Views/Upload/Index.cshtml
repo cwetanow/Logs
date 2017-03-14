@@ -1,8 +1,12 @@
-﻿@using System.Web.Mvc.Expressions
-@model Logs.Web.Models.Upload.UploadViewModel
+﻿@model Logs.Web.Models.Upload.UploadViewModel
 
 @{
     ViewBag.Title = "Index";
+}
+
+@if (!string.IsNullOrEmpty(Model.ImageUrl))
+{
+    <img src="@Model.ImageUrl" />
 }
 
 @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -24,7 +28,7 @@
 
     <div class="uploaded_info_holder">
     </div>
-    <div class="form-group">
+    <div class="form-group" id="upload-btn">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Upload" />
         </div>
@@ -39,6 +43,7 @@
     <script type="text/javascript" src="~/Scripts/jquery.iframe-transport.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.fileupload.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.cloudinary.js"></script>
+
     <script>
         $.cloudinary.config("cloud_name", "cwetanow");
         $(function () {
@@ -71,12 +76,13 @@
                                     $.cloudinary.image(data.result.public_id,
                                     {
                                         format: data.result.format,
-                                        width: 150,
-                                        height: 150,
+                                        width: 100,
+                                        height: 100,
                                         crop: "fill"
                                     })
                                 ));
                         $('.uploaded_info_holder').append(info);
+                        $('#upload-btn').toggle();
                     });
         });
 
