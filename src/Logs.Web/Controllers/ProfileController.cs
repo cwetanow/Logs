@@ -26,6 +26,11 @@ namespace Logs.Web.Controllers
                 throw new ArgumentNullException(nameof(userService));
             }
 
+            if (viewModelFactory == null)
+            {
+                throw new ArgumentNullException(nameof(viewModelFactory));
+            }
+
             this.userService = userService;
             this.provider = provider;
             this.viewModelFactory = viewModelFactory;
@@ -64,7 +69,7 @@ namespace Logs.Web.Controllers
                 canEdit = user.Id == currentUserId;
             }
 
-            var model = new UserProfileViewModel(user, canEdit);
+            var model = this.viewModelFactory.CreateUserProfileViewModel(user, canEdit);
 
             return this.View(model);
         }
