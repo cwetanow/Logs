@@ -251,6 +251,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\EntriesController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -346,6 +347,8 @@
     <Content Include="Views\Comment\_CommentContentPartial.cshtml" />
     <Content Include="Views\Profile\_UserStatsPartial.cshtml" />
     <Content Include="Views\Upload\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

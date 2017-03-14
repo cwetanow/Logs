@@ -41,6 +41,25 @@ namespace Logs.Web.Tests.LogsControllerTests
         }
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        public void TestDetails_ServiceDoesNotReturnLog_ShouldReturnHttpNotFound(int id, string userId)
+        {
+            // Arrange 
+            var mockedLogService = new Mock<ILogService>();
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+               mockedFactory.Object);
+
+            // Act
+            var result = controller.Details(id);
+
+            // Assert
+            Assert.IsInstanceOf<HttpNotFoundResult>(result);
+        }
+
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         public void TestDetails_ShouldCallAuthenticationProviderIsAuthenticated(int id, string userId)
         {
             // Arrange 

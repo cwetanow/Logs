@@ -145,6 +145,8 @@
     <Compile Include="EntriesControllerTests\ConstructorTests.cs" />
     <Compile Include="EntriesControllerTests\EditEntryTests.cs" />
     <Compile Include="EntriesControllerTests\NewEntryTests.cs" />
+    <Compile Include="ErrorControllerTests\NotFoundTests.cs" />
+    <Compile Include="ErrorControllerTests\ServerErrorTests.cs" />
     <Compile Include="HomeControllerTests\AboutTests.cs" />
     <Compile Include="HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="HomeControllerTests\IndexTests.cs" />
