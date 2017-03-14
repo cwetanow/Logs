@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
+using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
 
@@ -17,9 +18,10 @@ namespace Logs.Web.Tests.ProfileControllerTests
             // Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedService = new Mock<IUserService>();
+            var mockedFactory = new Mock<IViewModelFactory>();
 
             // Act
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
             // Assert
             Assert.IsNotNull(controller);
@@ -30,9 +32,10 @@ namespace Logs.Web.Tests.ProfileControllerTests
         {
             // Arrange
             var mockedService = new Mock<IUserService>();
+            var mockedFactory = new Mock<IViewModelFactory>();
 
             // Act, Assert
-            Assert.Throws<ArgumentNullException>(() => new ProfileController(null, mockedService.Object));
+            Assert.Throws<ArgumentNullException>(() => new ProfileController(null, mockedService.Object, mockedFactory.Object));
         }
 
         [Test]
@@ -40,9 +43,21 @@ namespace Logs.Web.Tests.ProfileControllerTests
         {
             // Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IViewModelFactory>();
 
             // Act, Assert
-            Assert.Throws<ArgumentNullException>(() => new ProfileController(mockedProvider.Object, null));
+            Assert.Throws<ArgumentNullException>(() => new ProfileController(mockedProvider.Object, null, mockedFactory.Object));
+        }
+
+        [Test]
+        public void TestConstructor_PassViewModelFactoryNull_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            var mockedService = new Mock<IUserService>();
+
+            // Act, Assert
+            Assert.Throws<ArgumentNullException>(() => new ProfileController(mockedProvider.Object, mockedService.Object, null));
         }
     }
 }

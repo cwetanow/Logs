@@ -3,6 +3,7 @@ using Logs.Authentication.Contracts;
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
+using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
 
@@ -20,7 +21,9 @@ namespace Logs.Web.Tests.ProfileControllerTests
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(new User());
 
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
             // Act
             controller.MyLog();
@@ -40,7 +43,9 @@ namespace Logs.Web.Tests.ProfileControllerTests
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(new User());
 
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
             // Act
             controller.MyLog();
@@ -62,7 +67,9 @@ namespace Logs.Web.Tests.ProfileControllerTests
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(new User());
 
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
             // Act
             var result = controller.MyLog();
@@ -87,7 +94,9 @@ namespace Logs.Web.Tests.ProfileControllerTests
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(user);
 
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
             // Act
             var result = controller.MyLog();
@@ -112,7 +121,9 @@ namespace Logs.Web.Tests.ProfileControllerTests
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(user);
 
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
             // Act
             var result = controller.MyLog();
@@ -135,7 +146,9 @@ namespace Logs.Web.Tests.ProfileControllerTests
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(user);
 
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object);
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
             // Act
             var result = controller.MyLog();
