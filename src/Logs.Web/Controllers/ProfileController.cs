@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Models;
 using Logs.Services.Contracts;
+using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Profile;
 
 namespace Logs.Web.Controllers
@@ -11,8 +12,9 @@ namespace Logs.Web.Controllers
     {
         private readonly IAuthenticationProvider provider;
         private readonly IUserService userService;
+        private readonly IViewModelFactory viewModelFactory;
 
-        public ProfileController(IAuthenticationProvider provider, IUserService userService)
+        public ProfileController(IAuthenticationProvider provider, IUserService userService, IViewModelFactory viewModelFactory)
         {
             if (provider == null)
             {
@@ -26,6 +28,7 @@ namespace Logs.Web.Controllers
 
             this.userService = userService;
             this.provider = provider;
+            this.viewModelFactory = viewModelFactory;
         }
 
         [HttpGet]
