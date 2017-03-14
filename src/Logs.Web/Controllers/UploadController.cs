@@ -55,6 +55,9 @@ namespace Logs.Web.Controllers
 
             this.userService.ChangeProfilePicture(userId, model.ImageUrl);
 
+            var cloudinary = this.cloudinaryFactory.GetCloudinary();
+            model.Cloudinary = cloudinary;
+
             return this.View(model);
         }
     }

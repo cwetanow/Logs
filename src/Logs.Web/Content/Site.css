@@ -75,7 +75,8 @@ textarea {
     height: 100px;
 }
 
-#profile-pic-img {
+#profile-pic-img,
+#profile-pic {
     object-fit: cover;
     border-radius: 50%;
     width: 300px;

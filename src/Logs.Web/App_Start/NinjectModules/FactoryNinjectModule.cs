@@ -28,9 +28,9 @@ namespace Logs.Web.App_Start.NinjectModules
         private Cloudinary GetCloudinary(IContext arg)
         {
             var account = new Account(
-                 Properties.Settings.Default.CloudName,
-                  Properties.Settings.Default.CloudApiKey,
-                  Properties.Settings.Default.CloudApiSecret);
+  "cwetanow",
+  "742665798753294",
+  "7dLDYfT_LfNCGI9FPtyEG7G8dm0");
 
             return new Cloudinary(account);
         }
