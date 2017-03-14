@@ -160,6 +160,7 @@
     <Compile Include="ProfileControllerTests\NoLogTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommentControllerTests\CommentTests.cs" />
+    <Compile Include="UploadControllerTests\ConstructorTests.cs" />
     <Compile Include="VoteControllerTests\ConstructorTests.cs" />
     <Compile Include="VoteControllerTests\VoteTests.cs" />
   </ItemGroup>
