@@ -17,6 +17,13 @@ namespace Logs.Web
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/cloudinary").Include(
+                       "~/Scripts/jquery.ui.widget.js",
+                       "~/Scripts/jquery.iframe-transport.js",
+                       "~/Scripts/jquery.fileupload.js",
+                       "~/Scripts/jquery.cloudinary.js",
+                       "~/Scripts/image-upload.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
