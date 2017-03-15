@@ -90,6 +90,7 @@
     <Compile Include="UserServiceTests\EditUserTests.cs" />
     <Compile Include="UserServiceTests\GetByIdTests.cs" />
     <Compile Include="UserServiceTests\GetByUsernameTests.cs" />
+    <Compile Include="UserServiceTests\GetUsersTests.cs" />
     <Compile Include="VoteServiceTests\ConstructorTests.cs" />
     <Compile Include="VoteServiceTests\VoteLogTests.cs" />
   </ItemGroup>
