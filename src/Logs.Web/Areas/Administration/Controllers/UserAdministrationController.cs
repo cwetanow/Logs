@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
+using Logs.Web.Areas.Administration.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace Logs.Web.Areas.Administration.Controllers
 {
-    [Authorize(Roles = "administrator")]
+    [Authorize(Roles = AdministratorRoleName)]
     public class UserAdministrationController : Controller
     {
+        private const string AdministratorRoleName = "administrator";
+
         private readonly IUserService userService;
 
         public UserAdministrationController(IUserService userService)
@@ -20,9 +26,21 @@ namespace Logs.Web.Areas.Administration.Controllers
             this.userService = userService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int count = 10)
         {
-            return this.View();
+            // TODO: Intercept
+            var users = this.userService.GetUsers();
+
+            var model = new List<UserViewModel>();
+            foreach (var user in users)
+            {
+                // TODO: Check if admin
+                var viewModel = new UserViewModel(user, true);
+                model.Add(viewModel);
+
+            }
+
+            return this.View(model.ToPagedList(page, count));
         }
 
         // GET: Administration/UserAdministration/Edit/5
