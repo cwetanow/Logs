@@ -23,6 +23,7 @@
                      HttpMethod = "POST"
                  }, new { @class = "edit-entry" }))
         {
+            @Html.AntiForgeryToken()
             @Html.TextAreaFor(m => m.Content, new { cols = "40", rows = "20" })
             <br />
             @Html.HiddenFor(m => m.EntryId)

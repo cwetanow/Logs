@@ -29,6 +29,8 @@ namespace Logs.Web.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult NewEntry(NewEntryViewModel model)
         {
             var userId = this.authenticationProvider.CurrentUserId;
@@ -40,6 +42,7 @@ namespace Logs.Web.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public PartialViewResult EditEntry(LogEntryViewModel model)
         {
             this.entryService.EditEntry(model.EntryId, model.Content);

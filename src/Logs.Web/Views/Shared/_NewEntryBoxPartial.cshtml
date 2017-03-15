@@ -2,6 +2,7 @@
 
 @using (Html.BeginForm("NewEntry", "Entries", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
     @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 5 });
     @Html.HiddenFor(m => m.LogId)
     @Html.ValidationSummary()
