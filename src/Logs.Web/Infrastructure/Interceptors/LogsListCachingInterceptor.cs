@@ -1,17 +1,14 @@
-﻿using System;
-using System.Web;
-using System.Web.Caching;
-using Logs.Providers.Contracts;
+﻿using Logs.Providers.Contracts;
 using Ninject.Extensions.Interception;
 
 namespace Logs.Web.Infrastructure.Interceptors
 {
-    public class CachingInterceptor : IInterceptor
+    public class LogsListCachingInterceptor : IInterceptor
     {
         private readonly ICachingProvider cachingProvider;
         private readonly IDateTimeProvider dateTimeProvider;
 
-        public CachingInterceptor(ICachingProvider cachingProvider, IDateTimeProvider dateTimeProvider)
+        public LogsListCachingInterceptor(ICachingProvider cachingProvider, IDateTimeProvider dateTimeProvider)
         {
             this.cachingProvider = cachingProvider;
             this.dateTimeProvider = dateTimeProvider;
