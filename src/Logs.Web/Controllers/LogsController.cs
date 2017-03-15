@@ -93,7 +93,8 @@ namespace Logs.Web.Controllers
             return this.RedirectToAction("Details", new { id = log.LogId });
         }
 
-        public ActionResult PartialList(int count = 10, int page = 1)
+        [OutputCache(Duration = 60 * 5, VaryByParam = "page")]
+        public ActionResult PartialList(int count = 2, int page = 1)
         {
             var logs = this.logService.GetAllSortedByDate()
                     .Select(l => this.factory.CreateShortLogViewModel(l));
