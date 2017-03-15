@@ -1,10 +1,25 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Logs.Services.Contracts;
+using Microsoft.AspNet.Identity;
 
 namespace Logs.Web.Areas.Administration.Controllers
 {
     [Authorize(Roles = "administrator")]
     public class UserAdministrationController : Controller
     {
+        private readonly IUserService userService;
+
+        public UserAdministrationController(IUserService userService)
+        {
+            if (userService == null)
+            {
+                throw new ArgumentNullException(nameof(userService));
+            }
+
+            this.userService = userService;
+        }
+
         public ActionResult Index()
         {
             return this.View();
