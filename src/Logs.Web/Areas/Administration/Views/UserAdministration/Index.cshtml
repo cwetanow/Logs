@@ -44,14 +44,14 @@
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProfileImageUrl)
+                <img src="@item.ProfileImageUrl" width="50" height="50" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsAdministrator)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
+                @Html.ActionLink("Details", "Details", new { controller = "Profile", area = "", username = item.Username }) |
                 @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
             </td>
         </tr>
