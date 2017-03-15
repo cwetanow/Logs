@@ -83,6 +83,7 @@ namespace Logs.Web.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public RedirectToRouteResult CreateLog(CreateLogViewModel model)
         {
             var userId = this.authenticationProvider.CurrentUserId;
@@ -130,6 +131,7 @@ namespace Logs.Web.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public PartialViewResult Edit(LogDetailsViewModel model)
         {
             this.logService.EditLogDescription(model.LogId, model.Description);

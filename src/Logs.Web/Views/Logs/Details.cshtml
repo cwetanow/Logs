@@ -55,6 +55,7 @@
                             HttpMethod = "POST"
                         }, new { id = "edit" }))
                 {
+                    @Html.AntiForgeryToken()
                     @Html.TextAreaFor(m => m.Description, new { cols = "40", rows = "20" })
                     <br />
                     @Html.HiddenFor(m => m.LogId)
