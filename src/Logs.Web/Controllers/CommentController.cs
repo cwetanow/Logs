@@ -29,6 +29,8 @@ namespace Logs.Web.Controllers
         }
 
         [Authorize]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
         public ActionResult Comment(NewCommentViewModel model)
         {
             var userId = this.authenticationProvider.CurrentUserId;
@@ -39,6 +41,8 @@ namespace Logs.Web.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(CommentViewModel model)
         {
             this.commentService.EditComment(model.CommentId, model.Content);
