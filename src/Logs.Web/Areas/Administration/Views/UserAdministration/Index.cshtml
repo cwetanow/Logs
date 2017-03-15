@@ -50,9 +50,7 @@
                 @Html.DisplayFor(modelItem => item.IsAdministrator)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
                 @Html.ActionLink("Details", "Details", new { controller = "Profile", area = "", username = item.Username }) |
-                @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
             </td>
         </tr>
     }
