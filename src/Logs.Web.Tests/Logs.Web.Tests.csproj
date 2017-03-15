@@ -140,6 +140,7 @@
     <Compile Include="AccountControllerTests\PostLoginTests.cs" />
     <Compile Include="AccountControllerTests\PostRegisterTests.cs" />
     <Compile Include="AccountControllerTests\RegisterTests.cs" />
+    <Compile Include="Administration\AdministrationControllerTests\IndexTests.cs" />
     <Compile Include="CommentControllerTests\ConstructorTests.cs" />
     <Compile Include="CommentControllerTests\EditTests.cs" />
     <Compile Include="EntriesControllerTests\ConstructorTests.cs" />
