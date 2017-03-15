@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Areas.Administration.Models;
 using PagedList;
@@ -13,15 +14,22 @@ namespace Logs.Web.Areas.Administration.Controllers
         private const string AdministratorRoleName = "administrator";
 
         private readonly IUserService userService;
+        private readonly IAuthenticationProvider authenticationProvider;
 
-        public UserAdministrationController(IUserService userService)
+        public UserAdministrationController(IUserService userService, IAuthenticationProvider authenticationProvider)
         {
             if (userService == null)
             {
                 throw new ArgumentNullException(nameof(userService));
             }
 
+            if (authenticationProvider == null)
+            {
+                throw new ArgumentNullException(nameof(authenticationProvider));
+            }
+
             this.userService = userService;
+            this.authenticationProvider = authenticationProvider;
         }
 
         public ActionResult Index(int page = 1, int count = 10)
