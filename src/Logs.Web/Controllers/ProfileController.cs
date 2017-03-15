@@ -76,6 +76,7 @@ namespace Logs.Web.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public PartialViewResult Edit(UserProfileViewModel model)
         {
             this.userService.EditUser(model.Id, model.Description, model.Age, model.Weight, model.Height, model.BodyFatPercent);

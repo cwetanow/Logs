@@ -11,7 +11,7 @@
             @Model.Username
             <small>@Model.Email</small>
         </h1>
-      
+
     </div>
 </div>
 <div class="row">
@@ -53,7 +53,8 @@
         HttpMethod = "POST"
     }, new { id = "edit-stats-form", enctype = "multipart/form-data" }))
     {
-          @Html.TextAreaFor(m => m.Description, new { id = "user-description" })
+        @Html.AntiForgeryToken()
+        @Html.TextAreaFor(m => m.Description, new { id = "user-description" })
         @:Age @Html.TextBoxFor(m => m.Age, new { @class = "user-stats-input" })
         @:Weight  @Html.TextBoxFor(m => m.Weight, new { @class = "user-stats-input" })
         @:Height   @Html.TextBoxFor(m => m.Height, new { @class = "user-stats-input" })
