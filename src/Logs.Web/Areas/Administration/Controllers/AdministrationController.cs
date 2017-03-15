@@ -2,11 +2,12 @@
 
 namespace Logs.Web.Areas.Administration.Controllers
 {
+    [Authorize(Roles = "administrator")]
     public class AdministrationController : Controller
     {
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
     }
 }
