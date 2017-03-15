@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Areas.Administration.Models;
-using Microsoft.AspNet.Identity;
 using PagedList;
 
 namespace Logs.Web.Areas.Administration.Controllers
@@ -37,7 +35,6 @@ namespace Logs.Web.Areas.Administration.Controllers
                 // TODO: Check if admin
                 var viewModel = new UserViewModel(user, true);
                 model.Add(viewModel);
-
             }
 
             return this.View(model.ToPagedList(page, count));
