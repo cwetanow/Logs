@@ -11,10 +11,7 @@
             @Model.Username
             <small>@Model.Email</small>
         </h1>
-        @if (Model.HasLog)
-        {
-            @Html.ActionLink("Log", "Details", "Logs", new { id = Model.LogId }, new { @class = "btn btn-default pull-right" })
-        }
+      
     </div>
 </div>
 <div class="row">
@@ -31,13 +28,21 @@
         {
             <img id="profile-pic-img" src="http://res.cloudinary.com/cwetanow/image/upload/v1489497076/download_gtavl2.png" alt="">
         }
-        <hr />
-        @Html.ActionLink("Change image", "Index", "Upload", null, new { @class = "btn btn-default" })
+        @if (Model.CanEdit)
+        {
+            <hr />
+            @Html.ActionLink("Change image", "Index", "Upload", null, new { @class = "btn btn-default" })
+        }
     </div>
     <div class="col-md-6" id="stats">
         @Html.Partial("_UserStatsPartial", Model)
     </div>
+    @if (Model.HasLog)
+    {
+        @Html.ActionLink("User Log", "Details", "Logs", new { id = Model.LogId }, new { @class = "btn btn-default" })
+    }
 </div>
+
 
 <div id="edit-stats" class="row">
     <hr />
@@ -48,7 +53,7 @@
         HttpMethod = "POST"
     }, new { id = "edit-stats-form", enctype = "multipart/form-data" }))
     {
-        @Html.TextAreaFor(m => m.Description, new { id = "user-description" })
+          @Html.TextAreaFor(m => m.Description, new { id = "user-description" })
         @:Age @Html.TextBoxFor(m => m.Age, new { @class = "user-stats-input" })
         @:Weight  @Html.TextBoxFor(m => m.Weight, new { @class = "user-stats-input" })
         @:Height   @Html.TextBoxFor(m => m.Height, new { @class = "user-stats-input" })
@@ -58,6 +63,7 @@
         @Html.HiddenFor(m => m.GenderType)
         <input type="submit" value="Edit" class="btn btn-primary" id="send" />
     }
+
 </div>
 
 @section scripts{
