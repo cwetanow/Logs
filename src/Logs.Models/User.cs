@@ -22,16 +22,16 @@ namespace Logs.Models
 
         public GenderType GenderType { get; set; }
 
-        [Range(1.0, 500)]
+        [Range(0.0, 500)]
         public double Weight { get; set; }
 
-        [Range(1, 200)]
+        [Range(0, 200)]
         public int Age { get; set; }
 
         [Range(0.0, 100)]
         public double BodyFatPercent { get; set; }
 
-        [Range(1.0, 500.0)]
+        [Range(0.0, 500.0)]
         public int Height { get; set; }
 
         [MaxLength(500)]
