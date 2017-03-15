@@ -1,4 +1,5 @@
-﻿using Logs.Models;
+﻿using System.Collections.Generic;
+using Logs.Models;
 
 namespace Logs.Services.Contracts
 {
@@ -11,5 +12,7 @@ namespace Logs.Services.Contracts
         void EditUser(string userId, string description, int age, double weight, int height, double bodyFat);
 
         void ChangeProfilePicture(string userId, string newUrl);
+
+        IEnumerable<User> GetUsers();
     }
 }

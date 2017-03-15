@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Logs.Data.Contracts;
 using Logs.Models;
@@ -70,6 +71,12 @@ namespace Logs.Services
                 this.userRepository.Update(user);
                 this.unitOfWork.Commit();
             }
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+            return this.userRepository.GetAll()
+                .ToList();
         }
     }
 }
