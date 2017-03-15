@@ -40,8 +40,8 @@ namespace Logs.Web.Areas.Administration.Controllers
             var model = new List<UserViewModel>();
             foreach (var user in users)
             {
-                // TODO: Check if admin
-                var viewModel = new UserViewModel(user, true);
+                var isAdmin = this.authenticationProvider.IsInRole(user.Id, AdministratorRoleName);
+                var viewModel = new UserViewModel(user, isAdmin);
                 model.Add(viewModel);
             }
 
