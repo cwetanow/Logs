@@ -94,7 +94,7 @@ namespace Logs.Web.Controllers
         }
 
         [OutputCache(Duration = 60 * 5, VaryByParam = "page")]
-        public ActionResult PartialList(int count = 2, int page = 1)
+        public ActionResult PartialList(int count = 10, int page = 1)
         {
             var logs = this.logService.GetAllSortedByDate()
                     .Select(l => this.factory.CreateShortLogViewModel(l));
