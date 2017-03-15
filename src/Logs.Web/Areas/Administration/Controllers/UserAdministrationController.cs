@@ -32,9 +32,9 @@ namespace Logs.Web.Areas.Administration.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
+        [OutputCache(VaryByParam = "page", Duration = 60 * 10)]
         public ActionResult Index(int page = 1, int count = 10)
         {
-            // TODO: Intercept
             var users = this.userService.GetUsers();
 
             var model = new List<UserViewModel>();
