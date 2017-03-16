@@ -258,6 +258,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogsController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\VoteController.cs" />
@@ -276,6 +277,7 @@
     <Compile Include="Models\Logs\LogDetailsViewModel.cs" />
     <Compile Include="Models\Logs\LogEntryViewModel.cs" />
     <Compile Include="Models\Logs\ShortLogViewModel.cs" />
+    <Compile Include="Models\Navigation\NavigationViewModel.cs" />
     <Compile Include="Models\Profile\UserProfileViewModel.cs" />
     <Compile Include="Models\Upload\UploadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -357,6 +359,7 @@
     <Content Include="Views\Upload\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\Navigation\Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
