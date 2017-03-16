@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Logs.Models.Enumerations;
 using NUnit.Framework;
 
 namespace Logs.Models.Tests.UserTests
@@ -46,6 +47,21 @@ namespace Logs.Models.Tests.UserTests
 
             // Assert
             CollectionAssert.AreEqual(entries, user.Entries);
+        }
+
+        [TestCase(GenderType.Female)]
+        [TestCase(GenderType.Male)]
+        [TestCase(GenderType.NotSelected)]
+        public void TestProperties_ShouldSetGenderTypeCorrectly(GenderType genderType)
+        {
+            // Arrange
+            var user = new User();
+
+            // Act
+            user.GenderType = genderType;
+
+            // Assert
+            Assert.AreEqual(genderType, user.GenderType);
         }
     }
 }
