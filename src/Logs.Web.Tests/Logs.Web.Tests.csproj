@@ -162,6 +162,7 @@
     <Compile Include="LogsControllerTests\PartialListTests.cs" />
     <Compile Include="LogsControllerTests\TopLogsTests.cs" />
     <Compile Include="NavigationControllerTests\ConstructorTests.cs" />
+    <Compile Include="NavigationControllerTests\IndexTests.cs" />
     <Compile Include="ProfileControllerTests\ConstructorTests.cs" />
     <Compile Include="ProfileControllerTests\DetailsTests.cs" />
     <Compile Include="ProfileControllerTests\EditTests.cs" />
