@@ -1,7 +1,9 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using Logs.Authentication.Contracts;
 using Logs.Authentication.Managers;
 using Logs.Models;
+using Logs.Providers.Contracts;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
@@ -9,6 +11,15 @@ namespace Logs.Authentication
 {
     public class HttpContextAuthenticationProvider : IAuthenticationProvider
     {
+        private const int HoursBan = 24 * 365;
+
+        private readonly IDateTimeProvider dateTimeProvider;
+
+        public HttpContextAuthenticationProvider(IDateTimeProvider dateTimeProvider)
+        {
+            this.dateTimeProvider = dateTimeProvider;
+        }
+
         protected ApplicationSignInManager SignInManager
         {
             get
@@ -83,6 +94,22 @@ namespace Logs.Authentication
         public IdentityResult RemoveFromRole(string userId, string roleName)
         {
             return this.UserManager.RemoveFromRole(userId, roleName);
+        }
+
+        public void BanUser(string userId)
+        {
+            var user = this.UserManager.FindById(userId);
+            user.LockoutEndDateUtc = this.dateTimeProvider.GetTimeFromCurrentTime(HoursBan, 0, 0);
+
+            this.UserManager.Update(user);
+        }
+
+        public void UnbanUser(string userId)
+        {
+            var user = this.UserManager.FindById(userId);
+            user.LockoutEndDateUtc = new DateTime();
+
+            this.UserManager.Update(user);
         }
     }
 }
