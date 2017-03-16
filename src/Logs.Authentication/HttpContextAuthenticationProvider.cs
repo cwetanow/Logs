@@ -107,7 +107,7 @@ namespace Logs.Authentication
         public void UnbanUser(string userId)
         {
             var user = this.UserManager.FindById(userId);
-            user.LockoutEndDateUtc = new DateTime();
+            user.LockoutEndDateUtc = null;
 
             this.UserManager.Update(user);
         }

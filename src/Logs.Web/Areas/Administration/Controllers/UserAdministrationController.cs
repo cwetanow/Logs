@@ -32,7 +32,6 @@ namespace Logs.Web.Areas.Administration.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
-        //[OutputCache(VaryByParam = "page", Duration = 60 * 10)]
         public ActionResult Index(int page = 1, int count = 10)
         {
             var users = this.userService.GetUsers();
@@ -50,6 +49,15 @@ namespace Logs.Web.Areas.Administration.Controllers
 
         public ActionResult Ban(string userId, int page)
         {
+            this.authenticationProvider.BanUser(userId);
+
+            return this.RedirectToAction("Index", new { page = page });
+        }
+
+        public ActionResult Unban(string userId, int page)
+        {
+            this.authenticationProvider.UnbanUser(userId);
+
             return this.RedirectToAction("Index", new { page = page });
         }
 

@@ -55,7 +55,15 @@
                 @Html.ActionLink("Details", "Details", new { controller = "Profile", area = "", username = item.Username }) |
             </td>
             <td>
-                @Html.ActionLink("Ban User", "Ban", new { controller = "UserAdministration", userId = item.UserId, page = Model.PageNumber }) |
+                @if (item.LockoutEndDateUtc.HasValue)
+                {
+                    @Html.ActionLink("Unban User", "Unban", new { controller = "UserAdministration", userId = item.UserId, page = Model.PageNumber }) @:|
+
+                }
+                else
+                {
+                    @Html.ActionLink("Ban User", "Ban", new { controller = "UserAdministration", userId = item.UserId, page = Model.PageNumber }) @:|
+                }
             </td>
             <td>
                 @if (item.IsAdministrator)
