@@ -9,7 +9,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
     public class UpdateTests
     {
         [Test]
-        public void TestAdd_ShouldCallDbContextSetUpdated()
+        public void TestUpdate_ShouldCallDbContextSetUpdated()
         {
             // Arrange
             var mockedDbContext = new Mock<ILogsDbContext>();

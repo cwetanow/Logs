@@ -9,7 +9,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
     public class DeleteTests
     {
         [Test]
-        public void TestAdd_ShouldCallDbContextSetDeleted()
+        public void TestDelete_ShouldCallDbContextSetDeleted()
         {
             // Arrange
             var mockedDbContext = new Mock<ILogsDbContext>();
