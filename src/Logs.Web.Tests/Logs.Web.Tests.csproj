@@ -178,6 +178,7 @@
     <Compile Include="UploadControllerTests\ConstructorTests.cs" />
     <Compile Include="UploadControllerTests\IndexTests.cs" />
     <Compile Include="UploadControllerTests\PostIndexTests.cs" />
+    <Compile Include="ViewModelsTests\HomeViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\NavigationViewModelTests\ConstructorTests.cs" />
     <Compile Include="VoteControllerTests\ConstructorTests.cs" />
     <Compile Include="VoteControllerTests\VoteTests.cs" />
