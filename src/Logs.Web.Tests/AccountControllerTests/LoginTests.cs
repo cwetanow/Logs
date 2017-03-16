@@ -43,5 +43,41 @@ namespace Logs.Web.Tests.AccountControllerTests
             // Assert
             Assert.AreEqual(returnUrl, result.ViewBag.ReturnUrl);
         }
+
+        [TestCase("home.com")]
+        [TestCase("about.com")]
+        public void TestLogin_ShouldCallAuthProviderIsAuthenticated(string returnUrl)
+        {
+            // Assert
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IUserFactory>();
+
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+
+            // Act
+            controller.Login(returnUrl);
+
+            // Assert
+            mockedProvider.Verify(p => p.IsAuthenticated, Times.Once);
+        }
+
+        [TestCase("home.com")]
+        [TestCase("about.com")]
+        public void TestLogin_ProviderIsAuthenticatedIsTrue_ShouldRedirectToActionHomeIndex(string returnUrl)
+        {
+            // Assert
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            mockedProvider.Setup(p => p.IsAuthenticated).Returns(true);
+
+            var mockedFactory = new Mock<IUserFactory>();
+
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+
+            // Act
+            var result = controller.Login(returnUrl);
+
+            // Assert
+            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+        }
     }
 }
