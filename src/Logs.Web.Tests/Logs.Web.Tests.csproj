@@ -143,6 +143,7 @@
     <Compile Include="Administration\AdministrationControllerTests\IndexTests.cs" />
     <Compile Include="Administration\UserAdministrationControllerTests\AddAdminTests.cs" />
     <Compile Include="Administration\UserAdministrationControllerTests\ConstructorTests.cs" />
+    <Compile Include="Administration\UserAdministrationControllerTests\RemoveAdminTests.cs" />
     <Compile Include="CommentControllerTests\ConstructorTests.cs" />
     <Compile Include="CommentControllerTests\EditTests.cs" />
     <Compile Include="EntriesControllerTests\ConstructorTests.cs" />
