@@ -2,6 +2,7 @@
 using Logs.Models;
 using Logs.Web.Models.Home;
 using Logs.Web.Models.Logs;
+using Logs.Web.Models.Navigation;
 using Logs.Web.Models.Profile;
 using Logs.Web.Models.Upload;
 using PagedList;
@@ -27,5 +28,7 @@ namespace Logs.Web.Infrastructure.Factories
         UserProfileViewModel CreateUserProfileViewModel(User user, bool canEdit);
 
         UploadViewModel CreateUploadViewModel(Cloudinary cloudinary, string imageUrl);
+
+        NavigationViewModel CreateNavigationViewModel(string username, bool isAuthenticated, bool isAdmin);
     }
 }
