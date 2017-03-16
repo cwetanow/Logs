@@ -40,6 +40,14 @@ namespace Logs.Authentication
             }
         }
 
+        public string CurrentUserUsername
+        {
+            get
+            {
+                return HttpContext.Current.User.Identity.GetUserName();
+            }
+        }
+
         public IdentityResult RegisterAndLoginUser(User user, string password, bool isPersistent, bool rememberBrowser)
         {
             var result = this.UserManager.Create(user, password);
@@ -69,7 +77,7 @@ namespace Logs.Authentication
 
         public IdentityResult AddToRole(string userId, string roleName)
         {
-           return this.UserManager.AddToRole(userId, roleName);
+            return this.UserManager.AddToRole(userId, roleName);
         }
 
         public IdentityResult RemoveFromRole(string userId, string roleName)
