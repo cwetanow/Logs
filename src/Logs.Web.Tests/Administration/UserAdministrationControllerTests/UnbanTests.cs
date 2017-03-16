@@ -8,11 +8,11 @@ using NUnit.Framework;
 namespace Logs.Web.Tests.Administration.UserAdministrationControllerTests
 {
     [TestFixture]
-    public class RemoveAdminTests
+    public class UnbanTests
     {
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95", 1)]
         [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa", 2)]
-        public void TestRemoveAdmin_ShouldCallAuthProviderRemoveFromRole(string userId, int page)
+        public void TestUnban_ShouldCallAuthProviderUnbanUser(string userId, int page)
         {
             // Arrange
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
@@ -21,15 +21,15 @@ namespace Logs.Web.Tests.Administration.UserAdministrationControllerTests
             var controller = new UserAdministrationController(mockedUserService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            controller.RemoveAdmin(userId, page);
+            controller.Unban(userId, page);
 
             // Assert
-            mockedAuthenticationProvider.Verify(p => p.RemoveFromRole(userId, It.IsAny<string>()), Times.Once);
+            mockedAuthenticationProvider.Verify(p => p.UnbanUser(userId), Times.Once);
         }
 
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95", 1)]
         [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa", 2)]
-        public void TestRemoveAdmin_ShouldReturnRedirectToActionWithCorrectPage(string userId, int page)
+        public void TestUnban_ShouldReturnRedirectToActionWithCorrectPage(string userId, int page)
         {
             // Arrange
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
@@ -38,7 +38,7 @@ namespace Logs.Web.Tests.Administration.UserAdministrationControllerTests
             var controller = new UserAdministrationController(mockedUserService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            var result = controller.RemoveAdmin(userId, page) as RedirectToRouteResult;
+            var result = controller.Unban(userId, page) as RedirectToRouteResult;
 
             // Assert
             Assert.AreEqual(page, result.RouteValues[nameof(page)]);
