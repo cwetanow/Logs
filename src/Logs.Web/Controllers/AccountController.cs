@@ -37,6 +37,11 @@ namespace Logs.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (this.provider.IsAuthenticated)
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return this.View();
         }
