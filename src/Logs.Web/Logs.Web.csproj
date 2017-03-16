@@ -336,7 +336,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Logs\Create.cshtml" />
     <Content Include="Views\Shared\_ShortLogPartial.cshtml" />
     <Content Include="Views\Logs\List.cshtml" />

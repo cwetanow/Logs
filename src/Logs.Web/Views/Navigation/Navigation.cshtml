@@ -1,9 +1,16 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@model Logs.Web.Models.Navigation.NavigationViewModel
 
-@{
-    var Username = User.Identity.GetUserName();
-}
-@if (Request.IsAuthenticated)
+<ul class="nav navbar-nav">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("Logs", "List", "Logs")</li>
+    <li>@Html.ActionLink("About", "About", "Home")</li>
+    @if (Model.IsAdmin)
+    {
+        <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
+    }
+</ul>
+
+@if (Model.IsAuthenticated)
 {
     using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
@@ -11,7 +18,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + Username + "!", "Details", "Profile", new { username = Username }, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Hello " + Model.Username + "!", "Details", "Profile", new { username = Model.Username }, htmlAttributes: new { title = "Manage" })
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
@@ -24,3 +31,4 @@ else
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+
