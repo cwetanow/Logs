@@ -1,0 +1,20 @@
+﻿@using Logs.Models.Enumerations
+@model Logs.Web.Models.Profile.UserProfileViewModel
+
+<h3>Stats</h3>
+<ul>
+    <li>@Model.Age years old</li>
+
+    @if (Model.GenderType != GenderType.NotSelected)
+            {
+        <li>@Model.GenderType </li>
+    }
+
+    <li>Height: @Model.Height cm</li>
+    <li>@Model.Weight kg</li>
+    <li>@Model.BodyFatPercent % bodyfat</li>
+</ul>
+<h3>Description</h3>
+<p>
+    @Model.Description
+</p>
