@@ -1,0 +1,12 @@
+﻿@model System.Collections.Generic.IEnumerable<Logs.Web.Models.Logs.CommentViewModel>
+
+@if (Model.Any())
+{
+    @:Comments:
+    foreach (var comment in Model)
+    {
+        <div class="media-body">
+            @Html.Partial("_CommentPartial", comment)
+        </div>
+    }
+}
