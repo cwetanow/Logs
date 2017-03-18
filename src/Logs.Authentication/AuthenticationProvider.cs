@@ -34,35 +34,18 @@ namespace Logs.Authentication
             this.httpContextProvider = httpContextProvider;
         }
 
-        protected IOwinContext OwinContext
-        {
-            get
-            {
-                return this.httpContextProvider.CurrentHttpContext.GetOwinContext();
-
-            }
-        }
-
-        protected IIdentity Identity
-        {
-            get
-            {
-                return this.httpContextProvider.CurrentHttpContext.User.Identity;
-            }
-        }
-
         protected ApplicationSignInManager SignInManager
         {
             get
             {
-                return this.OwinContext.GetUserManager<ApplicationSignInManager>();
+                return this.httpContextProvider.CurrentOwinContext.GetUserManager<ApplicationSignInManager>();
             }
         }
         protected ApplicationUserManager UserManager
         {
             get
             {
-                return this.OwinContext.GetUserManager<ApplicationUserManager>();
+                return this.httpContextProvider.CurrentOwinContext.GetUserManager<ApplicationUserManager>();
             }
         }
 
@@ -70,7 +53,7 @@ namespace Logs.Authentication
         {
             get
             {
-                return this.Identity.IsAuthenticated;
+                return this.httpContextProvider.CurrentIdentity.IsAuthenticated;
             }
         }
 
@@ -78,7 +61,7 @@ namespace Logs.Authentication
         {
             get
             {
-                return this.Identity.GetUserId();
+                return this.httpContextProvider.CurrentIdentity.GetUserId();
             }
         }
 
@@ -86,7 +69,7 @@ namespace Logs.Authentication
         {
             get
             {
-                return this.Identity.GetUserName();
+                return this.httpContextProvider.CurrentIdentity.GetUserName();
             }
         }
 
@@ -109,7 +92,7 @@ namespace Logs.Authentication
 
         public void SignOut()
         {
-            this.OwinContext.Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            this.httpContextProvider.CurrentOwinContext.Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
         public bool IsInRole(string userId, string roleName)
