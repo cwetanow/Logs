@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Security.Principal;
-using System.Web;
 using Logs.Authentication.Contracts;
 using Logs.Authentication.Managers;
 using Logs.Models;
 using Logs.Providers.Contracts;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
 
 namespace Logs.Authentication
 {

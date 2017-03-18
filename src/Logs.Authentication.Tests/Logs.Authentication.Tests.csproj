@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationProviderTests\ConstructorTests.cs" />
+    <Compile Include="AuthenticationProviderTests\IsAuthenticatedTests.cs" />
     <Compile Include="AuthenticationProviderTests\Mocks\MockedAuthenticationProvider.cs" />
     <Compile Include="AuthenticationProviderTests\PropertiesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
