@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Principal;
 using System.Web;
 using Logs.Authentication.Contracts;
 using Logs.Authentication.Managers;
@@ -6,32 +7,52 @@ using Logs.Models;
 using Logs.Providers.Contracts;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 
 namespace Logs.Authentication
 {
-    public class HttpContextAuthenticationProvider : IAuthenticationProvider
+    public class AuthenticationProvider : IAuthenticationProvider
     {
         private const int HoursBan = 24 * 365;
 
         private readonly IDateTimeProvider dateTimeProvider;
+        private readonly IHttpContextProvider httpContextProvider;
 
-        public HttpContextAuthenticationProvider(IDateTimeProvider dateTimeProvider)
+        public AuthenticationProvider(IDateTimeProvider dateTimeProvider, IHttpContextProvider httpContextProvider)
         {
             this.dateTimeProvider = dateTimeProvider;
+            this.httpContextProvider = httpContextProvider;
+        }
+
+        protected IOwinContext OwinContext
+        {
+            get
+            {
+                return this.httpContextProvider.CurrentHttpContext.GetOwinContext();
+
+            }
+        }
+
+        protected IIdentity Identity
+        {
+            get
+            {
+                return this.httpContextProvider.CurrentHttpContext.User.Identity;
+            }
         }
 
         protected ApplicationSignInManager SignInManager
         {
             get
             {
-                return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+                return this.OwinContext.GetUserManager<ApplicationSignInManager>();
             }
         }
         protected ApplicationUserManager UserManager
         {
             get
             {
-                return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.OwinContext.GetUserManager<ApplicationUserManager>();
             }
         }
 
@@ -39,7 +60,7 @@ namespace Logs.Authentication
         {
             get
             {
-                return HttpContext.Current.User.Identity.IsAuthenticated;
+                return this.Identity.IsAuthenticated;
             }
         }
 
@@ -47,7 +68,7 @@ namespace Logs.Authentication
         {
             get
             {
-                return HttpContext.Current.User.Identity.GetUserId();
+                return this.Identity.GetUserId();
             }
         }
 
@@ -55,7 +76,7 @@ namespace Logs.Authentication
         {
             get
             {
-                return HttpContext.Current.User.Identity.GetUserName();
+                return this.Identity.GetUserName();
             }
         }
 
@@ -78,7 +99,7 @@ namespace Logs.Authentication
 
         public void SignOut()
         {
-            HttpContext.Current.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            this.OwinContext.Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
         public bool IsInRole(string userId, string roleName)
