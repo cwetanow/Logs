@@ -20,6 +20,16 @@ namespace Logs.Authentication
 
         public AuthenticationProvider(IDateTimeProvider dateTimeProvider, IHttpContextProvider httpContextProvider)
         {
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException(nameof(dateTimeProvider));
+            }
+
+            if (httpContextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(httpContextProvider));
+            }
+
             this.dateTimeProvider = dateTimeProvider;
             this.httpContextProvider = httpContextProvider;
         }
