@@ -91,6 +91,7 @@
     <Compile Include="AuthenticationProviderTests\IsAuthenticatedTests.cs" />
     <Compile Include="AuthenticationProviderTests\Mocks\MockedAuthenticationProvider.cs" />
     <Compile Include="AuthenticationProviderTests\PropertiesTests.cs" />
+    <Compile Include="AuthenticationProviderTests\SignOutTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
