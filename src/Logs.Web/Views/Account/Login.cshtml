@@ -11,10 +11,10 @@
                 <div class="modal-header">
                     <h1 class="text-center">Login</h1>
                 </div>
+                <br/>
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal form col-md-12 center-block", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-10">
+                        <div class="col-md-offset-2 col-md-10">
                             <input type="submit" value="Sign In" class="btn btn-primary btn-lg btn-block" />
                             <span class="pull-right">@Html.ActionLink("Register", "Register")</span><span></span>
                         </div>
