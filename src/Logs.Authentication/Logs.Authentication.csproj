@@ -91,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IAuthenticationProvider.cs" />
-    <Compile Include="HttpContextAuthenticationProvider.cs" />
+    <Compile Include="AuthenticationProvider.cs" />
     <Compile Include="Managers\ApplicationSignInManager.cs" />
     <Compile Include="Managers\ApplicationUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

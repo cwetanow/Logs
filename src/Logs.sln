@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.Factories", "Logs.Fact
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.Providers", "Logs.Providers\Logs.Providers.csproj", "{FB8CF5FD-A33C-44D0-8517-A2D55CC7B470}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.Authentication.Tests", "Logs.Authentication.Tests\Logs.Authentication.Tests.csproj", "{A2998001-763E-4FE1-A280-C1ECA002449B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{FB8CF5FD-A33C-44D0-8517-A2D55CC7B470}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB8CF5FD-A33C-44D0-8517-A2D55CC7B470}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB8CF5FD-A33C-44D0-8517-A2D55CC7B470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2998001-763E-4FE1-A280-C1ECA002449B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2998001-763E-4FE1-A280-C1ECA002449B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2998001-763E-4FE1-A280-C1ECA002449B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2998001-763E-4FE1-A280-C1ECA002449B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
