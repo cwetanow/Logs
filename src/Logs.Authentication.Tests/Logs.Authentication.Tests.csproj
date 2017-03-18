@@ -76,6 +76,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,6 +87,7 @@
   <ItemGroup>
     <Compile Include="AuthenticationProviderTests\ConstructorTests.cs" />
     <Compile Include="AuthenticationProviderTests\Mocks\MockedAuthenticationProvider.cs" />
+    <Compile Include="AuthenticationProviderTests\PropertiesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
