@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Logs.Data.Contracts;
 using Logs.Factories;
@@ -15,11 +16,9 @@ namespace Logs.Services.Tests.LogsServiceTests
     public class GetAllSortedByDateTests
     {
         [Test]
-        public void TestGetAllSortedByDate_ShouldCallRepositoryGetAllCorrectly()
+        public void TestGetAllSortedByDate_ShouldCallRepositoryAll()
         {
             // Arrange
-            var expectedDescending = true;
-
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedLogFactory = new Mock<ITrainingLogFactory>();
@@ -37,7 +36,7 @@ namespace Logs.Services.Tests.LogsServiceTests
 
             // Assert
             mockedLogRepository.Verify(r =>
-            r.GetAll(It.IsAny<Expression<Func<TrainingLog, bool>>>(), It.IsAny<Expression<Func<TrainingLog, DateTime>>>(), expectedDescending),
+            r.All,
             Times.Once);
         }
 
@@ -45,12 +44,11 @@ namespace Logs.Services.Tests.LogsServiceTests
         public void TestGetAllSortedByDate_ShouldReturnCorrectly()
         {
             // Arrange
-            var logs = new List<TrainingLog>();
+            var logs = new List<TrainingLog>()
+                .AsQueryable();
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
-            mockedLogRepository.Setup(r => r.GetAll(It.IsAny<Expression<Func<TrainingLog, bool>>>(),
-                    It.IsAny<Expression<Func<TrainingLog, DateTime>>>(),
-                   It.IsAny<bool>()))
+            mockedLogRepository.Setup(r => r.All)
                 .Returns(logs);
 
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
