@@ -175,6 +175,7 @@
     <Compile Include="ProfileControllerTests\DetailsTests.cs" />
     <Compile Include="ProfileControllerTests\EditTests.cs" />
     <Compile Include="ProfileControllerTests\MyLogTests.cs" />
+    <Compile Include="ProfileControllerTests\NewLogTests.cs" />
     <Compile Include="ProfileControllerTests\NoLogTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommentControllerTests\CommentTests.cs" />

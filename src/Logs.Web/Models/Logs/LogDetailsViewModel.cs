@@ -17,14 +17,14 @@ namespace Logs.Web.Models.Logs
             this.Description = log.Description;
             this.Name = log.Name;
             this.DateCreated = log.DateCreated;
-            this.User = log.User.UserName;
+            this.User = log.Owner;
             this.VotesCount = log.Votes.Count;
             this.LogId = log.LogId;
             this.IsAuthenticated = isAuthenticated;
             this.IsOwner = isOwner;
             this.CanVote = canVote;
             this.Entries = entries;
-            this.ProfileImageUrl = log.User.ProfileImageUrl;
+            this.ProfileImageUrl = log.User?.ProfileImageUrl;
         }
 
         public int LogId { get; set; }

@@ -20,6 +20,7 @@ namespace Logs.Models
             this.DateCreated = dateCreated;
             this.User = user;
             this.User.Log = this;
+            this.Owner = user.UserName;
 
             this.LastEntryDate = this.DateCreated;
             this.LastActivityUser = this.User.UserName;
@@ -31,6 +32,8 @@ namespace Logs.Models
         public string Description { get; set; }
 
         public string Name { get; set; }
+
+        public string Owner { get; set; }
 
         public string LastActivityUser { get; set; }
 

@@ -17,7 +17,7 @@ namespace Logs.Web.Models.Logs
             this.EntryDate = entry.EntryDate;
             this.Content = entry.Content;
             this.EntryId = entry.LogEntryId;
-            this.CanEdit = entry.Log.User.Id.Equals(userId);
+            this.CanEdit = entry.Log.User?.Id.Equals(userId) ?? false;
 
             this.Comments = entry.Comments
                 .Select(c => new CommentViewModel(c, userId));

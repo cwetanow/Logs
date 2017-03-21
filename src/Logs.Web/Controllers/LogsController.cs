@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
-using Logs.Models;
-using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
-using Microsoft.AspNet.Identity;
 using PagedList;
 
 namespace Logs.Web.Controllers
@@ -55,7 +51,7 @@ namespace Logs.Web.Controllers
             var isAuthenticated = this.authenticationProvider.IsAuthenticated;
             var currentUserId = this.authenticationProvider.CurrentUserId;
 
-            var isOwner = log.User.Id.Equals(currentUserId);
+            var isOwner = log.User?.Id.Equals(currentUserId) ?? false;
             var canVote = (log.Votes
                 .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner && isAuthenticated;
 

@@ -83,5 +83,24 @@ namespace Logs.Web.Controllers
 
             return this.PartialView("_UserStatsPartial", model);
         }
+
+        [Authorize]
+        public ActionResult NewLog()
+        {
+            var currentUserId = this.provider.CurrentUserId;
+
+            var currentUser = this.userService.GetUserById(currentUserId);
+
+            if (currentUser.Log == null)
+            {
+                return this.RedirectToAction("Create", "Logs");
+            }
+
+            var logId = currentUser.Log.LogId;
+
+            var model = this.viewModelFactory.CreateNewLogViewModel(logId);
+
+            return this.View(model);
+        }
     }
 }

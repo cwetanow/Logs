@@ -8,6 +8,11 @@
     {
         <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
     }
+    @if (Model.IsAuthenticated)
+    {
+        <li>@Html.ActionLink("My Log", "MyLog", "Profile")</li>
+        <li>@Html.ActionLink("New Log", "NewLog", "Profile")</li>
+    }
 </ul>
 
 @if (Model.IsAuthenticated)

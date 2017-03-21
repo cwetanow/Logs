@@ -30,5 +30,7 @@ namespace Logs.Web.Infrastructure.Factories
         UploadViewModel CreateUploadViewModel(Cloudinary cloudinary, string imageUrl);
 
         NavigationViewModel CreateNavigationViewModel(string username, bool isAuthenticated, bool isAdmin);
+
+        NewLogViewModel CreateNewLogViewModel(int logId);
     }
 }

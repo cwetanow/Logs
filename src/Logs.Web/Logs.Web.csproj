@@ -279,6 +279,7 @@
     <Compile Include="Models\Logs\LogEntryViewModel.cs" />
     <Compile Include="Models\Logs\ShortLogViewModel.cs" />
     <Compile Include="Models\Navigation\NavigationViewModel.cs" />
+    <Compile Include="Models\Profile\NewLogViewModel.cs" />
     <Compile Include="Models\Profile\UserProfileViewModel.cs" />
     <Compile Include="Models\Upload\UploadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -363,6 +364,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
     <Content Include="Views\Navigation\Navigation.cshtml" />
+    <Content Include="Views\Profile\NewLog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
