@@ -30,7 +30,7 @@ namespace Logs.Authentication.Tests.AuthenticationProviderTests
             var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
             mockedHttpContextProvider.Setup(p => p.GetUserManager<ApplicationUserManager>()).Returns(userManager);
 
-            var provider = new MockedAuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
+            var provider = new AuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
 
             // Act
             provider.BanUser(userId);
@@ -56,7 +56,7 @@ namespace Logs.Authentication.Tests.AuthenticationProviderTests
             var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
             mockedHttpContextProvider.Setup(p => p.GetUserManager<ApplicationUserManager>()).Returns(userManager);
 
-            var provider = new MockedAuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
+            var provider = new AuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
 
             // Act
             provider.BanUser(userId);
@@ -87,7 +87,7 @@ namespace Logs.Authentication.Tests.AuthenticationProviderTests
             var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
             mockedHttpContextProvider.Setup(p => p.GetUserManager<ApplicationUserManager>()).Returns(userManager);
 
-            var provider = new MockedAuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
+            var provider = new AuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
 
             // Act
             provider.BanUser(userId);
