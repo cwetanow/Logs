@@ -155,7 +155,10 @@ namespace Logs.Services
 
             if (log != null)
             {
-                log.User.Log = null;
+                if (log.User != null)
+                {
+                    log.User.Log = null;
+                }
 
                 this.logRepository.Delete(log);
                 this.unitOfWork.Commit();
