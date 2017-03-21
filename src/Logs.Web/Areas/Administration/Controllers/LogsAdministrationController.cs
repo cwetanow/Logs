@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
+using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
 using PagedList;
 
@@ -13,21 +14,28 @@ namespace Logs.Web.Areas.Administration.Controllers
         private const string AdministratorRoleName = "administrator";
 
         private readonly ILogService logService;
+        private readonly IViewModelFactory viewModelFactory;
 
-        public LogsAdministrationController(ILogService logService)
+        public LogsAdministrationController(ILogService logService, IViewModelFactory viewModelFactory)
         {
             if (logService == null)
             {
                 throw new ArgumentNullException(nameof(logService));
             }
 
+            if (viewModelFactory == null)
+            {
+                throw new ArgumentNullException(nameof(viewModelFactory));
+            }
+
             this.logService = logService;
+            this.viewModelFactory = viewModelFactory;
         }
 
         public ActionResult Index(int page = 1, int count = 10)
         {
             var logs = this.logService.GetAll()
-                .Select(l => new ShortLogViewModel(l))
+                .Select(this.viewModelFactory.CreateShortLogViewModel)
                 .ToPagedList(page, count);
 
             return this.View(logs);
