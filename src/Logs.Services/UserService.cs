@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Logs.Data.Contracts;
 using Logs.Models;
+using Logs.Models.Enumerations;
 using Logs.Services.Contracts;
 
 namespace Logs.Services
@@ -43,7 +44,7 @@ namespace Logs.Services
             return user;
         }
 
-        public void EditUser(string userId, string description, int age, double weight, int height, double bodyFat)
+        public void EditUser(string userId, string description, int age, double weight, int height, double bodyFat, GenderType genderType)
         {
             var user = this.userRepository.GetById(userId);
 
@@ -54,6 +55,7 @@ namespace Logs.Services
                 user.Weight = weight;
                 user.Height = height;
                 user.BodyFatPercent = bodyFat;
+                user.GenderType = genderType;
 
                 this.userRepository.Update(user);
                 this.unitOfWork.Commit();
