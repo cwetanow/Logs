@@ -1,6 +1,6 @@
 ﻿using Logs.Services;
 using Logs.Services.Contracts;
-using Logs.Web.Infrastructure.Infrastructure;
+using Logs.Web.Infrastructure.Interception;
 using Ninject;
 using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;

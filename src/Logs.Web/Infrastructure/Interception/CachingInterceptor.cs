@@ -2,7 +2,7 @@
 using Logs.Providers.Contracts;
 using Ninject.Extensions.Interception;
 
-namespace Logs.Web.Infrastructure.Infrastructure
+namespace Logs.Web.Infrastructure.Interception
 {
     public class CachingInterceptor : IInterceptor
     {
