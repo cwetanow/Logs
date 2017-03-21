@@ -142,5 +142,11 @@ namespace Logs.Services
                 this.unitOfWork.Commit();
             }
         }
+
+        public IEnumerable<TrainingLog> GetAll()
+        {
+            return this.logRepository.All
+                .ToList();
+        }
     }
 }
