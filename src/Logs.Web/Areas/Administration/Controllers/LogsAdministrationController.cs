@@ -26,5 +26,12 @@ namespace Logs.Web.Areas.Administration.Controllers
 
             return this.View(logs);
         }
+
+        public ActionResult Delete(int id)
+        {
+            this.logService.DeleteLog(id);
+
+            return this.RedirectToAction("Index");
+        }
     }
 }
