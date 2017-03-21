@@ -1,4 +1,5 @@
-﻿using Logs.Providers.Contracts;
+﻿using System;
+using Logs.Providers.Contracts;
 using Ninject.Extensions.Interception;
 
 namespace Logs.Web.Infrastructure.Infrastructure
@@ -6,10 +7,22 @@ namespace Logs.Web.Infrastructure.Infrastructure
     public class CachingInterceptor : IInterceptor
     {
         private readonly ICachingProvider cachingProvider;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public CachingInterceptor(ICachingProvider cachingProvider)
+        public CachingInterceptor(ICachingProvider cachingProvider, IDateTimeProvider dateTimeProvider)
         {
+            if (cachingProvider == null)
+            {
+                throw new ArgumentNullException(nameof(cachingProvider));
+            }
+
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException(nameof(dateTimeProvider));
+            }
+
             this.cachingProvider = cachingProvider;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         public void Intercept(IInvocation invocation)
@@ -28,7 +41,8 @@ namespace Logs.Web.Infrastructure.Infrastructure
 
                 result = invocation.ReturnValue;
 
-                this.cachingProvider.AddItem(key, result);
+                var date = this.dateTimeProvider.GetTimeFromCurrentTime(0, 5, 0);
+                this.cachingProvider.AddItem(key, result, date);
             }
         }
     }
