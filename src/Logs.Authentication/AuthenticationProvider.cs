@@ -35,14 +35,14 @@ namespace Logs.Authentication
         {
             get
             {
-                return this.httpContextProvider.CurrentOwinContext.GetUserManager<ApplicationSignInManager>();
+                return this.httpContextProvider.GetUserManager<ApplicationSignInManager>();
             }
         }
         protected ApplicationUserManager UserManager
         {
             get
             {
-                return this.httpContextProvider.CurrentOwinContext.GetUserManager<ApplicationUserManager>();
+                return this.httpContextProvider.GetUserManager<ApplicationUserManager>();
             }
         }
 
