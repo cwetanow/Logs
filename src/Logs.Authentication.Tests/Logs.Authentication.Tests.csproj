@@ -103,6 +103,7 @@
     <Compile Include="AuthenticationProviderTests\CurrentUserIdTests.cs" />
     <Compile Include="AuthenticationProviderTests\CurrentUserUsernameTests.cs" />
     <Compile Include="AuthenticationProviderTests\IsAuthenticatedTests.cs" />
+    <Compile Include="AuthenticationProviderTests\IsInRoleTests.cs" />
     <Compile Include="AuthenticationProviderTests\Mocks\MockedAuthenticationProvider.cs" />
     <Compile Include="AuthenticationProviderTests\PropertiesTests.cs" />
     <Compile Include="AuthenticationProviderTests\SignOutTests.cs" />
