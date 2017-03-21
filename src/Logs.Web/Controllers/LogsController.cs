@@ -135,11 +135,5 @@ namespace Logs.Web.Controllers
 
             return this.PartialView("_LogDescription", model.Description);
         }
-
-        [Authorize]
-        public RedirectToRouteResult NewLog()
-        {
-            return this.RedirectToAction("Create");
-        }
     }
 }
