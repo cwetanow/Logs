@@ -2,6 +2,11 @@
 {
     public class NewLogViewModel
     {
+        public NewLogViewModel()
+        {
+            
+        }
+
         public NewLogViewModel(int logId)
         {
             this.LogId = logId;
