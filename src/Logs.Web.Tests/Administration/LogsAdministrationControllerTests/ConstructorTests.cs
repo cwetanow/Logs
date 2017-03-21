@@ -1,6 +1,7 @@
 ﻿using System;
 using Logs.Services.Contracts;
 using Logs.Web.Areas.Administration.Controllers;
+using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
 
@@ -14,9 +15,10 @@ namespace Logs.Web.Tests.Administration.LogsAdministrationControllerTests
         {
             // Arrange
             var mockedService = new Mock<ILogService>();
+            var mockedFactory = new Mock<IViewModelFactory>();
 
             // Act
-            var controller = new LogsAdministrationController(mockedService.Object);
+            var controller = new LogsAdministrationController(mockedService.Object, mockedFactory.Object);
 
             // Assert
             Assert.IsNotNull(controller);
@@ -25,8 +27,21 @@ namespace Logs.Web.Tests.Administration.LogsAdministrationControllerTests
         [Test]
         public void TestConstructor_PassLogServiceNull_ShouldThrowArgumentNullException()
         {
-            // Arrange, Act, Assert
-            Assert.Throws<ArgumentNullException>(() => new LogsAdministrationController(null));
+            // Arrange
+            var mockedFactory = new Mock<IViewModelFactory>();       
+            
+            // Arrange, Act
+            Assert.Throws<ArgumentNullException>(() => new LogsAdministrationController(null, mockedFactory.Object));
+        }
+
+        [Test]
+        public void TestConstructor_PassFactoryNull_ShouldThrowArgumentNullException()
+        {
+            // Arrange
+            var mockedService = new Mock<ILogService>();
+
+            // Act, Assert
+            Assert.Throws<ArgumentNullException>(() => new LogsAdministrationController(mockedService.Object, null));
         }
     }
 }

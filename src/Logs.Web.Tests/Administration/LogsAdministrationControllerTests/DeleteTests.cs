@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Areas.Administration.Controllers;
+using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
 
@@ -16,8 +17,9 @@ namespace Logs.Web.Tests.Administration.LogsAdministrationControllerTests
         {
             // Arrange
             var mockedService = new Mock<ILogService>();
+            var mockedFactory = new Mock<IViewModelFactory>();
 
-            var controller = new LogsAdministrationController(mockedService.Object);
+            var controller = new LogsAdministrationController(mockedService.Object, mockedFactory.Object);
 
             // Act
             controller.Delete(logId);
@@ -33,8 +35,9 @@ namespace Logs.Web.Tests.Administration.LogsAdministrationControllerTests
         {
             // Arrange
             var mockedService = new Mock<ILogService>();
+            var mockedFactory = new Mock<IViewModelFactory>();
 
-            var controller = new LogsAdministrationController(mockedService.Object);
+            var controller = new LogsAdministrationController(mockedService.Object, mockedFactory.Object);
 
             // Act
             var result = controller.Delete(logId);
