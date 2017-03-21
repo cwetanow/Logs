@@ -98,6 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationProviderTests\BanUserTests.cs" />
     <Compile Include="AuthenticationProviderTests\ConstructorTests.cs" />
     <Compile Include="AuthenticationProviderTests\CurrentUserIdTests.cs" />
     <Compile Include="AuthenticationProviderTests\CurrentUserUsernameTests.cs" />
