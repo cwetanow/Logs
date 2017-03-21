@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Logs.Authentication.Managers;
+﻿using Logs.Authentication.Managers;
 using Logs.Models;
 using Logs.Providers.Contracts;
 using Microsoft.AspNet.Identity;
