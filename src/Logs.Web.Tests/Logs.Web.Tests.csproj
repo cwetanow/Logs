@@ -141,6 +141,9 @@
     <Compile Include="AccountControllerTests\PostRegisterTests.cs" />
     <Compile Include="AccountControllerTests\RegisterTests.cs" />
     <Compile Include="Administration\AdministrationControllerTests\IndexTests.cs" />
+    <Compile Include="Administration\LogsAdministrationControllerTests\ConstructorTests.cs" />
+    <Compile Include="Administration\LogsAdministrationControllerTests\DeleteTests.cs" />
+    <Compile Include="Administration\LogsAdministrationControllerTests\IndexTests.cs" />
     <Compile Include="Administration\UserAdministrationControllerTests\AddAdminTests.cs" />
     <Compile Include="Administration\UserAdministrationControllerTests\BanTests.cs" />
     <Compile Include="Administration\UserAdministrationControllerTests\ConstructorTests.cs" />
