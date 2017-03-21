@@ -81,6 +81,7 @@
     <Compile Include="LogsServiceTests\CreateTrainingLogTests.cs" />
     <Compile Include="LogsServiceTests\EditLogDescriptionTests.cs" />
     <Compile Include="LogsServiceTests\GetAllSortedByDateTests.cs" />
+    <Compile Include="LogsServiceTests\GetAllTests.cs" />
     <Compile Include="LogsServiceTests\GetLatestLogsTests.cs" />
     <Compile Include="LogsServiceTests\GetTopLogsTests.cs" />
     <Compile Include="LogsServiceTests\GetTrainingLogByIdTests.cs" />
