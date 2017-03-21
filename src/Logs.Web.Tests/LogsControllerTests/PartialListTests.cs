@@ -34,7 +34,7 @@ namespace Logs.Web.Tests.LogsControllerTests
         }
 
         [Test]
-        public void TestPartialList_CachingProviderDoesNotReturnLogs_ShouldSetCorrectViewModel()
+        public void TestPartialList_ShouldSetCorrectViewModel()
         {
             // Arrange
             var logs = new List<TrainingLog> { new TrainingLog() };
