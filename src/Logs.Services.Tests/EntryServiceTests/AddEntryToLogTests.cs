@@ -33,7 +33,7 @@ namespace Logs.Services.Tests.EntryServiceTests
             service.AddEntryToLog(content, logId, null);
 
             // Assert
-            mockedDateTimeProvider.Verify(p => p.GetCurrenTime(), Times.Once);
+            mockedDateTimeProvider.Verify(p => p.GetCurrentTime(), Times.Once);
         }
 
         [TestCase("content", 1)]
@@ -46,7 +46,7 @@ namespace Logs.Services.Tests.EntryServiceTests
             var date = new DateTime();
 
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            mockedDateTimeProvider.Setup(p => p.GetCurrenTime())
+            mockedDateTimeProvider.Setup(p => p.GetCurrentTime())
                 .Returns(date);
 
             var mockedFactory = new Mock<ILogEntryFactory>();

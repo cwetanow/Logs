@@ -35,7 +35,7 @@ namespace Logs.Services.Tests.CommentServiceTests
             service.AddCommentToLog(content, logId, userId);
 
             // Assert
-            mockedDateTimeProvider.Verify(p => p.GetCurrenTime(), Times.Once);
+            mockedDateTimeProvider.Verify(p => p.GetCurrentTime(), Times.Once);
         }
 
         [TestCase("content", 1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
@@ -74,7 +74,7 @@ namespace Logs.Services.Tests.CommentServiceTests
             var date = new DateTime();
 
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            mockedDateTimeProvider.Setup(p => p.GetCurrenTime())
+            mockedDateTimeProvider.Setup(p => p.GetCurrentTime())
                 .Returns(date);
 
             var user = new User();
@@ -111,7 +111,7 @@ namespace Logs.Services.Tests.CommentServiceTests
             var date = new DateTime();
 
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            mockedDateTimeProvider.Setup(p => p.GetCurrenTime())
+            mockedDateTimeProvider.Setup(p => p.GetCurrentTime())
                 .Returns(date);
 
             var user = new User();

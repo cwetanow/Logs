@@ -56,7 +56,7 @@ namespace Logs.Services
 
         public void AddEntryToLog(string content, int logId, string userId)
         {
-            var currentDate = this.dateTimeProvider.GetCurrenTime();
+            var currentDate = this.dateTimeProvider.GetCurrentTime();
 
             var entry = this.logEntryFactoryfactory.CreateLogEntry(content, currentDate, logId);
 

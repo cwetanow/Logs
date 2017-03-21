@@ -55,7 +55,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             service.CreateTrainingLog(name, description, userId);
 
             // Assert
-            mockedDateTimeProvider.Verify(p => p.GetCurrenTime(), Times.Once);
+            mockedDateTimeProvider.Verify(p => p.GetCurrentTime(), Times.Once);
         }
 
         [TestCase("log", "test", "abcd-1234")]
@@ -71,7 +71,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var currentDate = new DateTime();
 
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            mockedDateTimeProvider.Setup(p => p.GetCurrenTime()).Returns(currentDate);
+            mockedDateTimeProvider.Setup(p => p.GetCurrentTime()).Returns(currentDate);
 
             var mockedUserService = new Mock<IUserService>();
             mockedUserService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(mockedUser.Object);
@@ -108,7 +108,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var currentDate = new DateTime();
 
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            mockedDateTimeProvider.Setup(p => p.GetCurrenTime()).Returns(currentDate);
+            mockedDateTimeProvider.Setup(p => p.GetCurrentTime()).Returns(currentDate);
 
             var mockedUserService = new Mock<IUserService>();
             mockedUserService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(mockedUser.Object);
@@ -145,7 +145,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var currentDate = new DateTime();
 
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            mockedDateTimeProvider.Setup(p => p.GetCurrenTime()).Returns(currentDate);
+            mockedDateTimeProvider.Setup(p => p.GetCurrentTime()).Returns(currentDate);
 
             var mockedUserService = new Mock<IUserService>();
             mockedUserService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(mockedUser.Object);
@@ -184,7 +184,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var currentDate = new DateTime();
 
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            mockedDateTimeProvider.Setup(p => p.GetCurrenTime()).Returns(currentDate);
+            mockedDateTimeProvider.Setup(p => p.GetCurrentTime()).Returns(currentDate);
 
             var mockedUserService = new Mock<IUserService>();
             mockedUserService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(mockedUser.Object);

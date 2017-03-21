@@ -77,7 +77,7 @@ namespace Logs.Services
 
         public void AddCommentToLog(string content, int logId, string userId)
         {
-            var currentDate = this.dateTimeProvider.GetCurrenTime();
+            var currentDate = this.dateTimeProvider.GetCurrentTime();
 
             var user = this.userService.GetUserById(userId);
 

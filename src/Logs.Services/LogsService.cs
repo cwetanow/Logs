@@ -64,7 +64,7 @@ namespace Logs.Services
         {
             var user = this.userService.GetUserById(userId);
 
-            var currentTime = this.provider.GetCurrenTime();
+            var currentTime = this.provider.GetCurrentTime();
             var log = this.logFactory.CreateTrainingLog(name, description, currentTime, user);
 
             this.logRepository.Add(log);

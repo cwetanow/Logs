@@ -5,7 +5,7 @@ namespace Logs.Providers
 {
     public class DateTimeProvider : IDateTimeProvider
     {
-        public DateTime GetCurrenTime()
+        public DateTime GetCurrentTime()
         {
             return DateTime.Now;
         }
