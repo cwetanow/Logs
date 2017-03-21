@@ -21,6 +21,14 @@ namespace Logs.Data
             this.dbContext = dbContext;
         }
 
+        public IQueryable<T> All
+        {
+            get
+            {
+                return this.dbContext.DbSet<T>();
+            }
+        }
+
         public void Add(T entity)
         {
             this.dbContext.SetAdded(entity);

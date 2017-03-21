@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Logs.Data.Contracts
@@ -8,6 +9,8 @@ namespace Logs.Data.Contracts
         where T : class
     {
         T GetById(object id);
+
+        IQueryable<T> All { get; }
 
         IEnumerable<T> GetAll();
 
