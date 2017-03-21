@@ -98,6 +98,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationProviderTests\AddToRoleTests.cs" />
     <Compile Include="AuthenticationProviderTests\BanUserTests.cs" />
     <Compile Include="AuthenticationProviderTests\ConstructorTests.cs" />
     <Compile Include="AuthenticationProviderTests\CurrentUserIdTests.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="AuthenticationProviderTests\IsInRoleTests.cs" />
     <Compile Include="AuthenticationProviderTests\Mocks\MockedAuthenticationProvider.cs" />
     <Compile Include="AuthenticationProviderTests\PropertiesTests.cs" />
+    <Compile Include="AuthenticationProviderTests\RemoveFromRoleTests.cs" />
     <Compile Include="AuthenticationProviderTests\SignOutTests.cs" />
     <Compile Include="AuthenticationProviderTests\UnbanUserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
