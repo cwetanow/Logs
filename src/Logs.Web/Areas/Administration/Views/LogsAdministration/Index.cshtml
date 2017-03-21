@@ -8,63 +8,63 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Name)
-        </th>                                 
-        <th>                                  
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().LogId)
-        </th>                                 
-        <th>                                  
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Username)
-        </th>                               
-        <th>                                
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().DateCreated)
-        </th>                                  
-        <th>                                   
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Entries)
-        </th>                                  
-        <th>                                   
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().Votes)
-        </th>                                  
-        <th>                                   
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().LastActivityUser)
-        </th>                                  
-        <th>                                   
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().LastActivity)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LogId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Entries)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Votes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastActivityUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastActivity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entries)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Votes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastActivityUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastActivity)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { area = "", controller = "Logs", id = item.LogId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.LogId })
+            </td>
+        </tr>
+    }
 
 </table>
