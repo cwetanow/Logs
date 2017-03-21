@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Models.Logs;
@@ -15,6 +16,11 @@ namespace Logs.Web.Areas.Administration.Controllers
 
         public LogsAdministrationController(ILogService logService)
         {
+            if (logService == null)
+            {
+                throw new ArgumentNullException(nameof(logService));
+            }
+
             this.logService = logService;
         }
 
