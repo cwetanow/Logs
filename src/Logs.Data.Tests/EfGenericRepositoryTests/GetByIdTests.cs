@@ -19,7 +19,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
             var mockedDbContext = new Mock<ILogsDbContext>();
             mockedDbContext.Setup(x => x.DbSet<FakeGenericRepositoryType>()).Returns(mockedSet.Object);
 
-            var repository = new GenericRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
+            var repository = new EntityFrameworkRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
 
             // Act
             repository.GetById(id);
@@ -41,7 +41,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
             var mockedDbContext = new Mock<ILogsDbContext>();
             mockedDbContext.Setup(x => x.DbSet<FakeGenericRepositoryType>()).Returns(mockedSet.Object);
 
-            var repository = new GenericRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
+            var repository = new EntityFrameworkRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
 
             // Act
             var result = repository.GetById(id);

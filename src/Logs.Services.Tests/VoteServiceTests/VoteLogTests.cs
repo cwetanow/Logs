@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Logs.Data.Contracts;
 using Logs.Factories;
@@ -19,10 +20,11 @@ namespace Logs.Services.Tests.VoteServiceTests
         {
             // Arrange
             var vote = new Vote();
-            var votes = new List<Vote> { vote };
+            var votes = new List<Vote> { vote }
+                .AsQueryable();
 
             var mockedRepository = new Mock<IRepository<Vote>>();
-            mockedRepository.Setup(r => r.GetAll(It.IsAny<Expression<Func<Vote, bool>>>())).Returns(votes);
+            mockedRepository.Setup(r => r.All).Returns(votes);
 
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedLogService = new Mock<ILogService>();
@@ -45,11 +47,12 @@ namespace Logs.Services.Tests.VoteServiceTests
         public void TestVoteLog_RepositoryReturnsVote_ShouldNotCallLogServiceGetById(int logId, string userId)
         {
             // Arrange
-            var vote = new Vote();
-            var votes = new List<Vote> { vote };
+            var vote = new Vote { LogId = logId, UserId = userId };
+            var votes = new List<Vote> { vote }
+                .AsQueryable();
 
             var mockedRepository = new Mock<IRepository<Vote>>();
-            mockedRepository.Setup(r => r.GetAll(It.IsAny<Expression<Func<Vote, bool>>>())).Returns(votes);
+            mockedRepository.Setup(r => r.All).Returns(votes);
 
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedLogService = new Mock<ILogService>();
@@ -67,7 +70,7 @@ namespace Logs.Services.Tests.VoteServiceTests
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         [TestCase(423, "99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestVoteLog_ShouldCallRepositoryGetAll(int logId, string userId)
+        public void TestVoteLog_ShouldCallRepositoryAll(int logId, string userId)
         {
             // Arrange
             var mockedRepository = new Mock<IRepository<Vote>>();
@@ -81,7 +84,7 @@ namespace Logs.Services.Tests.VoteServiceTests
             service.VoteLog(logId, userId);
 
             // Assert
-            mockedRepository.Verify(r => r.GetAll(It.IsAny<Expression<Func<Vote, bool>>>()), Times.Once);
+            mockedRepository.Verify(r => r.All, Times.Once);
         }
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]

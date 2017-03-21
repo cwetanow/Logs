@@ -45,8 +45,8 @@ namespace Logs.Services
         public int VoteLog(int logId, string userId)
         {
             var userVoteOnLog = this.voteRepository
-                .GetAll(v => v.LogId.Equals(logId) && v.UserId.Equals(userId))
-                .FirstOrDefault();
+                .All
+                .FirstOrDefault(v => v.LogId.Equals(logId) && v.UserId.Equals(userId));
 
             var userHasNotVoted = (userVoteOnLog == null);
 

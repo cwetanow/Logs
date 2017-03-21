@@ -75,21 +75,28 @@ namespace Logs.Services
 
         public IEnumerable<TrainingLog> GetAllSortedByDate()
         {
-            return this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog l) => l.LastEntryDate, true);
+            return this.logRepository.All
+                .OrderByDescending(l => l.LastEntryDate)
+                .ToList();
         }
 
         public IEnumerable<TrainingLog> GetLatestLogs(int count)
         {
-            var result = this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog t) => t.LastEntryDate, true)
-                 .Take(count);
+            var result = this.logRepository.All
+                .OrderByDescending(t => t.LastEntryDate)
+                .Take(count)
+                .ToList();
 
             return result;
         }
 
         public IEnumerable<TrainingLog> GetTopLogs(int count)
         {
-            var result = this.logRepository.GetAll((TrainingLog l) => true, (TrainingLog t) => t.Votes.Count, true)
-                 .Take(count);
+            var result = this.logRepository.All
+               .OrderByDescending(t => t.Votes.Count)
+               .ThenByDescending(t => t.Entries.Count)
+               .Take(count)
+               .ToList();
 
             return result;
         }
