@@ -1,6 +1,7 @@
 ﻿using System.Security.Principal;
 using System.Web;
 using Logs.Providers.Contracts;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
 namespace Logs.Providers
@@ -29,6 +30,11 @@ namespace Logs.Providers
             {
                 return this.CurrentHttpContext.User.Identity;
             }
+        }
+
+        public TManager GetUserManager<TManager>()
+        {
+            return this.CurrentOwinContext.GetUserManager<TManager>();
         }
     }
 }

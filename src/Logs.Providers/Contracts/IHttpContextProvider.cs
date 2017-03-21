@@ -11,5 +11,7 @@ namespace Logs.Providers.Contracts
         IOwinContext CurrentOwinContext { get; }
 
         IIdentity CurrentIdentity { get; }
+
+        TManager GetUserManager<TManager>();
     }
 }
