@@ -14,15 +14,11 @@ namespace Logs.Authentication.Tests.AuthenticationProviderTests
     public class PropertiesTests
     {
         [Test]
-        public void TestSignInManager_ShouldCallHttpContextProviderCurrentOwinContext()
+        public void TestSignInManager_ShouldCallHttpContextProviderGetUserManager()
         {
             // Arrange
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-
-            var mockedOwinContext = new Mock<IOwinContext>();
-
             var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
-            mockedHttpContextProvider.Setup(p => p.CurrentOwinContext).Returns(mockedOwinContext.Object);
 
             var provider = new MockedAuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
 
@@ -30,19 +26,15 @@ namespace Logs.Authentication.Tests.AuthenticationProviderTests
             provider.GetSignInManager();
 
             // Assert
-            mockedHttpContextProvider.Verify(p => p.CurrentOwinContext, Times.Once);
+            mockedHttpContextProvider.Verify(p => p.GetUserManager<ApplicationSignInManager>(), Times.Once);
         }
 
         [Test]
-        public void TestUserManager_ShouldCallHttpContextProviderCurrentOwinContext()
+        public void TestUserManager_ShouldCallHttpContextProviderGetUserManager()
         {
             // Arrange
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-
-            var mockedOwinContext = new Mock<IOwinContext>();
-
             var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
-            mockedHttpContextProvider.Setup(p => p.CurrentOwinContext).Returns(mockedOwinContext.Object);
 
             var provider = new MockedAuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
 
@@ -50,7 +42,7 @@ namespace Logs.Authentication.Tests.AuthenticationProviderTests
             provider.GetUserManager();
 
             // Assert
-            mockedHttpContextProvider.Verify(p => p.CurrentOwinContext, Times.Once);
+            mockedHttpContextProvider.Verify(p => p.GetUserManager<ApplicationUserManager>(), Times.Once);
         }
     }
 }
