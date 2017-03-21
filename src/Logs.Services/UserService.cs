@@ -75,7 +75,7 @@ namespace Logs.Services
 
         public IEnumerable<User> GetUsers()
         {
-            return this.userRepository.GetAll()
+            return this.userRepository.All
                 .ToList();
         }
     }
