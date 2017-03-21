@@ -1,0 +1,11 @@
+﻿@model Logs.Web.Models.Profile.NewLogViewModel
+
+@{
+    ViewBag.Title = "NewLog";
+}
+
+<div class="jumbotron">
+    <h2>It appears you already have a log.</h2>
+    @Html.ActionLink("My Log", "Details", "Logs", new { id = Model.LogId }, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Create New", "Create", "Logs", null, new { @class = "btn btn-primary btn-lg" })
+</div>
