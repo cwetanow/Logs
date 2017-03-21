@@ -13,7 +13,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
         public void TestConstructor_PassDbContextNull_ShouldThrowArgumentNullException()
         {
             // Arrange, Act, Assert
-            Assert.Throws<ArgumentNullException>(() => new GenericRepository<FakeGenericRepositoryType>(null));
+            Assert.Throws<ArgumentNullException>(() => new EntityFrameworkRepository<FakeGenericRepositoryType>(null));
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
             var mockedDbContext = new Mock<ILogsDbContext>();
 
             // Act, Assert
-            Assert.DoesNotThrow(() => new GenericRepository<FakeGenericRepositoryType>(mockedDbContext.Object));
+            Assert.DoesNotThrow(() => new EntityFrameworkRepository<FakeGenericRepositoryType>(mockedDbContext.Object));
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
             var mockedDbContext = new Mock<ILogsDbContext>();
 
             // Act
-            var repository = new GenericRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
+            var repository = new EntityFrameworkRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
 
             // Assert
             Assert.IsNotNull(repository);

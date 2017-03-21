@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Logs.Data.Contracts;
 
 namespace Logs.Data
 {
-    public class GenericRepository<T> : IRepository<T>
+    public class EntityFrameworkRepository<T> : IRepository<T>
           where T : class
     {
         private readonly ILogsDbContext dbContext;
 
-        public GenericRepository(ILogsDbContext dbContext)
+        public EntityFrameworkRepository(ILogsDbContext dbContext)
         {
             if (dbContext == null)
             {
