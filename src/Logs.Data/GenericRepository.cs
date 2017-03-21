@@ -39,21 +39,6 @@ namespace Logs.Data
             this.dbContext.SetDeleted(entity);
         }
 
-        public IEnumerable<T> GetAll()
-        {
-            return this.dbContext
-                .DbSet<T>()
-                .ToList();
-        }
-
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression)
-        {
-            return this.dbContext
-                .DbSet<T>()
-                .Where(filterExpression)
-                .ToList();
-        }
-
         public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, bool isDescending)
         {
             var result = this.dbContext
