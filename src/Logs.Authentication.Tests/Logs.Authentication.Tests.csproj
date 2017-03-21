@@ -107,6 +107,7 @@
     <Compile Include="AuthenticationProviderTests\IsInRoleTests.cs" />
     <Compile Include="AuthenticationProviderTests\Mocks\MockedAuthenticationProvider.cs" />
     <Compile Include="AuthenticationProviderTests\PropertiesTests.cs" />
+    <Compile Include="AuthenticationProviderTests\RegisterAndLoginUserTests.cs" />
     <Compile Include="AuthenticationProviderTests\RemoveFromRoleTests.cs" />
     <Compile Include="AuthenticationProviderTests\SignOutTests.cs" />
     <Compile Include="AuthenticationProviderTests\UnbanUserTests.cs" />
