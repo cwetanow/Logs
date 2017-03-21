@@ -169,6 +169,7 @@
     <Compile Include="HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="HomeControllerTests\IndexTests.cs" />
     <Compile Include="Infrastructure\Interception\CachingInterceptorTests\ConstructorTests.cs" />
+    <Compile Include="Infrastructure\Interception\CachingInterceptorTests\InterceptTests.cs" />
     <Compile Include="LogsControllerTests\ConstructorTests.cs" />
     <Compile Include="LogsControllerTests\CreateLogTests.cs" />
     <Compile Include="LogsControllerTests\CreateTests.cs" />
