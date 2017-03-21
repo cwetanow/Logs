@@ -148,5 +148,18 @@ namespace Logs.Services
             return this.logRepository.All
                 .ToList();
         }
+
+        public void DeleteLog(int id)
+        {
+            var log = this.logRepository.GetById(id);
+
+            if (log != null)
+            {
+                log.User.Log = null;
+
+                this.logRepository.Delete(log);
+                this.unitOfWork.Commit();
+            }
+        }
     }
 }

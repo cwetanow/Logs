@@ -23,5 +23,7 @@ namespace Logs.Services.Contracts
         void EditLogDescription(int logId, string newDescription);
 
         IEnumerable<TrainingLog> GetAll();
+
+        void DeleteLog(int id);
     }
 }
