@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Logs.Data.Contracts;
 using Logs.Models;
 using Moq;
@@ -13,7 +12,7 @@ namespace Logs.Services.Tests.UserServiceTests
     {
         [TestCase("username")]
         [TestCase("myUsername")]
-        public void TestGetByUsername_ShouldCallRepositoryGetAllCorrectly(string username)
+        public void TestGetByUsername_ShouldCallRepositoryAllCorrectly(string username)
         {
             // Arrange
             var mockedRepository = new Mock<IRepository<User>>();
@@ -25,7 +24,7 @@ namespace Logs.Services.Tests.UserServiceTests
             service.GetUserByUsername(username);
 
             // Assert
-            mockedRepository.Verify(r => r.GetAll(It.IsAny<Expression<Func<User, bool>>>()), Times.Once());
+            mockedRepository.Verify(r => r.All, Times.Once());
         }
 
         [TestCase("username")]
@@ -33,11 +32,11 @@ namespace Logs.Services.Tests.UserServiceTests
         public void TestGetByUsername_ShouldReturnCorrectly(string username)
         {
             // Arrange
-            var user = new User();
+            var user = new User { UserName = username };
 
             var mockedRepository = new Mock<IRepository<User>>();
-            mockedRepository.Setup(r => r.GetAll(It.IsAny<Expression<Func<User, bool>>>()))
-                .Returns(new List<User> { user });
+            mockedRepository.Setup(r => r.All)
+                .Returns(new List<User> { user }.AsQueryable());
 
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
