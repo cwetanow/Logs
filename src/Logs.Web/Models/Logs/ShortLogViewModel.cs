@@ -7,7 +7,7 @@ namespace Logs.Web.Models.Logs
     {
         public ShortLogViewModel()
         {
-            
+
         }
 
         public ShortLogViewModel(TrainingLog log)
@@ -19,7 +19,7 @@ namespace Logs.Web.Models.Logs
             this.LastActivityUser = log.LastActivityUser;
             this.LogId = log.LogId;
             this.Votes = log.Votes.Count;
-            this.Username = log.User.UserName;
+            this.Username = log.Owner;
         }
 
         public string Name { get; set; }
