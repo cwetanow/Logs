@@ -39,16 +39,6 @@ namespace Logs.Data
             this.dbContext.SetDeleted(entity);
         }
 
-        public IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression)
-        {
-            return this.dbContext
-                .DbSet<T>()
-                .Where(filterExpression)
-                .OrderBy(sortExpression)
-                .Select(selectExpression)
-                .ToList();
-        }
-
         public T GetById(object id)
         {
             return this.dbContext.DbSet<T>().Find(id);

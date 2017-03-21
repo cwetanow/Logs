@@ -12,10 +12,6 @@ namespace Logs.Data.Contracts
 
         IQueryable<T> All { get; }
 
-        IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression,
-            Expression<Func<T, T1>> sortExpression,
-            Expression<Func<T, T2>> selectExpression);
-
         void Add(T entity);
 
         void Update(T entity);
