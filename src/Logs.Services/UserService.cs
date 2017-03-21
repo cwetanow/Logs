@@ -37,8 +37,8 @@ namespace Logs.Services
         public User GetUserByUsername(string username)
         {
             var user = this.userRepository
-                .GetAll(u => u.UserName.Equals(username))
-                .FirstOrDefault();
+                .All
+                .FirstOrDefault(u => u.UserName.Equals(username));
 
             return user;
         }
