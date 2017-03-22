@@ -35,6 +35,8 @@ namespace Logs.Data
                 .HasOptional(log => log.User)
                 .WithOptionalDependent();
 
+            Database.SetInitializer<LogsDbContext>(null);
+
             base.OnModelCreating(modelBuilder);
         }
 
