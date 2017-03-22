@@ -1,5 +1,6 @@
 ﻿using System.Security.Principal;
 using System.Web;
+using System.Web.Caching;
 using Logs.Providers.Contracts;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -35,6 +36,14 @@ namespace Logs.Providers
         public TManager GetUserManager<TManager>()
         {
             return this.CurrentOwinContext.GetUserManager<TManager>();
+        }
+
+        public Cache GetContextCache
+        {
+            get
+            {
+                return this.CurrentHttpContext.Cache;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Security.Principal;
 using System.Web;
+using System.Web.Caching;
 using Microsoft.Owin;
 
 namespace Logs.Providers.Contracts
@@ -13,5 +14,7 @@ namespace Logs.Providers.Contracts
         IIdentity CurrentIdentity { get; }
 
         TManager GetUserManager<TManager>();
+
+        Cache GetContextCache { get; }
     }
 }
