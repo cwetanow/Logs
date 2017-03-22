@@ -8,11 +8,9 @@ using PagedList;
 
 namespace Logs.Web.Areas.Administration.Controllers
 {
-    [Authorize(Roles = "administrator")]
+    [Authorize(Roles = Common.Constants.AdministratorRoleName)]
     public class UserAdministrationController : Controller
     {
-        private const string AdministratorRoleName = "administrator";
-
         private readonly IUserService userService;
         private readonly IAuthenticationProvider authenticationProvider;
 
@@ -39,7 +37,7 @@ namespace Logs.Web.Areas.Administration.Controllers
             var model = new List<UserViewModel>();
             foreach (var user in users)
             {
-                var isAdmin = this.authenticationProvider.IsInRole(user.Id, AdministratorRoleName);
+                var isAdmin = this.authenticationProvider.IsInRole(user.Id, Common.Constants.AdministratorRoleName);
                 var viewModel = new UserViewModel(user, isAdmin);
                 model.Add(viewModel);
             }
@@ -63,14 +61,14 @@ namespace Logs.Web.Areas.Administration.Controllers
 
         public ActionResult RemoveAdmin(string userId, int page)
         {
-            this.authenticationProvider.RemoveFromRole(userId, AdministratorRoleName);
+            this.authenticationProvider.RemoveFromRole(userId, Common.Constants.AdministratorRoleName);
 
             return this.RedirectToAction("Index", new { page = page });
         }
 
         public ActionResult AddAdmin(string userId, int page)
         {
-            this.authenticationProvider.AddToRole(userId, AdministratorRoleName);
+            this.authenticationProvider.AddToRole(userId, Common.Constants.AdministratorRoleName);
 
             return this.RedirectToAction("Index", new { page = page });
         }

@@ -2,7 +2,7 @@
 
 namespace Logs.Web.Areas.Administration.Controllers
 {
-    [Authorize(Roles = "administrator")]
+    [Authorize(Roles = Common.Constants.AdministratorRoleName)]
     public class AdministrationController : Controller
     {
         public ActionResult Index()
