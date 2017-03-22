@@ -10,6 +10,11 @@ namespace Logs.Providers
 
         public CachingProvider(IHttpContextProvider httpContextProvider)
         {
+            if (httpContextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(httpContextProvider));
+            }
+
             this.httpContextProvider = httpContextProvider;
         }
 
