@@ -196,6 +196,7 @@
     <Compile Include="ViewModelsTests\NavigationViewModelTests\ConstructorTests.cs" />
     <Compile Include="Controllers\VoteControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\VoteControllerTests\VoteTests.cs" />
+    <Compile Include="ViewModelsTests\UploadVIewModelTests\PropertiesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
