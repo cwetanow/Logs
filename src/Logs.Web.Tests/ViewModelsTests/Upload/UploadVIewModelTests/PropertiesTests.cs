@@ -1,9 +1,8 @@
 ﻿using CloudinaryDotNet;
 using Logs.Web.Models.Upload;
-using Moq;
 using NUnit.Framework;
 
-namespace Logs.Web.Tests.ViewModelsTests.UploadVIewModelTests
+namespace Logs.Web.Tests.ViewModelsTests.Upload.UploadVIewModelTests
 {
     [TestFixture]
     public class PropertiesTests

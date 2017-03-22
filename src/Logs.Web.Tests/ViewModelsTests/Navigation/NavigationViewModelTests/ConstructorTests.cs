@@ -1,7 +1,7 @@
 ﻿using Logs.Web.Models.Navigation;
 using NUnit.Framework;
 
-namespace Logs.Web.Tests.ViewModelsTests.NavigationViewModelTests
+namespace Logs.Web.Tests.ViewModelsTests.Navigation.NavigationViewModelTests
 {
     [TestFixture]
     public class ConstructorTests
