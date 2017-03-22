@@ -11,7 +11,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Upload.UploadVIewModelTests
         public void TestCloudinary_ShouldSetCorrectly(string cloud, string apiKey, string apiSecret)
         {
             // Arrange
-            var account = new Account(cloud, apiKey, apiSecret);
+            var account = new CloudinaryDotNet.Account(cloud, apiKey, apiSecret);
             var cloudinary = new Cloudinary(account);
 
             var model = new UploadViewModel();
