@@ -15,6 +15,6 @@ namespace Logs.Providers.Contracts
 
         TManager GetUserManager<TManager>();
 
-        Cache GetContextCache { get; }
+        Cache ContextCache { get; }
     }
 }

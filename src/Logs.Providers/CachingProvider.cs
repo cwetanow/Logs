@@ -20,16 +20,16 @@ namespace Logs.Providers
 
         public void AddItem(string key, object value, DateTime expirationDateTime)
         {
-            var context = this.httpContextProvider.CurrentHttpContext;
+            var cache = this.httpContextProvider.ContextCache;
 
-            context.Cache.Add(key, value, null, expirationDateTime, Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
+            cache.Add(key, value, null, expirationDateTime, Cache.NoSlidingExpiration, CacheItemPriority.Default, null);
         }
 
         public object GetItem(string key)
         {
-            var context = this.httpContextProvider.CurrentHttpContext;
+            var cache = this.httpContextProvider.ContextCache;
 
-            return context.Cache.Get(key);
+            return cache.Get(key);
         }
     }
 }

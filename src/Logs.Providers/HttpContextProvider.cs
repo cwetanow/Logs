@@ -38,7 +38,7 @@ namespace Logs.Providers
             return this.CurrentOwinContext.GetUserManager<TManager>();
         }
 
-        public Cache GetContextCache
+        public Cache ContextCache
         {
             get
             {
