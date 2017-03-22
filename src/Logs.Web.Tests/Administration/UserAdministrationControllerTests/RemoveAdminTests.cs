@@ -24,7 +24,7 @@ namespace Logs.Web.Tests.Administration.UserAdministrationControllerTests
             controller.RemoveAdmin(userId, page);
 
             // Assert
-            mockedAuthenticationProvider.Verify(p => p.RemoveFromRole(userId, It.IsAny<string>()), Times.Once);
+            mockedAuthenticationProvider.Verify(p => p.RemoveFromRole(userId, Common.Constants.AdministratorRoleName), Times.Once);
         }
 
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95", 1)]

@@ -47,7 +47,7 @@ namespace Logs.Web.Tests.Administration.UserAdministrationControllerTests
             controller.Index();
 
             // Assert
-            mockedAuthenticationProvider.Verify(p => p.IsInRole(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(users.Count));
+            mockedAuthenticationProvider.Verify(p => p.IsInRole(It.IsAny<string>(), Common.Constants.AdministratorRoleName), Times.Exactly(users.Count));
         }
 
         [TestCase(1, 1)]
