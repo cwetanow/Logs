@@ -84,7 +84,7 @@ textarea {
 }
 
 #picture-display {
-    text-align: center
+    text-align: center;
 }
 
 body {
@@ -92,7 +92,10 @@ body {
     color: #083045;
 }
 
-a,a:hover {
-    color: #083045;
+a:hover {
     text-decoration: none;
+}
+
+.navbar {
+    background-color: #083045;
 }
