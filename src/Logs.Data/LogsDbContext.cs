@@ -31,11 +31,11 @@ namespace Logs.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<LogsDbContext>(null);
+            
             modelBuilder.Entity<TrainingLog>()
                 .HasOptional(log => log.User)
                 .WithOptionalDependent();
-
-            Database.SetInitializer<LogsDbContext>(null);
 
             base.OnModelCreating(modelBuilder);
         }
