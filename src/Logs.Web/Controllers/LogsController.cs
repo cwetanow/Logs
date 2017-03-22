@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Common;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
@@ -39,7 +40,7 @@ namespace Logs.Web.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
-        public ActionResult Details(int id, int page = 1, int count = 3)
+        public ActionResult Details(int id, int page = 1, int count = Constants.LogEntriesPerPage)
         {
             var log = this.logService.GetTrainingLogById(id);
 
@@ -90,7 +91,7 @@ namespace Logs.Web.Controllers
         }
 
         [OutputCache(Duration = 60 * 5, VaryByParam = "page")]
-        public ActionResult PartialList(int count = 10, int page = 1)
+        public ActionResult PartialList(int count = Constants.LogsPerPage, int page = 1)
         {
             var logs = this.logService.GetAllSortedByDate()
                     .Select(l => this.factory.CreateShortLogViewModel(l));
@@ -107,7 +108,7 @@ namespace Logs.Web.Controllers
         }
 
         [OutputCache(Duration = 60 * 10)]
-        public ActionResult TopLogs(int count = 3)
+        public ActionResult TopLogs(int count = Constants.TopLogsCount)
         {
             var logs = this.logService.GetTopLogs(count);
             var model = logs
@@ -117,7 +118,7 @@ namespace Logs.Web.Controllers
         }
 
         [OutputCache(Duration = 60 * 10)]
-        public ActionResult Latest(int count = 3)
+        public ActionResult Latest(int count = Constants.TopLogsCount)
         {
             var logs = this.logService.GetLatestLogs(count);
             var model = logs
