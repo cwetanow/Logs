@@ -86,3 +86,13 @@ textarea {
 #picture-display {
     text-align: center
 }
+
+body {
+    background-color: #cccccc;
+    color: #083045;
+}
+
+a,a:hover {
+    color: #083045;
+    text-decoration: none;
+}
