@@ -21,7 +21,7 @@ namespace Logs.Providers
         {
             get
             {
-                return this.CurrentHttpContext.GetOwinContext();
+                return HttpContext.Current.GetOwinContext();
             }
         }
 
@@ -29,20 +29,20 @@ namespace Logs.Providers
         {
             get
             {
-                return this.CurrentHttpContext.User.Identity;
+                return HttpContext.Current.User.Identity;
             }
         }
 
         public TManager GetUserManager<TManager>()
         {
-            return this.CurrentOwinContext.GetUserManager<TManager>();
+            return HttpContext.Current.GetOwinContext().GetUserManager<TManager>();
         }
 
         public Cache ContextCache
         {
             get
             {
-                return this.CurrentHttpContext.Cache;
+                return HttpContext.Current.Cache;
             }
         }
     }
