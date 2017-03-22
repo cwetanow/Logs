@@ -103,5 +103,19 @@ namespace Logs.Models.Tests.TrainingLogTests
             // Assert
             Assert.AreEqual(username, log.LastActivityUser);
         }
+
+        [TestCase("name", "description", "username")]
+        public void TestConstructor_ShouldSetOwnerCorrectly(string name, string description, string username)
+        {
+            // Arrange
+            var dateCreated = new DateTime();
+            var user = new User { UserName = username };
+
+            // Act
+            var log = new TrainingLog(name, description, dateCreated, user);
+
+            // Assert
+            Assert.AreEqual(username, log.Owner);
+        }
     }
 }
