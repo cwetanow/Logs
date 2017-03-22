@@ -20,7 +20,7 @@
                 </li>
                 @Html.ActionLink(Model.Username,
                     "Details",
-                    new { controller = "Profile", name = Model.LastActivityUser },
+                    new { controller = "Profile", username = Model.LastActivityUser },
                     new { @class = "text-right pull-right" })
                 <li class="pull-right"><span><i class="glyphicon glyphicon-calendar"></i> @Model.LastActivity</span></li>
                 <li class="pull-right">Latest activity:</li>
