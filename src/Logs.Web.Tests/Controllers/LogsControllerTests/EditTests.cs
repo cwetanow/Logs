@@ -5,6 +5,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.LogsControllerTests
 {
@@ -56,11 +57,11 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
                 Name = newName
             };
 
-            // Act
-            var result = controller.Edit(model);
-
-            // Assert
-            Assert.AreEqual(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Edit(model))
+                .ShouldRenderPartialView("_LogDescription")
+                .WithModel<LogDetailsViewModel>(m => Assert.AreEqual(model, m));
         }
     }
 }

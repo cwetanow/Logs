@@ -10,6 +10,7 @@ using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
 using PagedList;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.LogsControllerTests
 {
@@ -187,7 +188,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
         }
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
-        public void TestDetails_ShouldSetViewModel(int id, string userId)
+        public void TestDetails_ShouldSetViewWithModel(int id, string userId)
         {
             // Arrange 
             var user = new User { Id = userId };
@@ -211,11 +212,14 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                 mockedFactory.Object);
 
-            // Act
-            var result = controller.Details(id) as ViewResult;
-
-            // Assert
-            Assert.AreEqual(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Details(id, 1, 1))
+                .ShouldRenderDefaultView()
+                .WithModel<LogDetailsViewModel>(m =>
+                {
+                    Assert.AreSame(model, m);
+                });
         }
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", 1, 5)]
@@ -338,7 +342,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
                mockedFactory.Object);
 
             // Act
-            var result = controller.Details(id, page) as ViewResult;
+            controller.Details(id, page);
 
             // Assert
             Assert.AreNotEqual(page, currentPage);

@@ -8,6 +8,8 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
+using PagedList;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.LogsControllerTests
 {
@@ -53,11 +55,11 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
 
             var expectedList = new List<ShortLogViewModel> { model };
 
-            // Act
-            var result = controller.PartialList() as PartialViewResult;
-
-            // Assert
-            CollectionAssert.AreEqual(expectedList, (IEnumerable<ShortLogViewModel>)result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.PartialList(1, 1))
+                .ShouldRenderPartialView("_PagedLogListPartial")
+                .WithModel<IPagedList<ShortLogViewModel>>(m => CollectionAssert.AreEqual(expectedList, m));
         }
     }
 }

@@ -7,6 +7,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.LogsControllerTests
 {
@@ -54,11 +55,11 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
                mockedFactory.Object);
             controller.ModelState.AddModelError("key", "value");
 
-            // Act
-            var result = controller.Create(model) as ViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Create(model))
+                .ShouldRenderDefaultView()
+                .WithModel<CreateLogViewModel>(m => Assert.AreSame(model, m));
         }
 
         [TestCase(1, "name", "description", "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
@@ -112,11 +113,10 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                  mockedFactory.Object);
 
-            // Act
-            var result = controller.Create(model) as RedirectToRouteResult;
-
-            // Assert
-            Assert.AreEqual(logId, result.RouteValues["id"]);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Create(model))
+                .ShouldRedirectTo((LogsController c) => c.Details(logId, It.IsAny<int>(), It.IsAny<int>()));
         }
     }
 }

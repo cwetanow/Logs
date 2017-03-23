@@ -8,6 +8,8 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
+using PagedList;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.LogsControllerTests
 {
@@ -75,11 +77,11 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                    mockedFactory.Object);
 
-            // Act
-            var result = controller.Latest(count) as PartialViewResult;
-
-            // Assert
-            CollectionAssert.AreEqual(model, (IEnumerable<ShortLogViewModel>)result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Latest(count))
+                .ShouldRenderPartialView("_LogListPartial")
+                .WithModel<IEnumerable<ShortLogViewModel>>(m => CollectionAssert.AreEqual(model, m));
         }
     }
 }

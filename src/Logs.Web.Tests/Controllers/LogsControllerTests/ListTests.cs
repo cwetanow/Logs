@@ -5,6 +5,7 @@ using Logs.Web.Controllers;
 using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.LogsControllerTests
 {
@@ -21,11 +22,11 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                mockedFactory.Object);
-            // Act
-            var result = controller.List();
 
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.List())
+                .ShouldRenderDefaultView();
         }
     }
 }
