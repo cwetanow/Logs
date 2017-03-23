@@ -60,7 +60,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var result = controller.Edit(model);
 
             // Assert
-            Assert.AreEqual(newDescription, result.Model);
+            Assert.AreEqual(model, result.Model);
         }
     }
 }
