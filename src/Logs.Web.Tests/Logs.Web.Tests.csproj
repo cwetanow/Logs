@@ -172,8 +172,6 @@
     <Compile Include="Controllers\HomeControllerTests\AboutTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
-    <Compile Include="Infrastructure\Interception\CachingInterceptorTests\ConstructorTests.cs" />
-    <Compile Include="Infrastructure\Interception\CachingInterceptorTests\InterceptTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\PostCreateTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\CreateTests.cs" />

@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.Authentication.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.Common", "Logs.Common\Logs.Common.csproj", "{90DD5B30-CFFF-45AC-9DC8-C969FD735AB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.Providers.Tests", "Logs.Providers.Tests\Logs.Providers.Tests.csproj", "{CC83BFD3-122B-4557-9F3E-41D49962D41E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,10 +87,6 @@ Global
 		{90DD5B30-CFFF-45AC-9DC8-C969FD735AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90DD5B30-CFFF-45AC-9DC8-C969FD735AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90DD5B30-CFFF-45AC-9DC8-C969FD735AB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC83BFD3-122B-4557-9F3E-41D49962D41E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC83BFD3-122B-4557-9F3E-41D49962D41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC83BFD3-122B-4557-9F3E-41D49962D41E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC83BFD3-122B-4557-9F3E-41D49962D41E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
