@@ -4,6 +4,7 @@ using Logs.Web.Controllers;
 using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.HomeControllerTests
 {
@@ -19,11 +20,10 @@ namespace Logs.Web.Tests.Controllers.HomeControllerTests
 
             var controller = new HomeController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.About();
-
-            // Assert
-            Assert.IsNotNull((ViewResult)result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.About())
+                .ShouldRenderDefaultView();
         }
     }
 }

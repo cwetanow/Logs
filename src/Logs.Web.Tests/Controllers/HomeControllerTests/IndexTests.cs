@@ -5,6 +5,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Home;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.HomeControllerTests
 {
@@ -49,7 +50,7 @@ namespace Logs.Web.Tests.Controllers.HomeControllerTests
 
         [TestCase(true)]
         [TestCase(false)]
-        public void TestIndex_ShouldReturnView(bool isAuthenticated)
+        public void TestIndex_ShouldReturnViewWithModel(bool isAuthenticated)
         {
             // Arrange
             var model = new HomeViewModel();
@@ -62,33 +63,11 @@ namespace Logs.Web.Tests.Controllers.HomeControllerTests
 
             var controller = new HomeController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Index();
-
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
-        }
-
-        [TestCase(true)]
-        [TestCase(false)]
-        public void TestIndex_ShouldSetViewModelCorrectly(bool isAuthenticated)
-        {
-            // Arrange
-            var model = new HomeViewModel();
-
-            var mockedFactory = new Mock<IViewModelFactory>();
-            mockedFactory.Setup(f => f.CreateHomeViewModel(It.IsAny<bool>())).Returns(model);
-
-            var mockedProvider = new Mock<IAuthenticationProvider>();
-            mockedProvider.Setup(p => p.IsAuthenticated).Returns(isAuthenticated);
-
-            var controller = new HomeController(mockedProvider.Object, mockedFactory.Object);
-
-            // Act
-            var result = controller.Index();
-
-            // Assert
-            Assert.AreSame(model, ((ViewResult)result).Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Index())
+                .ShouldRenderDefaultView()
+                .WithModel<HomeViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }
