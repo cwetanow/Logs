@@ -6,7 +6,6 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
-using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.LogsControllerTests
 {
@@ -32,7 +31,25 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
         }
 
         [Test]
-        public void TestCreate_ShouldReturnCorrectViewWithModel()
+        public void TestCreate_ShouldReturnViewResult()
+        {
+            // Arrange
+            var mockedLogService = new Mock<ILogService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object);
+
+            // Act
+            var result = controller.Create();
+
+            // Assert
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+        [Test]
+        public void TestCreate_FactoryReturnsModel_ShouldSetViewModelCorrectly()
         {
             // Arrange
             var mockedLogService = new Mock<ILogService>();
@@ -46,13 +63,11 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                mockedFactory.Object);
 
-            controller
-                .WithCallTo(c => c.Create())
-                .ShouldRenderDefaultView()
-                .WithModel<CreateLogViewModel>(m =>
-                {
-                    Assert.AreSame(model, m);
-                });
+            // Act
+            var result = controller.Create() as ViewResult;
+
+            // Assert
+            Assert.AreEqual(model, result.Model);
         }
     }
 }
