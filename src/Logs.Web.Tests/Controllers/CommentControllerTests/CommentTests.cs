@@ -5,6 +5,7 @@ using Logs.Web.Controllers;
 using Logs.Web.Models.Entries;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.CommentControllerTests
 {
@@ -53,31 +54,11 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
             mockedService.Verify(s => s.AddCommentToLog(content, logId, userId), Times.Once);
         }
 
-        [Test]
-        public void TestComment_ShouldReturnRedirectToRouteResult()
-        {
-            // Arrange
-            var model = new NewCommentViewModel();
-
-            var mockedService = new Mock<ICommentService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-
-            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
-
-            // Act
-            var result = controller.Comment(model);
-
-            // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result);
-        }
-
         [TestCase(1)]
         [TestCase(2)]
         public void TestComment_ShouldSetRouteParamsId(int logId)
         {
             // Arrange
-            var routeKey = "id";
-
             var model = new NewCommentViewModel { LogId = logId };
 
             var mockedService = new Mock<ICommentService>();
@@ -85,11 +66,10 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
 
             var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
 
-            // Act
-            var result = (RedirectToRouteResult)controller.Comment(model);
-
-            // Assert
-            Assert.AreEqual(logId, result.RouteValues[routeKey]);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Comment(model))
+                .ShouldRedirectTo((LogsController c) => c.Details(logId, It.IsAny<int>(), It.IsAny<int>()));
         }
     }
 }

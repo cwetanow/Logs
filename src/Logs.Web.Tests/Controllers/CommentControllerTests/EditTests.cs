@@ -5,6 +5,7 @@ using Logs.Web.Controllers;
 using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.CommentControllerTests
 {
@@ -30,7 +31,7 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
         }
 
         [TestCase(1, "content")]
-        public void TestEdit_ShouldReturnPartialViewResult(int commentId, string content)
+        public void TestEdit_ShouldReturnPartialViewWithModel(int commentId, string content)
         {
             // Arrange
             var model = new CommentViewModel { CommentId = commentId, Content = content };
@@ -40,29 +41,11 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
 
             var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
 
-            // Act
-            var result = controller.Edit(model);
-
-            // Assert
-            Assert.IsInstanceOf<PartialViewResult>(result);
-        }
-
-        [TestCase(1, "content")]
-        public void TestEdit_ShouldSetViewModelCorrectly(int commentId, string content)
-        {
-            // Arrange
-            var model = new CommentViewModel { CommentId = commentId, Content = content };
-
-            var mockedService = new Mock<ICommentService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-
-            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
-
-            // Act
-            var result = controller.Edit(model) as PartialViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Edit(model))
+                .ShouldRenderPartialView("_CommentContentPartial")
+                .WithModel<CommentViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }
