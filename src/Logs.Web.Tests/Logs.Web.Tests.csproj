@@ -193,6 +193,8 @@
     <Compile Include="Controllers\UploadControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\UploadControllerTests\PostIndexTests.cs" />
     <Compile Include="ViewModelsTests\Account\RegisterViewModelTests\PropertiesTests.cs" />
+    <Compile Include="ViewModelsTests\Administration\UserViewModelTests\ConstructorTests.cs" />
+    <Compile Include="ViewModelsTests\Administration\UserViewModelTests\PropertiesTests.cs" />
     <Compile Include="ViewModelsTests\Home\HomeViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Logs\ShortLogViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Navigation\NavigationViewModelTests\ConstructorTests.cs" />
