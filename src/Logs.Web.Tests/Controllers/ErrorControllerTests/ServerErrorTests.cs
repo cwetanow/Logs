@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Logs.Web.Controllers;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.ErrorControllerTests
 {
@@ -13,11 +14,10 @@ namespace Logs.Web.Tests.Controllers.ErrorControllerTests
             // Arrange
             var controller = new ErrorController();
 
-            // Act
-            var result = controller.ServerError();
-
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.ServerError())
+                .ShouldRenderDefaultView();
         }
     }
 }

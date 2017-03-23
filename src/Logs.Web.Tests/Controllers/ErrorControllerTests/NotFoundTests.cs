@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Logs.Web.Controllers;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.ErrorControllerTests
 {
@@ -8,16 +9,15 @@ namespace Logs.Web.Tests.Controllers.ErrorControllerTests
     public class NotFoundTests
     {
         [Test]
-        public void TestNotFound_ShouldReturnViewResult()
+        public void TestNotFound_ShouldReturnView()
         {
             // Arrange
             var controller = new ErrorController();
 
-            // Act
-            var result = controller.NotFound();
-
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.NotFound())
+                .ShouldRenderDefaultView();
         }
     }
 }
