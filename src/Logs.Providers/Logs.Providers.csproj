@@ -77,6 +77,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachingProvider.cs" />
+    <Compile Include="Contracts\ICachingProvider.cs" />
     <Compile Include="Contracts\IHttpContextProvider.cs" />
     <Compile Include="DateTimeProvider.cs" />
     <Compile Include="Contracts\IDateTimeProvider.cs" />
