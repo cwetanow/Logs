@@ -5,6 +5,7 @@ using Logs.Web.Controllers;
 using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 {
@@ -70,65 +71,10 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.MyLog();
-
-            // Assert
-            Assert.AreEqual(expectedRoute, result.RouteValues["action"]);
-        }
-
-        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
-        [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestMyLog_UserHasLog_ShouldReturnRedirectToActionLogsControllerDetailsCorrectly(string userId)
-        {
-            // Arrange
-            var expectedAction = "Details";
-
-            var mockedProvider = new Mock<IAuthenticationProvider>();
-            mockedProvider.Setup(p => p.CurrentUserId).Returns(userId);
-
-            var log = new TrainingLog();
-            var user = new User { Log = log };
-
-            var mockedService = new Mock<IUserService>();
-            mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(user);
-
-            var mockedFactory = new Mock<IViewModelFactory>();
-
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
-
-            // Act
-            var result = controller.MyLog();
-
-            // Assert
-            Assert.AreEqual(expectedAction, result.RouteValues["action"]);
-        }
-
-        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
-        [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestMyLog_UserHasLog_ShouldReturnRedirectToActionLogsController(string userId)
-        {
-            // Arrange
-            var expectedController = "Logs";
-
-            var mockedProvider = new Mock<IAuthenticationProvider>();
-            mockedProvider.Setup(p => p.CurrentUserId).Returns(userId);
-
-            var log = new TrainingLog();
-            var user = new User { Log = log };
-
-            var mockedService = new Mock<IUserService>();
-            mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(user);
-
-            var mockedFactory = new Mock<IViewModelFactory>();
-
-            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
-
-            // Act
-            var result = controller.MyLog();
-
-            // Assert
-            Assert.AreEqual(expectedController, result.RouteValues["controller"]);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.MyLog())
+                .ShouldRedirectTo(c => c.NoLog());
         }
 
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
@@ -149,11 +95,10 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.MyLog();
-
-            // Assert
-            Assert.AreEqual(log.LogId, result.RouteValues["id"]);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.MyLog())
+                .ShouldRedirectTo((LogsController c) => c.Details(log.LogId, It.IsAny<int>(), It.IsAny<int>()));
         }
     }
 }

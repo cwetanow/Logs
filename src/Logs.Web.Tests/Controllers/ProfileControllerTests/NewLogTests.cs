@@ -7,6 +7,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Profile;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 {
@@ -74,11 +75,10 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.NewLog();
-
-            // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.NewLog())
+                .ShouldRedirectTo((LogsController c) => c.Create());
         }
 
         [TestCase(1)]
@@ -124,11 +124,11 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.NewLog() as ViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.NewLog())
+                .ShouldRenderDefaultView()
+                .WithModel<NewLogViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }

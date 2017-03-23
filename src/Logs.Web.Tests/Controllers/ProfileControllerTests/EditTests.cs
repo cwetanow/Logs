@@ -6,6 +6,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Profile;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 {
@@ -62,19 +63,22 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
-            var model = new UserProfileViewModel { Id = userId,
+            var model = new UserProfileViewModel
+            {
+                Id = userId,
                 Description = description,
                 Age = age,
                 Weight = weight,
                 Height = height,
                 BodyFatPercent = bodyFat,
-                GenderType = genderType };
+                GenderType = genderType
+            };
 
-            // Act
-            var result = controller.Edit(model);
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Edit(model))
+                .ShouldRenderPartialView("_UserStatsPartial")
+                .WithModel<UserProfileViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }

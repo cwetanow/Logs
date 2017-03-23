@@ -7,6 +7,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Upload;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.UploadControllerTests
 {
@@ -106,11 +107,11 @@ namespace Logs.Web.Tests.Controllers.UploadControllerTests
 
             var model = new UploadViewModel { ImageUrl = pictureUrl };
 
-            // Act
-            var result = controller.Index(model) as ViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Index(model))
+                .ShouldRenderDefaultView()
+                .WithModel<UploadViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }

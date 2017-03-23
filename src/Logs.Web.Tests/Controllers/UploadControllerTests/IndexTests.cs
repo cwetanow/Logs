@@ -8,6 +8,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Upload;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.UploadControllerTests
 {
@@ -161,11 +162,11 @@ namespace Logs.Web.Tests.Controllers.UploadControllerTests
                 mockedCloudinaryFactory.Object,
                 mockedViewModelFactory.Object);
 
-            // Act
-            var result = controller.Index() as ViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Index())
+                .ShouldRenderDefaultView()
+                .WithModel<UploadViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }

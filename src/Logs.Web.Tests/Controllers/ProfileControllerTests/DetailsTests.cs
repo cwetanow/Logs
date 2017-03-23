@@ -7,6 +7,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Profile;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 {
@@ -80,11 +81,14 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Details(username) as ViewResult;
-
-            // Assert
-            Assert.IsFalse(((UserProfileViewModel)result.Model).CanEdit);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Details(username))
+                .ShouldRenderDefaultView()
+                .WithModel<UserProfileViewModel>(m =>
+                {
+                    Assert.IsFalse(m.CanEdit);
+                });
         }
 
         [TestCase("username", "id")]
@@ -109,11 +113,14 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 
             var expected = user.Id.Equals(userId);
 
-            // Act
-            var result = controller.Details(username) as ViewResult;
-
-            // Assert
-            Assert.AreEqual(expected, ((UserProfileViewModel)result.Model).CanEdit);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Details(username))
+                .ShouldRenderDefaultView()
+                .WithModel<UserProfileViewModel>(m =>
+                {
+                    Assert.AreEqual(expected, m.CanEdit);
+                });
         }
 
         [TestCase("username")]
@@ -136,7 +143,7 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
             // Act
-            var result = controller.Details(username) as ViewResult;
+            controller.Details(username);
 
             // Assert
             mockedFactory.Verify(f => f.CreateUserProfileViewModel(user, It.IsAny<bool>()), Times.Once);

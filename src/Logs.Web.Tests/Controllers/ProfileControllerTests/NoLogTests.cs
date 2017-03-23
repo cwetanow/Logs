@@ -5,6 +5,7 @@ using Logs.Web.Controllers;
 using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 {
@@ -21,11 +22,10 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
 
             var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.NoLog();
-
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.NoLog())
+                .ShouldRenderDefaultView();
         }
     }
 }

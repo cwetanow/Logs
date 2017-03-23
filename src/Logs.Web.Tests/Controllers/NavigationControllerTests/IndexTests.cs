@@ -5,6 +5,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Navigation;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.NavigationControllerTests
 {
@@ -134,11 +135,11 @@ namespace Logs.Web.Tests.Controllers.NavigationControllerTests
 
             var controller = new NavigationController(mockedAuthProvider.Object, mockedViewModelFactory.Object);
 
-            // Act
-            var result = controller.Index() as PartialViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Index())
+                .ShouldRenderPartialView("Navigation")
+                .WithModel<NavigationViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }
