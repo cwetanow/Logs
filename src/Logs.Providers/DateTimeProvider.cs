@@ -7,7 +7,7 @@ namespace Logs.Providers
     {
         public DateTime GetCurrentTime()
         {
-            return DateTime.Now;
+            return DateTime.UtcNow;
         }
 
         public DateTime GetTimeFromCurrentTime(int hours, int minutes, int seconds)
