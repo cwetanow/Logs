@@ -40,7 +40,6 @@ namespace Logs.Web.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
-        [OutputCache(Duration = 60 * 5, VaryByParam = "page;id")]
         public ActionResult Details(int id, int page = 1, int count = Constants.LogEntriesPerPage)
         {
             var log = this.logService.GetTrainingLogById(id);
