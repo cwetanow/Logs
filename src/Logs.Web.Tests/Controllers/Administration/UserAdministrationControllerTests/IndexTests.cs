@@ -8,6 +8,7 @@ using Logs.Web.Areas.Administration.Models;
 using Moq;
 using NUnit.Framework;
 using PagedList;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.Administration.UserAdministrationControllerTests
 {
@@ -67,11 +68,11 @@ namespace Logs.Web.Tests.Controllers.Administration.UserAdministrationController
 
             var controller = new UserAdministrationController(mockedUserService.Object, mockedAuthenticationProvider.Object);
 
-            // Act
-            var result = controller.Index(page, count) as ViewResult;
-
-            // Assert
-            Assert.AreEqual(page, ((IPagedList<UserViewModel>)result.Model).PageNumber);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Index(page, count))
+                .ShouldRenderDefaultView()
+                .WithModel<IPagedList<UserViewModel>>(m => Assert.AreEqual(page, m.PageNumber));
         }
     }
 }

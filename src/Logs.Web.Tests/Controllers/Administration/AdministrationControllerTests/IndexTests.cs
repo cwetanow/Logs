@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Logs.Web.Areas.Administration.Controllers;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.Administration.AdministrationControllerTests
 {
@@ -13,11 +14,10 @@ namespace Logs.Web.Tests.Controllers.Administration.AdministrationControllerTest
             // Arrange
             var controller = new AdministrationController();
 
-            // Act
-            var result = controller.Index();
-
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Index())
+                .ShouldRenderDefaultView();
         }
     }
 }

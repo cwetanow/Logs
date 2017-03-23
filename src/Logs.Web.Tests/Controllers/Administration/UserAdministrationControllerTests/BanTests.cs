@@ -4,6 +4,7 @@ using Logs.Services.Contracts;
 using Logs.Web.Areas.Administration.Controllers;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.Administration.UserAdministrationControllerTests
 {
@@ -36,12 +37,11 @@ namespace Logs.Web.Tests.Controllers.Administration.UserAdministrationController
             var mockedUserService = new Mock<IUserService>();
 
             var controller = new UserAdministrationController(mockedUserService.Object, mockedAuthenticationProvider.Object);
-
-            // Act
-            var result = controller.Ban(userId, page) as RedirectToRouteResult;
-
-            // Assert
-            Assert.AreEqual(page, result.RouteValues[nameof(page)]);
+            
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Ban(userId, page))
+                .ShouldRedirectTo(c => c.Index(page, It.IsAny<int>()));
         }
     }
 }

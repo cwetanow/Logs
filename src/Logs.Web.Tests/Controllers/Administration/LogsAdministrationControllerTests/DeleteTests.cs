@@ -4,6 +4,7 @@ using Logs.Web.Areas.Administration.Controllers;
 using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.Administration.LogsAdministrationControllerTests
 {
@@ -39,11 +40,10 @@ namespace Logs.Web.Tests.Controllers.Administration.LogsAdministrationController
 
             var controller = new LogsAdministrationController(mockedService.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Delete(logId);
-
-            // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Delete(logId))
+                .ShouldRedirectTo(c => c.Index(It.IsAny<int>(), It.IsAny<int>()));
         }
     }
 }

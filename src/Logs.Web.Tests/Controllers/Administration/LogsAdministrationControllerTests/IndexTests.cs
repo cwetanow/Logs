@@ -8,6 +8,7 @@ using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
 using PagedList;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.Administration.LogsAdministrationControllerTests
 {
@@ -50,11 +51,11 @@ namespace Logs.Web.Tests.Controllers.Administration.LogsAdministrationController
             var expectedList = new List<ShortLogViewModel> { model }
             .ToPagedList(page, count);
 
-            // Act
-            var result = controller.Index(page, count) as ViewResult;
-
-            // Assert
-            CollectionAssert.AreEqual(expectedList, (IPagedList<ShortLogViewModel>)result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Index(page, count))
+                .ShouldRenderDefaultView()
+                .WithModel<IPagedList<ShortLogViewModel>>(m => CollectionAssert.AreEqual(expectedList, m));
         }
     }
 }
