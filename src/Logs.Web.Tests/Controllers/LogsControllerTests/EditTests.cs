@@ -11,9 +11,9 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
     [TestFixture]
     public class EditTests
     {
-        [TestCase(1, "description")]
-        [TestCase(1, "new description")]
-        public void TestEdit_ShouldCallServiceEditLogDescriptionCorrectly(int logId, string newDescription)
+        [TestCase(1, "description", "name")]
+        [TestCase(1, "new description", "name")]
+        public void TestEdit_ShouldCallServiceEditLogDescriptionCorrectly(int logId, string newDescription, string newName)
         {
             // Arrange 
             var mockedLogService = new Mock<ILogService>();
@@ -26,19 +26,20 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var model = new LogDetailsViewModel
             {
                 LogId = logId,
-                Description = newDescription
+                Description = newDescription,
+                Name = newName
             };
 
             // Act
             controller.Edit(model);
 
             // Assert
-            mockedLogService.Verify(s => s.EditLogDescription(logId, newDescription), Times.Once);
+            mockedLogService.Verify(s => s.EditLog(logId, newDescription, newName), Times.Once);
         }
 
-        [TestCase(1, "description")]
-        [TestCase(1, "new description")]
-        public void TestEdit_ShouldSetViewModelCorrectly(int logId, string newDescription)
+        [TestCase(1, "description", "name")]
+        [TestCase(1, "new description", "name")]
+        public void TestEdit_ShouldSetViewModelCorrectly(int logId, string newDescription, string newName)
         {
             // Arrange 
             var mockedLogService = new Mock<ILogService>();
@@ -51,7 +52,8 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var model = new LogDetailsViewModel
             {
                 LogId = logId,
-                Description = newDescription
+                Description = newDescription,
+                Name = newName
             };
 
             // Act
