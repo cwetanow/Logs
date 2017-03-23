@@ -22,11 +22,6 @@ namespace Logs.Web.Models.Logs
             }
         }
 
-        public LogEntryViewModel()
-        {
-
-        }
-
         public bool CanEdit { get; set; }
 
         public int EntryId { get; set; }
