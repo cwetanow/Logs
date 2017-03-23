@@ -59,6 +59,8 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
         public void TestMyLog_UserLogIsNull_ShouldReturnRedirectToActionNoLog(string userId)
         {
             // Arrange
+            var expectedRoute = "NoLog";
+
             var mockedProvider = new Mock<IAuthenticationProvider>();
             mockedProvider.Setup(p => p.CurrentUserId).Returns(userId);
 
