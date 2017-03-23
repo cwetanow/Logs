@@ -80,7 +80,7 @@
     <Compile Include="LogsServiceTests\ConstructorTests.cs" />
     <Compile Include="LogsServiceTests\CreateTrainingLogTests.cs" />
     <Compile Include="LogsServiceTests\DeleteLogTests.cs" />
-    <Compile Include="LogsServiceTests\EditLogDescriptionTests.cs" />
+    <Compile Include="LogsServiceTests\EditLogTests.cs" />
     <Compile Include="LogsServiceTests\GetAllSortedByDateTests.cs" />
     <Compile Include="LogsServiceTests\GetAllTests.cs" />
     <Compile Include="LogsServiceTests\GetLatestLogsTests.cs" />
