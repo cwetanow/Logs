@@ -171,7 +171,7 @@
     <Compile Include="Infrastructure\Interception\CachingInterceptorTests\ConstructorTests.cs" />
     <Compile Include="Infrastructure\Interception\CachingInterceptorTests\InterceptTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\ConstructorTests.cs" />
-    <Compile Include="Controllers\LogsControllerTests\CreateLogTests.cs" />
+    <Compile Include="Controllers\LogsControllerTests\PostCreateTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\CreateTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\DetailsTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\EditTests.cs" />

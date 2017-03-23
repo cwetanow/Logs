@@ -10,6 +10,7 @@ namespace Logs.Web.Models.Logs
 
         [Required]
         [Display(Name = "Description")]
+        [MinLength(10)]
         public string Description { get; set; }
     }
 }

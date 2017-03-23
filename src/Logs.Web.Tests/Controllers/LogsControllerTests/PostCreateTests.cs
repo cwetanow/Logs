@@ -1,4 +1,5 @@
-﻿using Logs.Authentication.Contracts;
+﻿using System.Web.Mvc;
+using Logs.Authentication.Contracts;
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
@@ -10,11 +11,11 @@ using NUnit.Framework;
 namespace Logs.Web.Tests.Controllers.LogsControllerTests
 {
     [TestFixture]
-    public class CreateLogTests
+    public class PostCreateTests
     {
         [TestCase(1, "name", "description", "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         [TestCase(423, "lala name", "my description", "99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestCreateLog_ShouldCallAuthenticationProviderCurrentUserId(int logId, string name,
+        public void TestCreate_ShouldCallAuthenticationProviderCurrentUserId(int logId, string name,
             string description, string userId)
         {
             // Arrange
@@ -33,15 +34,36 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
                 mockedFactory.Object);
 
             // Act
-            controller.CreateLog(model);
+            controller.Create(model);
 
             // Assert
             mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Once);
         }
 
+        [Test]
+        public void TestCreate_ModelStateIsNotValid_ShouldReturnViewWithModel()
+        {
+            // Arrange
+            var mockedLogService = new Mock<ILogService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var model = new CreateLogViewModel();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+               mockedFactory.Object);
+            controller.ModelState.AddModelError("key", "value");
+
+            // Act
+            var result = controller.Create(model) as ViewResult;
+
+            // Assert
+            Assert.AreSame(model, result.Model);
+        }
+
         [TestCase(1, "name", "description", "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         [TestCase(423, "lala name", "my description", "99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestCreateLog_ShouldCallLogServiceCreateTrainingLog(int logId, string name,
+        public void TestCreate_ShouldCallLogServiceCreateTrainingLog(int logId, string name,
             string description, string userId)
         {
             // Arrange
@@ -62,7 +84,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
                mockedFactory.Object);
 
             // Act
-            controller.CreateLog(model);
+            controller.Create(model);
 
             // Assert
             mockedLogService.Verify(p => p.CreateTrainingLog(name, description, userId), Times.Once);
@@ -70,7 +92,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
 
         [TestCase(1, "name", "description", "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         [TestCase(423, "lala name", "my description", "99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestCreateLog_ShouldSetDetailsViewIdCorrectly(int logId, string name,
+        public void TestCreate_ShouldSetDetailsViewIdCorrectly(int logId, string name,
             string description, string userId)
         {
             // Arrange
@@ -91,7 +113,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
                  mockedFactory.Object);
 
             // Act
-            var result = controller.CreateLog(model);
+            var result = controller.Create(model) as RedirectToRouteResult;
 
             // Assert
             Assert.AreEqual(logId, result.RouteValues["id"]);

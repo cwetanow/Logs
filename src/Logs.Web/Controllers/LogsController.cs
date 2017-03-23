@@ -81,8 +81,13 @@ namespace Logs.Web.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public RedirectToRouteResult CreateLog(CreateLogViewModel model)
+        public ActionResult Create(CreateLogViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             var userId = this.authenticationProvider.CurrentUserId;
 
             var log = this.logService.CreateTrainingLog(model.Name, model.Description, userId);
