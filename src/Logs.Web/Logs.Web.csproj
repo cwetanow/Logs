@@ -268,7 +268,6 @@
     </Compile>
     <Compile Include="Infrastructure\Factories\ICloudinaryFactory.cs" />
     <Compile Include="Infrastructure\Factories\IViewModelFactory.cs" />
-    <Compile Include="Infrastructure\Interception\CachingInterceptor.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\Entries\NewCommentViewModel.cs" />
