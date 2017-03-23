@@ -4,6 +4,7 @@ using Logs.Web.Controllers;
 using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.EntriesControllerTests
 {
@@ -39,11 +40,11 @@ namespace Logs.Web.Tests.Controllers.EntriesControllerTests
 
             var model = new LogEntryViewModel { EntryId = entryId, Content = content };
 
-            // Act
-            var result = controller.EditEntry(model);
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.EditEntry(model))
+                .ShouldRenderPartialView("_EntryContentPartial")
+                .WithModel<LogEntryViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
 
         [TestCase(1)]
         [TestCase(2)]
-        public void TestComment_ShouldSetRouteParamsId(int logId)
+        public void TestComment_ShouldRedirectCorrectly(int logId)
         {
             // Arrange
             var model = new NewCommentViewModel { LogId = logId };

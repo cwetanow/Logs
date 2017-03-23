@@ -5,6 +5,7 @@ using Logs.Web.Controllers;
 using Logs.Web.Models.Entries;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.EntriesControllerTests
 {
@@ -53,31 +54,11 @@ namespace Logs.Web.Tests.Controllers.EntriesControllerTests
             mockedService.Verify(s => s.AddEntryToLog(content, logId, userId), Times.Once);
         }
 
-        [Test]
-        public void TestNewEntry_ShouldReturnRedirectToRouteResult()
-        {
-            // Arrange
-            var model = new NewEntryViewModel();
-
-            var mockedService = new Mock<IEntryService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-
-            var controller = new EntriesController(mockedService.Object, mockedAuthenticationProvider.Object);
-
-            // Act
-            var result = controller.NewEntry(model);
-
-            // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result);
-        }
-
         [TestCase(1)]
         [TestCase(2)]
-        public void TestNewEntry_ShouldSetRouteParamsId(int logId)
+        public void TestNewEntry_ShouldRedirectCorrectly(int logId)
         {
             // Arrange
-            var routeKey = "id";
-
             var model = new NewEntryViewModel { LogId = logId };
 
             var mockedService = new Mock<IEntryService>();
@@ -85,11 +66,10 @@ namespace Logs.Web.Tests.Controllers.EntriesControllerTests
 
             var controller = new EntriesController(mockedService.Object, mockedAuthenticationProvider.Object);
 
-            // Act
-            var result = (RedirectToRouteResult)controller.NewEntry(model);
-
-            // Assert
-            Assert.AreEqual(logId, result.RouteValues[routeKey]);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.NewEntry(model))
+                .ShouldRedirectTo((LogsController c) => c.Details(logId, It.IsAny<int>(), It.IsAny<int>()));
         }
     }
 }
