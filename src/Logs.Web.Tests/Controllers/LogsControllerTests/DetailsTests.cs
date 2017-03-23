@@ -218,11 +218,11 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             Assert.AreEqual(model, result.Model);
         }
 
-        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
-        public void TestDetails_ShouldSetCorrectEntriesToModel(int id, string userId)
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", 1, 5)]
+        public void TestDetails_ShouldSetCorrectEntriesToModel(int id, string userId, int page, int count)
         {
             // Arrange 
-            var entry = new LogEntry();
+            var entry = new LogEntry { Log = new TrainingLog() };
             var entries = new List<LogEntry> { entry };
 
             var user = new User { Id = userId };
@@ -237,8 +237,6 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var viewModelEntries = new List<LogEntryViewModel> { entryViewModel };
 
             var mockedFactory = new Mock<IViewModelFactory>();
-            mockedFactory.Setup(f => f.CreateLogEntryViewModel(It.IsAny<LogEntry>(), It.IsAny<string>()))
-                .Returns(entryViewModel);
             mockedFactory.Setup(f => f.CreateLogDetailsViewModel(It.IsAny<TrainingLog>(),
                     It.IsAny<bool>(),
                     It.IsAny<bool>(),
@@ -248,13 +246,13 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
                         bool isAuthenticated,
                         bool isOwner,
                         bool canVote,
-                        IPagedList<LogEntryViewModel> entriesPagedList) => new LogDetailsViewModel { Entries = entriesPagedList });
+                        IPagedList<LogEntryViewModel> entriesPagedList) => new LogDetailsViewModel { Entries = viewModelEntries.ToPagedList(page, count) });
 
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                 mockedFactory.Object);
 
             // Act
-            var result = controller.Details(id) as ViewResult;
+            var result = controller.Details(id, page, count) as ViewResult;
 
             // Assert
             CollectionAssert.AreEqual(viewModelEntries, ((LogDetailsViewModel)result.Model).Entries);
