@@ -1,9 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Reflection;
+using System.Web.Mvc;
 using Logs.Authentication.Contracts;
 using Logs.Factories;
 using Logs.Web.Controllers;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.AccountControllerTests
 {
@@ -35,11 +38,10 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.LogOut();
-
-            // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.LogOut())
+                .ShouldRedirectTo((HomeController homeController) => homeController.Index());
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Web.Mvc;
-using Logs.Authentication.Contracts;
+﻿using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
 using Logs.Web.Infrastructure.Factories;
@@ -46,6 +45,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
                mockedFactory.Object);
 
+            // Act, Assert
             controller
                 .WithCallTo(c => c.Create())
                 .ShouldRenderDefaultView()

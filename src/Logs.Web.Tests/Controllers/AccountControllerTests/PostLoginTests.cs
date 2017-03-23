@@ -6,6 +6,7 @@ using Logs.Web.Models.Account;
 using Microsoft.AspNet.Identity.Owin;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.AccountControllerTests
 {
@@ -33,11 +34,11 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
             controller.ModelState.AddModelError("key", "error");
 
-            // Act
-            var result = controller.Login(model, "") as ViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Login(model, ""))
+                .ShouldRenderDefaultView()
+                .WithModel<LoginViewModel>(m => Assert.AreSame(model, m));
         }
 
         [TestCase("pesho", "1234qwerty", true, "url")]
@@ -94,11 +95,10 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Login(model, returnUrl) as RedirectResult;
-
-            // Assert
-            Assert.AreEqual(returnUrl, result.Url);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Login(model, returnUrl))
+                .ShouldRedirectTo(returnUrl);
         }
 
         [TestCase("pesho", "1234qwerty", true, null)]
@@ -129,11 +129,10 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Login(model, returnUrl) as RedirectResult;
-
-            // Assert
-            Assert.AreEqual(expectedUrl, result.Url);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Login(model, returnUrl))
+                .ShouldRedirectTo(expectedUrl);
         }
 
         [TestCase("pesho", "1234qwerty", true, "url")]
@@ -164,11 +163,10 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Login(model, returnUrl) as ViewResult;
-
-            // Assert
-            Assert.AreEqual(lockoutViewName, result.ViewName);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Login(model, returnUrl))
+                .ShouldRenderView(lockoutViewName);
         }
 
         [TestCase("pesho", "1234qwerty", true, "url")]
@@ -230,11 +228,14 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Login(model, returnUrl) as ViewResult;
-
-            // Assert
-            Assert.AreEqual(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Login(model, returnUrl))
+                .ShouldRenderDefaultView()
+                .WithModel<LoginViewModel>(m =>
+                {
+                    Assert.AreSame(model, m);
+                });
         }
     }
 }

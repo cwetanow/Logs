@@ -7,6 +7,7 @@ using Logs.Web.Models.Account;
 using Microsoft.AspNet.Identity;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.AccountControllerTests
 {
@@ -105,15 +106,14 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Register(model);
-
-            // Assert
-            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Register(model))
+                .ShouldRedirectTo((HomeController c) => c.Index());
         }
 
         [TestCase("pesho@pesho.com", "pesho", "1234qwerty")]
-        public void TestPostRegister_ResultNotSuccess_ShouldReturnView(string email,
+        public void TestPostRegister_ResultNotSuccess_ShouldReturnViewWithModel(string email,
             string username,
             string password)
         {
@@ -140,50 +140,15 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Register(model);
-
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Register(model))
+                .ShouldRenderDefaultView()
+                .WithModel<RegisterViewModel>(m => Assert.AreSame(model, m));
         }
 
         [TestCase("pesho@pesho.com", "pesho", "1234qwerty")]
-        public void TestPostRegister_ResultNotSuccess_ShouldSetViewModelCorrectly(string email,
-            string username,
-            string password)
-        {
-            // Arrange
-            var mockedProvider = new Mock<IAuthenticationProvider>();
-            mockedProvider.Setup(
-                    p =>
-                        p.RegisterAndLoginUser(It.IsAny<User>(), It.IsAny<string>(), It.IsAny<bool>(),
-                            It.IsAny<bool>()))
-                .Returns(IdentityResult.Failed(null));
-
-            var user = new User();
-
-            var mockedFactory = new Mock<IUserFactory>();
-            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(user);
-
-            var model = new RegisterViewModel
-            {
-                Email = email,
-                Username = username,
-                Password = password
-            };
-
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
-
-            // Act
-            var result = controller.Register(model) as ViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
-        }
-
-        [TestCase("pesho@pesho.com", "pesho", "1234qwerty")]
-        public void TestPostRegister_ModelsStateIsNotValid_ShouldReturnView(string email,
+        public void TestPostRegister_ModelsStateIsNotValid_ShouldReturnViewWithModel(string email,
             string username,
             string password)
         {
@@ -211,47 +176,11 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
             controller.ModelState.AddModelError("key", "message");
 
-            // Act
-            var result = controller.Register(model);
-
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
-        }
-
-        [TestCase("pesho@pesho.com", "pesho", "1234qwerty")]
-        public void TestPostRegister_ModelStateIsNotValid_ShouldSetViewModelCorrectly(string email,
-            string username,
-            string password)
-        {
-            // Arrange
-            var mockedProvider = new Mock<IAuthenticationProvider>();
-            mockedProvider.Setup(
-                    p =>
-                        p.RegisterAndLoginUser(It.IsAny<User>(), It.IsAny<string>(), It.IsAny<bool>(),
-                            It.IsAny<bool>()))
-                .Returns(IdentityResult.Success);
-
-            var user = new User();
-
-            var mockedFactory = new Mock<IUserFactory>();
-            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>()))
-               .Returns(user);
-
-            var model = new RegisterViewModel
-            {
-                Email = email,
-                Username = username,
-                Password = password
-            };
-
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
-            controller.ModelState.AddModelError("key", "message");
-
-            // Act
-            var result = controller.Register(model) as ViewResult;
-
-            // Assert
-            Assert.AreSame(model, result.Model);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Register(model))
+                .ShouldRenderDefaultView()
+                .WithModel<RegisterViewModel>(m => Assert.AreSame(model, m));
         }
     }
 }

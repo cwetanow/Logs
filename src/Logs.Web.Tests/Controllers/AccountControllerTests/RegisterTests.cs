@@ -2,8 +2,10 @@
 using Logs.Authentication.Contracts;
 using Logs.Factories;
 using Logs.Web.Controllers;
+using Logs.Web.Models.Account;
 using Moq;
 using NUnit.Framework;
+using TestStack.FluentMVCTesting;
 
 namespace Logs.Web.Tests.Controllers.AccountControllerTests
 {
@@ -19,11 +21,10 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
 
-            // Act
-            var result = controller.Register();
-
-            // Assert
-            Assert.IsInstanceOf<ViewResult>(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Register())
+                .ShouldRenderDefaultView();
         }
     }
 }
