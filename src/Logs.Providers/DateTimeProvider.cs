@@ -14,7 +14,7 @@ namespace Logs.Providers
         {
             var timeSpan = new TimeSpan(hours, minutes, seconds);
 
-            return DateTime.Now.Add(timeSpan);
+            return DateTime.UtcNow.Add(timeSpan);
         }
     }
 }
