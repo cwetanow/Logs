@@ -1,3 +1,36 @@
-﻿@model string
+﻿@model Logs.Web.Models.Logs.LogDetailsViewModel
 
-@Html.Encode(Model)
+<h1>
+    @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+            {
+        <img id="profile-img" src="@Model.ProfileImageUrl" alt="">
+    }
+
+    @Model.Name
+</h1>
+
+@if (Model.IsOwner)
+            {
+    <a class="pull-right glyphicon glyphicon-edit btn-lg" id="edit-button"></a>
+}
+<p class="lead">
+
+
+    @Html.ActionLink(Model.User,
+                "Details",
+                new { controller = "Profile", username = Model.User },
+                new { @class = "text-right" })
+</p>
+
+<hr>
+<span class="pull-right">
+    <span class="glyphicon glyphicon-time"></span> @string.Format("Created on {0:MM dd, yyyy} at {0:HH:mm}", Model.DateCreated)
+</span>
+
+
+@Html.Partial("~/Views/Vote/Vote.cshtml", Model.VotesCount)
+
+<hr>
+<p class="lead">
+    @Html.Raw("<pre>" + Html.Encode(Model.Description) + "</pre>")
+</p>

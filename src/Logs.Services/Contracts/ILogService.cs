@@ -20,7 +20,7 @@ namespace Logs.Services.Contracts
 
         void AddCommentToLog(int logId, Comment comment);
 
-        void EditLogDescription(int logId, string newDescription);
+        void EditLog(int logId, string newDescription, string newName);
 
         IEnumerable<TrainingLog> GetAll();
 

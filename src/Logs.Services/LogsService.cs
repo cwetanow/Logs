@@ -130,13 +130,14 @@ namespace Logs.Services
             }
         }
 
-        public void EditLogDescription(int logId, string newDescription)
+        public void EditLog(int logId, string newDescription, string newName)
         {
             var log = this.logRepository.GetById(logId);
 
             if (log != null)
             {
                 log.Description = newDescription;
+                log.Name = newName;
 
                 this.logRepository.Update(log);
                 this.unitOfWork.Commit();

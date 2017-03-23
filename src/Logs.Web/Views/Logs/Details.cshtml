@@ -1,5 +1,4 @@
 ﻿@using Logs.Web.Models.Entries
-@using Logs.Web.Models.Logs
 @model Logs.Web.Models.Logs.LogDetailsViewModel
 
 @{
@@ -9,56 +8,31 @@
 <div class="row">
 
     <div class="col-lg-12">
-        <h1>
-            @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
-            {
-                <img id="profile-img" src="@Model.ProfileImageUrl" alt="">
-            }
-
-            @Model.Name
-        </h1>
-
+        <div id="description">
+            @Html.Partial("_LogDescription", Model)
+        </div>
         @if (Model.IsOwner)
         {
-            <a class="pull-right glyphicon glyphicon-edit btn-lg" id="edit-button"></a>
-        }
-        <p class="lead">
-
-
-            @Html.ActionLink(Model.User,
-                "Details",
-                new { controller = "Profile", username = Model.User },
-                new { @class = "text-right" })
-        </p>
-
-        <hr>
-        <span class="pull-right">
-            <span class="glyphicon glyphicon-time"></span> @string.Format("Created on {0:MM dd, yyyy} at {0:HH:mm}", Model.DateCreated)
-        </span>
-
-
-        @Html.Partial("~/Views/Vote/Vote.cshtml", Model.VotesCount)
-
-        <hr>
-        <p class="lead">
-            @Html.Raw("<pre id=\"description\">" + Html.Encode(Model.Description) + "</pre>")
-        </p>
-        @if (Model.IsOwner)
-            {
             <div id="edit-form">
                 <hr />
                 @using (Ajax.BeginForm("Edit", "Logs", null,
-                        new AjaxOptions
-                        {
-                            UpdateTargetId = "description",
-                            InsertionMode = InsertionMode.Replace,
-                            HttpMethod = "POST"
-                        }, new { id = "edit" }))
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "description",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "POST"
+                            }, new { id = "edit" }))
                 {
                     @Html.AntiForgeryToken()
+                    @Html.TextBoxFor(m => m.Name)
                     @Html.TextAreaFor(m => m.Description, new { cols = "40", rows = "20" })
                     <br />
                     @Html.HiddenFor(m => m.LogId)
+                    @Html.HiddenFor(m => m.ProfileImageUrl)
+                    @Html.HiddenFor(m => m.IsOwner)
+                    @Html.HiddenFor(m => m.User)
+                    @Html.HiddenFor(m => m.DateCreated)
+                    @Html.HiddenFor(m => m.VotesCount)
                     <input type="submit" value="Edit" class="btn btn-primary" />
                 }
             </div>
@@ -79,14 +53,14 @@
             @if (Model.CanVote)
             {
                 @Ajax.ActionLink(" ",
-                "Vote",
-                new { controller = "Vote", logId = Model.LogId, currentVoteCount = Model.VotesCount },
-                new AjaxOptions
-                {
-                    UpdateTargetId = "rating",
-                    InsertionMode = InsertionMode.Replace,
-                    HttpMethod = "POST"
-                }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg", id = "rating-btn" })
+                    "Vote",
+                    new { controller = "Vote", logId = Model.LogId, currentVoteCount = Model.VotesCount },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "rating",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "POST"
+                    }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg", id = "rating-btn" })
             }
 
         </p>
