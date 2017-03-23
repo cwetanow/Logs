@@ -7,20 +7,24 @@ namespace Logs.Web.Models.Logs
 {
     public class LogEntryViewModel
     {
+        public static Func<LogEntry, string, LogEntryViewModel> FromEntry
+        {
+            get
+            {
+                return (entry, userId) => new LogEntryViewModel
+                {
+                    EntryDate = entry.EntryDate,
+                    Content = entry.Content,
+                    EntryId = entry.LogEntryId,
+                    CanEdit = entry.Log.User?.Id.Equals(userId) ?? false,
+                    Comments = entry.Comments.Select(c => CommentViewModel.FromComment(c, userId))
+                };
+            }
+        }
+
         public LogEntryViewModel()
         {
 
-        }
-
-        public LogEntryViewModel(LogEntry entry, string userId)
-        {
-            this.EntryDate = entry.EntryDate;
-            this.Content = entry.Content;
-            this.EntryId = entry.LogEntryId;
-            this.CanEdit = entry.Log.User?.Id.Equals(userId) ?? false;
-
-            this.Comments = entry.Comments
-                .Select(c => new CommentViewModel(c, userId));
         }
 
         public bool CanEdit { get; set; }
@@ -29,7 +33,7 @@ namespace Logs.Web.Models.Logs
 
         public DateTime EntryDate { get; set; }
 
-        public virtual IEnumerable<CommentViewModel> Comments { get; set; }
+        public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public string Content { get; set; }
     }

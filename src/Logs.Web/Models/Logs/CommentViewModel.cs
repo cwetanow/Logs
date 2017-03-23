@@ -5,18 +5,24 @@ namespace Logs.Web.Models.Logs
 {
     public class CommentViewModel
     {
+        public static Func<Comment, string, CommentViewModel> FromComment
+        {
+            get
+            {
+                return (comment, userId) => new CommentViewModel
+                {
+                    Date = comment.Date,
+                    CanEdit = comment.UserId.Equals(userId),
+                    CommentId = comment.CommentId,
+                    Content = comment.Content,
+                    User = comment.User.UserName
+                };
+            }
+        }
+
         public CommentViewModel()
         {
 
-        }
-
-        public CommentViewModel(Comment comment, string userId)
-        {
-            this.Date = comment.Date;
-            this.User = comment.User.UserName;
-            this.Content = comment.Content;
-            this.CommentId = comment.CommentId;
-            this.CanEdit = comment.UserId.Equals(userId);
         }
 
         public bool CanEdit { get; set; }

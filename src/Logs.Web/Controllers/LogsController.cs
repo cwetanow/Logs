@@ -40,6 +40,7 @@ namespace Logs.Web.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
+        [OutputCache(Duration = 60 * 5, VaryByParam = "page;id")]
         public ActionResult Details(int id, int page = 1, int count = Constants.LogEntriesPerPage)
         {
             var log = this.logService.GetTrainingLogById(id);
@@ -62,7 +63,7 @@ namespace Logs.Web.Controllers
             }
 
             var entries = log.Entries
-                .Select(e => this.factory.CreateLogEntryViewModel(e, currentUserId))
+                .Select(e => LogEntryViewModel.FromEntry(e, currentUserId))
                 .ToPagedList(page, count);
 
             var model = this.factory.CreateLogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
