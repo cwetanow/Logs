@@ -52,9 +52,11 @@ namespace Logs.Web.Controllers
             var isAuthenticated = this.authenticationProvider.IsAuthenticated;
             var currentUserId = this.authenticationProvider.CurrentUserId;
 
-            var isOwner = log.User?.Id.Equals(currentUserId) ?? false;
+            var isAdmin = this.authenticationProvider.IsInRole(currentUserId, Constants.AdministratorRoleName);
+
+            var canEdit = (log.User?.Id.Equals(currentUserId) ?? false) || isAdmin;
             var canVote = (log.Votes
-                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !isOwner && isAuthenticated;
+                .FirstOrDefault(v => v.UserId.Equals(currentUserId))) == null && !canEdit && isAuthenticated;
 
             if (page < 0)
             {
@@ -62,10 +64,10 @@ namespace Logs.Web.Controllers
             }
 
             var entries = log.Entries
-                .Select(e => LogEntryViewModel.FromEntry(e, currentUserId))
+                .Select(e => LogEntryViewModel.FromEntry(e, currentUserId, isAdmin))
                 .ToPagedList(page, count);
 
-            var model = this.factory.CreateLogDetailsViewModel(log, isAuthenticated, isOwner, canVote, entries);
+            var model = this.factory.CreateLogDetailsViewModel(log, isAuthenticated, canEdit, canVote, entries);
 
             return this.View(model);
         }
