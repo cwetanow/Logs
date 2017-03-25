@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Common;
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
@@ -103,6 +104,76 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
 
             // Assert
             mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Once);
+        }
+
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        public void TestDetails_ShouldCallAuthenticationProviderIsInRole(int id, string userId)
+        {
+            // Arrange 
+            var user = new User { Id = userId };
+            var log = new TrainingLog { User = user };
+
+            var mockedLogService = new Mock<ILogService>();
+            mockedLogService.Setup(s => s.GetTrainingLogById(It.IsAny<int>())).Returns(log);
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            mockedAuthenticationProvider.Setup(p => p.CurrentUserId).Returns(userId);
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object);
+
+            // Act
+            controller.Details(id);
+
+            // Assert
+            mockedAuthenticationProvider.Verify(p => p.IsInRole(userId, Constants.AdministratorRoleName), Times.Once);
+        }
+
+        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", true)]
+        public void TestDetails_UserIsAdmin_ShouldSetCanEditToTrue(int id, string userId, bool isAuthenticated)
+        {
+            // Arrange 
+            var user = new User { Id = userId };
+            var log = new TrainingLog { User = user };
+
+            var mockedLogService = new Mock<ILogService>();
+            mockedLogService.Setup(s => s.GetTrainingLogById(It.IsAny<int>())).Returns(log);
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            mockedAuthenticationProvider.Setup(p => p.CurrentUserId).Returns(userId);
+            mockedAuthenticationProvider.Setup(p => p.IsAuthenticated).Returns(isAuthenticated);
+            mockedAuthenticationProvider.Setup(p => p.IsInRole(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                mockedFactory.Object);
+
+            var canEdit = false;
+            mockedFactory.Setup(
+                f =>
+                    f.CreateLogDetailsViewModel(It.IsAny<TrainingLog>(),
+                    It.IsAny<bool>(),
+                        It.IsAny<bool>(),
+                        It.IsAny<bool>(),
+                        It.IsAny<IPagedList<LogEntryViewModel>>()))
+                        .Returns((TrainingLog l,
+                        bool isAuth,
+                        bool edit,
+                        bool canVote,
+                        IPagedList<LogEntryViewModel> e) =>
+                    {
+                        canEdit = true;
+                        return new LogDetailsViewModel();
+                    });
+
+            // Act
+            controller.Details(id);
+
+            // Assert
+            Assert.IsTrue(canEdit);
         }
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95", true)]
