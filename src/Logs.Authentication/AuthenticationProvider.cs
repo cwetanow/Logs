@@ -94,7 +94,7 @@ namespace Logs.Authentication
 
         public bool IsInRole(string userId, string roleName)
         {
-            return this.UserManager.IsInRole(userId, roleName);
+            return userId != null && this.UserManager.IsInRole(userId, roleName);
         }
 
         public IdentityResult AddToRole(string userId, string roleName)
