@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Common;
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
@@ -62,12 +63,7 @@ namespace Logs.Web.Controllers
 
             var currentUserId = this.provider.CurrentUserId;
 
-            var canEdit = false;
-
-            if (currentUserId != null)
-            {
-                canEdit = user.Id == currentUserId;
-            }
+            var canEdit = user.Id.Equals(currentUserId) || this.provider.IsInRole(currentUserId, Constants.AdministratorRoleName);
 
             var model = this.viewModelFactory.CreateUserProfileViewModel(user, canEdit);
 
