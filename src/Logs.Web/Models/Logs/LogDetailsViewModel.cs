@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Logs.Models;
 using PagedList;
 
@@ -12,7 +11,7 @@ namespace Logs.Web.Models.Logs
 
         }
 
-        public LogDetailsViewModel(TrainingLog log, bool isAuthenticated, bool isOwner, bool canVote, IPagedList<LogEntryViewModel> entries)
+        public LogDetailsViewModel(TrainingLog log, bool isAuthenticated, bool canEdit, bool canVote, IPagedList<LogEntryViewModel> entries)
         {
             this.Description = log.Description;
             this.Name = log.Name;
@@ -21,7 +20,7 @@ namespace Logs.Web.Models.Logs
             this.VotesCount = log.Votes.Count;
             this.LogId = log.LogId;
             this.IsAuthenticated = isAuthenticated;
-            this.IsOwner = isOwner;
+            this.CanEdit = canEdit;
             this.CanVote = canVote;
             this.Entries = entries;
             this.ProfileImageUrl = log.User?.ProfileImageUrl;
@@ -43,7 +42,7 @@ namespace Logs.Web.Models.Logs
 
         public IPagedList<LogEntryViewModel> Entries { get; set; }
 
-        public bool IsOwner { get; set; }
+        public bool CanEdit { get; set; }
 
         public bool IsAuthenticated { get; set; }
 

@@ -9,7 +9,7 @@
     @Model.Name
 </h1>
 
-@if (Model.IsOwner)
+@if (Model.CanEdit)
             {
     <a class="pull-right glyphicon glyphicon-edit btn-lg" id="edit-button"></a>
 }

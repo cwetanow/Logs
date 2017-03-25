@@ -17,7 +17,7 @@ namespace Logs.Web.Infrastructure.Factories
 
         LogDetailsViewModel CreateLogDetailsViewModel(TrainingLog log,
             bool isAuthenticated,
-            bool isOwner,
+            bool canEdit,
             bool canVote,
             IPagedList<LogEntryViewModel> entries);
 
