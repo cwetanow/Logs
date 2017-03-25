@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Common;
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
@@ -89,6 +90,60 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
                 {
                     Assert.IsFalse(m.CanEdit);
                 });
+        }
+
+        [TestCase("username", "id")]
+        [TestCase("my-username", "12")]
+        [TestCase("lalalala96", "abcd-1234")]
+        public void TestDetails_UserIdAndCurrentUserDoNotMatch_ShouldCallProviderIsInRole(string username, string userId)
+        {
+            // Arrange
+            var user = new User();
+
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            mockedProvider.Setup(p => p.CurrentUserId).Returns(userId);
+
+            var mockedService = new Mock<IUserService>();
+            mockedService.Setup(s => s.GetUserByUsername(It.IsAny<string>())).Returns(user);
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+            mockedFactory.Setup(f => f.CreateUserProfileViewModel(It.IsAny<User>(), It.IsAny<bool>()))
+                .Returns((User u, bool canEdit) => new UserProfileViewModel(user, canEdit));
+
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
+
+            // Act
+            controller.Details(username);
+
+            // Assert
+            mockedProvider.Verify(p => p.IsInRole(userId, Constants.AdministratorRoleName), Times.Once);
+        }
+
+        [TestCase("username", "id")]
+        [TestCase("my-username", "12")]
+        [TestCase("lalalala96", "abcd-1234")]
+        public void TestDetails_ProviderReturnsCurrentUserId_ShouldNotCallProviderIsInRole(string username, string userId)
+        {
+            // Arrange
+            var user = new User { Id = userId };
+
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            mockedProvider.Setup(p => p.CurrentUserId).Returns(userId);
+
+            var mockedService = new Mock<IUserService>();
+            mockedService.Setup(s => s.GetUserByUsername(It.IsAny<string>())).Returns(user);
+
+            var mockedFactory = new Mock<IViewModelFactory>();
+            mockedFactory.Setup(f => f.CreateUserProfileViewModel(It.IsAny<User>(), It.IsAny<bool>()))
+                .Returns((User u, bool canEdit) => new UserProfileViewModel(user, canEdit));
+
+            var controller = new ProfileController(mockedProvider.Object, mockedService.Object, mockedFactory.Object);
+
+            // Act
+            controller.Details(username);
+
+            // Assert
+            mockedProvider.Verify(p => p.IsInRole(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
         [TestCase("username", "id")]
