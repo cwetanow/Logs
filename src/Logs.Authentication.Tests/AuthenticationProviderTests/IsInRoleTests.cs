@@ -57,5 +57,29 @@ namespace Logs.Authentication.Tests.AuthenticationProviderTests
             // Assert
             Assert.AreEqual(isInRole, result);
         }
+
+        [TestCase("user")]
+        [TestCase("user")]
+        [TestCase("admin")]
+        [TestCase("admin")]
+        public void TestIsInRole_UserIdIsNull_ShouldReturnFalse(string role)
+        {
+            // Arrange
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+
+            var mockedUserStore = new Mock<IUserStore<User>>();
+            var mockedUserManager = new Mock<ApplicationUserManager>(mockedUserStore.Object);
+
+            var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
+            mockedHttpContextProvider.Setup(p => p.GetUserManager<ApplicationUserManager>()).Returns(mockedUserManager.Object);
+
+            var provider = new AuthenticationProvider(mockedDateTimeProvider.Object, mockedHttpContextProvider.Object);
+
+            // Act
+            var result = provider.IsInRole(null, role);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
     }
 }
