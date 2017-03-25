@@ -1,4 +1,5 @@
-﻿using Logs.Models;
+﻿using System.Web.Mvc;
+using Logs.Models;
 using Logs.Models.Enumerations;
 
 namespace Logs.Web.Models.Profile
@@ -36,6 +37,7 @@ namespace Logs.Web.Models.Profile
 
         public int Height { get; set; }
 
+        [AllowHtml]
         public string Description { get; set; }
 
         public string Username { get; set; }

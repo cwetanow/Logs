@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Mvc;
 using Logs.Models;
 using PagedList;
 
@@ -28,10 +29,12 @@ namespace Logs.Web.Models.Logs
 
         public int LogId { get; set; }
 
+        [AllowHtml]
         public string Description { get; set; }
 
         public string ProfileImageUrl { get; set; }
 
+        [AllowHtml]
         public string Name { get; set; }
 
         public DateTime DateCreated { get; set; }

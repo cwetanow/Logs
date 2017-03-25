@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Mvc;
 using Logs.Models;
 
 namespace Logs.Web.Models.Logs
@@ -20,11 +21,6 @@ namespace Logs.Web.Models.Logs
             }
         }
 
-        public CommentViewModel()
-        {
-
-        }
-
         public bool CanEdit { get; set; }
 
         public int CommentId { get; set; }
@@ -33,6 +29,7 @@ namespace Logs.Web.Models.Logs
 
         public string User { get; set; }
 
+        [AllowHtml]
         public string Content { get; set; }
     }
 }

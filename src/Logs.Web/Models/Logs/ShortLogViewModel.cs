@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Mvc;
 using Logs.Models;
 
 namespace Logs.Web.Models.Logs
@@ -22,6 +23,7 @@ namespace Logs.Web.Models.Logs
             this.Username = log.Owner;
         }
 
+        [AllowHtml]
         public string Name { get; set; }
 
         public int LogId { get; set; }
