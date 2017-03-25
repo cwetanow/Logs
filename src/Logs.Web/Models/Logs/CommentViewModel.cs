@@ -5,14 +5,14 @@ namespace Logs.Web.Models.Logs
 {
     public class CommentViewModel
     {
-        public static Func<Comment, string, CommentViewModel> FromComment
+        public static Func<Comment, string, bool, CommentViewModel> FromComment
         {
             get
             {
-                return (comment, userId) => new CommentViewModel
+                return (comment, userId, isAdmin) => new CommentViewModel
                 {
                     Date = comment.Date,
-                    CanEdit = comment.UserId.Equals(userId),
+                    CanEdit = comment.UserId.Equals(userId) || isAdmin,
                     CommentId = comment.CommentId,
                     Content = comment.Content,
                     User = comment.User.UserName

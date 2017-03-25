@@ -7,17 +7,17 @@ namespace Logs.Web.Models.Logs
 {
     public class LogEntryViewModel
     {
-        public static Func<LogEntry, string, LogEntryViewModel> FromEntry
+        public static Func<LogEntry, string, bool, LogEntryViewModel> FromEntry
         {
             get
             {
-                return (entry, userId) => new LogEntryViewModel
+                return (entry, userId, isAdmin) => new LogEntryViewModel
                 {
                     EntryDate = entry.EntryDate,
                     Content = entry.Content,
                     EntryId = entry.LogEntryId,
                     CanEdit = entry.Log.User?.Id.Equals(userId) ?? false,
-                    Comments = entry.Comments.Select(c => CommentViewModel.FromComment(c, userId))
+                    Comments = entry.Comments.Select(c => CommentViewModel.FromComment(c, userId, isAdmin))
                 };
             }
         }
