@@ -25,5 +25,7 @@ namespace Logs.Services.Contracts
         IEnumerable<TrainingLog> GetAll();
 
         void DeleteLog(int id);
+
+        IEnumerable<TrainingLog> Search(string searchTerm);
     }
 }

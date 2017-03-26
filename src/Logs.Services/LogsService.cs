@@ -165,5 +165,15 @@ namespace Logs.Services
                 this.unitOfWork.Commit();
             }
         }
+
+        public IEnumerable<TrainingLog> Search(string searchTerm)
+        {
+            return this.logRepository.All
+                .Where(
+                    l => l.Description.Contains(searchTerm) ||
+                         l.Name.Contains(searchTerm) ||
+                         l.Owner.Contains(searchTerm))
+                .ToList();
+        }
     }
 }
