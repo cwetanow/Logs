@@ -7,5 +7,6 @@
         public const int LogEntriesPerPage = 20;
         public const int LogsPerPage = 10;
         public const int TopLogsCount = 3;
+        public const int AdminPageSize = 10;
     }
 }
