@@ -5,13 +5,18 @@
 
 ![Home](./screens/home-page.png?raw=true)
 <hr />
+
 ![Home](./screens/details.png?raw=true)
 <hr />
+
 ![Home](./screens/entries.png?raw=true)
 <hr />
+
+![Home](./screens/profile.png?raw=true)
+<hr />
+
 ![Home](./screens/list.png?raw=true)
 <hr />
+
 ![Home](./screens/new-entry.png?raw=true)
-<hr />
-![Home](./screens/profile.png?raw=true)
 <hr />
