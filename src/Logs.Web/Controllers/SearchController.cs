@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
+using Logs.Web.Models.Logs;
 using Logs.Web.Models.Search;
 
 namespace Logs.Web.Controllers
@@ -40,9 +42,12 @@ namespace Logs.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search(SearchViewModel model)
+        public PartialViewResult Search(SearchViewModel model)
         {
-            throw new NotImplementedException();
+            var results = this.logService.Search(model.SearchTerm)
+                .Select(this.viewModelFactory.CreateShortLogViewModel);
+
+            return this.PartialView("_LogListPartial", results);
         }
     }
 }

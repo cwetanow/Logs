@@ -21,9 +21,12 @@
 @section scripts{
     <script>
         $('#search-box').keyup(function () {
-            $('#ajaxForm').submit();
+            if ($('#search-box').val().length > 0) {
+                $('#ajaxForm').submit();
+            }
         })
     </script>
 
+    @Scripts.Render("~/bundles/jquery-unobtrusive")
 }
 
