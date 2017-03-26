@@ -169,7 +169,6 @@
     <Compile Include="Controllers\EntriesControllerTests\NewEntryTests.cs" />
     <Compile Include="Controllers\ErrorControllerTests\NotFoundTests.cs" />
     <Compile Include="Controllers\ErrorControllerTests\ServerErrorTests.cs" />
-    <Compile Include="Controllers\HomeControllerTests\AboutTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
     <Compile Include="Infrastructure\Interception\CachingInterceptorTests\ConstructorTests.cs" />

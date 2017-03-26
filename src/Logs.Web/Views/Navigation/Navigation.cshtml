@@ -3,7 +3,6 @@
 <ul class="nav navbar-nav">
     <li>@Html.ActionLink("Home", "Index", "Home")</li>
     <li>@Html.ActionLink("Logs", "List", "Logs")</li>
-    <li>@Html.ActionLink("About", "About", "Home")</li>
     @if (Model.IsAdmin)
     {
         <li>@Html.ActionLink("Administration", "Index", "Administration")</li>

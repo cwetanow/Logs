@@ -34,10 +34,5 @@ namespace Logs.Web.Controllers
 
             return View(model);
         }
-
-        public ActionResult About()
-        {
-            return View();
-        }
     }
 }
