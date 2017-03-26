@@ -5,14 +5,14 @@
 }
 
 <div class="panel">
-    @using (Ajax.BeginForm("Search", new { }, new AjaxOptions()
+    @using (Ajax.BeginForm("Search", null, new AjaxOptions()
     {
         HttpMethod = "Post",
         UpdateTargetId = "results",
         InsertionMode = InsertionMode.Replace,
     }, new { id = "ajaxForm" }))
     {
-        @Html.TextBoxFor(m => m.SearchTerm, new { id = "search-box" })
+        @Html.TextBoxFor(m => m.SearchTerm, new { id = "search-box", @class = "form-control" })
     }
 </div>
 <div id="results" class="panel">
