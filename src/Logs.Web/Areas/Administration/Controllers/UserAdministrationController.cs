@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Common;
 using Logs.Services.Contracts;
 using Logs.Web.Areas.Administration.Models;
 using PagedList;
@@ -30,14 +31,14 @@ namespace Logs.Web.Areas.Administration.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
-        public ActionResult Index(int page = 1, int count = 10)
+        public ActionResult Index(int page = 1, int count = Constants.AdminPageSize)
         {
             var users = this.userService.GetUsers();
 
             var model = new List<UserViewModel>();
             foreach (var user in users)
             {
-                var isAdmin = this.authenticationProvider.IsInRole(user.Id, Common.Constants.AdministratorRoleName);
+                var isAdmin = this.authenticationProvider.IsInRole(user.Id, Constants.AdministratorRoleName);
                 var viewModel = new UserViewModel(user, isAdmin);
                 model.Add(viewModel);
             }
