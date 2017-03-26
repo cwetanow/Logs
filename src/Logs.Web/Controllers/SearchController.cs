@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
-using Logs.Web.Models.Logs;
 using Logs.Web.Models.Search;
 
 namespace Logs.Web.Controllers
