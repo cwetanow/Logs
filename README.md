@@ -7,6 +7,9 @@ Logs is a web application for keeping track of your training built with ASP.NET 
 But why should you keep a log ? [Trust me](https://www.t-nation.com/training/log-your-training-like-a-boss)! [You should](https://www.t-nation.com/training/powerful-reasons-to-use-a-workout-log)!
 
 
+![Home](./screens/home-page.png?raw=true)
+<hr />
+
 ![Home](./screens/details.png?raw=true)
 <hr />
 
