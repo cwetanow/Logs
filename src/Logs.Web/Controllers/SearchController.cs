@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
+using Logs.Web.Models.Search;
 
 namespace Logs.Web.Controllers
 {
@@ -36,6 +37,12 @@ namespace Logs.Web.Controllers
         public ActionResult Index()
         {
             return this.View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(SearchViewModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }
