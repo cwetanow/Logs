@@ -34,6 +34,7 @@ namespace Logs.Web.Controllers
             return this.View();
         }
 
+        [OutputCache(Duration = 60 * 5, VaryByParam = "SearchTerm")]
         [HttpPost]
         public PartialViewResult Search(SearchViewModel model)
         {
