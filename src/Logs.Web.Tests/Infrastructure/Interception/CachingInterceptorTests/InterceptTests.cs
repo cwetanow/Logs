@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using Logs.Common;
 using Logs.Providers.Contracts;
 using Logs.Web.Infrastructure.Interception;
 using Moq;
@@ -187,7 +188,9 @@ namespace Logs.Web.Tests.Infrastructure.Interception.CachingInterceptorTests
             interceptor.Intercept(mockedInvocation.Object);
 
             // Assert
-            mockedDateTimeProvider.Verify(p => p.GetTimeFromCurrentTime(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<int>()),
+            mockedDateTimeProvider.Verify(p => p.GetTimeFromCurrentTime(Constants.HoursCaching,
+                    Constants.MinutesCaching,
+                    Constants.SecondsCaching),
                 Times.Once);
         }
 
