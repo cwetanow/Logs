@@ -10,17 +10,11 @@ namespace Logs.Web.Controllers
 {
     public class SearchController : Controller
     {
-        private readonly IUserService userService;
         private readonly ILogService logService;
         private readonly IViewModelFactory viewModelFactory;
 
-        public SearchController(IUserService userService, ILogService logService, IViewModelFactory viewModelFactory)
+        public SearchController(ILogService logService, IViewModelFactory viewModelFactory)
         {
-            if (userService == null)
-            {
-                throw new ArgumentNullException(nameof(userService));
-            }
-
             if (logService == null)
             {
                 throw new ArgumentNullException(nameof(logService));
@@ -33,7 +27,6 @@ namespace Logs.Web.Controllers
 
             this.logService = logService;
             this.viewModelFactory = viewModelFactory;
-            this.userService = userService;
         }
 
         public ActionResult Index()
