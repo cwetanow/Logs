@@ -4,8 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-
-
 <div class="panel">
     @using (Ajax.BeginForm("Search", new { }, new AjaxOptions()
     {
@@ -14,15 +12,6 @@
         InsertionMode = InsertionMode.Replace,
     }, new { id = "ajaxForm" }))
     {
-        <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary">
-                @Html.CheckBoxFor(m => m.IsSearchingUsers, "pesho") Users
-            </label>
-            <label class="btn btn-primary">
-                @Html.CheckBoxFor(m => m.IsSearchingLogs, "pesho") Logs
-            </label>
-        </div>
-        <hr />
         @Html.TextBoxFor(m => m.SearchTerm, new { id = "search-box" })
     }
 </div>
