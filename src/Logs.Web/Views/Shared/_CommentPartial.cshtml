@@ -9,7 +9,7 @@
         "Details",
         new { controller = "Profile", username = Model.User })
 
-    <small>@string.Format("{0:MM dd, yyyy} at {0:HH:mm}", Model.Date)</small>
+    <small>@string.Format("{0:D} at {0:HH:mm}", Model.Date)</small>
 </h4>
 <span id="@($"comment{Model.CommentId}")">
     @Html.Raw("<pre>" + Html.Encode(Model.Content) + "</pre>")
