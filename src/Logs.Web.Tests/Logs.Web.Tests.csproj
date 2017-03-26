@@ -205,6 +205,7 @@
     <Compile Include="ViewModelsTests\Logs\CommentViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Logs\CommentViewModelTests\FuncTests.cs" />
     <Compile Include="ViewModelsTests\Logs\CommentViewModelTests\PropertiesTests.cs" />
+    <Compile Include="ViewModelsTests\Logs\LogDetailsViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Logs\ShortLogViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Navigation\NavigationViewModelTests\ConstructorTests.cs" />
     <Compile Include="Controllers\VoteControllerTests\ConstructorTests.cs" />
