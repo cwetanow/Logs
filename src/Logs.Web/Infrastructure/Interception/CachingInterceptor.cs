@@ -1,4 +1,5 @@
 ﻿using System;
+using Logs.Common;
 using Logs.Providers.Contracts;
 using Ninject.Extensions.Interception;
 
@@ -41,7 +42,9 @@ namespace Logs.Web.Infrastructure.Interception
 
                 result = invocation.ReturnValue;
 
-                var date = this.dateTimeProvider.GetTimeFromCurrentTime(0, 5, 0);
+                var date = this.dateTimeProvider.GetTimeFromCurrentTime(Constants.HoursCaching, 
+                    Constants.MinutesCaching, 
+                    Constants.SecondsCaching);
                 this.cachingProvider.AddItem(key, result, date);
             }
         }
