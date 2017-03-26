@@ -202,6 +202,9 @@
     <Compile Include="ViewModelsTests\Administration\UserViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Administration\UserViewModelTests\PropertiesTests.cs" />
     <Compile Include="ViewModelsTests\Home\HomeViewModelTests\ConstructorTests.cs" />
+    <Compile Include="ViewModelsTests\Logs\CommentViewModelTests\ConstructorTests.cs" />
+    <Compile Include="ViewModelsTests\Logs\CommentViewModelTests\FuncTests.cs" />
+    <Compile Include="ViewModelsTests\Logs\CommentViewModelTests\PropertiesTests.cs" />
     <Compile Include="ViewModelsTests\Logs\ShortLogViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Navigation\NavigationViewModelTests\ConstructorTests.cs" />
     <Compile Include="Controllers\VoteControllerTests\ConstructorTests.cs" />
