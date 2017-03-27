@@ -8,7 +8,7 @@ namespace Logs.Web.App_Start.NinjectModules
     {
         public override void Load()
         {
-            this.Bind<IAuthenticationProvider>().To<AuthenticationProvider>();
+            this.Bind<IAuthenticationProvider>().To<AuthenticationProvider>().InSingletonScope();
         }
     }
 }
