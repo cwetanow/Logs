@@ -3,7 +3,7 @@
 @using (Html.BeginForm("NewEntry", "Entries", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 5 });
+    @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 20 });
     @Html.HiddenFor(m => m.LogId)
     @Html.ValidationSummary()
     <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
