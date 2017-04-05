@@ -21,5 +21,10 @@ namespace Logs.Data
         {
             this.dbContext.SaveChanges();
         }
+
+        public async void CommitAsync()
+        {
+            await this.dbContext.SaveChangesAsync();
+        }
     }
 }
