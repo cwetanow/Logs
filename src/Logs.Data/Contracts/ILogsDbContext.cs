@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace Logs.Data.Contracts
 {
@@ -8,6 +9,8 @@ namespace Logs.Data.Contracts
             where TEntity : class;
 
         int SaveChanges();
+
+        Task<int> SaveChangesAsync();
 
         void SetAdded<TEntry>(TEntry entity)
             where TEntry : class;
