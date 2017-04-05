@@ -69,6 +69,7 @@
     <Compile Include="EfGenericRepositoryTests\UpdateTests.cs" />
     <Compile Include="EfGenericRepositoryTests\Fakes\FakeGenericRepositoryType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWorkTests\CommitAsyncTests.cs" />
     <Compile Include="UnitOfWorkTests\CommitTests.cs" />
     <Compile Include="UnitOfWorkTests\ConstructorTests.cs" />
   </ItemGroup>
