@@ -8,7 +8,7 @@ namespace Logs.Data.Tests.UnitOfWorkTests
     public class CommitAsyncTests
     {
         [Test]
-        public void TestCommit_ShouldCallDbContextSaveChangesAsync()
+        public void TestCommitAsync_ShouldCallDbContextSaveChangesAsync()
         {
             // Arrange
             var mockedDbContext = new Mock<ILogsDbContext>();
