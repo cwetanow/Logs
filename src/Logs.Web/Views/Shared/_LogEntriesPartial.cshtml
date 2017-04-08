@@ -4,6 +4,11 @@
 @model PagedList.IPagedList<Logs.Web.Models.Logs.LogEntryViewModel>
 
 <div class="well" id="entries">
+    <div class="pages total">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Details", "Logs", new { page = page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+    </div>
     @foreach (var entry in Model)
     {
         @Html.Partial("_EntryPartial", entry)
