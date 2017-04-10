@@ -71,6 +71,10 @@
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logs.Common\Logs.Common.csproj">
+      <Project>{90DD5B30-CFFF-45AC-9DC8-C969FD735AB6}</Project>
+      <Name>Logs.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logs.Models\Logs.Models.csproj">
       <Project>{42C607C4-8FB1-490C-AAD4-5AC9921F91FC}</Project>
       <Name>Logs.Models</Name>
