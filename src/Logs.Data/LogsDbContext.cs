@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using Logs.Data.Contracts;
+using Logs.Data.Migrations;
 using Logs.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -10,8 +11,6 @@ namespace Logs.Data
         public LogsDbContext()
             : base("LogsDb", throwIfV1Schema: false)
         {
-            this.Database.CreateIfNotExists();
-
             this.Configuration.LazyLoadingEnabled = true;
             this.Configuration.ProxyCreationEnabled = true;
         }
@@ -31,8 +30,8 @@ namespace Logs.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<LogsDbContext>(null);
-            
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LogsDbContext, Configuration>());
+
             modelBuilder.Entity<TrainingLog>()
                 .HasOptional(log => log.User)
                 .WithOptionalDependent();
