@@ -29,9 +29,5 @@ namespace Logs.Models
         public double WaterInLitres { get; set; }
 
         public double GoalWaterInLitres { get; set; }
-        
-        public string UserId { get; set; }
-
-        public virtual User User { get; set; }
     }
 }
