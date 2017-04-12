@@ -29,21 +29,13 @@ namespace Logs.Data
 
         public DbSet<Vote> Votes { get; set; }
 
-        public DbSet<Nutrition> NutritionEntries { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<LogsDbContext>(null);
-
+            
             modelBuilder.Entity<TrainingLog>()
                 .HasOptional(log => log.User)
                 .WithOptionalDependent();
-
-            modelBuilder.Entity<Nutrition>()
-                .HasKey(n => n.NutritionId)
-                .HasRequired(n => n.User)
-                .WithMany(u => u.NutritionEntries)
-                .HasForeignKey(n => n.UserId);
 
             base.OnModelCreating(modelBuilder);
         }
