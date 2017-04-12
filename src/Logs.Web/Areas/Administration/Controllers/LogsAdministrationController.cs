@@ -30,6 +30,7 @@ namespace Logs.Web.Areas.Administration.Controllers
             this.viewModelFactory = viewModelFactory;
         }
 
+        [HttpGet]
         public ActionResult Index(int page = 1, int count = Constants.AdminPageSize)
         {
             var logs = this.logService.GetAll()
@@ -39,6 +40,7 @@ namespace Logs.Web.Areas.Administration.Controllers
             return this.View(logs);
         }
 
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             this.logService.DeleteLog(id);

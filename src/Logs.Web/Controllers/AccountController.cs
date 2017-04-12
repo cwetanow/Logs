@@ -34,6 +34,7 @@ namespace Logs.Web.Controllers
         }
 
         // GET: /Account/Login
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -78,6 +79,7 @@ namespace Logs.Web.Controllers
 
         //
         // GET: /Account/Register
+        [HttpGet]
         [AllowAnonymous]
         public ActionResult Register()
         {

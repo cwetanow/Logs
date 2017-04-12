@@ -26,6 +26,7 @@ namespace Logs.Web.Controllers
             this.factory = factory;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             var isAuthenticated = this.provider.IsAuthenticated;

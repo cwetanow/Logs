@@ -31,6 +31,7 @@ namespace Logs.Web.Areas.Administration.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
+        [HttpGet]
         public ActionResult Index(int page = 1, int count = Constants.AdminPageSize)
         {
             var users = this.userService.GetUsers();
@@ -46,6 +47,7 @@ namespace Logs.Web.Areas.Administration.Controllers
             return this.View(model.ToPagedList(page, count));
         }
 
+        [HttpGet]
         public ActionResult Ban(string userId, int page)
         {
             this.authenticationProvider.BanUser(userId);
@@ -53,6 +55,7 @@ namespace Logs.Web.Areas.Administration.Controllers
             return this.RedirectToAction("Index", new { page = page });
         }
 
+        [HttpGet]
         public ActionResult Unban(string userId, int page)
         {
             this.authenticationProvider.UnbanUser(userId);
@@ -60,6 +63,7 @@ namespace Logs.Web.Areas.Administration.Controllers
             return this.RedirectToAction("Index", new { page = page });
         }
 
+        [HttpGet]
         public ActionResult RemoveAdmin(string userId, int page)
         {
             this.authenticationProvider.RemoveFromRole(userId, Common.Constants.AdministratorRoleName);
@@ -67,6 +71,7 @@ namespace Logs.Web.Areas.Administration.Controllers
             return this.RedirectToAction("Index", new { page = page });
         }
 
+        [HttpGet]
         public ActionResult AddAdmin(string userId, int page)
         {
             this.authenticationProvider.AddToRole(userId, Common.Constants.AdministratorRoleName);

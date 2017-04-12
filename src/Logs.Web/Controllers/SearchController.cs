@@ -28,6 +28,7 @@ namespace Logs.Web.Controllers
             this.viewModelFactory = viewModelFactory;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             return this.View();
