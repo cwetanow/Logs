@@ -8,7 +8,7 @@
     <div class="pages total">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-        @Html.PagedListPager(Model, page => Url.Action("PartialList", "Logs",
+        @Html.PagedListPager(Model, page => Url.Action("PartialList", "List",
         new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
             new AjaxOptions()
             {
