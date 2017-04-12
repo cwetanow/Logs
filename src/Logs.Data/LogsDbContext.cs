@@ -29,6 +29,8 @@ namespace Logs.Data
 
         public DbSet<Vote> Votes { get; set; }
 
+        public DbSet<Nutrition> NutritionEntries { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<LogsDbContext>(null);

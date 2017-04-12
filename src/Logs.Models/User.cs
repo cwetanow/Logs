@@ -11,7 +11,6 @@ namespace Logs.Models
         {
             this.Comments = new HashSet<Comment>();
             this.Entries = new HashSet<LogEntry>();
-            this.NutritionEntries = new HashSet<Nutrition>();
         }
 
         public User(string username, string email)
