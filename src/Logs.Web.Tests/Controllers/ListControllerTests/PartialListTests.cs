@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Logs.Authentication.Contracts;
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
@@ -11,7 +9,7 @@ using NUnit.Framework;
 using PagedList;
 using TestStack.FluentMVCTesting;
 
-namespace Logs.Web.Tests.Controllers.LogsControllerTests
+namespace Logs.Web.Tests.Controllers.ListControllerTests
 {
     [TestFixture]
     public class PartialListTests
@@ -21,10 +19,9 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
         {
             // Arrange
             var mockedLogService = new Mock<ILogService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+            var controller = new ListController(mockedLogService.Object,  
                     mockedFactory.Object);
 
             // Act
@@ -43,14 +40,12 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var mockedLogService = new Mock<ILogService>();
             mockedLogService.Setup(s => s.GetAllSortedByDate()).Returns(logs);
 
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-
             var model = new ShortLogViewModel();
 
             var mockedFactory = new Mock<IViewModelFactory>();
             mockedFactory.Setup(f => f.CreateShortLogViewModel(It.IsAny<TrainingLog>())).Returns(model);
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+            var controller = new ListController(mockedLogService.Object,  
                            mockedFactory.Object);
 
             var expectedList = new List<ShortLogViewModel> { model };

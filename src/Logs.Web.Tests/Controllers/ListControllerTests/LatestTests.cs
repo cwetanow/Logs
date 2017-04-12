@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Logs.Authentication.Contracts;
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
@@ -8,10 +6,9 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Logs;
 using Moq;
 using NUnit.Framework;
-using PagedList;
 using TestStack.FluentMVCTesting;
 
-namespace Logs.Web.Tests.Controllers.LogsControllerTests
+namespace Logs.Web.Tests.Controllers.ListControllerTests
 {
     [TestFixture]
     public class LatestTests
@@ -22,10 +19,9 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
         {
             // Assert
             var mockedLogService = new Mock<ILogService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+            var controller = new ListController(mockedLogService.Object,
                mockedFactory.Object);
 
             // Act
@@ -33,27 +29,6 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
 
             // Assert
             mockedLogService.Verify(s => s.GetLatestLogs(count), Times.Once);
-        }
-
-        [TestCase(1)]
-        [TestCase(423)]
-        public void TestLatest_PassCount_ShoudReturnLogListPartialView(int count)
-        {
-            // Assert
-            var expectedViewName = "_LogListPartial";
-
-            var mockedLogService = new Mock<ILogService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-            var mockedFactory = new Mock<IViewModelFactory>();
-
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-               mockedFactory.Object);
-
-            // Act
-            var result = controller.Latest(count) as PartialViewResult;
-
-            // Assert
-            Assert.AreEqual(expectedViewName, result.ViewName);
         }
 
         [TestCase(1)]
@@ -66,7 +41,6 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var mockedLogService = new Mock<ILogService>();
             mockedLogService.Setup(s => s.GetLatestLogs(It.IsAny<int>())).Returns(logs);
 
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
 
             var viewModel = new ShortLogViewModel();
@@ -74,7 +48,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
 
             var model = new List<ShortLogViewModel> { viewModel };
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+            var controller = new ListController(mockedLogService.Object,  
                    mockedFactory.Object);
 
             // Act, Assert

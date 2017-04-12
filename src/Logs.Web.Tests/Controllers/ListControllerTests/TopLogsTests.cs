@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using Logs.Authentication.Contracts;
 using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
@@ -10,7 +8,7 @@ using Moq;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
 
-namespace Logs.Web.Tests.Controllers.LogsControllerTests
+namespace Logs.Web.Tests.Controllers.ListControllerTests
 {
     [TestFixture]
     public class TopLogsTests
@@ -21,10 +19,9 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
         {
             // Assert
             var mockedLogService = new Mock<ILogService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+            var controller = new ListController(mockedLogService.Object,  
                  mockedFactory.Object);
 
             // Act
@@ -36,28 +33,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
 
         [TestCase(1)]
         [TestCase(423)]
-        public void TestTopLogs_PassCount_ShoudReturnLogListPartialView(int count)
-        {
-            // Assert
-            var expectedViewName = "_LogListPartial";
-
-            var mockedLogService = new Mock<ILogService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
-            var mockedFactory = new Mock<IViewModelFactory>();
-
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
-                mockedFactory.Object);
-
-            // Act
-            var result = controller.TopLogs(count) as PartialViewResult;
-
-            // Assert
-            Assert.AreEqual(expectedViewName, result.ViewName);
-        }
-
-        [TestCase(1)]
-        [TestCase(423)]
-        public void TestTopLogs_PassCount_ShoudSetCorrectModel(int count)
+        public void TestTopLogs_PassCount_ShoudRenderCorrectPartialView(int count)
         {
             // Assert
             var logs = new List<TrainingLog> { new TrainingLog() };
@@ -65,7 +41,6 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var mockedLogService = new Mock<ILogService>();
             mockedLogService.Setup(s => s.GetTopLogs(It.IsAny<int>())).Returns(logs);
 
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
 
             var viewModel = new ShortLogViewModel();
@@ -73,7 +48,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
 
             var model = new List<ShortLogViewModel> { viewModel };
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+            var controller = new ListController(mockedLogService.Object,  
                 mockedFactory.Object);
 
             // Act, Assert

@@ -1,13 +1,11 @@
-﻿using System.Web.Mvc;
-using Logs.Authentication.Contracts;
-using Logs.Services.Contracts;
+﻿using Logs.Services.Contracts;
 using Logs.Web.Controllers;
 using Logs.Web.Infrastructure.Factories;
 using Moq;
 using NUnit.Framework;
 using TestStack.FluentMVCTesting;
 
-namespace Logs.Web.Tests.Controllers.LogsControllerTests
+namespace Logs.Web.Tests.Controllers.ListControllerTests
 {
     [TestFixture]
     public class ListTests
@@ -17,10 +15,9 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
         {
             // Arrange
             var mockedLogService = new Mock<ILogService>();
-            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IViewModelFactory>();
 
-            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+            var controller = new ListController(mockedLogService.Object,  
                mockedFactory.Object);
 
             // Act, Assert

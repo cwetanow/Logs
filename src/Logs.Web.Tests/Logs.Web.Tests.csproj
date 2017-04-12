@@ -181,10 +181,10 @@
     <Compile Include="Controllers\LogsControllerTests\CreateTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\DetailsTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\EditTests.cs" />
-    <Compile Include="Controllers\LogsControllerTests\LatestTests.cs" />
-    <Compile Include="Controllers\LogsControllerTests\ListTests.cs" />
-    <Compile Include="Controllers\LogsControllerTests\PartialListTests.cs" />
-    <Compile Include="Controllers\LogsControllerTests\TopLogsTests.cs" />
+    <Compile Include="Controllers\ListControllerTests\LatestTests.cs" />
+    <Compile Include="Controllers\ListControllerTests\ListTests.cs" />
+    <Compile Include="Controllers\ListControllerTests\PartialListTests.cs" />
+    <Compile Include="Controllers\ListControllerTests\TopLogsTests.cs" />
     <Compile Include="Controllers\NavigationControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\NavigationControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\ProfileControllerTests\ConstructorTests.cs" />
