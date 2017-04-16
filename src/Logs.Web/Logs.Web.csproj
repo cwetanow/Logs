@@ -269,6 +269,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Attributes\RestoreModelStateFromTempDataAttribute.cs" />
+    <Compile Include="Infrastructure\Attributes\SetTempDataModelStateAttribute.cs" />
     <Compile Include="Infrastructure\Factories\ICloudinaryFactory.cs" />
     <Compile Include="Infrastructure\Factories\IViewModelFactory.cs" />
     <Compile Include="Infrastructure\Interception\CachingInterceptor.cs" />
