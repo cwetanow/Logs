@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.Common", "Logs.Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.Providers.Tests", "Logs.Providers.Tests\Logs.Providers.Tests.csproj", "{CC83BFD3-122B-4557-9F3E-41D49962D41E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs.CoverallsDependencies", "Logs.CoverallsDependencies\Logs.CoverallsDependencies.csproj", "{D3CF1EEF-60F6-4601-8BC9-2DBB2DAA4B56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{CC83BFD3-122B-4557-9F3E-41D49962D41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC83BFD3-122B-4557-9F3E-41D49962D41E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC83BFD3-122B-4557-9F3E-41D49962D41E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3CF1EEF-60F6-4601-8BC9-2DBB2DAA4B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3CF1EEF-60F6-4601-8BC9-2DBB2DAA4B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3CF1EEF-60F6-4601-8BC9-2DBB2DAA4B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3CF1EEF-60F6-4601-8BC9-2DBB2DAA4B56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
