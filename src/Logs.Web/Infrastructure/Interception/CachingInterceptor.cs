@@ -45,6 +45,7 @@ namespace Logs.Web.Infrastructure.Interception
                 var date = this.dateTimeProvider.GetTimeFromCurrentTime(Constants.HoursCaching, 
                     Constants.MinutesCaching, 
                     Constants.SecondsCaching);
+
                 this.cachingProvider.AddItem(key, result, date);
             }
         }
