@@ -243,6 +243,7 @@
     <Compile Include="App_Start\NinjectModules\AuthNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\FactoryNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\InterceptionNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\ProvidersNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\ServiceNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />

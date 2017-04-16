@@ -17,10 +17,6 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<IUserService>().To<UserService>().InRequestScope();
             this.Bind<IVoteService>().To<VoteService>().InRequestScope();
             this.Bind<ICommentService>().To<CommentService>().InRequestScope();
-
-            this.Bind<CachingInterceptor>().ToSelf();
-
-            Kernel.AddMethodInterceptor(typeof(LogsService).GetMethod("GetAllSortedByDate"), Kernel.Get<CachingInterceptor>().Intercept);
         }
     }
 }
