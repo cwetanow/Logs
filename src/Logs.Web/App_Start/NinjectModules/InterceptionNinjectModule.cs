@@ -10,14 +10,16 @@ namespace Logs.Web.App_Start.NinjectModules
     {
         public override void Load()
         {
-            this.Bind<CachingInterceptor>().ToSelf();
+            this.Bind<CachingInterceptor>().ToSelf().InSingletonScope();
 
             this.AddInterceptions();
         }
 
         private void AddInterceptions()
         {
-            Kernel.AddMethodInterceptor(typeof(LogsService).GetMethod("GetAllSortedByDate"), Kernel.Get<CachingInterceptor>().Intercept);
+            var cachingInterceptor = this.Kernel.Get<CachingInterceptor>();
+
+            Kernel.AddMethodInterceptor(typeof(LogsService).GetMethod("GetAllSortedByDate"), cachingInterceptor.Intercept);
         }
     }
 }
