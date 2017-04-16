@@ -12,5 +12,7 @@
         public const int HoursCaching = 0;
         public const int MinutesCaching = 5;
         public const int SecondsCaching = 0;
+
+        public const string ModelState = "ModelState";
     }
 }

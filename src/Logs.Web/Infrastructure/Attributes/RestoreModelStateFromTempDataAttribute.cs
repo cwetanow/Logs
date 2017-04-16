@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Logs.Common;
 
 namespace Logs.Web.Infrastructure.Attributes
 {
@@ -7,10 +8,10 @@ namespace Logs.Web.Infrastructure.Attributes
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            if (filterContext.Controller.TempData.ContainsKey("ModelState"))
+            if (filterContext.Controller.TempData.ContainsKey(Constants.ModelState))
             {
                 filterContext.Controller.ViewData.ModelState.Merge(
-                    (ModelStateDictionary)filterContext.Controller.TempData["ModelState"]);
+                    (ModelStateDictionary)filterContext.Controller.TempData[Constants.ModelState]);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Logs.Common;
 
 namespace Logs.Web.Infrastructure.Attributes
 {
@@ -7,7 +8,7 @@ namespace Logs.Web.Infrastructure.Attributes
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);
-            filterContext.Controller.TempData["ModelState"] = filterContext.Controller.ViewData.ModelState;
+            filterContext.Controller.TempData[Constants.ModelState] = filterContext.Controller.ViewData.ModelState;
         }
     }
 }
