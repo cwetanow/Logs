@@ -254,6 +254,7 @@
     <Compile Include="Areas\Administration\Controllers\LogsAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserAdministrationController.cs" />
     <Compile Include="Areas\Administration\Models\UserViewModel.cs" />
+    <Compile Include="Areas\Nutrition\NutritionAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\EntriesController.cs" />
@@ -312,6 +313,7 @@
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\UserAdministration\Index.cshtml" />
     <Content Include="Areas\Administration\Views\LogsAdministration\Index.cshtml" />
+    <Content Include="Areas\Nutrition\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\details.js" />
     <Content Include="Scripts\image-upload.js" />
@@ -377,6 +379,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Nutrition\Controllers\" />
+    <Folder Include="Areas\Nutrition\Models\" />
+    <Folder Include="Areas\Nutrition\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
