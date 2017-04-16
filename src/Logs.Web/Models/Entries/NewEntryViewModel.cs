@@ -1,9 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Logs.Web.Models.Entries
 {
     public class NewEntryViewModel
     {
+        [Required]
         [AllowHtml]
         public string Content { get; set; }
 
