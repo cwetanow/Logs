@@ -1,10 +1,11 @@
 ﻿@model Logs.Web.Models.Logs.LogDetailsViewModel
 
-<h1>
-    @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+@if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
             {
-        <img id="profile-img" src="@Model.ProfileImageUrl" alt="">
-    }
+    <img id="profile-img" src="@Model.ProfileImageUrl" alt="">
+}
+<h1 class="text-center">
+
 
     @Model.Name
 </h1>
