@@ -10,7 +10,7 @@ namespace Logs.Data
         public LogsDbContext()
             : base("LogsDb", throwIfV1Schema: false)
         {
-            this.Database.CreateIfNotExists();
+            Database.SetInitializer<LogsDbContext>(null);
 
             this.Configuration.LazyLoadingEnabled = true;
             this.Configuration.ProxyCreationEnabled = true;
@@ -60,7 +60,6 @@ namespace Logs.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<LogsDbContext>(new MigrateDatabaseToLatestVersion<LogsDbContext, Migrations.Configuration>());
 
             this.ConfigureDailyNutritionGoals(modelBuilder);
             this.ConfigureUsers(modelBuilder);
