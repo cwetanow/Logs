@@ -1,8 +1,16 @@
-﻿namespace Logs.Models
+﻿using System;
+
+namespace Logs.Models
 {
     public class Measurement
     {
         public int MeasurementId { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string UserId { get; set; }
+
+        public virtual User User { get; set; }
 
         public int Heigh { get; set; }
 

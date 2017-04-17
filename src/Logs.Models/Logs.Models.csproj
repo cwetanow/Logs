@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comment.cs" />
+    <Compile Include="DailyNutritionGoals.cs" />
     <Compile Include="Enumerations\GenderType.cs" />
     <Compile Include="LogEntry.cs" />
     <Compile Include="Measurement.cs" />
