@@ -9,7 +9,7 @@
                 new { controller = "Profile", username = Model.Username },
                 new { @class = "text-right" })
     <ul class="list-inline list-unstyled">
-        <li><span><i class="glyphicon glyphicon-calendar"></i> @string.Format("{0:D} at {0:HH:mm}", Model.DateCreated)</span></li>
+        <li><span><i class="glyphicon glyphicon-calendar"></i> @string.Format(Logs.Common.Constants.ShortDateFormat, Model.DateCreated)</span></li>
         <li>|</li>
         <li> <span><i class="glyphicon glyphicon-comment"></i> @Model.Entries</span></li>
         <li>|</li>
@@ -20,7 +20,7 @@
                     "Details",
                     new { controller = "Profile", username = Model.LastActivityUser },
                     new { @class = "text-right pull-right" })
-        <li class="pull-right"><span><i class="glyphicon glyphicon-calendar"></i> @string.Format("{0:D} at {0:HH:mm}", Model.LastActivity)</span></li>
+        <li class="pull-right"><span><i class="glyphicon glyphicon-calendar"></i> @string.Format(Logs.Common.Constants.ShortDateFormat, Model.LastActivity)</span></li>
         <li class="pull-right">Latest activity:</li>
     </ul>
 </div>
