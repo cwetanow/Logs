@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Common;
 using Logs.Web.Infrastructure.Factories;
 
 namespace Logs.Web.Controllers
 {
     public class NavigationController : Controller
     {
-        private const string AdministratorRoleName = "administrator";
-
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IViewModelFactory viewModelFactory;
 
@@ -39,7 +38,7 @@ namespace Logs.Web.Controllers
                 username = this.authenticationProvider.CurrentUserUsername;
                 var userId = this.authenticationProvider.CurrentUserId;
 
-                isAdmin = this.authenticationProvider.IsInRole(userId, AdministratorRoleName);
+                isAdmin = this.authenticationProvider.IsInRole(userId, Constants.AdministratorRoleName);
             }
 
             var model = this.viewModelFactory.CreateNavigationViewModel(username, isAuthenticated, isAdmin);
