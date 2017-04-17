@@ -29,18 +29,11 @@ namespace Logs.Data
 
         public DbSet<Vote> Votes { get; set; }
 
-        //public DbSet<Nutrition> NutritionEntries { get; set; }
+        public DbSet<Nutrition> Nutritions { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            Database.SetInitializer<LogsDbContext>(null);
-            
-            modelBuilder.Entity<TrainingLog>()
-                .HasOptional(log => log.User)
-                .WithOptionalDependent();
+        public DbSet<Measurement> Measurements { get; set; }
 
-            base.OnModelCreating(modelBuilder);
-        }
+        public DbSet<DailyNutritionGoals> DailyNutritionGoals { get; set; }
 
         public IDbSet<TEntity> DbSet<TEntity>() where TEntity : class
         {
@@ -63,6 +56,61 @@ namespace Logs.Data
         {
             var entry = this.Entry(entity);
             entry.State = EntityState.Modified;
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<LogsDbContext>(null);
+
+            this.ConfigureDailyNutritionGoals(modelBuilder);
+            this.ConfigureUsers(modelBuilder);
+            this.ConfigureTrainingLogs(modelBuilder);
+            this.ConfigureMeasurements(modelBuilder);
+            this.ConfigureNutritions(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+        private void ConfigureTrainingLogs(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TrainingLog>()
+                .HasOptional(log => log.User)
+                .WithOptionalDependent();
+        }
+
+        private void ConfigureMeasurements(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Measurement>()
+                 .HasKey(m => m.MeasurementId)
+                 .HasRequired(m => m.User)
+                 .WithMany(u => u.MeasurementEntries)
+                 .HasForeignKey(m => m.UserId);
+        }
+
+        private void ConfigureDailyNutritionGoals(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DailyNutritionGoals>()
+               .HasKey(n => n.DailyNutritionGoalsId);
+        }
+
+        private void ConfigureNutritions(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Nutrition>()
+               .HasKey(n => n.NutritionId)
+               .HasRequired(n => n.User)
+               .WithMany(u => u.NutritionEntries)
+               .HasForeignKey(n => n.UserId);
+        }
+
+        private void ConfigureUsers(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+               .HasOptional(u => u.RestDayNutritionGoals)
+               .WithOptionalDependent();
+
+            modelBuilder.Entity<User>()
+                .HasOptional(u => u.TrainingDayNutritionGoals)
+                .WithOptionalDependent();
         }
     }
 }
