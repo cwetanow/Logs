@@ -48,7 +48,6 @@ namespace Logs.Web.Controllers
             this.viewModelFactory = viewModelFactory;
         }
 
-        [HttpGet]
         public ActionResult Index()
         {
             var userId = this.authenticationProvider.CurrentUserId;

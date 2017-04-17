@@ -40,7 +40,6 @@ namespace Logs.Web.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
-        [HttpGet]
         public ActionResult Details(int id, int page = 1, int count = Constants.LogEntriesPerPage)
         {
             var log = this.logService.GetTrainingLogById(id);
@@ -73,7 +72,6 @@ namespace Logs.Web.Controllers
             return this.View(model);
         }
 
-        [HttpGet]
         [Authorize]
         public ActionResult Create()
         {

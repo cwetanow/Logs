@@ -52,13 +52,11 @@ namespace Logs.Web.Controllers
             return this.RedirectToAction("NoLog");
         }
 
-        [HttpGet]
         public ActionResult NoLog()
         {
             return this.View();
         }
 
-        [HttpGet]
         public ActionResult Details(string username)
         {
             var user = this.userService.GetUserByUsername(username);
@@ -83,7 +81,6 @@ namespace Logs.Web.Controllers
         }
 
         [Authorize]
-        [HttpGet]
         public ActionResult NewLog()
         {
             var currentUserId = this.provider.CurrentUserId;

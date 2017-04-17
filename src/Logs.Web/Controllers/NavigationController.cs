@@ -28,7 +28,6 @@ namespace Logs.Web.Controllers
             this.authenticationProvider = authenticationProvider;
         }
 
-        [HttpGet]
         public ActionResult Index()
         {
             var isAuthenticated = this.authenticationProvider.IsAuthenticated;

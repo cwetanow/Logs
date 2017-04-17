@@ -30,7 +30,6 @@ namespace Logs.Web.Controllers
             this.factory = factory;
         }
 
-        [HttpGet]
         [OutputCache(Duration = 60 * 5, VaryByParam = "page")]
         public ActionResult PartialList(int count = Constants.LogsPerPage, int page = 1)
         {
@@ -43,13 +42,11 @@ namespace Logs.Web.Controllers
             return this.PartialView("_PagedLogListPartial", model);
         }
 
-        [HttpGet]
         public ActionResult List()
         {
             return this.View();
         }
 
-        [HttpGet]
         [OutputCache(Duration = 60 * 10)]
         public ActionResult TopLogs(int count = Constants.TopLogsCount)
         {
@@ -60,7 +57,6 @@ namespace Logs.Web.Controllers
             return this.PartialView("_LogListPartial", model);
         }
 
-        [HttpGet]
         [OutputCache(Duration = 60 * 10)]
         public ActionResult Latest(int count = Constants.TopLogsCount)
         {
