@@ -60,7 +60,6 @@ namespace Logs.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             this.ConfigureDailyNutritionGoals(modelBuilder);
             this.ConfigureUsers(modelBuilder);
             this.ConfigureTrainingLogs(modelBuilder);
