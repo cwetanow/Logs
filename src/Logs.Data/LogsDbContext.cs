@@ -60,7 +60,7 @@ namespace Logs.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<LogsDbContext>(null);
+            Database.SetInitializer<LogsDbContext>(new MigrateDatabaseToLatestVersion<LogsDbContext, Migrations.Configuration>());
 
             this.ConfigureDailyNutritionGoals(modelBuilder);
             this.ConfigureUsers(modelBuilder);
