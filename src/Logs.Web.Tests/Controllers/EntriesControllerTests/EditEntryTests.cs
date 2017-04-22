@@ -1,4 +1,6 @@
-﻿using Logs.Authentication.Contracts;
+﻿using System.Web.Mvc;
+using Logs.Authentication.Contracts;
+using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
 using Logs.Web.Models.Logs;
@@ -16,6 +18,9 @@ namespace Logs.Web.Tests.Controllers.EntriesControllerTests
         {
             // Arrange
             var mockedService = new Mock<IEntryService>();
+            mockedService.Setup(s => s.EditEntry(It.IsAny<int>(), It.IsAny<string>()))
+                .Returns(new LogEntry());
+
             var mockedProvider = new Mock<IAuthenticationProvider>();
 
             var controller = new EntriesController(mockedService.Object, mockedProvider.Object);
@@ -30,10 +35,34 @@ namespace Logs.Web.Tests.Controllers.EntriesControllerTests
         }
 
         [TestCase(1, "content")]
+        public void TestEditEntry_ShouldSetViewModelContentCorrectly(int entryId, string content)
+        {
+            // Arrange
+            var mockedService = new Mock<IEntryService>();
+            mockedService.Setup(s => s.EditEntry(It.IsAny<int>(), It.IsAny<string>()))
+                  .Returns(new LogEntry { Content = content });
+
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new EntriesController(mockedService.Object, mockedProvider.Object);
+
+            var model = new LogEntryViewModel { EntryId = entryId, Content = content };
+
+            // Act
+            var result = controller.EditEntry(model);
+
+            // Assert
+            Assert.AreEqual(content, ((LogEntryViewModel)result.Model).Content);
+        }
+
+        [TestCase(1, "content")]
         public void TestEditEntry_ShouldSetViewModelCorrectly(int entryId, string content)
         {
             // Arrange
             var mockedService = new Mock<IEntryService>();
+            mockedService.Setup(s => s.EditEntry(It.IsAny<int>(), It.IsAny<string>()))
+                 .Returns(new LogEntry { Content = content });
+
             var mockedProvider = new Mock<IAuthenticationProvider>();
 
             var controller = new EntriesController(mockedService.Object, mockedProvider.Object);
