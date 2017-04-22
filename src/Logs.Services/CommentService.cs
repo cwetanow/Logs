@@ -62,7 +62,7 @@ namespace Logs.Services
             this.unitOfWork = unitOfWork;
         }
 
-        public void EditComment(int commentId, string newContent)
+        public Comment EditComment(int commentId, string newContent)
         {
             var comment = this.commentRepository.GetById(commentId);
 
@@ -73,6 +73,8 @@ namespace Logs.Services
                 this.commentRepository.Update(comment);
                 this.unitOfWork.Commit();
             }
+
+            return comment;
         }
 
         public void AddCommentToLog(string content, int logId, string userId)
