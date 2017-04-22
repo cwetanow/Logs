@@ -45,7 +45,8 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public PartialViewResult EditEntry(LogEntryViewModel model)
         {
-            this.entryService.EditEntry(model.EntryId, model.Content);
+            var result = this.entryService.EditEntry(model.EntryId, model.Content);
+            model.Content = result.Content;
 
             return this.PartialView("_EntryContentPartial", model);
         }
