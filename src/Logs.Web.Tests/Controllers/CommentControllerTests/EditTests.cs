@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Logs.Authentication.Contracts;
+using Logs.Models;
 using Logs.Services.Contracts;
 using Logs.Web.Controllers;
 using Logs.Web.Models.Logs;
@@ -19,6 +20,9 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
             var model = new CommentViewModel { CommentId = commentId, Content = content };
 
             var mockedService = new Mock<ICommentService>();
+            mockedService.Setup(s => s.EditComment(It.IsAny<int>(), It.IsAny<string>()))
+                .Returns(new Comment());
+
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
@@ -31,12 +35,36 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
         }
 
         [TestCase(1, "content")]
+        public void TestEdit_ShouldSetModelContentCorrectly(int commentId, string content)
+        {
+            // Arrange
+            var model = new CommentViewModel { CommentId = commentId, Content = content };
+
+            var mockedService = new Mock<ICommentService>();
+            mockedService.Setup(s => s.EditComment(It.IsAny<int>(), It.IsAny<string>()))
+                .Returns(new Comment { Content = content });
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
+
+            // Act
+            var result = controller.Edit(model) as PartialViewResult;
+
+            // Assert
+            Assert.AreSame(content, ((CommentViewModel)result.Model).Content);
+        }
+
+        [TestCase(1, "content")]
         public void TestEdit_ShouldReturnPartialViewWithModel(int commentId, string content)
         {
             // Arrange
             var model = new CommentViewModel { CommentId = commentId, Content = content };
 
             var mockedService = new Mock<ICommentService>();
+            mockedService.Setup(s => s.EditComment(It.IsAny<int>(), It.IsAny<string>()))
+                .Returns(new Comment { Content = content });
+
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
