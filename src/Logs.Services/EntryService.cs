@@ -63,7 +63,7 @@ namespace Logs.Services
             this.logService.AddEntryToLog(logId, entry, userId);
         }
 
-        public void EditEntry(int entryId, string newContent)
+        public LogEntry EditEntry(int entryId, string newContent)
         {
             var entry = this.entryRepository.GetById(entryId);
 
@@ -74,6 +74,8 @@ namespace Logs.Services
                 this.entryRepository.Update(entry);
                 this.unitOfWork.Commit();
             }
+
+            return entry;
         }
     }
 }
