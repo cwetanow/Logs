@@ -30,16 +30,19 @@ namespace Logs.Web.Controllers
         [HttpPost]
         public ActionResult Vote(int logId, int currentVoteCount)
         {
-            var currentUserId = this.authenticationProvider.CurrentUserId;
-
-            var rating = this.voteService.VoteLog(logId, currentUserId);
-
-            if (rating < 0)
+            if (ModelState.IsValid)
             {
-                rating = currentVoteCount;
+                var currentUserId = this.authenticationProvider.CurrentUserId;
+
+                var rating = this.voteService.VoteLog(logId, currentUserId);
+
+                if (rating >= 0)
+                {
+                    currentVoteCount = rating;
+                }
             }
 
-            return this.PartialView(rating);
+            return this.PartialView(currentVoteCount);
         }
     }
 }

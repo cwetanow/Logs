@@ -10,6 +10,45 @@ namespace Logs.Web.Tests.Controllers.VoteControllerTests
     [TestFixture]
     public class VoteTests
     {
+        [TestCase(5, 1764)]
+        [TestCase(423, 0)]
+        public void TestVote_ModelStateIsNotValid_ShouldNotCallAuthenticationProviderCurrentUserId(int logId, int currentVoteCount)
+        {
+            // Arrange
+            var mockedService = new Mock<IVoteService>();
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new VoteController(mockedService.Object, mockedProvider.Object);
+            controller.ModelState.AddModelError("", "");
+
+            // Act
+            controller.Vote(logId, currentVoteCount);
+
+            // Assert
+            mockedProvider.Verify(p => p.CurrentUserId, Times.Never);
+        }
+
+        [TestCase(1, 12, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        [TestCase(5, 1764, "99ae8dd3-1067-4141-9675-62e94bb6caaa")]
+        public void TestVote_ModelStateIsNotValid_ShouldReturnCorrectly(int logId, int currentVoteCount, string userId)
+        {
+            // Arrange
+            var mockedService = new Mock<IVoteService>();
+            mockedService.Setup(s => s.VoteLog(It.IsAny<int>(), It.IsAny<string>())).Returns(-1);
+
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            mockedProvider.Setup(p => p.CurrentUserId).Returns(userId);
+
+            var controller = new VoteController(mockedService.Object, mockedProvider.Object);
+            controller.ModelState.AddModelError("", "");
+
+            // Act
+            var result = ((PartialViewResult)controller.Vote(logId, currentVoteCount)).Model;
+
+            // Assert
+            Assert.AreEqual(currentVoteCount, result);
+        }
+
         [TestCase(1, 12)]
         [TestCase(5, 1764)]
         [TestCase(423, 0)]
