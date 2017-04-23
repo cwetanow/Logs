@@ -18,8 +18,8 @@
 
         public double WaterInLitres { get; set; }
 
-        public string UserId { get; set; }
+        public int EntryId { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual NutritionEntry Entry { get; set; }
     }
 }
