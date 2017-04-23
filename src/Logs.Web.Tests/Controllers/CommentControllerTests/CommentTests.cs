@@ -13,6 +13,25 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
     public class CommentTests
     {
         [Test]
+        public void TestComment_ModelStateIsNotValid_ShouldNotCallAuthenticationProviderCurrentUserId()
+        {
+            // Arrange
+            var model = new NewCommentViewModel();
+
+            var mockedService = new Mock<ICommentService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
+            controller.ModelState.AddModelError("", "");
+
+            // Act
+            controller.Comment(model);
+
+            // Assert
+            mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Never);
+        }
+
+        [Test]
         public void TestComment_ShouldCallAuthenticationProviderCurrentUserId()
         {
             // Arrange
