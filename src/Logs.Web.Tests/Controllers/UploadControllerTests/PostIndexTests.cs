@@ -14,6 +14,30 @@ namespace Logs.Web.Tests.Controllers.UploadControllerTests
     [TestFixture]
     public class PostIndexTests
     {
+        [Test]
+        public void TestPostIndex_ModelStateIsNotValid_ShouldNotCallProviderCurrentUserId()
+        {
+            // Act
+            var mockedUserService = new Mock<IUserService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+            var mockedViewModelFactory = new Mock<IViewModelFactory>();
+
+            var controller = new UploadController(mockedUserService.Object,
+                mockedAuthenticationProvider.Object,
+                mockedCloudinaryFactory.Object,
+                mockedViewModelFactory.Object);
+            controller.ModelState.AddModelError("", "");
+
+            var model = new UploadViewModel();
+
+            // Act
+            controller.Index(model);
+
+            // Assert
+            mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Never);
+        }
+
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95",
              "https://picturethismaths.files.wordpress.com/2016/03/fig6bigforblog.png?w=419&h=364")]
         public void TestPostIndex_ShouldCallProviderCurrentUserId(string userId, string pictureUrl)

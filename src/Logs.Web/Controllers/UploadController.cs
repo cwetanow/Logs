@@ -64,9 +64,12 @@ namespace Logs.Web.Controllers
         [HttpPost]
         public ActionResult Index(UploadViewModel model)
         {
-            var userId = this.authenticationProvider.CurrentUserId;
+            if (ModelState.IsValid)
+            {
+                var userId = this.authenticationProvider.CurrentUserId;
 
-            this.userService.ChangeProfilePicture(userId, model.ImageUrl);
+                this.userService.ChangeProfilePicture(userId, model.ImageUrl);
+            }
 
             model.Cloudinary = this.cloudinaryFactory.GetCloudinary();
 
