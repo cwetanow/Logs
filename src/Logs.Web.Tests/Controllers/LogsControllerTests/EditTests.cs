@@ -12,6 +12,27 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
     [TestFixture]
     public class EditTests
     {
+        [Test]
+        public void TestEdit_ModelStateIsNotValid_ShouldNotCallServiceEditLogDescriptionCorrectly()
+        {
+            // Arrange 
+            var mockedLogService = new Mock<ILogService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IViewModelFactory>();
+
+            var controller = new LogsController(mockedLogService.Object, mockedAuthenticationProvider.Object,
+                 mockedFactory.Object);
+            controller.ModelState.AddModelError("", "");
+
+            var model = new LogDetailsViewModel();
+
+            // Act
+            controller.Edit(model);
+
+            // Assert
+            mockedLogService.Verify(s => s.EditLog(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+        }
+
         [TestCase(1, "description", "name")]
         [TestCase(1, "new description", "name")]
         public void TestEdit_ShouldCallServiceEditLogDescriptionCorrectly(int logId, string newDescription, string newName)
