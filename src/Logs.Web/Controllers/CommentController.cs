@@ -48,8 +48,11 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(CommentViewModel model)
         {
-            var result = this.commentService.EditComment(model.CommentId, model.Content);
-            model.Content = result.Content;
+            if (ModelState.IsValid)
+            {
+                var result = this.commentService.EditComment(model.CommentId, model.Content);
+                model.Content = result.Content;
+            }
 
             return this.PartialView("_CommentContentPartial", model);
         }
