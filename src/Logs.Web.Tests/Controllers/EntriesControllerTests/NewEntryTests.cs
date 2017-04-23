@@ -13,6 +13,25 @@ namespace Logs.Web.Tests.Controllers.EntriesControllerTests
     public class NewEntryTests
     {
         [Test]
+        public void TestNewEntry_ModelStateIsNotValid_ShouldNotCallAuthenticationProviderCurrentUserId()
+        {
+            // Arrange
+            var model = new NewEntryViewModel();
+
+            var mockedService = new Mock<IEntryService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new EntriesController(mockedService.Object, mockedAuthenticationProvider.Object);
+            controller.ModelState.AddModelError("", "");
+
+            // Act
+            controller.NewEntry(model);
+
+            // Assert
+            mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Never);
+        }
+
+        [Test]
         public void TestNewEntry_ShouldCallAuthenticationProviderCurrentUserId()
         {
             // Arrange
