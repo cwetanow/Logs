@@ -33,9 +33,12 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult NewEntry(NewEntryViewModel model)
         {
-            var userId = this.authenticationProvider.CurrentUserId;
+            if (ModelState.IsValid)
+            {
+                var userId = this.authenticationProvider.CurrentUserId;
 
-            this.entryService.AddEntryToLog(model.Content, model.LogId, userId);
+                this.entryService.AddEntryToLog(model.Content, model.LogId, userId);
+            }
 
             return this.RedirectToAction("Details", "Logs", new { id = model.LogId, page = -1 });
         }
@@ -45,8 +48,11 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public PartialViewResult EditEntry(LogEntryViewModel model)
         {
-            var result = this.entryService.EditEntry(model.EntryId, model.Content);
-            model.Content = result.Content;
+            if (ModelState.IsValid)
+            {
+                var result = this.entryService.EditEntry(model.EntryId, model.Content);
+                model.Content = result.Content;
+            }
 
             return this.PartialView("_EntryContentPartial", model);
         }
