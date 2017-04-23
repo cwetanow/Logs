@@ -33,9 +33,12 @@ namespace Logs.Web.Controllers
         [HttpPost]
         public ActionResult Comment(NewCommentViewModel model)
         {
-            var userId = this.authenticationProvider.CurrentUserId;
+            if (ModelState.IsValid)
+            {
+                var userId = this.authenticationProvider.CurrentUserId;
 
-            this.commentService.AddCommentToLog(model.Content, model.LogId, userId);
+                this.commentService.AddCommentToLog(model.Content, model.LogId, userId);
+            }
 
             return this.RedirectToAction("Details", "Logs", new { id = model.LogId, page = -1 });
         }
