@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Logs.Models;
 
@@ -30,6 +31,7 @@ namespace Logs.Web.Models.Logs
         public string User { get; set; }
 
         [AllowHtml]
+        [Required]
         public string Content { get; set; }
     }
 }
