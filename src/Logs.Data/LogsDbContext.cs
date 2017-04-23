@@ -33,8 +33,6 @@ namespace Logs.Data
 
         public DbSet<Measurement> Measurements { get; set; }
 
-        public DbSet<DailyNutritionGoals> DailyNutritionGoals { get; set; }
-
         public IDbSet<TEntity> DbSet<TEntity>() where TEntity : class
         {
             return this.Set<TEntity>();
@@ -60,8 +58,6 @@ namespace Logs.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            this.ConfigureDailyNutritionGoals(modelBuilder);
-            this.ConfigureUsers(modelBuilder);
             this.ConfigureTrainingLogs(modelBuilder);
             this.ConfigureMeasurements(modelBuilder);
             this.ConfigureNutritions(modelBuilder);
@@ -81,14 +77,8 @@ namespace Logs.Data
             modelBuilder.Entity<Measurement>()
                  .HasKey(m => m.MeasurementId)
                  .HasRequired(m => m.User)
-                 .WithMany(u => u.MeasurementEntries)
+                 .WithMany(u => u.Measurements)
                  .HasForeignKey(m => m.UserId);
-        }
-
-        private void ConfigureDailyNutritionGoals(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<DailyNutritionGoals>()
-               .HasKey(n => n.DailyNutritionGoalsId);
         }
 
         private void ConfigureNutritions(DbModelBuilder modelBuilder)
@@ -98,17 +88,6 @@ namespace Logs.Data
                .HasRequired(n => n.User)
                .WithMany(u => u.NutritionEntries)
                .HasForeignKey(n => n.UserId);
-        }
-
-        private void ConfigureUsers(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
-               .HasOptional(u => u.RestDayNutritionGoals)
-               .WithOptionalDependent();
-
-            modelBuilder.Entity<User>()
-                .HasOptional(u => u.TrainingDayNutritionGoals)
-                .WithOptionalDependent();
         }
     }
 }
