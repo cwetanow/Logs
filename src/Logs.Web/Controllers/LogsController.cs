@@ -102,7 +102,10 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public PartialViewResult Edit(LogDetailsViewModel model)
         {
-            this.logService.EditLog(model.LogId, model.Description, model.Name);
+            if (ModelState.IsValid)
+            {
+                this.logService.EditLog(model.LogId, model.Description, model.Name);
+            }
 
             return this.PartialView("_LogDescription", model);
         }
