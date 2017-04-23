@@ -75,7 +75,10 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public PartialViewResult Edit(UserProfileViewModel model)
         {
-            this.userService.EditUser(model.Id, model.Description, model.Age, model.Weight, model.Height, model.BodyFatPercent, model.GenderType);
+            if (ModelState.IsValid)
+            {
+                this.userService.EditUser(model.Id, model.Description, model.Age, model.Weight, model.Height, model.BodyFatPercent, model.GenderType);
+            }
 
             return this.PartialView("_UserStatsPartial", model);
         }
