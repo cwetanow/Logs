@@ -31,7 +31,11 @@ namespace Logs.Data
 
         public DbSet<Nutrition> Nutritions { get; set; }
 
-        public DbSet<Measurement> Measurements { get; set; }
+        public DbSet<Measurements> Measurements { get; set; }
+
+        public DbSet<NutritionEntry> NutritionEntries { get; set; }
+
+        public DbSet<Meal> Meals { get; set; }
 
         public IDbSet<TEntity> DbSet<TEntity>() where TEntity : class
         {
@@ -60,9 +64,51 @@ namespace Logs.Data
         {
             this.ConfigureTrainingLogs(modelBuilder);
             this.ConfigureMeasurements(modelBuilder);
-            this.ConfigureNutritions(modelBuilder);
+            this.ConfigureNutrition(modelBuilder);
+            this.ConfigureMeals(modelBuilder);
+            this.ConfigureNutritionEntries(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        private void ConfigureMeals(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Meal>()
+                .HasKey(m => m.MealId);
+        }
+
+        private void ConfigureNutrition(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Nutrition>()
+                .HasKey(n => n.NutritionId);
+        }
+
+        private void ConfigureNutritionEntries(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<NutritionEntry>()
+                .HasKey(e => e.NutritionEntryId)
+                .HasOptional(e => e.User)
+                .WithMany(u => u.NutritionEntries);
+
+            modelBuilder.Entity<NutritionEntry>()
+                .HasOptional(e => e.Measurements)
+                .WithOptionalDependent();
+
+            modelBuilder.Entity<NutritionEntry>()
+                .HasOptional(e => e.Nutrition)
+                .WithOptionalDependent();
+
+            modelBuilder.Entity<NutritionEntry>()
+                .HasMany(e => e.Meals)
+                .WithRequired(m => m.Entry);
+        }
+
+        private void ConfigureMeasurements(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Measurements>()
+                .HasKey(m => m.MeasurementsId)
+                .HasOptional(m => m.NutritionEntry)
+                .WithOptionalDependent();
         }
 
         private void ConfigureTrainingLogs(DbModelBuilder modelBuilder)
@@ -70,24 +116,6 @@ namespace Logs.Data
             modelBuilder.Entity<TrainingLog>()
                 .HasOptional(log => log.User)
                 .WithOptionalDependent();
-        }
-
-        private void ConfigureMeasurements(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Measurement>()
-                 .HasKey(m => m.MeasurementId)
-                 .HasRequired(m => m.User)
-                 .WithMany(u => u.Measurements)
-                 .HasForeignKey(m => m.UserId);
-        }
-
-        private void ConfigureNutritions(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Nutrition>()
-               .HasKey(n => n.NutritionId)
-               .HasRequired(n => n.User)
-               .WithMany(u => u.NutritionEntries)
-               .HasForeignKey(n => n.UserId);
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Measurements
     {
-        public int MeasurementId { get; set; }
+        public int MeasurementsId { get; set; }
 
         public int Heigh { get; set; }
 
