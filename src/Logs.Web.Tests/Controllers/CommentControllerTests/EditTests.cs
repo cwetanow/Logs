@@ -14,6 +14,28 @@ namespace Logs.Web.Tests.Controllers.CommentControllerTests
     public class EditTests
     {
         [TestCase(1, "content")]
+        public void TestEdit_ModelStateIsNotValid_ShouldNotCallCommentServiceEditCommentCorrectly(int commentId, string content)
+        {
+            // Arrange
+            var model = new CommentViewModel { CommentId = commentId, Content = content };
+
+            var mockedService = new Mock<ICommentService>();
+            mockedService.Setup(s => s.EditComment(It.IsAny<int>(), It.IsAny<string>()))
+                .Returns(new Comment());
+
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new CommentController(mockedService.Object, mockedAuthenticationProvider.Object);
+            controller.ModelState.AddModelError("", "");
+
+            // Act
+            controller.Edit(model);
+
+            // Assert
+            mockedService.Verify(s => s.EditComment(It.IsAny<int>(), It.IsAny<string>()), Times.Never);
+        }
+
+        [TestCase(1, "content")]
         public void TestEdit_ShouldCallCommentServiceEditCommentCorrectly(int commentId, string content)
         {
             // Arrange
