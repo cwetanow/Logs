@@ -11,8 +11,7 @@ namespace Logs.Models
         {
             this.Comments = new HashSet<Comment>();
             this.Entries = new HashSet<LogEntry>();
-            this.NutritionEntries = new HashSet<Nutrition>();
-            this.MeasurementEntries = new HashSet<Measurement>();
+            this.NutritionEntries = new HashSet<NutritionEntry>();
         }
 
         public User(string username, string email)
@@ -47,12 +46,6 @@ namespace Logs.Models
 
         public string ProfileImageUrl { get; set; }
 
-        public virtual DailyNutritionGoals TrainingDayNutritionGoals { get; set; }
-
-        public virtual DailyNutritionGoals RestDayNutritionGoals { get; set; }
-
-        public virtual ICollection<Nutrition> NutritionEntries { get; set; }
-
-        public virtual ICollection<Measurement> MeasurementEntries { get; set; }
+        public virtual ICollection<NutritionEntry> NutritionEntries { get; set; }
     }
 }

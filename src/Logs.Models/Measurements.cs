@@ -1,16 +1,8 @@
-﻿using System;
-
-namespace Logs.Models
+﻿namespace Logs.Models
 {
-    public class Measurement
+    public class Measurements
     {
-        public int MeasurementId { get; set; }
-
-        public DateTime Date { get; set; }
-
-        public string UserId { get; set; }
-
-        public virtual User User { get; set; }
+        public int MeasurementsId { get; set; }
 
         public int Heigh { get; set; }
 
@@ -39,5 +31,9 @@ namespace Logs.Models
         public int Wrist { get; set; }
 
         public int Ankle { get; set; }
+
+        public int NutritionEntryId { get; set; }
+
+        public virtual NutritionEntry NutritionEntry { get; set; }
     }
 }

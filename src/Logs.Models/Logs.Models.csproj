@@ -58,11 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comment.cs" />
-    <Compile Include="DailyNutritionGoals.cs" />
     <Compile Include="Enumerations\GenderType.cs" />
     <Compile Include="LogEntry.cs" />
-    <Compile Include="Measurement.cs" />
+    <Compile Include="Meal.cs" />
+    <Compile Include="Measurements.cs" />
     <Compile Include="Nutrition.cs" />
+    <Compile Include="NutritionEntry.cs" />
     <Compile Include="Vote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingLog.cs" />
