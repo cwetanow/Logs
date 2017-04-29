@@ -263,6 +263,7 @@
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Controllers\NutritionController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -382,6 +383,7 @@
     <Folder Include="Areas\Nutrition\Controllers\" />
     <Folder Include="Areas\Nutrition\Models\" />
     <Folder Include="Areas\Nutrition\Views\Shared\" />
+    <Folder Include="Views\Nutrition\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
