@@ -70,7 +70,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var user = new User();
 
             var log = new TrainingLog { User = user };
-            user.Log = log;
+            user.TrainingLog = log;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             mockedLogRepository.Setup(r => r.GetById(It.IsAny<object>())).Returns(log);
@@ -90,7 +90,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             service.DeleteLog(logId);
 
             // Assert
-            Assert.IsNull(user.Log);
+            Assert.IsNull(user.TrainingLog);
         }
 
         [TestCase(1)]
@@ -102,7 +102,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var user = new User();
 
             var log = new TrainingLog { User = user };
-            user.Log = log;
+            user.TrainingLog = log;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             mockedLogRepository.Setup(r => r.GetById(It.IsAny<object>())).Returns(log);
@@ -134,7 +134,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var user = new User();
 
             var log = new TrainingLog { User = user };
-            user.Log = log;
+            user.TrainingLog = log;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             mockedLogRepository.Setup(r => r.GetById(It.IsAny<object>())).Returns(log);

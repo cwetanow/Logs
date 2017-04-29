@@ -255,7 +255,7 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
             var result = controller.Details(id);
 
             // Assert
-            mockedFactory.Verify(f => f.CreateLogEntryViewModel(It.IsAny<LogEntry>(), userId), Times.Exactly(log.Entries.Count));
+            mockedFactory.Verify(f => f.CreateLogEntryViewModel(It.IsAny<LogEntry>(), userId), Times.Exactly(log.LogEntries.Count));
         }
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
@@ -297,11 +297,11 @@ namespace Logs.Web.Tests.Controllers.LogsControllerTests
         public void TestDetails_ShouldSetCorrectEntriesToModel(int id, string userId, int page, int count)
         {
             // Arrange 
-            var entry = new LogEntry { Log = new TrainingLog() };
+            var entry = new LogEntry { TrainingLog = new TrainingLog() };
             var entries = new List<LogEntry> { entry };
 
             var user = new User { Id = userId };
-            var log = new TrainingLog { User = user, Entries = entries };
+            var log = new TrainingLog { User = user, LogEntries = entries };
 
             var mockedLogService = new Mock<ILogService>();
             mockedLogService.Setup(s => s.GetTrainingLogById(It.IsAny<int>())).Returns(log);

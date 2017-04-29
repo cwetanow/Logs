@@ -42,10 +42,10 @@ namespace Logs.Models.Tests.CommentTests
             var comment = new Comment();
 
             // Act
-            comment.Entry = entry;
+            comment.LogEntry = entry;
 
             // Assert
-            Assert.AreSame(entry, comment.Entry);
+            Assert.AreSame(entry, comment.LogEntry);
         }
 
         [Test]

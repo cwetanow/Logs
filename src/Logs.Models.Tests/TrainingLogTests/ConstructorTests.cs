@@ -73,7 +73,7 @@ namespace Logs.Models.Tests.TrainingLogTests
             var log = new TrainingLog(name, description, dateCreated, user);
 
             // Assert
-            Assert.AreSame(user.Log, log);
+            Assert.AreSame(user.TrainingLog, log);
         }
 
         [TestCase("name", "description")]

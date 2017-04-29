@@ -119,7 +119,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             service.AddEntryToLog(logId, entry, userId);
 
             // Assert
-            CollectionAssert.Contains(log.Entries, entry);
+            CollectionAssert.Contains(log.LogEntries, entry);
         }
 
         [TestCase(1, "pesho")]

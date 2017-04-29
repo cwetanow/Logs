@@ -94,7 +94,7 @@ namespace Logs.Services
         {
             var result = this.logRepository.All
                .OrderByDescending(t => t.Votes.Count)
-               .ThenByDescending(t => t.Entries.Count)
+               .ThenByDescending(t => t.LogEntries.Count)
                .Take(count)
                .ToList();
 
@@ -107,9 +107,9 @@ namespace Logs.Services
 
             if (log != null && log.User.Id == userId)
             {
-                log.Entries.Add(entry);
+                log.LogEntries.Add(entry);
                 log.LastEntryDate = entry.EntryDate;
-                log.LastEntry = entry;
+                log.LastLogEntry = entry;
                 log.LastActivityUser = log.User.UserName;
 
                 this.unitOfWork.Commit();
@@ -122,7 +122,7 @@ namespace Logs.Services
 
             if (log != null)
             {
-                log.LastEntry.Comments.Add(comment);
+                log.LastLogEntry.Comments.Add(comment);
                 log.LastEntryDate = comment.Date;
                 log.LastActivityUser = comment.User.UserName;
 
@@ -158,7 +158,7 @@ namespace Logs.Services
             {
                 if (log.User != null)
                 {
-                    log.User.Log = null;
+                    log.User.TrainingLog = null;
                 }
 
                 this.logRepository.Delete(log);

@@ -8,8 +8,8 @@ namespace Logs.Web.Models.Profile
     {
         public UserProfileViewModel(User user, bool canEdit)
         {
-            this.HasLog = user.Log != null;
-            this.LogId = this.HasLog ? user.Log.LogId : 0;
+            this.HasLog = user.LogId != null;
+            this.LogId = this.HasLog ? user.LogId.Value : 0;
             this.Weight = user.Weight;
             this.Age = user.Age;
             this.BodyFatPercent = user.BodyFatPercent;
@@ -26,7 +26,7 @@ namespace Logs.Web.Models.Profile
 
         public UserProfileViewModel()
         {
-            
+
         }
 
         public double Weight { get; set; }

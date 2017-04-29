@@ -17,7 +17,7 @@ namespace Logs.Web.Models.Logs
                     EntryDate = entry.EntryDate,
                     Content = entry.Content,
                     EntryId = entry.LogEntryId,
-                    CanEdit = entry.Log.User?.Id.Equals(userId) ?? false,
+                    CanEdit = entry.TrainingLog.User?.Id.Equals(userId) ?? false,
                     Comments = entry.Comments.Select(c => CommentViewModel.FromComment(c, userId, isAdmin))
                 };
             }

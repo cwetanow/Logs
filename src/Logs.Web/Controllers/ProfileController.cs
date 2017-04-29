@@ -44,9 +44,9 @@ namespace Logs.Web.Controllers
             var currentUserId = this.provider.CurrentUserId;
             var currentUser = this.userService.GetUserById(currentUserId);
 
-            if (currentUser.Log != null)
+            if (currentUser.TrainingLog != null)
             {
-                return this.RedirectToAction("Details", "Logs", new { id = currentUser.Log.LogId });
+                return this.RedirectToAction("Details", "Logs", new { id = currentUser.TrainingLog.LogId });
             }
 
             return this.RedirectToAction("NoLog");
@@ -90,14 +90,14 @@ namespace Logs.Web.Controllers
 
             var currentUser = this.userService.GetUserById(currentUserId);
 
-            if (currentUser.Log == null)
+            if (currentUser.LogId == null)
             {
                 return this.RedirectToAction("Create", "Logs");
             }
 
-            var logId = currentUser.Log.LogId;
+            var logId = currentUser.LogId;
 
-            var model = this.viewModelFactory.CreateNewLogViewModel(logId);
+            var model = this.viewModelFactory.CreateNewLogViewModel(logId.Value);
 
             return this.View(model);
         }

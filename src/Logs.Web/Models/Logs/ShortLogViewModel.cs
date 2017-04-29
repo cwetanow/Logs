@@ -14,7 +14,7 @@ namespace Logs.Web.Models.Logs
         public ShortLogViewModel(TrainingLog log)
         {
             this.DateCreated = log.DateCreated;
-            this.Entries = log.Entries.Count;
+            this.Entries = log.LogEntries.Count;
             this.LastActivity = log.LastEntryDate;
             this.Name = log.Name;
             this.LastActivityUser = log.LastActivityUser;

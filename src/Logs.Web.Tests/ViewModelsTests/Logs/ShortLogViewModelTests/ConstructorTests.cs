@@ -21,7 +21,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry>(),
+                LogEntries = new List<LogEntry>(),
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote>()
             };
@@ -45,7 +45,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry>(),
+                LogEntries = new List<LogEntry>(),
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote>()
             };
@@ -69,7 +69,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry> { new LogEntry() },
+                LogEntries = new List<LogEntry> { new LogEntry() },
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote>()
             };
@@ -78,7 +78,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
             var model = new ShortLogViewModel(log);
 
             // Assert
-            Assert.AreEqual(log.Entries.Count, model.Entries);
+            Assert.AreEqual(log.LogEntries.Count, model.Entries);
         }
 
         [TestCase("name", 1, "username", "user")]
@@ -93,7 +93,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry>(),
+                LogEntries = new List<LogEntry>(),
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote>()
             };
@@ -117,7 +117,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry>(),
+                LogEntries = new List<LogEntry>(),
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote>()
             };
@@ -141,7 +141,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry>(),
+                LogEntries = new List<LogEntry>(),
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote>()
             };
@@ -165,7 +165,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry>(),
+                LogEntries = new List<LogEntry>(),
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote>()
             };
@@ -189,7 +189,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry>(),
+                LogEntries = new List<LogEntry>(),
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote> { new Vote() }
             };
@@ -213,7 +213,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Logs.ShortLogViewModelTests
                 Owner = username,
                 LastActivityUser = lastActivityUser,
                 DateCreated = new DateTime(),
-                Entries = new List<LogEntry>(),
+                LogEntries = new List<LogEntry>(),
                 LastEntryDate = new DateTime(),
                 Votes = new List<Vote>()
             };

@@ -28,10 +28,10 @@ namespace Logs.Models.Tests.VoteTests
             var vote = new Vote();
 
             // Act
-            vote.Log = log;
+            vote.TrainingLog = log;
 
             // Assert
-            Assert.AreSame(log, vote.Log);
+            Assert.AreSame(log, vote.TrainingLog);
         }
 
         [Test]

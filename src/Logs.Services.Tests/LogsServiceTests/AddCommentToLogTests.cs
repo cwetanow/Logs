@@ -73,7 +73,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var lastEntry = new LogEntry();
 
             var log = new TrainingLog { User = user };
-            log.LastEntry = lastEntry;
+            log.LastLogEntry = lastEntry;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             mockedLogRepository.Setup(r => r.GetById(It.IsAny<object>()))
@@ -94,7 +94,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             service.AddCommentToLog(logId, entry);
 
             // Assert
-            CollectionAssert.Contains(log.LastEntry.Comments, entry);
+            CollectionAssert.Contains(log.LastLogEntry.Comments, entry);
         }
 
         [TestCase(1, "pesho")]
@@ -108,7 +108,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var lastEntry = new LogEntry();
 
             var log = new TrainingLog { User = user };
-            log.LastEntry = lastEntry;
+            log.LastLogEntry = lastEntry;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             mockedLogRepository.Setup(r => r.GetById(It.IsAny<object>()))
@@ -143,7 +143,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var lastEntry = new LogEntry();
 
             var log = new TrainingLog { User = user };
-            log.LastEntry = lastEntry;
+            log.LastLogEntry = lastEntry;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             mockedLogRepository.Setup(r => r.GetById(It.IsAny<object>()))
@@ -178,7 +178,7 @@ namespace Logs.Services.Tests.LogsServiceTests
             var lastEntry = new LogEntry();
 
             var log = new TrainingLog { User = user };
-            log.LastEntry = lastEntry;
+            log.LastLogEntry = lastEntry;
 
             var mockedLogRepository = new Mock<IRepository<TrainingLog>>();
             mockedLogRepository.Setup(r => r.GetById(It.IsAny<object>()))

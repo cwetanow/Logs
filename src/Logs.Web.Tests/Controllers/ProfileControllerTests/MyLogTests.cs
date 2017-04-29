@@ -84,7 +84,7 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
             mockedProvider.Setup(p => p.CurrentUserId).Returns(userId);
 
             var log = new TrainingLog();
-            var user = new User { Log = log };
+            var user = new User { TrainingLog = log };
 
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(user);

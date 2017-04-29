@@ -15,10 +15,10 @@ namespace Logs.Models.Tests.UserTests
             var user = new User();
 
             // Act
-            user.Log = log;
+            user.TrainingLog = log;
 
             // Assert
-            Assert.AreSame(log, user.Log);
+            Assert.AreSame(log, user.TrainingLog);
         }
 
         [Test]
@@ -43,10 +43,10 @@ namespace Logs.Models.Tests.UserTests
             var user = new User();
 
             // Act
-            user.Entries = entries;
+            user.LogEntries = entries;
 
             // Assert
-            CollectionAssert.AreEqual(entries, user.Entries);
+            CollectionAssert.AreEqual(entries, user.LogEntries);
         }
 
         [TestCase(GenderType.Female)]

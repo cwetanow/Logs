@@ -33,10 +33,10 @@ namespace Logs.Models.Tests.LogEntryTests
             var logEntry = new LogEntry();
 
             // Act
-            logEntry.Log = log;
+            logEntry.TrainingLog = log;
 
             // Assert
-            Assert.AreSame(log, logEntry.Log);
+            Assert.AreSame(log, logEntry.TrainingLog);
         }
     }
 }
