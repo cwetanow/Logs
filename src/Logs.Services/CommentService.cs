@@ -96,6 +96,8 @@ namespace Logs.Services
             {
                 this.commentRepository.Delete(comment);
                 this.unitOfWork.Commit();
+
+                return true;
             }
 
             return false;
