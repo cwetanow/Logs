@@ -87,5 +87,18 @@ namespace Logs.Services
 
             this.logService.AddCommentToLog(logId, comment);
         }
+
+        public bool DeleteComment(int commentId)
+        {
+            var comment = this.commentRepository.GetById(commentId);
+
+            if (comment != null)
+            {
+                this.commentRepository.Delete(comment);
+                this.unitOfWork.Commit();
+            }
+
+            return false;
+        }
     }
 }

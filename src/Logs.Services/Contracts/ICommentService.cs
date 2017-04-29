@@ -7,5 +7,7 @@ namespace Logs.Services.Contracts
         Comment EditComment(int commentId, string newContent);
 
         void AddCommentToLog(string content, int logId, string userId);
+
+        bool DeleteComment(int commentId);
     }
 }
