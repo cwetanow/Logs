@@ -58,7 +58,7 @@ namespace Logs.Web.Tests.ViewModelsTests.Profile.UserProfileViewModelTests
         public void TestConstructor_ShouldSetProfileImageUrlCorrectly(int logId)
         {
             // Arrange
-            var user = new User { TrainingLog = new TrainingLog { LogId = logId } };
+            var user = new User { LogId = logId };
 
             // Act
             var model = new UserProfileViewModel(user, It.IsAny<bool>());

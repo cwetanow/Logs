@@ -89,7 +89,7 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
             var mockedProvider = new Mock<IAuthenticationProvider>();
 
             var log = new TrainingLog { LogId = logId };
-            var user = new User { TrainingLog = log };
+            var user = new User { TrainingLog = log, LogId = logId };
 
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(user);
@@ -112,7 +112,7 @@ namespace Logs.Web.Tests.Controllers.ProfileControllerTests
             var mockedProvider = new Mock<IAuthenticationProvider>();
 
             var log = new TrainingLog();
-            var user = new User { TrainingLog = log };
+            var user = new User { TrainingLog = log, LogId = log.LogId };
 
             var mockedService = new Mock<IUserService>();
             mockedService.Setup(s => s.GetUserById(It.IsAny<string>())).Returns(user);
