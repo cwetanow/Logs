@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using Logs.Data.Contracts;
+using Logs.Data.Mappings;
 using Logs.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -23,19 +24,34 @@ namespace Logs.Data
 
         public DbSet<Comment> Comments { get; set; }
 
-        public DbSet<LogEntry> Entries { get; set; }
+        public DbSet<LogEntry> LogEntries { get; set; }
 
-        public DbSet<TrainingLog> Logs { get; set; }
+        public DbSet<Meal> Meals { get; set; }
 
-        public DbSet<Vote> Votes { get; set; }
-
-        public DbSet<Nutrition> Nutritions { get; set; }
-
-        public DbSet<Measurements> Measurements { get; set; }
+        public DbSet<Measurement> Measurements { get; set; }
 
         public DbSet<NutritionEntry> NutritionEntries { get; set; }
 
-        public DbSet<Meal> Meals { get; set; }
+        public DbSet<Nutrition> Nutritions { get; set; }
+
+        public DbSet<TrainingLog> TrainingLogs { get; set; }
+
+        public DbSet<Vote> Votes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Configurations.Add(new UserMap());
+            modelBuilder.Configurations.Add(new CommentMap());
+            modelBuilder.Configurations.Add(new LogEntryMap());
+            modelBuilder.Configurations.Add(new MealMap());
+            modelBuilder.Configurations.Add(new MeasurementMap());
+            modelBuilder.Configurations.Add(new NutritionEntryMap());
+            modelBuilder.Configurations.Add(new NutritionMap());
+            modelBuilder.Configurations.Add(new TrainingLogMap());
+            modelBuilder.Configurations.Add(new VoteMap());
+        }
 
         public IDbSet<TEntity> DbSet<TEntity>() where TEntity : class
         {
@@ -58,64 +74,6 @@ namespace Logs.Data
         {
             var entry = this.Entry(entity);
             entry.State = EntityState.Modified;
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            this.ConfigureTrainingLogs(modelBuilder);
-            this.ConfigureMeasurements(modelBuilder);
-            this.ConfigureNutrition(modelBuilder);
-            this.ConfigureMeals(modelBuilder);
-            this.ConfigureNutritionEntries(modelBuilder);
-
-            base.OnModelCreating(modelBuilder);
-        }
-
-        private void ConfigureMeals(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Meal>()
-                .HasKey(m => m.MealId);
-        }
-
-        private void ConfigureNutrition(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Nutrition>()
-                .HasKey(n => n.NutritionId);
-        }
-
-        private void ConfigureNutritionEntries(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<NutritionEntry>()
-                .HasKey(e => e.NutritionEntryId)
-                .HasOptional(e => e.User)
-                .WithMany(u => u.NutritionEntries);
-
-            modelBuilder.Entity<NutritionEntry>()
-                .HasOptional(e => e.Measurements)
-                .WithOptionalDependent();
-
-            modelBuilder.Entity<NutritionEntry>()
-                .HasOptional(e => e.Nutrition)
-                .WithOptionalDependent();
-
-            modelBuilder.Entity<NutritionEntry>()
-                .HasMany(e => e.Meals)
-                .WithRequired(m => m.Entry);
-        }
-
-        private void ConfigureMeasurements(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Measurements>()
-                .HasKey(m => m.MeasurementsId)
-                .HasOptional(m => m.NutritionEntry)
-                .WithOptionalDependent();
-        }
-
-        private void ConfigureTrainingLogs(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<TrainingLog>()
-                .HasOptional(log => log.User)
-                .WithOptionalDependent();
         }
     }
 }
