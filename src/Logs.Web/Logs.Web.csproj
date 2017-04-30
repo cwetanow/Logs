@@ -254,7 +254,6 @@
     <Compile Include="Areas\Administration\Controllers\LogsAdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserAdministrationController.cs" />
     <Compile Include="Areas\Administration\Models\UserViewModel.cs" />
-    <Compile Include="Areas\Nutrition\NutritionAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\EntriesController.cs" />
@@ -321,7 +320,6 @@
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\UserAdministration\Index.cshtml" />
     <Content Include="Areas\Administration\Views\LogsAdministration\Index.cshtml" />
-    <Content Include="Areas\Nutrition\Views\web.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -398,9 +396,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Nutrition\Controllers\" />
-    <Folder Include="Areas\Nutrition\Models\" />
-    <Folder Include="Areas\Nutrition\Views\Shared\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
