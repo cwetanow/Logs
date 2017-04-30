@@ -1,8 +1,5 @@
 ﻿using Logs.Services;
 using Logs.Services.Contracts;
-using Logs.Web.Infrastructure.Interception;
-using Ninject;
-using Ninject.Extensions.Interception.Infrastructure.Language;
 using Ninject.Modules;
 using Ninject.Web.Common;
 
@@ -17,6 +14,7 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<IUserService>().To<UserService>().InRequestScope();
             this.Bind<IVoteService>().To<VoteService>().InRequestScope();
             this.Bind<ICommentService>().To<CommentService>().InRequestScope();
+            this.Bind<INutritionService>().To<NutritionService>().InRequestScope();
         }
     }
 }
