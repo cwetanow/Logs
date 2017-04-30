@@ -8,17 +8,23 @@
 
 @using (Html.BeginForm("Input", "Nutrition", null, FormMethod.Post, new { @class = "form-horizontal form col-md-12 center-block", role = "form" }))
 {
-    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "dd/MMMM/yyyy" })
-    <input type="submit" />
+    <div class='col-sm-3'></div>
+    <div class='col-sm-6'>
+        @Html.LabelFor(m => m.Date)
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "DD/MM/YYYY" })
+        <hr />
+    </div>
 }
+<hr />
 
 @section scripts{
     <script type="text/javascript" src="/scripts/moment.min.js"></script>
     <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.js"></script>
+
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker').datetimepicker({
-                format: 'DD MMMM YYYY'
+                format: 'DD/MM/YYYY'
             });
         });
     </script>

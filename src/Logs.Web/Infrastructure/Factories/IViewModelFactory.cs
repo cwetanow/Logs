@@ -1,4 +1,5 @@
-﻿using CloudinaryDotNet;
+﻿using System;
+using CloudinaryDotNet;
 using Logs.Models;
 using Logs.Web.Models.Home;
 using Logs.Web.Models.Logs;
@@ -34,6 +35,6 @@ namespace Logs.Web.Infrastructure.Factories
 
         NewLogViewModel CreateNewLogViewModel(int logId);
 
-        InputViewModel CreateInputViewModel();
+        InputViewModel CreateInputViewModel(DateTime date);
     }
 }

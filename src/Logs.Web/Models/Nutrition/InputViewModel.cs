@@ -5,7 +5,17 @@ namespace Logs.Web.Models.Nutrition
 {
     public class InputViewModel
     {
-        [DisplayFormat(DataFormatString = "{0:dd/MMMM/yyyy}")]
+        public InputViewModel()
+        {
+            
+        }
+
+        public InputViewModel(DateTime date)
+        {
+            this.Date = date;
+        }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
     }
 }
