@@ -1,0 +1,25 @@
+﻿@model Logs.Web.Models.Nutrition.InputViewModel
+
+@{
+    ViewBag.Title = "Input";
+}
+<link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
+<h2>Input</h2>
+
+@using (Html.BeginForm("Input", "Nutrition", null, FormMethod.Post, new { @class = "form-horizontal form col-md-12 center-block", role = "form" }))
+{
+    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "dd/MMMM/yyyy" })
+    <input type="submit" />
+}
+
+@section scripts{
+    <script type="text/javascript" src="/scripts/moment.min.js"></script>
+    <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                format: 'DD MMMM YYYY'
+            });
+        });
+    </script>
+}
