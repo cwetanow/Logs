@@ -32,7 +32,7 @@ namespace Logs.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Input(InputViewModel model)
+        public ActionResult LoadEntry(InputViewModel model)
         {
             return null;
         }

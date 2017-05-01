@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
 <h2>Input</h2>
 
-@using (Html.BeginForm("Input", "Nutrition", null, FormMethod.Post, new { @class = "form-horizontal form col-md-12 center-block", role = "form" }))
+@using (Ajax.BeginForm("LoadEntry", "Nutrition", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "main" }, new { @class = "form-horizontal form col-md-12 center-block", role = "form" }))
 {
     <div class='col-sm-3'></div>
     <div class='col-sm-6'>
@@ -18,7 +18,9 @@
 }
 <hr />
 
+<div id="main"></div>
 @section scripts{
+    @Scripts.Render("~/bundles/jquery-unobtrusive")
     <script type="text/javascript" src="/scripts/moment.min.js"></script>
     <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.js"></script>
 
