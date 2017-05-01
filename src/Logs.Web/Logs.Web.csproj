@@ -287,6 +287,8 @@
     <Compile Include="Models\Logs\ShortLogViewModel.cs" />
     <Compile Include="Models\Navigation\NavigationViewModel.cs" />
     <Compile Include="Models\Nutrition\InputViewModel.cs" />
+    <Compile Include="Models\Nutrition\MeasurementViewModel.cs" />
+    <Compile Include="Models\Nutrition\NutritionViewModel.cs" />
     <Compile Include="Models\Profile\NewLogViewModel.cs" />
     <Compile Include="Models\Profile\UserProfileViewModel.cs" />
     <Compile Include="Models\Search\SearchViewModel.cs" />
