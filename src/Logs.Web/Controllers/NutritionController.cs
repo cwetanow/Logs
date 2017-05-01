@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Logs.Providers.Contracts;
+using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Nutrition;
 
@@ -10,11 +11,15 @@ namespace Logs.Web.Controllers
     {
         private readonly IViewModelFactory viewModelFactory;
         private readonly IDateTimeProvider dateTimeProvider;
+        private readonly INutritionService nutritionService;
 
-        public NutritionController(IViewModelFactory viewModelFactory, IDateTimeProvider dateTimeProvider)
+        public NutritionController(IViewModelFactory viewModelFactory,
+            IDateTimeProvider dateTimeProvider,
+            INutritionService nutritionService)
         {
             this.viewModelFactory = viewModelFactory;
             this.dateTimeProvider = dateTimeProvider;
+            this.nutritionService = nutritionService;
         }
 
         public ActionResult Input()
