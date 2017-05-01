@@ -36,5 +36,7 @@ namespace Logs.Web.Infrastructure.Factories
         NewLogViewModel CreateNewLogViewModel(int logId);
 
         InputViewModel CreateInputViewModel(DateTime date);
+
+        MeasurementViewModel CreateMeasurementViewModel(Measurement measurement);
     }
 }
