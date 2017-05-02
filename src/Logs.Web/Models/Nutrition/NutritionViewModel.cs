@@ -1,4 +1,6 @@
-﻿namespace Logs.Web.Models.Nutrition
+﻿using System.ComponentModel;
+
+namespace Logs.Web.Models.Nutrition
 {
     public class NutritionViewModel
     {
@@ -37,6 +39,7 @@
 
         public int Fats { get; set; }
 
+        [DisplayName("Water (litres)")]
         public double WaterInLitres { get; set; }
 
         public int Fiber { get; set; }

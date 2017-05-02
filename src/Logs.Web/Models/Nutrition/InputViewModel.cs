@@ -15,6 +15,7 @@ namespace Logs.Web.Models.Nutrition
             this.Date = date;
         }
 
+        [Required]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
     }
