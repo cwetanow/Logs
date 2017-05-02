@@ -5,6 +5,6 @@ namespace Logs.Services.Contracts
 {
     public interface INutritionService
     {
-        NutritionEntry GetEntryByDate(DateTime date);
+        NutritionEntry GetEntryByDate(string userId, DateTime date);
     }
 }
