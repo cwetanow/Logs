@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Logs.Web.Models.Nutrition
+﻿namespace Logs.Web.Models.Nutrition
 {
     public class NutritionViewModel
     {
@@ -14,6 +12,7 @@ namespace Logs.Web.Models.Nutrition
             if (nutrition != null)
             {
                 this.Id = nutrition.NutritionId;
+                this.NutritionEntryId = nutrition.EntryId;
                 this.Sugar = nutrition.Sugar;
                 this.Fiber = nutrition.Fiber;
                 this.WaterInLitres = nutrition.WaterInLitres;
@@ -27,6 +26,8 @@ namespace Logs.Web.Models.Nutrition
         }
 
         public int Id { get; set; }
+
+        public int NutritionEntryId { get; set; }
 
         public int Calories { get; set; }
 

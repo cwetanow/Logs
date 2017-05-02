@@ -11,24 +11,30 @@ namespace Logs.Web.Models.Nutrition
 
         public MeasurementViewModel(Measurement measurement)
         {
-            this.Id = measurement.MeasurementsId;
-            this.Heigh = measurement.Heigh;
-            this.WeightKg = measurement.WeightKg;
-            this.BodyFatPercent = measurement.BodyFatPercent;
-            this.Chest = measurement.Chest;
-            this.Shoulders = measurement.Shoulders;
-            this.Forearm = measurement.Forearm;
-            this.Arm = measurement.Arm;
-            this.Waist = measurement.Waist;
-            this.Hips = measurement.Hips;
-            this.Thighs = measurement.Thighs;
-            this.Calves = measurement.Calves;
-            this.Neck = measurement.Neck;
-            this.Wrist = measurement.Wrist;
-            this.Ankle = measurement.Ankle;
+            if (measurement != null)
+            {
+                this.Id = measurement.MeasurementsId;
+                this.NutritionEntryId = measurement.NutritionEntryId;
+                this.Heigh = measurement.Heigh;
+                this.WeightKg = measurement.WeightKg;
+                this.BodyFatPercent = measurement.BodyFatPercent;
+                this.Chest = measurement.Chest;
+                this.Shoulders = measurement.Shoulders;
+                this.Forearm = measurement.Forearm;
+                this.Arm = measurement.Arm;
+                this.Waist = measurement.Waist;
+                this.Hips = measurement.Hips;
+                this.Thighs = measurement.Thighs;
+                this.Calves = measurement.Calves;
+                this.Neck = measurement.Neck;
+                this.Wrist = measurement.Wrist;
+                this.Ankle = measurement.Ankle;
+            }
         }
 
         public int Id { get; set; }
+
+        public int NutritionEntryId { get; set; }
 
         public int Heigh { get; set; }
 
