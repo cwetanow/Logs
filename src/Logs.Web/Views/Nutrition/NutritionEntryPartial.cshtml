@@ -1,0 +1,10 @@
+﻿@model Logs.Web.Models.Nutrition.NutritionEntryViewModel
+
+<hr />
+<div id="nutrition">
+    @Html.Partial("NutritionEditPartial", Model.Nutrition)
+</div>
+
+<div id="measurements">
+    @Html.Partial("MeasurementsEditPartial", Model.Measurements)
+</div>

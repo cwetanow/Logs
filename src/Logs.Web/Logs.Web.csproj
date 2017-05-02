@@ -396,6 +396,9 @@
     <Content Include="Views\Profile\NewLog.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Nutrition\Input.cshtml" />
+    <Content Include="Views\Nutrition\NutritionEntryPartial.cshtml" />
+    <Content Include="Views\Nutrition\NutritionEditPartial.cshtml" />
+    <Content Include="Views\Nutrition\MeasurementsEditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
