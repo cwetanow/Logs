@@ -18,8 +18,7 @@ namespace Logs.Services
         public NutritionEntry GetEntryByDate(string userId, DateTime date)
         {
             var entry = this.entryRepository.All
-                .Where(e => e.UserId.Equals(userId))
-                .FirstOrDefault(e => e.Date.Equals(date));
+                .FirstOrDefault(e => e.UserId == userId && e.Date.Equals(date));
 
             return entry;
         }

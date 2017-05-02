@@ -11,8 +11,8 @@ namespace Logs.Services.Tests.NutritionServiceTests
     [TestFixture]
     public class GetEntryByDateTests
     {
-        [Test]
-        public void TestGetEntryByDate_ShouldCallRepositoryAll()
+        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        public void TestGetEntryByDate_ShouldCallRepositoryAll(string userId)
         {
             // Arrange
             var mockRepository = new Mock<IRepository<NutritionEntry>>();
@@ -20,14 +20,14 @@ namespace Logs.Services.Tests.NutritionServiceTests
             var service = new NutritionService(mockRepository.Object);
 
             // Act
-            service.GetEntryByDate(new DateTime());
+            service.GetEntryByDate(userId, new DateTime());
 
             // Assert
             mockRepository.Verify(r => r.All, Times.Once);
         }
 
-        [TestCase(29, 7, 1999)]
-        public void TestGetEntryByDate_ThereIsNoEntry_ShouldReturnNull(int day, int month, int year)
+        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95", 29, 7, 1999)]
+        public void TestGetEntryByDate_ThereIsNoEntry_ShouldReturnNull(string userId, int day, int month, int year)
         {
             // Arrange
             var date = new DateTime(year, month, day);
@@ -41,20 +41,18 @@ namespace Logs.Services.Tests.NutritionServiceTests
             var service = new NutritionService(mockRepository.Object);
 
             // Act
-            var result = service.GetEntryByDate(date);
+            var result = service.GetEntryByDate(userId, date);
 
             // Assert
             Assert.IsNull(result);
         }
 
-        [TestCase(11, 11, 1111)]
-        [TestCase(22, 11, 2012)]
-        [TestCase(29, 7, 1999)]
-        public void TestGetEntryByDate_ThereIsEntry_ShouldReturnCorrectly(int day, int month, int year)
+        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95", 11, 11, 1111)]
+        public void TestGetEntryByDate_ThereIsEntry_ShouldReturnCorrectly(string userId, int day, int month, int year)
         {
             // Arrange
             var date = new DateTime(year, month, day);
-            var entry = new NutritionEntry { Date = date };
+            var entry = new NutritionEntry { Date = date, UserId = userId };
 
             var entries = new List<NutritionEntry> { entry };
 
@@ -64,7 +62,7 @@ namespace Logs.Services.Tests.NutritionServiceTests
             var service = new NutritionService(mockRepository.Object);
 
             // Act
-            var result = service.GetEntryByDate(date);
+            var result = service.GetEntryByDate(userId, date);
 
             // Assert
             Assert.AreSame(entry, result);
