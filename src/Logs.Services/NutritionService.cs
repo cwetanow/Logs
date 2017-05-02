@@ -19,7 +19,7 @@ namespace Logs.Services
         {
             var entry = this.entryRepository.All
                 .Where(e => e.UserId.Equals(userId))
-                .FirstOrDefault(e => e.Date.Date == date.Date && e.Date.Year == date.Year && e.Date.Day == date.Day);
+                .FirstOrDefault(e => e.Date.Equals(date));
 
             return entry;
         }
