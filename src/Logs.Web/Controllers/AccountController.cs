@@ -45,9 +45,7 @@ namespace Logs.Web.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return this.View();
         }
-
-        //
-        // POST: /Account/Login
+        
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -83,9 +81,7 @@ namespace Logs.Web.Controllers
         {
             return this.View();
         }
-
-        //
-        // POST: /Account/Register
+        
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -107,12 +103,17 @@ namespace Logs.Web.Controllers
             // If we got this far, something failed, redisplay form
             return this.View(model);
         }
-
-        //
-        // POST: /Account/LogOff
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOut()
+        {
+            this.provider.SignOut();
+
+            return this.RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult LogOff()
         {
             this.provider.SignOut();
 
