@@ -99,3 +99,7 @@ a:hover {
 .navbar {
     background-color: #083045;
 }
+
+pre {
+    white-space: pre-wrap;
+}

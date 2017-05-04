@@ -14,8 +14,11 @@
         @Html.Partial("_EntryPartial", entry)
 
         <hr />
-        @Html.Partial("_EntryCommentsPartial", entry.Comments)
-        <hr />
+        if (entry.Comments.Any())
+        {
+            @Html.Partial("_EntryCommentsPartial", entry.Comments)
+            <hr />
+        }
     }
 
 
