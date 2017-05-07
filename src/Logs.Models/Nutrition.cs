@@ -11,6 +11,8 @@ namespace Logs.Models
 
         public int NutritionId { get; set; }
 
+        public string Notes { get; set; }
+
         public int Calories { get; set; }
 
         public int Protein { get; set; }

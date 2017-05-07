@@ -19,7 +19,6 @@ namespace Logs.Data.Mappings
             this.Property(t => t.NutritionEntryId).HasColumnName("NutritionEntryId");
             this.Property(t => t.Date).HasColumnName("Date");
             this.Property(t => t.UserId).HasColumnName("UserId");
-            this.Property(t => t.Notes).HasColumnName("Notes");
             this.Property(t => t.MeasurementsId).HasColumnName("MeasurementsId");
             this.Property(t => t.NutritionId).HasColumnName("NutritionId");
 

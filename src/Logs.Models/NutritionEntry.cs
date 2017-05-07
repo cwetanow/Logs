@@ -17,8 +17,6 @@ namespace Logs.Models
 
         public string UserId { get; set; }
 
-        public string Notes { get; set; }
-
         public int? MeasurementsId { get; set; }
 
         public int? NutritionId { get; set; }

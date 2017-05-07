@@ -20,6 +20,7 @@ namespace Logs.Data.Mappings
             this.Property(t => t.WaterInLitres).HasColumnName("WaterInLitres");
             this.Property(t => t.Fiber).HasColumnName("Fiber");
             this.Property(t => t.Sugar).HasColumnName("Sugar");
+            this.Property(t => t.Notes).HasColumnName("Notes");
             this.Property(t => t.EntryId).HasColumnName("EntryId");
 
             // Relationships
