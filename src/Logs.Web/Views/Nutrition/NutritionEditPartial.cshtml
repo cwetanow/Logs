@@ -4,6 +4,11 @@
 {
     @Html.AntiForgeryToken()
 
+    if (!string.IsNullOrEmpty(Model.SaveResult))
+    {
+        @Html.LabelFor(model => model.SaveResult, htmlAttributes: new { @class = "control-label col-md-2" })
+    }
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

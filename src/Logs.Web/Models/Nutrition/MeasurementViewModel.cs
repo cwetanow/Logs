@@ -31,6 +31,8 @@ namespace Logs.Web.Models.Nutrition
                 this.Ankle = measurement.Ankle;
             }
         }
+        
+        public string SaveResult { get; set; }
 
         public int Id { get; set; }
 

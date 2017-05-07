@@ -27,6 +27,8 @@ namespace Logs.Web.Models.Nutrition
             this.Notes = notes;
         }
 
+        public string SaveResult { get; set; }
+
         public int Id { get; set; }
 
         public int NutritionEntryId { get; set; }
