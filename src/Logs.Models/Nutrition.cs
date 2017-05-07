@@ -9,6 +9,24 @@ namespace Logs.Models
             this.NutritionEntries = new HashSet<NutritionEntry>();
         }
 
+        public Nutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar, string notes, NutritionEntry entry)
+            : this()
+        {
+            this.Calories = calories;
+            this.Protein = protein;
+            this.Carbs = carbs;
+            this.Fats = fats;
+            this.WaterInLitres = water;
+            this.Fiber = fiber;
+            this.Sugar = sugar;
+            this.Notes = notes;
+
+            if (entry != null)
+            {
+                this.EntryId = entry.NutritionEntryId;
+            }
+        }
+
         public int NutritionId { get; set; }
 
         public string Notes { get; set; }
