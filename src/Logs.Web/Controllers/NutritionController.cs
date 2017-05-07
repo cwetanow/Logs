@@ -21,6 +21,26 @@ namespace Logs.Web.Controllers
             INutritionService nutritionService,
             IAuthenticationProvider authenticationProvider)
         {
+            if (authenticationProvider == null)
+            {
+                throw new ArgumentNullException(nameof(authenticationProvider));
+            }
+
+            if (viewModelFactory == null)
+            {
+                throw new ArgumentNullException(nameof(viewModelFactory));
+            }
+
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException(nameof(dateTimeProvider));
+            }
+
+            if (nutritionService == null)
+            {
+                throw new ArgumentNullException(nameof(nutritionService));
+            }
+
             this.viewModelFactory = viewModelFactory;
             this.dateTimeProvider = dateTimeProvider;
             this.nutritionService = nutritionService;
