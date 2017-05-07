@@ -11,6 +11,13 @@ namespace Logs.Models
             this.Nutritions = new HashSet<Nutrition>();
         }
 
+        public NutritionEntry(string userId, DateTime date)
+            : this()
+        {
+            this.UserId = userId;
+            this.Date = date;
+        }
+
         public int NutritionEntryId { get; set; }
 
         public DateTime Date { get; set; }

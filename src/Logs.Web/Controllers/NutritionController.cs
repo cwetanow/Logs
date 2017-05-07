@@ -41,27 +41,57 @@ namespace Logs.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-
                 var userId = this.authenticationProvider.CurrentUserId;
                 var entry = this.nutritionService.GetEntryByDate(userId, model.Date);
 
-                var viewModel = new NutritionEntryViewModel();
+                var viewModel = new NutritionEntryViewModel
+                {
+                    Date = model.Date,
+                    Nutrition = { Date = model.Date },
+                    Measurements = { Date = model.Date }
+                };
 
                 if (entry != null)
                 {
                     var measurementModel = this.viewModelFactory.CreateMeasurementViewModel(entry.Measurement);
-                    var nutritionModel = this.viewModelFactory.CreateNutritionViewModel(entry.Nutrition, entry.Notes);
+                    measurementModel.Date = entry.Date;
+
+                    var nutritionModel = this.viewModelFactory.CreateNutritionViewModel(entry.Nutrition, String.Empty);
+                    nutritionModel.Date = entry.Date;
 
                     viewModel = this.viewModelFactory.CreateNutritionEntryViewModel(entry.NutritionEntryId,
                         entry.Date,
                         nutritionModel,
                         measurementModel);
                 }
-                
+
                 return this.PartialView("NutritionEntryPartial", viewModel);
             }
 
             return null;
+        }
+
+        [HttpPost]
+        public ActionResult SaveEntry(NutritionViewModel model)
+        {
+            if (this.ModelState.IsValid)
+            {
+                var userId = this.authenticationProvider.CurrentUserId;
+
+                this.nutritionService.UpdateNutrition(model.Id, userId, model.Date,
+                    model.Calories,
+                    model.Protein,
+                    model.Carbs,
+                    model.Fats,
+                    model.WaterInLitres,
+                    model.Fiber,
+                    model.Sugar,
+                    model.Notes);
+
+                model.SaveResult = "SAVED";
+            }
+
+            return this.PartialView("NutritionEditPartial", model);
         }
     }
 }
