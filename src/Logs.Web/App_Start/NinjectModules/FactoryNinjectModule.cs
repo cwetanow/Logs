@@ -16,6 +16,7 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<ILogEntryFactory>().ToFactory().InSingletonScope();
             this.Bind<ICommentFactory>().ToFactory().InSingletonScope();
             this.Bind<IVoteFactory>().ToFactory().InSingletonScope();
+            this.Bind<INutritionFactory>().ToFactory().InSingletonScope();
 
             this.Bind<IViewModelFactory>().ToFactory().InSingletonScope();
             this.Bind<ICloudinaryFactory>().ToFactory().InSingletonScope();
