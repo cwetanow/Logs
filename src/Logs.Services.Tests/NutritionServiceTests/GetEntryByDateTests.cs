@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Logs.Data.Contracts;
+using Logs.Factories;
 using Logs.Models;
 using Moq;
 using NUnit.Framework;
@@ -15,15 +16,21 @@ namespace Logs.Services.Tests.NutritionServiceTests
         public void TestGetEntryByDate_ShouldCallRepositoryAll(string userId)
         {
             // Arrange
-            var mockRepository = new Mock<IRepository<NutritionEntry>>();
+            var mockNutritionEntryRepository = new Mock<IRepository<NutritionEntry>>();
+            var mockNutritionRepository = new Mock<IRepository<Nutrition>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedFactory = new Mock<INutritionFactory>();
 
-            var service = new NutritionService(mockRepository.Object);
+            var service = new NutritionService(mockNutritionEntryRepository.Object,
+                mockNutritionRepository.Object,
+                mockedUnitOfWork.Object,
+                mockedFactory.Object);
 
             // Act
             service.GetEntryByDate(userId, new DateTime());
 
             // Assert
-            mockRepository.Verify(r => r.All, Times.Once);
+            mockNutritionEntryRepository.Verify(r => r.All, Times.Once);
         }
 
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95", 29, 7, 1999)]
@@ -35,10 +42,17 @@ namespace Logs.Services.Tests.NutritionServiceTests
 
             var entries = new List<NutritionEntry> { entry };
 
-            var mockRepository = new Mock<IRepository<NutritionEntry>>();
-            mockRepository.Setup(r => r.All).Returns(entries.AsQueryable());
+            var mockNutritionEntryRepository = new Mock<IRepository<NutritionEntry>>();
+            mockNutritionEntryRepository.Setup(r => r.All).Returns(entries.AsQueryable());
+            
+            var mockNutritionRepository = new Mock<IRepository<Nutrition>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedFactory = new Mock<INutritionFactory>();
 
-            var service = new NutritionService(mockRepository.Object);
+            var service = new NutritionService(mockNutritionEntryRepository.Object,
+                mockNutritionRepository.Object,
+                mockedUnitOfWork.Object,
+                mockedFactory.Object);
 
             // Act
             var result = service.GetEntryByDate(userId, date);
@@ -56,10 +70,17 @@ namespace Logs.Services.Tests.NutritionServiceTests
 
             var entries = new List<NutritionEntry> { entry };
 
-            var mockRepository = new Mock<IRepository<NutritionEntry>>();
-            mockRepository.Setup(r => r.All).Returns(entries.AsQueryable());
+            var mockNutritionEntryRepository = new Mock<IRepository<NutritionEntry>>();
+            mockNutritionEntryRepository.Setup(r => r.All).Returns(entries.AsQueryable());
 
-            var service = new NutritionService(mockRepository.Object);
+            var mockNutritionRepository = new Mock<IRepository<Nutrition>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedFactory = new Mock<INutritionFactory>();
+
+            var service = new NutritionService(mockNutritionEntryRepository.Object,
+                mockNutritionRepository.Object,
+                mockedUnitOfWork.Object,
+                mockedFactory.Object);
 
             // Act
             var result = service.GetEntryByDate(userId, date);
