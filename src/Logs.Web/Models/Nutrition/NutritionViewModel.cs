@@ -10,7 +10,7 @@ namespace Logs.Web.Models.Nutrition
 
         }
 
-        public NutritionViewModel(global::Logs.Models.Nutrition nutrition, string notes = null)
+        public NutritionViewModel(global::Logs.Models.Nutrition nutrition, DateTime date)
         {
             if (nutrition != null)
             {
@@ -23,9 +23,10 @@ namespace Logs.Web.Models.Nutrition
                 this.Carbs = nutrition.Carbs;
                 this.Protein = nutrition.Protein;
                 this.Calories = nutrition.Calories;
+                this.Notes = nutrition.Notes;
             }
 
-            this.Notes = notes;
+            this.Date = date;
         }
 
         public string SaveResult { get; set; }
