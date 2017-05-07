@@ -64,26 +64,18 @@ namespace Logs.Web.Controllers
                 var userId = this.authenticationProvider.CurrentUserId;
                 var entry = this.nutritionService.GetEntryByDate(userId, model.Date);
 
-                var viewModel = new NutritionEntryViewModel
-                {
-                    Date = model.Date,
-                    Nutrition = { Date = model.Date },
-                    Measurements = { Date = model.Date }
-                };
+                var measurement = entry?.Measurement;
+                var measurementModel = this.viewModelFactory.CreateMeasurementViewModel(measurement, model.Date);
 
-                if (entry != null)
-                {
-                    var measurementModel = this.viewModelFactory.CreateMeasurementViewModel(entry.Measurement);
-                    measurementModel.Date = entry.Date;
+                var nutrition = entry?.Nutrition;
+                var nutritionModel = this.viewModelFactory.CreateNutritionViewModel(nutrition, model.Date);
 
-                    var nutritionModel = this.viewModelFactory.CreateNutritionViewModel(entry.Nutrition, String.Empty);
-                    nutritionModel.Date = entry.Date;
+                var entryId = entry?.NutritionEntryId ?? 0;
 
-                    viewModel = this.viewModelFactory.CreateNutritionEntryViewModel(entry.NutritionEntryId,
-                        entry.Date,
-                        nutritionModel,
-                        measurementModel);
-                }
+                var viewModel = this.viewModelFactory.CreateNutritionEntryViewModel(entryId,
+                      model.Date,
+                      nutritionModel,
+                      measurementModel);
 
                 return this.PartialView("NutritionEntryPartial", viewModel);
             }
