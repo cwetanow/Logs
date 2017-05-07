@@ -1,6 +1,12 @@
 ﻿@model Logs.Web.Models.Nutrition.NutritionViewModel
 
-@using (Html.BeginForm())
+@using (Ajax.BeginForm("SaveEntry", "Nutrition", null,
+                                                                            new AjaxOptions
+                                                                            {
+                                                                                UpdateTargetId = "nutrition",
+                                                                                InsertionMode = InsertionMode.Replace,
+                                                                                HttpMethod = "POST"
+                                                                            }, null))
 {
     @Html.AntiForgeryToken()
 
@@ -14,6 +20,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.NutritionEntryId)
+        @Html.HiddenFor(model => model.Date)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Calories, htmlAttributes: new { @class = "control-label col-md-2" })

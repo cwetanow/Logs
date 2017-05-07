@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Logs.Web.Models.Nutrition
 {
@@ -28,6 +29,8 @@ namespace Logs.Web.Models.Nutrition
         }
 
         public string SaveResult { get; set; }
+
+        public DateTime Date { get; set; }
 
         public int Id { get; set; }
 
