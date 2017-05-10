@@ -19,6 +19,26 @@ namespace Logs.Services
             IUnitOfWork unitOfWork,
             INutritionFactory nutritionFactory)
         {
+            if (entryRepository == null)
+            {
+                throw new ArgumentNullException(nameof(entryRepository));
+            }
+
+            if (nutritionRepository == null)
+            {
+                throw new ArgumentNullException(nameof(nutritionRepository));
+            }
+
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException(nameof(unitOfWork));
+            }
+            
+            if (nutritionFactory == null)
+            {
+                throw new ArgumentNullException(nameof(nutritionFactory));
+            }
+
             this.entryRepository = entryRepository;
             this.nutritionRepository = nutritionRepository;
             this.unitOfWork = unitOfWork;
