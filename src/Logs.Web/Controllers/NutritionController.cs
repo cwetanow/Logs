@@ -5,6 +5,7 @@ using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Nutrition;
+using Logs.Common;
 
 namespace Logs.Web.Controllers
 {
@@ -90,17 +91,29 @@ namespace Logs.Web.Controllers
             {
                 var userId = this.authenticationProvider.CurrentUserId;
 
-                this.nutritionService.UpdateNutrition(model.Id, userId, model.Date,
-                    model.Calories,
-                    model.Protein,
-                    model.Carbs,
-                    model.Fats,
-                    model.WaterInLitres,
-                    model.Fiber,
-                    model.Sugar,
-                    model.Notes);
+                var result = this.nutritionService.UpdateNutrition(model.Id, userId, model.Date,
+                       model.Calories,
+                       model.Protein,
+                       model.Carbs,
+                       model.Fats,
+                       model.WaterInLitres,
+                       model.Fiber,
+                       model.Sugar,
+                       model.Notes);
 
-                model.SaveResult = "SAVED";
+                if (result != null)
+                {
+                    model.Calories = result.Calories;
+                    model.Carbs = result.Carbs;
+                    model.Fats = result.Fats;
+                    model.Fiber = result.Fiber;
+                    model.Notes = result.Notes;
+                    model.Protein = result.Protein;
+                    model.Sugar = result.Sugar;
+                    model.WaterInLitres = result.WaterInLitres;
+
+                    model.SaveResult = Constants.SavedSuccessfully;
+                }
             }
 
             return this.PartialView("NutritionEditPartial", model);
