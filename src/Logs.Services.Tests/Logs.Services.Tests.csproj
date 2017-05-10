@@ -89,6 +89,7 @@
     <Compile Include="LogsServiceTests\GetTrainingLogByIdTests.cs" />
     <Compile Include="LogsServiceTests\SearchTest.cs" />
     <Compile Include="NutritionServiceTests\CreateNutritionEntryTests.cs" />
+    <Compile Include="NutritionServiceTests\CreateNutritionTests.cs" />
     <Compile Include="NutritionServiceTests\GetEntryByDateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserServiceTests\ChangeProfilePictureTests.cs" />
