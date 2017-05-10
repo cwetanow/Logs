@@ -15,6 +15,16 @@ namespace Logs.Models.Tests.NutritionTests
             Assert.IsNotNull(nutrition);
         }
 
+        [Test]
+        public void TestConstructor_ShouldSetNutritionEntries()
+        {
+            // Arrange, Act
+            var nutrition = new Nutrition();
+
+            // Assert
+            Assert.IsNotNull(nutrition.NutritionEntries);
+        }
+
         [TestCase(2222, 222, 111, 99, 3.17, 22, 7, "good")]
         [TestCase(3333, 231, 771, 44, 5, 33, 6, "no notes")]
         public void TestConstructor_ShouldSetCaloriesCorrectly(int calories, int protein, int carbs, int fats,
