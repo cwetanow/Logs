@@ -175,6 +175,7 @@
     <Compile Include="Controllers\NutritionControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\InputTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\LoadEntryTests.cs" />
+    <Compile Include="Controllers\NutritionControllerTests\SaveEntryTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\SearchTests.cs" />
