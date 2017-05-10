@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Logs.Models.Tests.LogEntryTests
 {
@@ -37,6 +38,48 @@ namespace Logs.Models.Tests.LogEntryTests
 
             // Assert
             Assert.AreSame(log, logEntry.TrainingLog);
+        }
+
+        [Test]
+        public void TestUser_ShouldInitializeCorrectly()
+        {
+            // Arrange
+            var user = new User();
+            var logEntry = new LogEntry();
+
+            // Act
+            logEntry.User = user;
+
+            // Assert
+            Assert.AreSame(user, logEntry.User);
+        }
+
+        [Test]
+        public void TestTrainingLogs_ShouldInitializeCorrectly()
+        {
+            // Arrange
+            var logs = new List<TrainingLog>();
+            var logEntry = new LogEntry();
+
+            // Act
+            logEntry.TrainingLogs = logs;
+
+            // Assert
+            CollectionAssert.AreEqual(logs, logEntry.TrainingLogs);
+        }
+
+        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
+        public void TestUserId_ShouldInitializeCorrectly(string userId)
+        {
+            // Arrange
+            var logEntry = new LogEntry();
+
+            // Act
+            logEntry.UserId = userId;
+
+            // Assert
+            Assert.AreEqual(userId, logEntry.UserId);
         }
     }
 }
