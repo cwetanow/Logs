@@ -49,8 +49,8 @@ namespace Logs.Services
             int hips, int thighs, int calves, int neck, int wrist, int ankle)
         {
             var measurement = this.EditMeasurement(id, height, weightKg,
-             bodyFatPercent, chest, shoulders, forearm, arm, waist,
-             hips, thighs, calves, neck, wrist, ankle);
+                bodyFatPercent, chest, shoulders, forearm, arm, waist,
+                hips, thighs, calves, neck, wrist, ankle);
 
             if (measurement == null)
             {
@@ -62,8 +62,8 @@ namespace Logs.Services
                 }
 
                 measurement = this.CreateMeasurement(height, weightKg,
-             bodyFatPercent, chest, shoulders, forearm, arm, waist,
-             hips, thighs, calves, neck, wrist, ankle, entry.NutritionEntryId);
+                    bodyFatPercent, chest, shoulders, forearm, arm, waist,
+                    hips, thighs, calves, neck, wrist, ankle, entry.NutritionEntryId);
             }
 
             return measurement;
@@ -71,12 +71,41 @@ namespace Logs.Services
 
         public Measurement EditMeasurement(int id, int height, double weightKg, double bodyFatPercent, int chest, int shoulders, int forearm, int arm, int waist, int hips, int thighs, int calves, int neck, int wrist, int ankle)
         {
-            throw new NotImplementedException();
+            var measurement = this.repository.GetById(id);
+
+            if (measurement != null)
+            {
+                measurement.Height = height;
+                measurement.WeightKg = weightKg;
+                measurement.BodyFatPercent = bodyFatPercent;
+                measurement.Chest = chest;
+                measurement.Shoulders = shoulders;
+                measurement.Forearm = forearm;
+                measurement.Arm = arm;
+                measurement.Waist = waist;
+                measurement.Hips = hips;
+                measurement.Thighs = thighs;
+                measurement.Calves = calves;
+                measurement.Neck = neck;
+                measurement.Wrist = wrist;
+                measurement.Ankle = ankle;
+
+                this.unitOfWork.Commit();
+            }
+
+            return measurement;
         }
 
         public Measurement CreateMeasurement(int height, double weightKg, double bodyFatPercent, int chest, int shoulders, int forearm, int arm, int waist, int hips, int thighs, int calves, int neck, int wrist, int ankle, int entryId)
         {
-            throw new NotImplementedException();
+            var measurement = this.factory.CreateMeasurement(height, weightKg,
+              bodyFatPercent, chest, shoulders, forearm, arm, waist,
+              hips, thighs, calves, neck, wrist, ankle, entryId);
+
+            this.repository.Add(measurement);
+            this.unitOfWork.Commit();
+
+            return measurement;
         }
     }
 }
