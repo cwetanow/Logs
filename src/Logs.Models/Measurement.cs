@@ -9,6 +9,39 @@ namespace Logs.Models
             this.NutritionEntries = new HashSet<NutritionEntry>();
         }
 
+        public Measurement(int heigh,
+                  double weightKg,
+                  double bodyFatPercent,
+                  int chest,
+                  int shoulders,
+                  int forearm,
+                  int arm,
+                  int waist,
+                  int hips,
+                  int thighs,
+                  int calves,
+                  int neck,
+                  int wrist,
+                  int ankle,
+                  int nutritionEntryId = 0)
+        {
+            this.Heigh = heigh;
+            this.WeightKg = weightKg;
+            this.BodyFatPercent = bodyFatPercent;
+            this.Chest = chest;
+            this.Shoulders = shoulders;
+            this.Forearm = forearm;
+            this.Arm = arm;
+            this.Waist = waist;
+            this.Hips = hips;
+            this.Thighs = thighs;
+            this.Calves = calves;
+            this.Neck = neck;
+            this.Wrist = wrist;
+            this.Ankle = ankle;
+            this.NutritionEntryId = nutritionEntryId;
+        }
+
         public int MeasurementsId { get; set; }
 
         public int Heigh { get; set; }
