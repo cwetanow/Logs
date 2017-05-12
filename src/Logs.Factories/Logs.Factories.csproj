@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="ICommentFactory.cs" />
     <Compile Include="ILogEntryFactory.cs" />
+    <Compile Include="IMeasurementFactory.cs" />
     <Compile Include="INutritionFactory.cs" />
     <Compile Include="ITrainingLogFactory.cs" />
     <Compile Include="IUserFactory.cs" />
