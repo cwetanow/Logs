@@ -9,7 +9,7 @@ namespace Logs.Models
             this.NutritionEntries = new HashSet<NutritionEntry>();
         }
 
-        public Measurement(int heigh,
+        public Measurement(int height,
                   double weightKg,
                   double bodyFatPercent,
                   int chest,
@@ -25,7 +25,7 @@ namespace Logs.Models
                   int ankle,
                   int nutritionEntryId = 0)
         {
-            this.Heigh = heigh;
+            this.Height = height;
             this.WeightKg = weightKg;
             this.BodyFatPercent = bodyFatPercent;
             this.Chest = chest;
@@ -44,7 +44,7 @@ namespace Logs.Models
 
         public int MeasurementsId { get; set; }
 
-        public int Heigh { get; set; }
+        public int Height { get; set; }
 
         public double WeightKg { get; set; }
 

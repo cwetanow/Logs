@@ -16,7 +16,7 @@ namespace Logs.Web.Models.Nutrition
             {
                 this.Id = measurement.MeasurementsId;
                 this.NutritionEntryId = measurement.NutritionEntryId;
-                this.Heigh = measurement.Heigh;
+                this.Heigh = measurement.Height;
                 this.WeightKg = measurement.WeightKg;
                 this.BodyFatPercent = measurement.BodyFatPercent;
                 this.Chest = measurement.Chest;

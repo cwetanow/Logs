@@ -4,7 +4,7 @@ namespace Logs.Factories
 {
     public interface IMeasurementFactory
     {
-        Measurement CreateMeasurement(int heigh,
+        Measurement CreateMeasurement(int height,
                   double weightKg,
                   double bodyFatPercent,
                   int chest,

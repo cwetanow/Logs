@@ -13,7 +13,7 @@ namespace Logs.Data.Mappings
             // Table & Column Mappings
             this.ToTable("Measurements");
             this.Property(t => t.MeasurementsId).HasColumnName("MeasurementsId");
-            this.Property(t => t.Heigh).HasColumnName("Heigh");
+            this.Property(t => t.Height).HasColumnName("Heigh");
             this.Property(t => t.WeightKg).HasColumnName("WeightKg");
             this.Property(t => t.BodyFatPercent).HasColumnName("BodyFatPercent");
             this.Property(t => t.Chest).HasColumnName("Chest");
