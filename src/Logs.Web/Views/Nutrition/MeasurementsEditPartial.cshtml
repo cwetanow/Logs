@@ -17,10 +17,10 @@
         @Html.HiddenFor(model => model.Date)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Heigh, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.Height, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Heigh, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Heigh, "", new {@class = "text-danger"})
+                @Html.EditorFor(model => model.Height, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Height, "", new {@class = "text-danger"})
             </div>
         </div>
 
