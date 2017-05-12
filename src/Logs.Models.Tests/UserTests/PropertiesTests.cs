@@ -49,6 +49,48 @@ namespace Logs.Models.Tests.UserTests
             CollectionAssert.AreEqual(entries, user.LogEntries);
         }
 
+        [Test]
+        public void TestVotes_ShouldInitializeCorrectly()
+        {
+            // Arrange
+            var votes = new List<Vote>();
+            var user = new User();
+
+            // Act
+            user.Votes = votes;
+
+            // Assert
+            CollectionAssert.AreEqual(votes, user.Votes);
+        }
+
+        [Test]
+        public void TestTrainingLogs_ShouldInitializeCorrectly()
+        {
+            // Arrange
+            var logs = new List<TrainingLog>();
+            var user = new User();
+
+            // Act
+            user.TrainingLogs = logs;
+
+            // Assert
+            CollectionAssert.AreEqual(logs, user.TrainingLogs);
+        }
+
+        [Test]
+        public void TestNutritionEntries_ShouldInitializeCorrectly()
+        {
+            // Arrange
+            var entries = new List<NutritionEntry>();
+            var user = new User();
+
+            // Act
+            user.NutritionEntries = entries;
+
+            // Assert
+            CollectionAssert.AreEqual(entries, user.NutritionEntries);
+        }
+
         [TestCase(GenderType.Female)]
         [TestCase(GenderType.Male)]
         [TestCase(GenderType.NotSelected)]
