@@ -68,9 +68,9 @@ namespace Logs.Services
             int chest, int shoulders, int forearm, int arm,
             int waist, int hips, int thighs, int calves, int neck, int wrist, int ankle)
         {
-            var measurement = this.factory.CreateMeasurement(userId, date, height, weightKg,
+            var measurement = this.factory.CreateMeasurement(height, weightKg,
                bodyFatPercent, chest, shoulders, forearm, arm, waist,
-               hips, thighs, calves, neck, wrist, ankle);
+               hips, thighs, calves, neck, wrist, ankle, userId, date);
 
             this.repository.Add(measurement);
             this.unitOfWork.Commit();
