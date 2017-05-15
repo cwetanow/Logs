@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Logs.Models
 {
@@ -7,7 +6,6 @@ namespace Logs.Models
     {
         public Measurement()
         {
-            this.NutritionEntries = new HashSet<NutritionEntry>();
         }
 
         public Measurement(int height,
@@ -40,7 +38,6 @@ namespace Logs.Models
             this.Neck = neck;
             this.Wrist = wrist;
             this.Ankle = ankle;
-            this.NutritionEntryId = nutritionEntryId;
         }
 
         public int MeasurementsId { get; set; }
@@ -72,10 +69,6 @@ namespace Logs.Models
         public int Wrist { get; set; }
 
         public int Ankle { get; set; }
-
-        public int NutritionEntryId { get; set; }
-
-        public virtual ICollection<NutritionEntry> NutritionEntries { get; set; }
 
         public DateTime Date { get; set; }
 

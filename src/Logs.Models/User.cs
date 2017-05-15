@@ -10,7 +10,8 @@ namespace Logs.Models
         {
             this.Comments = new HashSet<Comment>();
             this.LogEntries = new HashSet<LogEntry>();
-            this.NutritionEntries = new HashSet<NutritionEntry>();
+            this.Measurements = new HashSet<Measurement>();
+            this.Nutritions = new HashSet<Nutrition>();
             this.TrainingLogs = new HashSet<TrainingLog>();
             this.Votes = new HashSet<Vote>();
         }
@@ -44,10 +45,12 @@ namespace Logs.Models
 
         public virtual ICollection<LogEntry> LogEntries { get; set; }
 
-        public virtual ICollection<NutritionEntry> NutritionEntries { get; set; }
-
         public virtual ICollection<TrainingLog> TrainingLogs { get; set; }
 
         public virtual ICollection<Vote> Votes { get; set; }
+
+        public virtual ICollection<Measurement> Measurements { get; set; }
+
+        public virtual ICollection<Nutrition> Nutritions { get; set; }
     }
 }
