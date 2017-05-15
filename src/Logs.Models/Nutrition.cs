@@ -9,7 +9,8 @@ namespace Logs.Models
         {
         }
 
-        public Nutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar, string notes, object entry)
+        public Nutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar, string notes,
+            string userId, DateTime date)
             : this()
         {
             this.Calories = calories;
@@ -20,6 +21,8 @@ namespace Logs.Models
             this.Fiber = fiber;
             this.Sugar = sugar;
             this.Notes = notes;
+            this.UserId = userId;
+            this.Date = date;
         }
 
         public int NutritionId { get; set; }
