@@ -75,5 +75,11 @@ namespace Logs.Models
         public int NutritionEntryId { get; set; }
 
         public virtual ICollection<NutritionEntry> NutritionEntries { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string UserId { get; set; }
+
+        public virtual User User { get; set; }
     }
 }
