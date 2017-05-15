@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Logs.Models
@@ -50,5 +51,11 @@ namespace Logs.Models
         public virtual ICollection<NutritionEntry> NutritionEntries { get; set; }
 
         public virtual NutritionEntry NutritionEntry { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string UserId { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

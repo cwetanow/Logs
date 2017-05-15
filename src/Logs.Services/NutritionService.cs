@@ -33,7 +33,7 @@ namespace Logs.Services
             {
                 throw new ArgumentNullException(nameof(unitOfWork));
             }
-            
+
             if (nutritionFactory == null)
             {
                 throw new ArgumentNullException(nameof(nutritionFactory));
@@ -96,6 +96,17 @@ namespace Logs.Services
             return nutrition;
         }
 
+        public Nutrition CreateNutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar, string notes,
+            string userId, DateTime date)
+        {
+            var nutrition = this.nutritionFactory.CreateNutrition(calories, protein, carbs, fats, water, fiber, sugar, notes, userId, date);
+
+            this.nutritionRepository.Add(nutrition);
+            this.unitOfWork.Commit();
+
+            return nutrition;
+        }
+
         public Nutrition UpdateNutrition(int id, string userId, DateTime date, int calories, int protein, int carbs,
             int fats, double water, int fiber, int sugar, string notes)
         {
@@ -119,6 +130,14 @@ namespace Logs.Services
             }
 
             return nutrition;
+        }
+
+        public Nutrition GetByDate(string userId, DateTime date)
+        {
+            var result = this.nutritionRepository.All
+                .FirstOrDefault(n => n.UserId == userId && n.Date == date);
+
+            return result;
         }
     }
 }
