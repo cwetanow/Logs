@@ -10,7 +10,7 @@ namespace Logs.Web.Models.Nutrition
 
         }
 
-        public MeasurementViewModel(Measurement measurement, DateTime date)
+        public MeasurementViewModel(Measurement measurement)
         {
             if (measurement != null)
             {
@@ -29,16 +29,15 @@ namespace Logs.Web.Models.Nutrition
                 this.Neck = measurement.Neck;
                 this.Wrist = measurement.Wrist;
                 this.Ankle = measurement.Ankle;
+                this.Date = measurement.Date;
             }
-
-            this.Date = date;
         }
-        
+
         public string SaveResult { get; set; }
 
         public DateTime Date { get; set; }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         public int NutritionEntryId { get; set; }
 
