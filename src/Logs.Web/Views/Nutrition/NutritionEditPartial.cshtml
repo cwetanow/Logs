@@ -1,6 +1,6 @@
 ﻿@model Logs.Web.Models.Nutrition.NutritionViewModel
 
-@using (Ajax.BeginForm("SaveEntry", "Nutrition", null,
+@using (Ajax.BeginForm("Save", "Nutrition", null,
                                                                             new AjaxOptions
                                                                             {
                                                                                 UpdateTargetId = "nutrition",
@@ -19,7 +19,6 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.NutritionEntryId)
         @Html.HiddenFor(model => model.Date)
 
         <div class="form-group">
