@@ -4,21 +4,39 @@
     ViewBag.Title = "Input";
 }
 <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
-<h2>Input</h2>
 
-@using (Ajax.BeginForm("LoadEntry", "Nutrition", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "main" }, new { @class = "form-horizontal form col-md-12 center-block", role = "form" }))
-{
-    <div class='col-sm-3'></div>
-    <div class='col-sm-6'>
-        @Html.LabelFor(m => m.Date)
-        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "DD/MM/YYYY" })
-        <hr />
-        <input type="submit" class="btn btn-primary" value="GO" />
-    </div>
-}
+<div class="col-sm-3"></div>
+<div class="col-sm-6">
+    @Html.LabelFor(m => m.Date)
+    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "DD/MM/YYYY" })
+    <hr />
+    <button class="btn btn-primary" id="btn-go">GO</button>
+</div>
 <hr />
 
-<div id="main"></div>
+@using (Ajax.BeginForm("Load", "Nutrition",
+                new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
+                new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Date, new { id = "nutrition-model-date" })
+}
+
+@using (Ajax.BeginForm("Load", "Measurement",
+                new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
+                new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Date, new { id = "measurements-model-date" })
+}
+
+<div>
+    <div id="nutrition">
+    </div>
+
+    <div id="measurements">
+    </div>
+</div>
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
     <script type="text/javascript" src="/scripts/moment.min.js"></script>
@@ -28,6 +46,17 @@
         $(function () {
             $('#datetimepicker').datetimepicker({
                 format: 'DD/MM/YYYY'
+            });
+
+            $('#btn-go').click(() => {
+                var date = $('#datetimepicker').val();
+                console.log(date);
+
+                $('#nutrition-model-date').val(date);
+                $('#measurements-model-date').val(date);
+
+                $('#measurement-form').submit();
+                $('#nutrition-form').submit();
             });
         });
     </script>
