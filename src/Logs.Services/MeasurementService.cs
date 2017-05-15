@@ -3,6 +3,7 @@ using Logs.Factories;
 using Logs.Models;
 using Logs.Services.Contracts;
 using System;
+using System.Linq;
 
 namespace Logs.Services
 {
@@ -147,6 +148,14 @@ namespace Logs.Services
             this.unitOfWork.Commit();
 
             return measurement;
+        }
+
+        public Measurement GetByDate(string userId, DateTime date)
+        {
+            var result = this.repository.All
+                 .FirstOrDefault(m => m.UserId == userId && m.Date == date);
+
+            return result;
         }
     }
 }

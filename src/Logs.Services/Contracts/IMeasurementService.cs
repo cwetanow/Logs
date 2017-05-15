@@ -82,5 +82,7 @@ namespace Logs.Services.Contracts
                   int neck,
                   int wrist,
                   int ankle);
+
+        Measurement GetByDate(string userId, DateTime date);
     }
 }
