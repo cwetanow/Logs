@@ -56,5 +56,12 @@ namespace Logs.Web.Controllers
 
             return this.View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(NutritionViewModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

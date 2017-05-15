@@ -1,8 +1,7 @@
 ﻿using Logs.Authentication.Contracts;
-using Logs.Common;
 using Logs.Services.Contracts;
-using Logs.Web.Models.Nutrition;
 using System.Web.Mvc;
+using Logs.Web.Models.Nutrition;
 
 namespace Logs.Web.Controllers
 {
@@ -15,6 +14,13 @@ namespace Logs.Web.Controllers
         {
             this.authenticationProvider = authenticationProvider;
             this.measurementService = measurementService;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(MeasurementViewModel model)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
