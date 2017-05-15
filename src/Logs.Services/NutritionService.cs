@@ -139,5 +139,27 @@ namespace Logs.Services
 
             return result;
         }
+
+        public Nutrition EditNutrition(string userId, DateTime date, int id, int calories, int protein, int carbs, int fats, double water, int fiber, int sugar, string notes)
+        {
+            var nutrition = this.nutritionRepository.GetById(id);
+
+            if (nutrition != null && nutrition.UserId == userId && nutrition.Date == date)
+            {
+                nutrition.Calories = calories;
+                nutrition.Protein = protein;
+                nutrition.Carbs = carbs;
+                nutrition.Fats = fats;
+                nutrition.WaterInLitres = water;
+                nutrition.Fiber = fiber;
+                nutrition.Sugar = sugar;
+                nutrition.Notes = notes;
+
+                this.nutritionRepository.Update(nutrition);
+                this.unitOfWork.Commit();
+            }
+
+            return nutrition;
+        }
     }
 }
