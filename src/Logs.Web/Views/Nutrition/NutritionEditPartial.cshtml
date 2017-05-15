@@ -18,7 +18,10 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @if (Model.Id.HasValue)
+        {
+            @Html.HiddenFor(model => model.Id)
+        }
         @Html.HiddenFor(model => model.Date)
 
         <div class="form-group">
