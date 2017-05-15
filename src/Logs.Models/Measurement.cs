@@ -22,7 +22,8 @@ namespace Logs.Models
                   int neck,
                   int wrist,
                   int ankle,
-                  int nutritionEntryId = 0)
+                  string userId,
+                  DateTime date)
         {
             this.Height = height;
             this.WeightKg = weightKg;
@@ -38,6 +39,8 @@ namespace Logs.Models
             this.Neck = neck;
             this.Wrist = wrist;
             this.Ankle = ankle;
+            this.UserId = userId;
+            this.Date = date;
         }
 
         public int MeasurementsId { get; set; }
