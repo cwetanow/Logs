@@ -14,14 +14,12 @@ namespace Logs.Services.Tests.NutritionServiceTests
         public void TestConstructor_PassEverything_ShouldInitializeCorrectly()
         {
             // Arrange
-            var mockedEntryRepository = new Mock<IRepository<NutritionEntry>>();
             var mockedNutritionRepository = new Mock<IRepository<Nutrition>>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedNutritionFactory = new Mock<INutritionFactory>();
 
             // Act
-            var service = new NutritionService(mockedEntryRepository.Object,
-                mockedNutritionRepository.Object,
+            var service = new NutritionService(mockedNutritionRepository.Object,
                 mockedUnitOfWork.Object,
                 mockedNutritionFactory.Object);
 
@@ -30,34 +28,15 @@ namespace Logs.Services.Tests.NutritionServiceTests
         }
 
         [Test]
-        public void TestConstructor_PassEntryRepositoryNull_ShouldThrowArgumentNullException()
+        public void TestConstructor_PassNutritionRepositoryNull_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var mockedNutritionRepository = new Mock<IRepository<Nutrition>>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedNutritionFactory = new Mock<INutritionFactory>();
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() =>
             new NutritionService(null,
-                mockedNutritionRepository.Object,
-                mockedUnitOfWork.Object,
-                mockedNutritionFactory.Object)
-            );
-        }
-
-        [Test]
-        public void TestConstructor_PassNutritionRepositoryNull_ShouldThrowArgumentNullException()
-        {
-            // Arrange
-            var mockedEntryRepository = new Mock<IRepository<NutritionEntry>>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            var mockedNutritionFactory = new Mock<INutritionFactory>();
-
-            // Act, Assert
-            Assert.Throws<ArgumentNullException>(() =>
-            new NutritionService(mockedEntryRepository.Object,
-                null,
                 mockedUnitOfWork.Object,
                 mockedNutritionFactory.Object)
             );
@@ -67,14 +46,12 @@ namespace Logs.Services.Tests.NutritionServiceTests
         public void TestConstructor_PassUnitOfWorkNull_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var mockedEntryRepository = new Mock<IRepository<NutritionEntry>>();
             var mockedNutritionRepository = new Mock<IRepository<Nutrition>>();
             var mockedNutritionFactory = new Mock<INutritionFactory>();
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() =>
-            new NutritionService(mockedEntryRepository.Object,
-                mockedNutritionRepository.Object,
+            new NutritionService(mockedNutritionRepository.Object,
                 null,
                 mockedNutritionFactory.Object)
             );
@@ -84,14 +61,12 @@ namespace Logs.Services.Tests.NutritionServiceTests
         public void TestConstructor_PassNutritionFactoryNull_ShouldThrowArgumentNullException()
         {
             // Arrange
-            var mockedEntryRepository = new Mock<IRepository<NutritionEntry>>();
             var mockedNutritionRepository = new Mock<IRepository<Nutrition>>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
             // Act, Assert
             Assert.Throws<ArgumentNullException>(() =>
-            new NutritionService(mockedEntryRepository.Object,
-                mockedNutritionRepository.Object,
+            new NutritionService(mockedNutritionRepository.Object,
                 mockedUnitOfWork.Object,
                 null)
             );

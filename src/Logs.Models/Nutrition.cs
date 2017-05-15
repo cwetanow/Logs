@@ -9,7 +9,7 @@ namespace Logs.Models
         {
         }
 
-        public Nutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar, string notes, NutritionEntry entry)
+        public Nutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar, string notes, object entry)
             : this()
         {
             this.Calories = calories;

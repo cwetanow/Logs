@@ -10,6 +10,10 @@ namespace Logs.Data.Mappings
             // Primary Key
             this.HasKey(t => t.NutritionId);
 
+            // Properties
+            this.Property(t => t.UserId)
+                .HasMaxLength(128);
+
             // Table & Column Mappings
             this.ToTable("Nutritions");
             this.Property(t => t.NutritionId).HasColumnName("NutritionId");
@@ -20,13 +24,14 @@ namespace Logs.Data.Mappings
             this.Property(t => t.WaterInLitres).HasColumnName("WaterInLitres");
             this.Property(t => t.Fiber).HasColumnName("Fiber");
             this.Property(t => t.Sugar).HasColumnName("Sugar");
+            this.Property(t => t.UserId).HasColumnName("UserId");
             this.Property(t => t.Notes).HasColumnName("Notes");
-            this.Property(t => t.EntryId).HasColumnName("EntryId");
+            this.Property(t => t.Date).HasColumnName("Date");
 
             // Relationships
-            this.HasRequired(t => t.NutritionEntry)
+            this.HasOptional(t => t.User)
                 .WithMany(t => t.Nutritions)
-                .HasForeignKey(d => d.EntryId);
+                .HasForeignKey(d => d.UserId);
         }
     }
 }

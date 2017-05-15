@@ -26,11 +26,7 @@ namespace Logs.Data
 
         public DbSet<LogEntry> LogEntries { get; set; }
 
-        public DbSet<Meal> Meals { get; set; }
-
         public DbSet<Measurement> Measurements { get; set; }
-
-        public DbSet<NutritionEntry> NutritionEntries { get; set; }
 
         public DbSet<Nutrition> Nutritions { get; set; }
 
@@ -45,9 +41,7 @@ namespace Logs.Data
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new CommentMap());
             modelBuilder.Configurations.Add(new LogEntryMap());
-            modelBuilder.Configurations.Add(new MealMap());
             modelBuilder.Configurations.Add(new MeasurementMap());
-            modelBuilder.Configurations.Add(new NutritionEntryMap());
             modelBuilder.Configurations.Add(new NutritionMap());
             modelBuilder.Configurations.Add(new TrainingLogMap());
             modelBuilder.Configurations.Add(new VoteMap());

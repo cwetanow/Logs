@@ -22,19 +22,5 @@ namespace Logs.Models.Tests.NutritionTests
             // Assert
             Assert.AreEqual(nutritionId, nutrition.NutritionId);
         }
-
-        [Test]
-        public void TestNutritionEntry_ShouldInitializeCorrectly()
-        {
-            // Arrange
-            var nutrition = new Nutrition();
-            var entry = new NutritionEntry();
-
-            // Act
-            nutrition.NutritionEntry = entry;
-
-            // Assert
-            Assert.AreSame(entry, nutrition.NutritionEntry);
-        }
     }
 }

@@ -64,9 +64,7 @@
     <Compile Include="LogsDbContext.cs" />
     <Compile Include="Mappings\CommentMap.cs" />
     <Compile Include="Mappings\LogEntryMap.cs" />
-    <Compile Include="Mappings\MealMap.cs" />
     <Compile Include="Mappings\MeasurementMap.cs" />
-    <Compile Include="Mappings\NutritionEntryMap.cs" />
     <Compile Include="Mappings\NutritionMap.cs" />
     <Compile Include="Mappings\TrainingLogMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />

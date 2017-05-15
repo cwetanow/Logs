@@ -15,7 +15,6 @@ namespace Logs.Web.Models.Nutrition
             if (nutrition != null)
             {
                 this.Id = nutrition.NutritionId;
-                this.NutritionEntryId = nutrition.EntryId;
                 this.Sugar = nutrition.Sugar;
                 this.Fiber = nutrition.Fiber;
                 this.WaterInLitres = nutrition.WaterInLitres;

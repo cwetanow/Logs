@@ -77,20 +77,6 @@ namespace Logs.Models.Tests.UserTests
             CollectionAssert.AreEqual(logs, user.TrainingLogs);
         }
 
-        [Test]
-        public void TestNutritionEntries_ShouldInitializeCorrectly()
-        {
-            // Arrange
-            var entries = new List<NutritionEntry>();
-            var user = new User();
-
-            // Act
-            user.NutritionEntries = entries;
-
-            // Assert
-            CollectionAssert.AreEqual(entries, user.NutritionEntries);
-        }
-
         [TestCase(GenderType.Female)]
         [TestCase(GenderType.Male)]
         [TestCase(GenderType.NotSelected)]
