@@ -1,4 +1,5 @@
-﻿using Logs.Authentication.Contracts;
+﻿using System;
+using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
 using System.Web.Mvc;
 using Logs.Web.Models.Nutrition;
@@ -21,6 +22,13 @@ namespace Logs.Web.Controllers
         public ActionResult Save(MeasurementViewModel model)
         {
             throw new System.NotImplementedException();
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Load(InputViewModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

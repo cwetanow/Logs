@@ -63,5 +63,12 @@ namespace Logs.Web.Controllers
         {
             throw new NotImplementedException();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Load(InputViewModel model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
