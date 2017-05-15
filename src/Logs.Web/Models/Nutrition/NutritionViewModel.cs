@@ -33,8 +33,6 @@ namespace Logs.Web.Models.Nutrition
 
         public int? Id { get; set; }
 
-        public int NutritionEntryId { get; set; }
-
         public int Calories { get; set; }
 
         public int Protein { get; set; }

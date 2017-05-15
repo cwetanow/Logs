@@ -39,8 +39,6 @@ namespace Logs.Web.Models.Nutrition
 
         public int? Id { get; set; }
 
-        public int NutritionEntryId { get; set; }
-
         public int Height { get; set; }
 
         public double WeightKg { get; set; }
