@@ -107,5 +107,32 @@ namespace Logs.Services
 
             return measurement;
         }
+
+        public Measurement EditMeasurement(string userId, DateTime date, int id, int height, double weightKg, double bodyFatPercent, int chest, int shoulders, int forearm, int arm, int waist, int hips, int thighs, int calves, int neck, int wrist, int ankle)
+        {
+            var measurement = this.repository.GetById(id);
+
+            if (measurement != null && measurement.UserId == userId && measurement.Date == date)
+            {
+                measurement.Height = height;
+                measurement.WeightKg = weightKg;
+                measurement.BodyFatPercent = bodyFatPercent;
+                measurement.Chest = chest;
+                measurement.Shoulders = shoulders;
+                measurement.Forearm = forearm;
+                measurement.Arm = arm;
+                measurement.Waist = waist;
+                measurement.Hips = hips;
+                measurement.Thighs = thighs;
+                measurement.Calves = calves;
+                measurement.Neck = neck;
+                measurement.Wrist = wrist;
+                measurement.Ankle = ankle;
+
+                this.unitOfWork.Commit();
+            }
+
+            return measurement;
+        }
     }
 }
