@@ -134,5 +134,19 @@ namespace Logs.Services
 
             return measurement;
         }
+
+        public Measurement CreateMeasurement(string userId, DateTime date, int height, double weightKg, double bodyFatPercent,
+            int chest, int shoulders, int forearm, int arm,
+            int waist, int hips, int thighs, int calves, int neck, int wrist, int ankle)
+        {
+            var measurement = this.factory.CreateMeasurement(userId, date, height, weightKg,
+               bodyFatPercent, chest, shoulders, forearm, arm, waist,
+               hips, thighs, calves, neck, wrist, ankle);
+
+            this.repository.Add(measurement);
+            this.unitOfWork.Commit();
+
+            return measurement;
+        }
     }
 }
