@@ -5,7 +5,6 @@ using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Nutrition;
-using Logs.Common;
 
 namespace Logs.Web.Controllers
 {
@@ -68,7 +67,19 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Load(InputViewModel model)
         {
-            throw new NotImplementedException();
+            if (this.ModelState.IsValid)
+            {
+                var date = model.Date;
+                var userId = this.authenticationProvider.CurrentUserId;
+
+                var nutrition = this.nutritionService.GetByDate(userId, date);
+
+                var viewModel = this.viewModelFactory.CreateNutritionViewModel(nutrition, date);
+
+                return this.PartialView(viewModel);
+            }
+
+            return null;
         }
     }
 }
