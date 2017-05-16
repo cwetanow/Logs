@@ -20,9 +20,7 @@ namespace Logs.Services.Contracts
                   int wrist,
                   int ankle);
 
-        Measurement CreateMeasurement(string userId,
-                    DateTime date,
-                    int height,
+        Measurement CreateMeasurement(int height,
                     double weightKg,
                     double bodyFatPercent,
                     int chest,
@@ -35,7 +33,9 @@ namespace Logs.Services.Contracts
                     int calves,
                     int neck,
                     int wrist,
-                    int ankle);
+                    int ankle,
+                    string userId,
+                    DateTime date);
 
         Measurement GetByDate(string userId, DateTime date);
     }
