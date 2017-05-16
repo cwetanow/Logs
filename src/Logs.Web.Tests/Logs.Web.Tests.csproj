@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\ListControllerTests\ConstructorTests.cs" />
+    <Compile Include="Controllers\MeasurementControllerTests\LoadTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\InputTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\LoadTests.cs" />
