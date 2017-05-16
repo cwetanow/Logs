@@ -10,7 +10,7 @@ namespace Logs.Web.Models.Nutrition
 
         }
 
-        public MeasurementViewModel(Measurement measurement)
+        public MeasurementViewModel(Measurement measurement, DateTime date)
         {
             if (measurement != null)
             {
@@ -30,6 +30,10 @@ namespace Logs.Web.Models.Nutrition
                 this.Wrist = measurement.Wrist;
                 this.Ankle = measurement.Ankle;
                 this.Date = measurement.Date;
+            }
+            else
+            {
+                this.Date = date;
             }
         }
 
