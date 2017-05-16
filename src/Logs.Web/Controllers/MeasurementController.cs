@@ -40,7 +40,7 @@ namespace Logs.Web.Controllers
 
                 var viewModel = this.factory.CreateMeasurementViewModel(measurement, date);
 
-                return this.PartialView(model);
+                return this.PartialView(viewModel);
             }
 
             return null;
