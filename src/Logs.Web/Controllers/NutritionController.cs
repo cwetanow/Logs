@@ -5,6 +5,8 @@ using Logs.Providers.Contracts;
 using Logs.Services.Contracts;
 using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Nutrition;
+using Logs.Models;
+using Logs.Common;
 
 namespace Logs.Web.Controllers
 {
@@ -60,7 +62,29 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(NutritionViewModel model)
         {
-            throw new NotImplementedException();
+            if (this.ModelState.IsValid)
+            {
+                var userId = this.authenticationProvider.CurrentUserId;
+
+                var nutrition = (Nutrition)null;
+
+                if (model.Id.HasValue)
+                {
+                    nutrition = this.nutritionService.EditNutrition(userId, model.Date, model.Id.Value, model.Calories, model.Protein, model.Carbs,
+                        model.Fats, model.WaterInLitres, model.Fiber, model.Sugar, model.Notes);
+                }
+                else
+                {
+                    nutrition = this.nutritionService.CreateNutrition(model.Calories, model.Protein, model.Carbs,
+                        model.Fats, model.WaterInLitres, model.Fiber, model.Sugar, model.Notes, userId, model.Date);
+                }
+
+                model = this.viewModelFactory.CreateNutritionViewModel(nutrition, model.Date);
+
+                model.SaveResult = Constants.SavedSuccessfully;
+            }
+
+            return this.PartialView("Load", model);
         }
 
         [HttpPost]

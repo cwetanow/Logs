@@ -4,6 +4,8 @@ using Logs.Services.Contracts;
 using System.Web.Mvc;
 using Logs.Web.Models.Nutrition;
 using Logs.Web.Infrastructure.Factories;
+using Logs.Models;
+using Logs.Common;
 
 namespace Logs.Web.Controllers
 {
@@ -24,7 +26,31 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(MeasurementViewModel model)
         {
-            throw new NotImplementedException();
+            if (this.ModelState.IsValid)
+            {
+                var userId = this.authenticationProvider.CurrentUserId;
+
+                var measurement = (Measurement)null;
+
+                if (model.Id.HasValue)
+                {
+                    measurement = this.measurementService.EditMeasurement(userId, model.Date, model.Id.Value, model.Height, model.WeightKg,
+                        model.BodyFatPercent, model.Chest, model.Shoulders, model.Forearm, model.Arm, model.Waist, model.Hips, model.Thighs,
+                        model.Calves, model.Neck, model.Wrist, model.Ankle);
+                }
+                else
+                {
+                    measurement = this.measurementService.CreateMeasurement(model.Height, model.WeightKg,
+                        model.BodyFatPercent, model.Chest, model.Shoulders, model.Forearm, model.Arm, model.Waist, model.Hips, model.Thighs,
+                        model.Calves, model.Neck, model.Wrist, model.Ankle, userId, model.Date);
+                }
+
+                model = this.factory.CreateMeasurementViewModel(measurement, model.Date);
+
+                model.SaveResult = Constants.SavedSuccessfully;
+            }
+
+            return this.PartialView("Load", model);
         }
 
         [HttpPost]
