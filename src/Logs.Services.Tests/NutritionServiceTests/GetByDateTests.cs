@@ -16,11 +16,11 @@ namespace Logs.Services.Tests.NutritionServiceTests
         public void TestGetByDate_ShouldCallRepositoryAll(string userId)
         {
             // Arrange
-            var mockNutritionRepository = new Mock<IRepository<Nutrition>>();
+            var mockedNutritionRepository = new Mock<IRepository<Nutrition>>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedFactory = new Mock<INutritionFactory>();
 
-            var service = new NutritionService(mockNutritionRepository.Object,
+            var service = new NutritionService(mockedNutritionRepository.Object,
                 mockedUnitOfWork.Object,
                 mockedFactory.Object);
 
@@ -28,7 +28,7 @@ namespace Logs.Services.Tests.NutritionServiceTests
             service.GetByDate(userId, new DateTime());
 
             // Assert
-            mockNutritionRepository.Verify(r => r.All, Times.Once);
+            mockedNutritionRepository.Verify(r => r.All, Times.Once);
         }
 
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95", 29, 7, 1999)]
@@ -40,13 +40,13 @@ namespace Logs.Services.Tests.NutritionServiceTests
 
             var results = new List<Nutrition> { nutrition };
 
-            var mockNutritionRepository = new Mock<IRepository<Nutrition>>();
-            mockNutritionRepository.Setup(r => r.All).Returns(results.AsQueryable());
+            var mockedNutritionRepository = new Mock<IRepository<Nutrition>>();
+            mockedNutritionRepository.Setup(r => r.All).Returns(results.AsQueryable());
 
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedFactory = new Mock<INutritionFactory>();
 
-            var service = new NutritionService(mockNutritionRepository.Object,
+            var service = new NutritionService(mockedNutritionRepository.Object,
                 mockedUnitOfWork.Object,
                 mockedFactory.Object);
 
@@ -66,13 +66,13 @@ namespace Logs.Services.Tests.NutritionServiceTests
 
             var results = new List<Nutrition> { nutrition };
 
-            var mockNutritionRepository = new Mock<IRepository<Nutrition>>();
-            mockNutritionRepository.Setup(r => r.All).Returns(results.AsQueryable());
+            var mockedNutritionRepository = new Mock<IRepository<Nutrition>>();
+            mockedNutritionRepository.Setup(r => r.All).Returns(results.AsQueryable());
 
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedFactory = new Mock<INutritionFactory>();
 
-            var service = new NutritionService(mockNutritionRepository.Object,
+            var service = new NutritionService(mockedNutritionRepository.Object,
                 mockedUnitOfWork.Object,
                 mockedFactory.Object);
 
