@@ -90,6 +90,7 @@
     <Compile Include="LogsServiceTests\SearchTest.cs" />
     <Compile Include="MeasurementServiceTests\ConstructorTests.cs" />
     <Compile Include="NutritionServiceTests\ConstructorTests.cs" />
+    <Compile Include="NutritionServiceTests\GetByDateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserServiceTests\ChangeProfilePictureTests.cs" />
     <Compile Include="UserServiceTests\ConstructorTests.cs" />
