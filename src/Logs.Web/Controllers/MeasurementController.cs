@@ -1,11 +1,11 @@
-﻿using System;
-using Logs.Authentication.Contracts;
+﻿using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
 using System.Web.Mvc;
 using Logs.Web.Models.Nutrition;
 using Logs.Web.Infrastructure.Factories;
 using Logs.Models;
 using Logs.Common;
+using System;
 
 namespace Logs.Web.Controllers
 {
@@ -17,6 +17,21 @@ namespace Logs.Web.Controllers
 
         public MeasurementController(IAuthenticationProvider authenticationProvider, IMeasurementService measurementService, IViewModelFactory factory)
         {
+            if (authenticationProvider == null)
+            {
+                throw new ArgumentNullException(nameof(authenticationProvider));
+            }
+
+            if (measurementService == null)
+            {
+                throw new ArgumentNullException(nameof(measurementService));
+            }
+
+            if (factory == null)
+            {
+                throw new ArgumentNullException(nameof(factory));
+            }
+
             this.authenticationProvider = authenticationProvider;
             this.measurementService = measurementService;
             this.factory = factory;
