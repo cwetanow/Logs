@@ -22,5 +22,19 @@ namespace Logs.Models.Tests.NutritionTests
             // Assert
             Assert.AreEqual(nutritionId, nutrition.NutritionId);
         }
+
+        [Test]
+        public void TestUser_ShouldInitializeCorrectly()
+        {
+            // Arrange
+            var nutrition = new Nutrition();
+            var user = new User();
+
+            // Act
+            nutrition.User = user;
+
+            // Assert
+            Assert.AreSame(user, nutrition.User);
+        }
     }
 }
