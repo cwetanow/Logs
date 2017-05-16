@@ -50,6 +50,34 @@ namespace Logs.Models.Tests.UserTests
         }
 
         [Test]
+        public void TestProperties_ShouldSetNutritionsCorrectly()
+        {
+            // Arrange
+            var nutritions = new List<Nutrition>();
+            var user = new User();
+
+            // Act
+            user.Nutritions = nutritions;
+
+            // Assert
+            CollectionAssert.AreEqual(nutritions, user.Nutritions);
+        }
+
+        [Test]
+        public void TestProperties_ShouldSetMeasurementsCorrectly()
+        {
+            // Arrange
+            var measurements = new List<Measurement>();
+            var user = new User();
+
+            // Act
+            user.Measurements = measurements;
+
+            // Assert
+            CollectionAssert.AreEqual(measurements, user.Measurements);
+        }
+
+        [Test]
         public void TestVotes_ShouldInitializeCorrectly()
         {
             // Arrange
