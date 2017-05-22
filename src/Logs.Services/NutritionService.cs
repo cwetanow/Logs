@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Logs.Data.Contracts;
+using Logs.Factories;
 using Logs.Models;
 using Logs.Services.Contracts;
 
@@ -8,19 +9,74 @@ namespace Logs.Services
 {
     public class NutritionService : INutritionService
     {
-        private readonly IRepository<NutritionEntry> entryRepository;
+        private readonly IRepository<Nutrition> nutritionRepository;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly INutritionFactory nutritionFactory;
 
-        public NutritionService(IRepository<NutritionEntry> entryRepository)
+        public NutritionService(IRepository<Nutrition> nutritionRepository,
+            IUnitOfWork unitOfWork,
+            INutritionFactory nutritionFactory)
         {
-            this.entryRepository = entryRepository;
+            if (nutritionRepository == null)
+            {
+                throw new ArgumentNullException(nameof(nutritionRepository));
+            }
+
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException(nameof(unitOfWork));
+            }
+
+            if (nutritionFactory == null)
+            {
+                throw new ArgumentNullException(nameof(nutritionFactory));
+            }
+
+            this.nutritionRepository = nutritionRepository;
+            this.unitOfWork = unitOfWork;
+            this.nutritionFactory = nutritionFactory;
         }
 
-        public NutritionEntry GetEntryByDate(string userId, DateTime date)
+        public Nutrition EditNutrition(string userId, DateTime date, int id, int calories, int protein, int carbs, int fats,
+            double water, int fiber, int sugar, string notes)
         {
-            var entry = this.entryRepository.All
-                .FirstOrDefault(e => e.UserId == userId && e.Date.Equals(date));
+            var nutrition = this.nutritionRepository.GetById(id);
 
-            return entry;
+            if (nutrition != null && nutrition.UserId == userId && nutrition.Date == date)
+            {
+                nutrition.Calories = calories;
+                nutrition.Protein = protein;
+                nutrition.Carbs = carbs;
+                nutrition.Fats = fats;
+                nutrition.WaterInLitres = water;
+                nutrition.Fiber = fiber;
+                nutrition.Sugar = sugar;
+                nutrition.Notes = notes;
+
+                this.nutritionRepository.Update(nutrition);
+                this.unitOfWork.Commit();
+            }
+
+            return nutrition;
+        }
+
+        public Nutrition CreateNutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar,
+            string notes, string userId, DateTime date)
+        {
+            var nutrition = this.nutritionFactory.CreateNutrition(calories, protein, carbs, fats, water, fiber, sugar, notes, userId, date);
+
+            this.nutritionRepository.Add(nutrition);
+            this.unitOfWork.Commit();
+
+            return nutrition;
+        }
+
+        public Nutrition GetByDate(string userId, DateTime date)
+        {
+            var result = this.nutritionRepository.All
+                 .FirstOrDefault(n => n.UserId == userId && n.Date == date);
+
+            return result;
         }
     }
 }

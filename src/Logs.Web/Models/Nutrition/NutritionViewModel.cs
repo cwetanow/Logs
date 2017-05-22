@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Logs.Web.Models.Nutrition
 {
@@ -9,12 +10,11 @@ namespace Logs.Web.Models.Nutrition
 
         }
 
-        public NutritionViewModel(global::Logs.Models.Nutrition nutrition, string notes = null)
+        public NutritionViewModel(global::Logs.Models.Nutrition nutrition, DateTime date)
         {
             if (nutrition != null)
             {
                 this.Id = nutrition.NutritionId;
-                this.NutritionEntryId = nutrition.EntryId;
                 this.Sugar = nutrition.Sugar;
                 this.Fiber = nutrition.Fiber;
                 this.WaterInLitres = nutrition.WaterInLitres;
@@ -22,14 +22,20 @@ namespace Logs.Web.Models.Nutrition
                 this.Carbs = nutrition.Carbs;
                 this.Protein = nutrition.Protein;
                 this.Calories = nutrition.Calories;
+                this.Notes = nutrition.Notes;
+                this.Date = nutrition.Date;
             }
-
-            this.Notes = notes;
+            else
+            {
+                this.Date = date;
+            }
         }
 
-        public int Id { get; set; }
+        public string SaveResult { get; set; }
 
-        public int NutritionEntryId { get; set; }
+        public DateTime Date { get; set; }
+
+        public int? Id { get; set; }
 
         public int Calories { get; set; }
 

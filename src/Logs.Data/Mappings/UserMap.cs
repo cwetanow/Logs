@@ -26,7 +26,6 @@ namespace Logs.Data.Mappings
             this.HasOptional(t => t.TrainingLog)
                 .WithMany(t => t.Users)
                 .HasForeignKey(d => d.LogId);
-
         }
     }
 }

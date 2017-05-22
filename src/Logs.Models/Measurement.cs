@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 
 namespace Logs.Models
 {
@@ -6,12 +6,46 @@ namespace Logs.Models
     {
         public Measurement()
         {
-            this.NutritionEntries = new HashSet<NutritionEntry>();
+        }
+
+        public Measurement(int height,
+                  double weightKg,
+                  double bodyFatPercent,
+                  int chest,
+                  int shoulders,
+                  int forearm,
+                  int arm,
+                  int waist,
+                  int hips,
+                  int thighs,
+                  int calves,
+                  int neck,
+                  int wrist,
+                  int ankle,
+                  string userId,
+                  DateTime date)
+        {
+            this.Height = height;
+            this.WeightKg = weightKg;
+            this.BodyFatPercent = bodyFatPercent;
+            this.Chest = chest;
+            this.Shoulders = shoulders;
+            this.Forearm = forearm;
+            this.Arm = arm;
+            this.Waist = waist;
+            this.Hips = hips;
+            this.Thighs = thighs;
+            this.Calves = calves;
+            this.Neck = neck;
+            this.Wrist = wrist;
+            this.Ankle = ankle;
+            this.UserId = userId;
+            this.Date = date;
         }
 
         public int MeasurementsId { get; set; }
 
-        public int Heigh { get; set; }
+        public int Height { get; set; }
 
         public double WeightKg { get; set; }
 
@@ -39,8 +73,10 @@ namespace Logs.Models
 
         public int Ankle { get; set; }
 
-        public int NutritionEntryId { get; set; }
+        public DateTime Date { get; set; }
 
-        public virtual ICollection<NutritionEntry> NutritionEntries { get; set; }
+        public string UserId { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

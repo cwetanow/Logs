@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Logs.Models
@@ -6,10 +7,27 @@ namespace Logs.Models
     {
         public Nutrition()
         {
-            this.NutritionEntries = new HashSet<NutritionEntry>();
+        }
+
+        public Nutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar, string notes,
+            string userId, DateTime date)
+            : this()
+        {
+            this.Calories = calories;
+            this.Protein = protein;
+            this.Carbs = carbs;
+            this.Fats = fats;
+            this.WaterInLitres = water;
+            this.Fiber = fiber;
+            this.Sugar = sugar;
+            this.Notes = notes;
+            this.UserId = userId;
+            this.Date = date;
         }
 
         public int NutritionId { get; set; }
+
+        public string Notes { get; set; }
 
         public int Calories { get; set; }
 
@@ -25,10 +43,10 @@ namespace Logs.Models
 
         public int Sugar { get; set; }
 
-        public int EntryId { get; set; }
+        public DateTime Date { get; set; }
 
-        public virtual ICollection<NutritionEntry> NutritionEntries { get; set; }
+        public string UserId { get; set; }
 
-        public virtual NutritionEntry NutritionEntry { get; set; }
+        public virtual User User { get; set; }
     }
 }

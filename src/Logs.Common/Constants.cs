@@ -17,5 +17,7 @@
 
         public const string ShortDateFormat = "{0:D} at {0:HH:mm}";
         public const string WithPostedOnDateFormat = "Posted on {0:D} at {0:HH:mm}";
+
+        public const string SavedSuccessfully = "Saved";
     }
 }

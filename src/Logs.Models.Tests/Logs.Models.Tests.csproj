@@ -65,8 +65,13 @@
     <Compile Include="CommentTests\PropertiesTests.cs" />
     <Compile Include="LogEntryTests\ConstructorTests.cs" />
     <Compile Include="LogEntryTests\PropertiesTests.cs" />
+    <Compile Include="MeasurementTests\ConstructorTests.cs" />
+    <Compile Include="MeasurementTests\PropertiesTests.cs" />
+    <Compile Include="NutritionTests\ConstructorTests.cs" />
+    <Compile Include="NutritionTests\PropertiesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingLogTests\ConstructorTests.cs" />
+    <Compile Include="TrainingLogTests\PropertiesTests.cs" />
     <Compile Include="UserTests\ConstructorTests.cs" />
     <Compile Include="UserTests\PropertiesTests.cs" />
     <Compile Include="VoteTests\ConstructorTests.cs" />

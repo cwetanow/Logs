@@ -37,13 +37,8 @@ namespace Logs.Web.Infrastructure.Factories
 
         InputViewModel CreateInputViewModel(DateTime date);
 
-        MeasurementViewModel CreateMeasurementViewModel(Measurement measurement);
+        MeasurementViewModel CreateMeasurementViewModel(Measurement measurement, DateTime date);
 
-        NutritionViewModel CreateNutritionViewModel(Nutrition nutrition, string notes);
-
-        NutritionEntryViewModel CreateNutritionEntryViewModel(int id,
-            DateTime date,
-            NutritionViewModel nutrition,
-            MeasurementViewModel measurement);
+        NutritionViewModel CreateNutritionViewModel(Nutrition nutrition, DateTime date);
     }
 }

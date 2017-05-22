@@ -1,4 +1,5 @@
-﻿using Logs.Models;
+﻿using System;
+using Logs.Models;
 
 namespace Logs.Web.Models.Nutrition
 {
@@ -9,13 +10,12 @@ namespace Logs.Web.Models.Nutrition
 
         }
 
-        public MeasurementViewModel(Measurement measurement)
+        public MeasurementViewModel(Measurement measurement, DateTime date)
         {
             if (measurement != null)
             {
                 this.Id = measurement.MeasurementsId;
-                this.NutritionEntryId = measurement.NutritionEntryId;
-                this.Heigh = measurement.Heigh;
+                this.Height = measurement.Height;
                 this.WeightKg = measurement.WeightKg;
                 this.BodyFatPercent = measurement.BodyFatPercent;
                 this.Chest = measurement.Chest;
@@ -29,14 +29,21 @@ namespace Logs.Web.Models.Nutrition
                 this.Neck = measurement.Neck;
                 this.Wrist = measurement.Wrist;
                 this.Ankle = measurement.Ankle;
+                this.Date = measurement.Date;
+            }
+            else
+            {
+                this.Date = date;
             }
         }
 
-        public int Id { get; set; }
+        public string SaveResult { get; set; }
 
-        public int NutritionEntryId { get; set; }
+        public DateTime Date { get; set; }
 
-        public int Heigh { get; set; }
+        public int? Id { get; set; }
+
+        public int Height { get; set; }
 
         public double WeightKg { get; set; }
 

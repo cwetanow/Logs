@@ -10,10 +10,14 @@ namespace Logs.Data.Mappings
             // Primary Key
             this.HasKey(t => t.MeasurementsId);
 
+            // Properties
+            this.Property(t => t.UserId)
+                .HasMaxLength(128);
+
             // Table & Column Mappings
             this.ToTable("Measurements");
             this.Property(t => t.MeasurementsId).HasColumnName("MeasurementsId");
-            this.Property(t => t.Heigh).HasColumnName("Heigh");
+            this.Property(t => t.Height).HasColumnName("Height");
             this.Property(t => t.WeightKg).HasColumnName("WeightKg");
             this.Property(t => t.BodyFatPercent).HasColumnName("BodyFatPercent");
             this.Property(t => t.Chest).HasColumnName("Chest");
@@ -27,7 +31,13 @@ namespace Logs.Data.Mappings
             this.Property(t => t.Neck).HasColumnName("Neck");
             this.Property(t => t.Wrist).HasColumnName("Wrist");
             this.Property(t => t.Ankle).HasColumnName("Ankle");
-            this.Property(t => t.NutritionEntryId).HasColumnName("NutritionEntryId");
+            this.Property(t => t.Date).HasColumnName("Date");
+            this.Property(t => t.UserId).HasColumnName("UserId");
+
+            // Relationships
+            this.HasOptional(t => t.User)
+                .WithMany(t => t.Measurements)
+                .HasForeignKey(d => d.UserId);
         }
     }
 }
