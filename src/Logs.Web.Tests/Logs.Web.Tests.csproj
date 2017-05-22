@@ -218,6 +218,8 @@
     <Compile Include="ViewModelsTests\Navigation\NavigationViewModelTests\ConstructorTests.cs" />
     <Compile Include="Controllers\VoteControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\VoteControllerTests\VoteTests.cs" />
+    <Compile Include="ViewModelsTests\Nutrition\InputViewModelTests\ConstructorTests.cs" />
+    <Compile Include="ViewModelsTests\Nutrition\MeasurementViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Nutrition\NutritionViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Profile\NewLogViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Profile\UserProfileViewModelTests\ConstructorTests.cs" />
