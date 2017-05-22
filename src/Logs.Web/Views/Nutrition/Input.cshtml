@@ -10,21 +10,22 @@
     @Html.LabelFor(m => m.Date)
     @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "DD/MM/YYYY" })
     <hr />
-    <button class="btn btn-primary" id="btn-go">GO</button>
+    <button class="btn btn-primary" id="btn-nutrition">Nutrition</button>
+    <button class="btn btn-primary" id="btn-measurements">Measurements</button>
 </div>
 <hr />
 
 @using (Ajax.BeginForm("Load", "Nutrition",
-                new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
-                new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
+                            new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
+                            new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Date, new { id = "nutrition-model-date" })
 }
 
 @using (Ajax.BeginForm("Load", "Measurement",
-                new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
-                new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
+                            new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
+                            new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Date, new { id = "measurements-model-date" })
@@ -48,15 +49,20 @@
                 format: 'DD/MM/YYYY'
             });
 
-            $('#btn-go').click(() => {
+            $('#btn-nutrition').click(() => {
                 var date = $('#datetimepicker').val();
-                console.log(date);
 
+                $('#measurements').hide();
                 $('#nutrition-model-date').val(date);
-                $('#measurements-model-date').val(date);
-
-                $('#measurement-form').submit();
                 $('#nutrition-form').submit();
+            });
+
+            $('#btn-measurements').click(() => {
+                var date = $('#datetimepicker').val();
+
+                $('#nutrition').hide();
+                $('#measurements-model-date').val(date);
+                $('#measurement-form').submit();
             });
         });
     </script>
