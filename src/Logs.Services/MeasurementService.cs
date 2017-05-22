@@ -58,6 +58,7 @@ namespace Logs.Services
                 measurement.Wrist = wrist;
                 measurement.Ankle = ankle;
 
+                this.repository.Update(measurement);
                 this.unitOfWork.Commit();
             }
 
