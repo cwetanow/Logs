@@ -92,6 +92,8 @@
     <Compile Include="MeasurementServiceTests\CreateMeasurementTests.cs" />
     <Compile Include="MeasurementServiceTests\EditMeasurementTests.cs" />
     <Compile Include="MeasurementServiceTests\GetByDateTests.cs" />
+    <Compile Include="MeasurementServiceTests\GetByIdTests.cs" />
+    <Compile Include="MeasurementServiceTests\GetUserMeasurementsSortedByDateTests.cs" />
     <Compile Include="NutritionServiceTests\ConstructorTests.cs" />
     <Compile Include="NutritionServiceTests\CreateNutritionTests.cs" />
     <Compile Include="NutritionServiceTests\EditNutritionTests.cs" />
