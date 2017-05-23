@@ -4,6 +4,7 @@ using Logs.Models;
 using Logs.Services.Contracts;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Logs.Services
 {
@@ -83,6 +84,15 @@ namespace Logs.Services
         {
             var result = this.repository.All
                  .FirstOrDefault(m => m.UserId == userId && m.Date == date);
+
+            return result;
+        }
+
+        public IEnumerable<Measurement> GetUserMeasurements(string userId)
+        {
+            var result = this.repository.All
+                .Where(m => m.UserId == userId)
+                .ToList();
 
             return result;
         }

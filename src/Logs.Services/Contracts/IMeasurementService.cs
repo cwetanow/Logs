@@ -1,5 +1,7 @@
 ﻿using Logs.Models;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Logs.Services.Contracts
 {
@@ -38,5 +40,7 @@ namespace Logs.Services.Contracts
                     DateTime date);
 
         Measurement GetByDate(string userId, DateTime date);
+
+        IEnumerable<Measurement> GetUserMeasurements(string userId);
     }
 }
