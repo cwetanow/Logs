@@ -43,5 +43,7 @@ namespace Logs.Web.Infrastructure.Factories
         NutritionViewModel CreateNutritionViewModel(Nutrition nutrition, DateTime date);
 
         MeasurementStatsViewModel CreateMeasurementStatsViewModel(IEnumerable<Measurement> measurements);
+
+        NutritionStatsViewModel CreateNutritionStatsViewModel(IEnumerable<Nutrition> nutritions);
     }
 }

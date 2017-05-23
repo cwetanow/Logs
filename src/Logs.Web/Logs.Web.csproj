@@ -291,6 +291,7 @@
     <Compile Include="Models\Nutrition\InputViewModel.cs" />
     <Compile Include="Models\Nutrition\MeasurementStatsViewModel.cs" />
     <Compile Include="Models\Nutrition\MeasurementViewModel.cs" />
+    <Compile Include="Models\Nutrition\NutritionStatsViewModel.cs" />
     <Compile Include="Models\Nutrition\NutritionViewModel.cs" />
     <Compile Include="Models\Profile\NewLogViewModel.cs" />
     <Compile Include="Models\Profile\UserProfileViewModel.cs" />
