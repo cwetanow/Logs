@@ -97,5 +97,10 @@ namespace Logs.Services
 
             return result;
         }
+
+        public Measurement GetById(int id)
+        {
+            return this.repository.GetById(id);
+        }
     }
 }

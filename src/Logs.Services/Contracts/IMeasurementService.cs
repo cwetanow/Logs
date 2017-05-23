@@ -42,5 +42,7 @@ namespace Logs.Services.Contracts
         Measurement GetByDate(string userId, DateTime date);
 
         IEnumerable<Measurement> GetUserMeasurementsSortedByDate(string userId);
+
+        Measurement GetById(int id);
     }
 }
