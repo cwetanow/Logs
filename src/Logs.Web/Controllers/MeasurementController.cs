@@ -94,7 +94,7 @@ namespace Logs.Web.Controllers
 
             var measurements = this.measurementService.GetUserMeasurementsSortedByDate(userId);
 
-            var model = MeasurementStatsViewModel.FromMeasurement(measurements);
+            var model = this.factory.CreateMeasurementStatsViewModel(measurements);
 
             return this.View(model);
         }

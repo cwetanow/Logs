@@ -8,6 +8,7 @@ using Logs.Web.Models.Nutrition;
 using Logs.Web.Models.Profile;
 using Logs.Web.Models.Upload;
 using PagedList;
+using System.Collections.Generic;
 
 namespace Logs.Web.Infrastructure.Factories
 {
@@ -40,5 +41,7 @@ namespace Logs.Web.Infrastructure.Factories
         MeasurementViewModel CreateMeasurementViewModel(Measurement measurement, DateTime date);
 
         NutritionViewModel CreateNutritionViewModel(Nutrition nutrition, DateTime date);
+
+        MeasurementStatsViewModel CreateMeasurementStatsViewModel(IEnumerable<Measurement> measurements);
     }
 }
