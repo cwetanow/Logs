@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Logs.Data.Contracts;
 using Logs.Factories;
@@ -77,6 +78,19 @@ namespace Logs.Services
                  .FirstOrDefault(n => n.UserId == userId && n.Date == date);
 
             return result;
+        }
+
+        public Nutrition GetById(int id)
+        {
+            return this.nutritionRepository.GetById(id);
+        }
+
+        public IEnumerable<Nutrition> GetUserNutritionsSortedByDate(string userId)
+        {
+            return this.nutritionRepository.All
+                .Where(n => n.UserId == userId)
+                .OrderBy(n => n.Date)
+                .ToList();
         }
     }
 }
