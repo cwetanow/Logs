@@ -114,10 +114,10 @@ namespace Logs.Web.Controllers
 
             var model = this.viewModelFactory.CreateNutritionStatsViewModel(nutritions);
 
-            return this.View(model);
+            return this.PartialView(model);
         }
 
-        public PartialViewResult GetMeasurement(int id)
+        public PartialViewResult GetNutrition(int id)
         {
             var nutrition = this.nutritionService.GetById(id);
 
@@ -129,6 +129,11 @@ namespace Logs.Web.Controllers
             }
 
             return this.PartialView("NutritionDetails", model);
+        }
+
+        public ActionResult Index()
+        {
+            return this.View();
         }
     }
 }

@@ -90,7 +90,7 @@ namespace Logs.Web.Controllers
 
             return null;
         }
-
+        
         public ActionResult Stats()
         {
             var userId = this.authenticationProvider.CurrentUserId;
@@ -99,7 +99,7 @@ namespace Logs.Web.Controllers
 
             var model = this.factory.CreateMeasurementStatsViewModel(measurements);
 
-            return this.View(model);
+            return this.PartialView(model);
         }
 
         public PartialViewResult GetMeasurement(int id)
@@ -114,6 +114,6 @@ namespace Logs.Web.Controllers
             }
 
             return this.PartialView("MeasurementDetails", model);
-        }   
+        }
     }
 }
