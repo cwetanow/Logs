@@ -61,16 +61,14 @@
 
 @foreach (var item in Model.ListModel)
 {
-    // TODO
-    using (Ajax.BeginForm("", "", null,
+    using (Ajax.BeginForm("GetMeasurement", new { controller = "Measurement", id = item.Id },
                         new AjaxOptions
                         {
-                            UpdateTargetId = "nutrition",
+                            UpdateTargetId = "measurement-details",
                             InsertionMode = InsertionMode.Replace,
-                            HttpMethod = "POST"
+                            HttpMethod = "GET"
                         }, null))
     {
-        @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
             <hr />
@@ -81,9 +79,12 @@
                     @Html.DisplayFor(model => item.FormattedDate, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
+            <input type="submit" value="details" />
         </div>
     }
 }
+
+<div id="measurement-details"></div>
 
 @section scripts{
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -294,4 +295,5 @@
 
         plot(data, "Weight");
     </script>
+    @Scripts.Render("~/bundles/jquery-unobtrusive")
 }
