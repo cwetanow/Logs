@@ -5,21 +5,6 @@
 
 <div class="row">
     @using (Ajax.BeginForm("Stats", new { controller = "Nutrition" },
-                                    new AjaxOptions
-                                    {
-                                        UpdateTargetId = "main",
-                                        InsertionMode = InsertionMode.Replace,
-                                        HttpMethod = "GET"
-                                    }, null))
-    {
-
-        <div class="form-horizontal">
-
-            <input type="submit" class="btn btn-group" value="Nutrition" />
-        </div>
-    }
-
-    @using (Ajax.BeginForm("Stats", new { controller = "Measurement" },
                                             new AjaxOptions
                                             {
                                                 UpdateTargetId = "main",
@@ -29,9 +14,25 @@
     {
 
         <div class="form-horizontal">
+
+            <input type="submit" class="btn btn-group" value="Nutrition" />
+        </div>
+    }
+
+    @using (Ajax.BeginForm("Stats", new { controller = "Measurement" },
+                                                    new AjaxOptions
+                                                    {
+                                                        UpdateTargetId = "main",
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        HttpMethod = "GET"
+                                                    }, null))
+    {
+
+        <div class="form-horizontal">
             <input type="submit" class="btn btn-group" value="Measurements" />
         </div>
     }
+    @Html.ActionLink("Add", "Input", "Nutrition")
 </div>
 <hr />
 <div id="main">
