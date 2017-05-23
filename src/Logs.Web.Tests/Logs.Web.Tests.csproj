@@ -225,6 +225,7 @@
     <Compile Include="Controllers\VoteControllerTests\VoteTests.cs" />
     <Compile Include="ViewModelsTests\Nutrition\DateIdViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Nutrition\InputViewModelTests\ConstructorTests.cs" />
+    <Compile Include="ViewModelsTests\Nutrition\MeasurementStatsViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Nutrition\MeasurementViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Nutrition\NutritionViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Profile\NewLogViewModelTests\ConstructorTests.cs" />
