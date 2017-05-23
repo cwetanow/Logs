@@ -10,6 +10,7 @@ using System.Linq;
 
 namespace Logs.Web.Controllers
 {
+    [Authorize]
     public class MeasurementController : Controller
     {
         private readonly IAuthenticationProvider authenticationProvider;
