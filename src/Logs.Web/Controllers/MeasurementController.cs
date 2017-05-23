@@ -16,7 +16,9 @@ namespace Logs.Web.Controllers
         private readonly IMeasurementService measurementService;
         private readonly IViewModelFactory factory;
 
-        public MeasurementController(IAuthenticationProvider authenticationProvider, IMeasurementService measurementService, IViewModelFactory factory)
+        public MeasurementController(IAuthenticationProvider authenticationProvider,
+            IMeasurementService measurementService,
+            IViewModelFactory factory)
         {
             if (authenticationProvider == null)
             {
@@ -103,7 +105,12 @@ namespace Logs.Web.Controllers
         {
             var measurement = this.measurementService.GetById(id);
 
-            var model = this.factory.CreateMeasurementViewModel(measurement, new DateTime());
+            var model = new MeasurementViewModel();
+
+            if (measurement != null)
+            {
+                model = this.factory.CreateMeasurementViewModel(measurement, measurement.Date);
+            }
 
             return this.PartialView("MeasurementDetails", model);
         }
