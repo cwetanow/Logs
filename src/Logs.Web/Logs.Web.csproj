@@ -350,6 +350,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Plotly\plotly.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\search.js" />
@@ -400,6 +401,9 @@
     <Content Include="Views\Measurement\Load.cshtml" />
     <Content Include="Views\Measurement\Stats.cshtml" />
     <Content Include="Views\Measurement\MeasurementDetails.cshtml" />
+    <Content Include="Views\Nutrition\Index.cshtml" />
+    <Content Include="Views\Nutrition\NutritionDetails.cshtml" />
+    <Content Include="Views\Nutrition\Stats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

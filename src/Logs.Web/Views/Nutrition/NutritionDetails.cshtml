@@ -1,0 +1,73 @@
+﻿@model Logs.Web.Models.Nutrition.NutritionViewModel
+
+<div>
+    <hr />
+    @if (Model != null)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Calories)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Calories)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Protein)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Protein)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Carbs)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Carbs)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Fats)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fats)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Fiber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fiber)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sugar)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sugar)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.WaterInLitres)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.WaterInLitres)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
+        </dl>
+    }
+</div>
