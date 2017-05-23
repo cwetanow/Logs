@@ -12,7 +12,7 @@
     <small>@string.Format(Logs.Common.Constants.ShortDateFormat, Model.Date)</small>
 </h4>
 <span id="@($"comment{Model.CommentId}")">
-    @Html.Raw("<pre>" + Html.Encode(Model.Content) + "</pre>")
+    @Html.Raw(Model.Content)
 </span>
 @if (Model.CanEdit)
 {
