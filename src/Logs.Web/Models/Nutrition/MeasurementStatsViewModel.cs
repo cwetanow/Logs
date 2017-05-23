@@ -26,7 +26,8 @@ namespace Logs.Web.Models.Nutrition
             this.BodyFatPercent = measurements.Select(m => m.BodyFatPercent);
 
             this.ListModel = measurements.Select(m => new DateIdViewModel(m.MeasurementsId,
-                m.Date.ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture)));
+                m.Date.ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture)))
+                .Reverse();
         }
 
         public MeasurementStatsViewModel()
