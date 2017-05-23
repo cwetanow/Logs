@@ -173,6 +173,7 @@
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\ListControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\ConstructorTests.cs" />
+    <Compile Include="Controllers\MeasurementControllerTests\GetMeasurementTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\LoadTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\SaveTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\StatsTests.cs" />

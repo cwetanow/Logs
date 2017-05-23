@@ -105,7 +105,7 @@ namespace Logs.Web.Controllers
         {
             var measurement = this.measurementService.GetById(id);
 
-            var model = new MeasurementViewModel();
+            var model = (MeasurementViewModel)null;
 
             if (measurement != null)
             {
@@ -113,6 +113,6 @@ namespace Logs.Web.Controllers
             }
 
             return this.PartialView("MeasurementDetails", model);
-        }
+        }   
     }
 }
