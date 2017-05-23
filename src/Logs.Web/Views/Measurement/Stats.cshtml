@@ -58,20 +58,19 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
     @{
-        var dates = Model.Select(m => m.Date);
+        var dates = Model.Select(m => m.Date.ToString("dd-MM-yyyy",
+                                System.Globalization.CultureInfo.InvariantCulture));
            }
 
 
     var data = [
         {
             x: @Html.Raw(Json.Encode(dates)),
-            y: [1, 37, 66],
+            y: @Html.Raw(Json.Encode(Model.Select(m=>m.WeightKg))),
             type: 'scatter',
             name: 'lalala'
         }
     ];
-
-    console.log(data)
 
     Plotly.newPlot('myDiv', data);
 </script>
