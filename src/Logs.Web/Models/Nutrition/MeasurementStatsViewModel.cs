@@ -7,29 +7,26 @@ namespace Logs.Web.Models.Nutrition
 {
     public class MeasurementStatsViewModel
     {
-        public static Func<IEnumerable<Measurement>, MeasurementStatsViewModel> FromMeasurement
+        public MeasurementStatsViewModel(IEnumerable<Measurement> measurements)
         {
-            get
-            {
-                return (measurements) => new MeasurementStatsViewModel
-                {
-                    Dates = measurements.Select(m => m.Date.ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture)),
-                    Height = measurements.Select(m => m.Height),
-                    Ankle = measurements.Select(m => m.Ankle),
-                    WeightKg = measurements.Select(m => m.WeightKg),
-                    Wrist = measurements.Select(m => m.Wrist),
-                    Neck = measurements.Select(m => m.Neck),
-                    Calves = measurements.Select(m => m.Calves),
-                    Thighs = measurements.Select(m => m.Thighs),
-                    Hips = measurements.Select(m => m.Hips),
-                    Waist = measurements.Select(m => m.Waist),
-                    Arm = measurements.Select(m => m.Arm),
-                    Forearm = measurements.Select(m => m.Forearm),
-                    Shoulders = measurements.Select(m => m.Shoulders),
-                    Chest = measurements.Select(m => m.Chest),
-                    BodyFatPercent = measurements.Select(m => m.BodyFatPercent)
-                };
-            }
+            this.Dates = measurements.Select(m => m.Date.ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture));
+            this.Height = measurements.Select(m => m.Height);
+            this.Ankle = measurements.Select(m => m.Ankle);
+            this.WeightKg = measurements.Select(m => m.WeightKg);
+            this.Wrist = measurements.Select(m => m.Wrist);
+            this.Neck = measurements.Select(m => m.Neck);
+            this.Calves = measurements.Select(m => m.Calves);
+            this.Thighs = measurements.Select(m => m.Thighs);
+            this.Hips = measurements.Select(m => m.Hips);
+            this.Waist = measurements.Select(m => m.Waist);
+            this.Arm = measurements.Select(m => m.Arm);
+            this.Forearm = measurements.Select(m => m.Forearm);
+            this.Shoulders = measurements.Select(m => m.Shoulders);
+            this.Chest = measurements.Select(m => m.Chest);
+            this.BodyFatPercent = measurements.Select(m => m.BodyFatPercent);
+
+            this.ListModel = measurements.Select(m => new DateIdViewModel(m.MeasurementsId,
+                m.Date.ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture)));
         }
 
         public IEnumerable<int> Height { get; set; }
@@ -61,5 +58,7 @@ namespace Logs.Web.Models.Nutrition
         public IEnumerable<int> Ankle { get; set; }
 
         public IEnumerable<string> Dates { get; set; }
+
+        public IEnumerable<DateIdViewModel> ListModel { get; set; }
     }
 }
