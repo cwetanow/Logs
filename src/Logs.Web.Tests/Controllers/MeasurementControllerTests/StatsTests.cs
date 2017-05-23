@@ -107,7 +107,7 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             // Assert
             controller
                 .WithCallTo(c => c.Stats())
-                .ShouldRenderDefaultView()
+                .ShouldRenderDefaultPartialView()
                 .WithModel<MeasurementStatsViewModel>(m => Assert.AreSame(model, m));
         }
     }
