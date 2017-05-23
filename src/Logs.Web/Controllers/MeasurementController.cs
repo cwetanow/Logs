@@ -92,7 +92,7 @@ namespace Logs.Web.Controllers
         {
             var userId = this.authenticationProvider.CurrentUserId;
 
-            var measurements = this.measurementService.GetUserMeasurements(userId);
+            var measurements = this.measurementService.GetUserMeasurementsSortedByDate(userId);
 
             var model = measurements
                 .Select(m => this.factory.CreateMeasurementViewModel(m, new DateTime()));

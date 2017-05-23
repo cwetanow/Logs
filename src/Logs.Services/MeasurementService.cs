@@ -88,10 +88,11 @@ namespace Logs.Services
             return result;
         }
 
-        public IEnumerable<Measurement> GetUserMeasurements(string userId)
+        public IEnumerable<Measurement> GetUserMeasurementsSortedByDate(string userId)
         {
             var result = this.repository.All
                 .Where(m => m.UserId == userId)
+                .OrderBy(m => m.Date)
                 .ToList();
 
             return result;
