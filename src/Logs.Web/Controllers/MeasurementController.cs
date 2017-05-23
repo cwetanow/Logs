@@ -6,6 +6,7 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Models;
 using Logs.Common;
 using System;
+using System.Linq;
 
 namespace Logs.Web.Controllers
 {
@@ -85,6 +86,18 @@ namespace Logs.Web.Controllers
             }
 
             return null;
+        }
+
+        public ActionResult Stats()
+        {
+            var userId = this.authenticationProvider.CurrentUserId;
+
+            var measurements = this.measurementService.GetUserMeasurements(userId);
+
+            var model = measurements
+                .Select(m => this.factory.CreateMeasurementViewModel(m, new DateTime()));
+
+            return this.View(model);
         }
     }
 }

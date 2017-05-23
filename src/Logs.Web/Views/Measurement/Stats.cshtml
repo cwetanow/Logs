@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Logs.Web.Models.Nutrition.MeasurementViewModel>
+
+@{
+    ViewBag.Title = "Stats";
+}
+
+<table>
+    <tr>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Height)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.WeightKg)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.BodyFatPercent)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Chest)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Shoulders)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Forearm)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Arm)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Waist)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Hips)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Thighs)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Calves)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Neck)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Wrist)
+        </th>
+        <th class="btn btn-default">
+            @Html.DisplayNameFor(model => model.Ankle)
+        </th>
+    </tr>
+</table>
+
+
+<div id="myDiv" style="width: 480px; height: 400px;">
+    <!-- Plotly chart will be drawn inside this DIV -->
+</div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    @{
+        var dates = Model.Select(m => m.Date);
+           }
+
+
+    var data = [
+        {
+            x: @Html.Raw(Json.Encode(dates)),
+            y: [1, 37, 66],
+            type: 'scatter',
+            name: 'lalala'
+        }
+    ];
+
+    console.log(data)
+
+    Plotly.newPlot('myDiv', data);
+</script>
+
