@@ -17,6 +17,9 @@ namespace Logs.Web
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/plotly").Include(
+                       "~/Scripts/Plotly/plotly.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/cloudinary").Include(
                        "~/Scripts/jquery.ui.widget.js",
                        "~/Scripts/jquery.iframe-transport.js",
