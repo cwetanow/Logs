@@ -10,25 +10,25 @@
     @Html.LabelFor(m => m.Date)
     @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "DD/MM/YYYY" })
     <hr />
-    <button class="btn btn-primary" id="btn-nutrition">Nutrition</button>
-    <button class="btn btn-primary" id="btn-measurements">Measurements</button>
 </div>
 <hr />
 
 @using (Ajax.BeginForm("Load", "Nutrition",
-                            new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
-                            new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
+                                                                                                    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
+                                                                                                    new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Date, new { id = "nutrition-model-date" })
+    <input type="submit" class="btn btn-primary" value="Nutrition" />
 }
 
-@using (Ajax.BeginForm("Load", "Measurement",
-                            new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
-                            new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
+@using (Ajax.BeginForm("Load", new { controller = "Measurement" },
+                                                                                                                new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
+                                                                                                                new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Date, new { id = "measurements-model-date" })
+    <input type="submit" class="btn btn-primary" value="Measurements" />
 }
 
 <div>
@@ -49,20 +49,19 @@
                 format: 'DD/MM/YYYY'
             });
 
-            $('#btn-nutrition').click(() => {
+            $('#datetimepicker').on("dp.change", function (e) {
                 var date = $('#datetimepicker').val();
-
-                $('#measurements').hide();
                 $('#nutrition-model-date').val(date);
-                $('#nutrition-form').submit();
+                $('#measurements-model-date').val(date);
             });
 
-            $('#btn-measurements').click(() => {
-                var date = $('#datetimepicker').val();
+            $('#nutrition-form').submit(() => {
+                $('#measurements').hide();
+            });
 
+            var date = $('#datetimepicker').val();
+            $('#measurement-form').submit(() => {
                 $('#nutrition').hide();
-                $('#measurements-model-date').val(date);
-                $('#measurement-form').submit();
             });
         });
     </script>
