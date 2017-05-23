@@ -15,7 +15,7 @@ namespace Logs.Web.App_Start.NinjectModules
             this.Bind<IVoteService>().To<VoteService>().InRequestScope();
             this.Bind<ICommentService>().To<CommentService>().InRequestScope();
             this.Bind<INutritionService>().To<NutritionService>().InRequestScope();
-            this.Bind<MeasurementService>().To<MeasurementService>().InRequestScope();
+            this.Bind<IMeasurementService>().To<MeasurementService>().InRequestScope();
         }
     }
 }
