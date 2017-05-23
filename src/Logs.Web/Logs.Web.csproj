@@ -398,6 +398,7 @@
     <Content Include="Views\Nutrition\Load.cshtml" />
     <Content Include="Views\Measurement\Load.cshtml" />
     <Content Include="Views\Measurement\Stats.cshtml" />
+    <Content Include="Views\Measurement\MeasurementDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -98,5 +98,14 @@ namespace Logs.Web.Controllers
 
             return this.View(model);
         }
+
+        public PartialViewResult GetMeasurement(int id)
+        {
+            var measurement = this.measurementService.GetById(id);
+
+            var model = this.factory.CreateMeasurementViewModel(measurement, new DateTime());
+
+            return this.PartialView("MeasurementDetails", model);
+        }
     }
 }
