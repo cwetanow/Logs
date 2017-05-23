@@ -29,6 +29,11 @@ namespace Logs.Web.Models.Nutrition
                 m.Date.ToString("dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture)));
         }
 
+        public MeasurementStatsViewModel()
+        {
+
+        }
+
         public IEnumerable<int> Height { get; set; }
 
         public IEnumerable<double> WeightKg { get; set; }
