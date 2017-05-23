@@ -21,6 +21,11 @@ namespace Logs.Web.Models.Nutrition
                 .Reverse();
         }
 
+        public NutritionStatsViewModel()
+        {
+
+        }
+
         public IEnumerable<int> Calories { get; private set; }
 
         public IEnumerable<int> Carbs { get; private set; }
