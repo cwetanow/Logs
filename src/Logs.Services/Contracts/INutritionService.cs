@@ -1,5 +1,6 @@
 ﻿using System;
 using Logs.Models;
+using System.Collections.Generic;
 
 namespace Logs.Services.Contracts
 {
@@ -12,5 +13,9 @@ namespace Logs.Services.Contracts
              string userId, DateTime date);
 
         Nutrition GetByDate(string userId, DateTime date);
+
+        Nutrition GetById(int id);
+
+        IEnumerable<Nutrition> GetUserNutritionsSortedByDate(string userId);
     }
 }

@@ -287,8 +287,11 @@
     <Compile Include="Models\Logs\LogEntryViewModel.cs" />
     <Compile Include="Models\Logs\ShortLogViewModel.cs" />
     <Compile Include="Models\Navigation\NavigationViewModel.cs" />
+    <Compile Include="Models\Nutrition\DateIdViewModel.cs" />
     <Compile Include="Models\Nutrition\InputViewModel.cs" />
+    <Compile Include="Models\Nutrition\MeasurementStatsViewModel.cs" />
     <Compile Include="Models\Nutrition\MeasurementViewModel.cs" />
+    <Compile Include="Models\Nutrition\NutritionStatsViewModel.cs" />
     <Compile Include="Models\Nutrition\NutritionViewModel.cs" />
     <Compile Include="Models\Profile\NewLogViewModel.cs" />
     <Compile Include="Models\Profile\UserProfileViewModel.cs" />
@@ -695,6 +698,7 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\Plotly\plotly.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\search.js" />
@@ -743,10 +747,14 @@
     <Content Include="Views\Nutrition\Input.cshtml" />
     <Content Include="Views\Nutrition\Load.cshtml" />
     <Content Include="Views\Measurement\Load.cshtml" />
+    <Content Include="Views\Measurement\Stats.cshtml" />
+    <Content Include="Views\Measurement\MeasurementDetails.cshtml" />
+    <Content Include="Views\Nutrition\Index.cshtml" />
+    <Content Include="Views\Nutrition\NutritionDetails.cshtml" />
+    <Content Include="Views\Nutrition\Stats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

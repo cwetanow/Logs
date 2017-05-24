@@ -6,16 +6,20 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Models;
 using Logs.Common;
 using System;
+using System.Linq;
 
 namespace Logs.Web.Controllers
 {
+    [Authorize]
     public class MeasurementController : Controller
     {
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IMeasurementService measurementService;
         private readonly IViewModelFactory factory;
 
-        public MeasurementController(IAuthenticationProvider authenticationProvider, IMeasurementService measurementService, IViewModelFactory factory)
+        public MeasurementController(IAuthenticationProvider authenticationProvider,
+            IMeasurementService measurementService,
+            IViewModelFactory factory)
         {
             if (authenticationProvider == null)
             {
@@ -85,6 +89,31 @@ namespace Logs.Web.Controllers
             }
 
             return null;
+        }
+        
+        public ActionResult Stats()
+        {
+            var userId = this.authenticationProvider.CurrentUserId;
+
+            var measurements = this.measurementService.GetUserMeasurementsSortedByDate(userId);
+
+            var model = this.factory.CreateMeasurementStatsViewModel(measurements);
+
+            return this.PartialView(model);
+        }
+
+        public PartialViewResult GetMeasurement(int id)
+        {
+            var measurement = this.measurementService.GetById(id);
+
+            var model = (MeasurementViewModel)null;
+
+            if (measurement != null)
+            {
+                model = this.factory.CreateMeasurementViewModel(measurement, measurement.Date);
+            }
+
+            return this.PartialView("MeasurementDetails", model);
         }
     }
 }

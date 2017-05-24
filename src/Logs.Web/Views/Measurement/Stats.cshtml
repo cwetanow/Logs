@@ -1,0 +1,299 @@
+﻿@model Logs.Web.Models.Nutrition.MeasurementStatsViewModel
+
+@{
+    ViewBag.Title = "Stats";
+}
+<div class="row">
+    <table>
+        <tr>
+            <th class="btn btn-default" id="Height">
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th class="btn btn-default" id="WeightKg">
+                @Html.DisplayNameFor(model => model.WeightKg)
+            </th>
+            <th class="btn btn-default" id="BodyFatPercent">
+                @Html.DisplayNameFor(model => model.BodyFatPercent)
+            </th>
+            <th class="btn btn-default" id="Chest">
+                @Html.DisplayNameFor(model => model.Chest)
+            </th>
+            <th class="btn btn-default" id="Shoulders">
+                @Html.DisplayNameFor(model => model.Shoulders)
+            </th>
+            <th class="btn btn-default" id="Forearm">
+                @Html.DisplayNameFor(model => model.Forearm)
+            </th>
+            <th class="btn btn-default" id="Arm">
+                @Html.DisplayNameFor(model => model.Arm)
+            </th>
+            <th class="btn btn-default" id="Waist">
+                @Html.DisplayNameFor(model => model.Waist)
+            </th>
+            <th class="btn btn-default" id="Hips">
+                @Html.DisplayNameFor(model => model.Hips)
+            </th>
+            <th class="btn btn-default" id="Thighs">
+                @Html.DisplayNameFor(model => model.Thighs)
+            </th>
+            <th class="btn btn-default" id="Calves">
+                @Html.DisplayNameFor(model => model.Calves)
+            </th>
+            <th class="btn btn-default" id="Neck">
+                @Html.DisplayNameFor(model => model.Neck)
+            </th>
+            <th class="btn btn-default" id="Wrist">
+                @Html.DisplayNameFor(model => model.Wrist)
+            </th>
+            <th class="btn btn-default" id="Ankle">
+                @Html.DisplayNameFor(model => model.Ankle)
+            </th>
+        </tr>
+    </table>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <div id="chart">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        @foreach (var item in Model.ListModel)
+        {
+            using (Ajax.BeginForm("GetMeasurement", new { controller = "Measurement", id = item.Id },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "measurement-details",
+                                    InsertionMode = InsertionMode.Replace,
+                                    HttpMethod = "GET"
+                                }, null))
+            {
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.HiddenFor(model => item.Id)
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.DisplayFor(model => item.FormattedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <input type="submit" value="details" />
+                </div>
+            }
+        }
+    </div>
+
+    <div id="measurement-details" class="col-md-8"></div>
+</div>
+
+<script>
+    var dates= @Html.Raw(Json.Encode(Model.Dates));
+
+
+    $('#Height').click(()=>{
+        var data = [
+        {
+            x:dates,
+            y: @Html.Raw(Json.Encode(Model.Height)),
+            type: 'scatter',
+            name: 'lalala'
+        }
+        ];
+
+        plot(data,"Height");
+    });
+
+    $('#WeightKg').click(()=>{
+        var data = [
+           {
+               x:dates,
+               y: @Html.Raw(Json.Encode(Model.WeightKg)),
+               type: 'scatter',
+               name: 'lalala'
+           }
+        ];
+
+        plot(data,"Weight");
+    });
+
+    $('#BodyFatPercent').click(()=>{
+        var data = [
+        {
+            x:dates,
+            y: @Html.Raw(Json.Encode(Model.BodyFatPercent)),
+            type: 'scatter',
+            name: 'lalala'
+        }
+        ];
+
+        plot(data,"Body Fat %");
+    });
+
+    $('#Chest').click(()=>{
+        var data = [
+         {
+             x:dates,
+             y: @Html.Raw(Json.Encode(Model.Chest)),
+             type: 'scatter',
+             name: 'lalala'
+         }
+        ];
+
+        plot(data,"Chest");
+    });
+
+    $('#Shoulders').click(()=>{
+        var data = [
+          {
+              x:dates,
+              y: @Html.Raw(Json.Encode(Model.Shoulders)),
+              type: 'scatter',
+              name: 'lalala'
+          }
+        ];
+
+        plot(data,"Shoulders");
+    });
+
+    $('#Forearm').click(()=>{
+        var data = [
+         {
+             x:dates,
+             y: @Html.Raw(Json.Encode(Model.Forearm)),
+             type: 'scatter',
+             name: 'lalala'
+         }
+        ];
+
+        plot(data,"Forearm");
+    });
+
+    $('#Arm').click(()=>{
+        var data = [
+          {
+              x:dates,
+              y: @Html.Raw(Json.Encode(Model.Arm)),
+              type: 'scatter',
+              name: 'lalala'
+          }
+        ];
+
+        plot(data,"Arm");
+    });
+
+    $('#Waist').click(()=>{
+        var data = [
+        {
+            x:dates,
+            y: @Html.Raw(Json.Encode(Model.Waist)),
+            type: 'scatter',
+            name: 'lalala'
+        }
+        ];
+
+        plot(data,"Waist");
+    });
+
+    $('#Hips').click(()=>{
+        var data = [
+         {
+             x:dates,
+             y: @Html.Raw(Json.Encode(Model.Hips)),
+             type: 'scatter',
+             name: 'lalala'
+         }
+        ];
+
+        plot(data,"Hips");
+    });
+
+    $('#Thighs').click(()=>{
+        var data = [
+         {
+             x:dates,
+             y: @Html.Raw(Json.Encode(Model.Thighs)),
+             type: 'scatter',
+             name: 'lalala'
+         }
+        ];
+
+        plot(data,"Thighs");
+    });
+
+    $('#Calves').click(()=>{
+        var data = [
+          {
+              x:dates,
+              y: @Html.Raw(Json.Encode(Model.Calves)),
+              type: 'scatter',
+              name: 'lalala'
+          }
+        ];
+
+        plot(data,"Calves");
+    });
+
+    $('#Neck').click(()=>{
+        var data = [
+          {
+              x:dates,
+              y: @Html.Raw(Json.Encode(Model.Neck)),
+              type: 'scatter',
+              name: 'lalala'
+          }
+        ];
+
+        plot(data,"Neck");
+    });
+
+    $('#Wrist').click(()=>{
+        var data = [
+         {
+             x:dates,
+             y: @Html.Raw(Json.Encode(Model.Wrist)),
+             type: 'scatter',
+             name: 'lalala'
+         }
+        ];
+
+        plot(data,"Wrist");
+    });
+
+    $('#Ankle').click(()=>{
+        var data = [
+        {
+            x:dates,
+            y: @Html.Raw(Json.Encode(Model.Ankle)),
+            type: 'scatter',
+            name: 'lalala'
+        }
+        ];
+
+        plot(data,"Ankle");
+    });
+
+    function plot(datas, title){
+        var layout = {
+            autosize: true,
+            title: title,
+        };
+
+        $('#chart').val("");
+        Plotly.newPlot('chart', datas, layout);
+    }
+
+    var data = [
+        {
+            x:dates,
+            y: @Html.Raw(Json.Encode(Model.WeightKg)),
+            type: 'scatter',
+            name: 'lalala'
+        }
+    ];
+
+    plot(data, "Weight");
+</script>

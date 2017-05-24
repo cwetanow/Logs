@@ -4,6 +4,7 @@ using Logs.Models;
 using Logs.Services.Contracts;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Logs.Services
 {
@@ -85,6 +86,21 @@ namespace Logs.Services
                  .FirstOrDefault(m => m.UserId == userId && m.Date == date);
 
             return result;
+        }
+
+        public IEnumerable<Measurement> GetUserMeasurementsSortedByDate(string userId)
+        {
+            var result = this.repository.All
+                .Where(m => m.UserId == userId)
+                .OrderBy(m => m.Date)
+                .ToList();
+
+            return result;
+        }
+
+        public Measurement GetById(int id)
+        {
+            return this.repository.GetById(id);
         }
     }
 }

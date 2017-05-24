@@ -105,5 +105,35 @@ namespace Logs.Web.Controllers
 
             return null;
         }
+
+        public ActionResult Stats()
+        {
+            var userId = this.authenticationProvider.CurrentUserId;
+
+            var nutritions = this.nutritionService.GetUserNutritionsSortedByDate(userId);
+
+            var model = this.viewModelFactory.CreateNutritionStatsViewModel(nutritions);
+
+            return this.PartialView(model);
+        }
+
+        public PartialViewResult GetNutrition(int id)
+        {
+            var nutrition = this.nutritionService.GetById(id);
+
+            var model = (NutritionViewModel)null;
+
+            if (nutrition != null)
+            {
+                model = this.viewModelFactory.CreateNutritionViewModel(nutrition, nutrition.Date);
+            }
+
+            return this.PartialView("NutritionDetails", model);
+        }
+
+        public ActionResult Index()
+        {
+            return this.View();
+        }
     }
 }
