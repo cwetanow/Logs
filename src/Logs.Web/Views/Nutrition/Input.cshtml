@@ -5,31 +5,47 @@
 }
 <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
 
-<div class="col-sm-3"></div>
-<div class="col-sm-6">
-    @Html.LabelFor(m => m.Date)
-    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "DD/MM/YYYY" })
-    <hr />
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        @Html.LabelFor(m => m.Date)
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "DD/MM/YYYY" })
+    </div>
 </div>
+
 <hr />
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <ul class="list-inline intro-social-buttons">
+            <li>
+                @using (Ajax.BeginForm("Load", "Nutrition",
+                  new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
+                  new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Date, new { id = "nutrition-model-date" })
+                    <input type="submit" class="btn btn-default btn-lg" value="Nutrition" />
+                }
+            </li>
+            <li>
 
-@using (Ajax.BeginForm("Load", "Nutrition",
-                                                                                                    new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
-                                                                                                    new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Date, new { id = "nutrition-model-date" })
-    <input type="submit" class="btn btn-primary" value="Nutrition" />
-}
+                @using (Ajax.BeginForm("Load", new { controller = "Measurement" },
+              new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
+              new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.Date, new { id = "measurements-model-date" })
+                    <input type="submit" class="btn btn-default btn-lg" value="Measurements" />
+                }
+            </li>
+        </ul>
+    </div>
+</div>
 
-@using (Ajax.BeginForm("Load", new { controller = "Measurement" },
-                                                                                                                new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
-                                                                                                                new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(m => m.Date, new { id = "measurements-model-date" })
-    <input type="submit" class="btn btn-primary" value="Measurements" />
-}
+
+
+
 
 <div>
     <div id="nutrition">
@@ -57,11 +73,12 @@
 
             $('#nutrition-form').submit(() => {
                 $('#measurements').hide();
+                $('#nutrition').show();
             });
 
-            var date = $('#datetimepicker').val();
             $('#measurement-form').submit(() => {
                 $('#nutrition').hide();
+                $('#measurements').show();
             });
         });
     </script>
