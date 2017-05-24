@@ -64,7 +64,14 @@ namespace Logs.Services
         public Nutrition CreateNutrition(int calories, int protein, int carbs, int fats, double water, int fiber, int sugar,
             string notes, string userId, DateTime date)
         {
-            var nutrition = this.nutritionFactory.CreateNutrition(calories, protein, carbs, fats, water, fiber, sugar, notes, userId, date);
+            var nutrition = this.GetByDate(userId, date);
+
+            if (nutrition != null)
+            {
+                return nutrition;
+            }
+
+            nutrition = this.nutritionFactory.CreateNutrition(calories, protein, carbs, fats, water, fiber, sugar, notes, userId, date);
 
             this.nutritionRepository.Add(nutrition);
             this.unitOfWork.Commit();
