@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Logs.Web.Models.Nutrition
@@ -42,6 +43,7 @@ namespace Logs.Web.Models.Nutrition
 
         public IEnumerable<int> Sugar { get; private set; }
 
+        [DisplayName("Water")]
         public IEnumerable<double> WaterInLitres { get; private set; }
     }
 }

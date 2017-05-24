@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Logs.Models;
 
 namespace Logs.Web.Models.Nutrition
@@ -45,7 +46,10 @@ namespace Logs.Web.Models.Nutrition
 
         public int Height { get; set; }
 
+        [DisplayName("Weight")]
         public double WeightKg { get; set; }
+
+        [DisplayName("Body Fat")]
 
         public double BodyFatPercent { get; set; }
 
