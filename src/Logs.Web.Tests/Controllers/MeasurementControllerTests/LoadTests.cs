@@ -31,7 +31,7 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
 
             // Act, Assert
             controller
-                .WithCallTo(c => c.Load(new InputViewModel()))
+                .WithCallTo(c => c.Load(new DateTime()))
                 .ShouldRenderDefaultPartialView();
         }
 
@@ -48,7 +48,7 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
            mockedMeasurementService.Object, mockedFactory.Object);
 
             // Act
-            controller.Load(new InputViewModel());
+            controller.Load(new DateTime());
 
             // Assert
             mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Once);
@@ -67,13 +67,12 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             mockedAuthenticationProvider.Setup(p => p.CurrentUserId).Returns(userId);
 
             var date = new DateTime(2, 3, 4);
-            var model = new InputViewModel { Date = date };
 
             var controller = new MeasurementController(mockedAuthenticationProvider.Object,
             mockedMeasurementService.Object, mockedFactory.Object);
 
             // Act
-            controller.Load(model);
+            controller.Load(date);
 
             // Assert
             mockedMeasurementService.Verify(s => s.GetByDate(userId, date), Times.Once);
@@ -90,13 +89,12 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var date = new DateTime(2, 3, 4);
-            var model = new InputViewModel { Date = date };
 
             var controller = new MeasurementController(mockedAuthenticationProvider.Object,
             mockedMeasurementService.Object, mockedFactory.Object);
 
             // Act
-            controller.Load(model);
+            controller.Load(date);
 
             // Assert
             mockedFactory.Verify(f => f.CreateMeasurementViewModel(null, date));
@@ -118,13 +116,12 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var date = new DateTime(2, 3, 4);
-            var model = new InputViewModel { Date = date };
 
             var controller = new MeasurementController(mockedAuthenticationProvider.Object,
            mockedMeasurementService.Object, mockedFactory.Object);
 
             // Act
-            controller.Load(model);
+            controller.Load(date);
 
             // Assert
             mockedFactory.Verify(f => f.CreateMeasurementViewModel(Measurement, date));
@@ -145,14 +142,13 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var date = new DateTime(2, 3, 4);
-            var model = new InputViewModel { Date = date };
 
             var controller = new MeasurementController(mockedAuthenticationProvider.Object,
            mockedMeasurementService.Object, mockedFactory.Object);
 
             // Act, Assert
             controller
-                .WithCallTo(c => c.Load(model))
+                .WithCallTo(c => c.Load(date))
                 .ShouldRenderDefaultPartialView()
                 .WithModel<MeasurementViewModel>(m => Assert.AreSame(viewModel, m));
         }

@@ -31,7 +31,7 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
 
             // Act, Assert
             controller
-                .WithCallTo(c => c.Load(new InputViewModel()))
+                .WithCallTo(c => c.Load(new DateTime()))
                 .ShouldRenderDefaultPartialView();
         }
 
@@ -48,7 +48,7 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
             mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            controller.Load(new InputViewModel());
+            controller.Load(new DateTime());
 
             // Assert
             mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Once);
@@ -67,13 +67,12 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
             mockedAuthenticationProvider.Setup(p => p.CurrentUserId).Returns(userId);
 
             var date = new DateTime(2, 3, 4);
-            var model = new InputViewModel { Date = date };
 
             var controller = new NutritionController(mockedFactory.Object, mockedDateTimeProvider.Object,
             mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            controller.Load(model);
+            controller.Load(date);
 
             // Assert
             mockedNutritionService.Verify(s => s.GetByDate(userId, date), Times.Once);
@@ -90,13 +89,12 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var date = new DateTime(2, 3, 4);
-            var model = new InputViewModel { Date = date };
 
             var controller = new NutritionController(mockedFactory.Object, mockedDateTimeProvider.Object,
             mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            controller.Load(model);
+            controller.Load(date);
 
             // Assert
             mockedFactory.Verify(f => f.CreateNutritionViewModel(null, date));
@@ -118,13 +116,12 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var date = new DateTime(2, 3, 4);
-            var model = new InputViewModel { Date = date };
 
             var controller = new NutritionController(mockedFactory.Object, mockedDateTimeProvider.Object,
             mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            controller.Load(model);
+            controller.Load(date);
 
             // Assert
             mockedFactory.Verify(f => f.CreateNutritionViewModel(nutrition, date));
@@ -145,14 +142,13 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
             var date = new DateTime(2, 3, 4);
-            var model = new InputViewModel { Date = date };
 
             var controller = new NutritionController(mockedFactory.Object, mockedDateTimeProvider.Object,
             mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
             // Act, Assert
             controller
-                .WithCallTo(c => c.Load(model))
+                .WithCallTo(c => c.Load(date))
                 .ShouldRenderDefaultPartialView()
                 .WithModel<NutritionViewModel>(m => Assert.AreSame(viewModel, m));
         }
