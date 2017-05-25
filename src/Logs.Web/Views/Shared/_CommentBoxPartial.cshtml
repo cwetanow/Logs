@@ -5,7 +5,7 @@
 @using (Html.BeginForm("Comment", "Comment", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 20, @id = "my-editor" });
+    @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 20});
     @Html.HiddenFor(m => m.LogId)
     @Html.ValidationSummary()
     <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
