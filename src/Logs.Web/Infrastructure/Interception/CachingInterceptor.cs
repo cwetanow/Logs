@@ -28,7 +28,7 @@ namespace Logs.Web.Infrastructure.Interception
 
         public void Intercept(IInvocation invocation)
         {
-            var key = invocation.Request.Method.Name;
+            var key = string.Format("{0}-{1}", invocation.Request.Method.Name, string.Join("&", invocation.Request.Arguments));
 
             var result = this.cachingProvider.GetItem(key);
 
@@ -42,8 +42,8 @@ namespace Logs.Web.Infrastructure.Interception
 
                 result = invocation.ReturnValue;
 
-                var date = this.dateTimeProvider.GetTimeFromCurrentTime(Constants.HoursCaching, 
-                    Constants.MinutesCaching, 
+                var date = this.dateTimeProvider.GetTimeFromCurrentTime(Constants.HoursCaching,
+                    Constants.MinutesCaching,
                     Constants.SecondsCaching);
 
                 this.cachingProvider.AddItem(key, result, date);
