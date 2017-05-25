@@ -28,7 +28,7 @@ namespace Logs.Web.Infrastructure.Interception
 
         public void Intercept(IInvocation invocation)
         {
-            var key = string.Format("{0}-{1}", invocation.Request.Method.Name, string.Join("&", invocation.Request.Arguments));
+            var key = string.Format("{0}{1}", invocation.Request.Method.Name, string.Join("&", invocation.Request.Arguments));
 
             var result = this.cachingProvider.GetItem(key);
 
