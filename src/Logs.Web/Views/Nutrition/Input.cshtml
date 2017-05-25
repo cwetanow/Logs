@@ -20,22 +20,22 @@
         <ul class="list-inline intro-social-buttons">
             <li>
                 @using (Ajax.BeginForm("Load", "Nutrition",
-              new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
-              new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
+                  new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
+                  new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.TextBoxFor(m => m.Date, new { id = "nutrition-model-date", @type = "hidden" })
+                    <input type="hidden" id="nutrition-model-date" name="date" />                    
                     <input type="submit" class="btn btn-default btn-lg" value="Nutrition" />
                 }
             </li>
             <li>
 
                 @using (Ajax.BeginForm("Load", new { controller = "Measurement" },
-          new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
-          new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
+              new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
+              new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.TextBoxFor(m => m.Date, "{0:dd/MM/yyyy}", new { id = "measurements-model-date", @type = "hidden" })
+                    <input type="hidden" id="measurements-model-date" name="date" />
                     <input type="submit" class="btn btn-default btn-lg" value="Measurements" />
                 }
             </li>
@@ -67,8 +67,12 @@
 
             $('#datetimepicker').on("dp.change", function (e) {
                 var date = $('#datetimepicker').val();
-                $('#nutrition-model-date').val(date);
-                $('#measurements-model-date').val(date);
+                var parts = date.split('/');
+
+                var datetime = new Date(parts[2], parts[1], parts[0]).toISOString();
+
+                $('#nutrition-model-date').val(datetime);
+                $('#measurements-model-date').val(datetime);
             });
 
             $('#nutrition-form').submit(() => {

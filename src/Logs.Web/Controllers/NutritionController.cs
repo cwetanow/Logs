@@ -89,13 +89,12 @@ namespace Logs.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Load(InputViewModel model)
+        public ActionResult Load(DateTime date)
         {
             var viewModel = (NutritionViewModel)null;
 
             if (this.ModelState.IsValid)
             {
-                var date = model.Date;
                 var userId = this.authenticationProvider.CurrentUserId;
 
                 var nutrition = this.nutritionService.GetByDate(userId, date);
