@@ -7,7 +7,7 @@ namespace Logs.Web.Models.Nutrition
     {
         public InputViewModel()
         {
-            
+
         }
 
         public InputViewModel(DateTime date)
@@ -16,7 +16,7 @@ namespace Logs.Web.Models.Nutrition
         }
 
         [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
     }
 }
