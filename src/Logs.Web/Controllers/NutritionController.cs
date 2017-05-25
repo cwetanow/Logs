@@ -117,6 +117,7 @@ namespace Logs.Web.Controllers
             return this.PartialView(model);
         }
 
+        [OutputCache(Duration = 60 * 15, VaryByParam = "id")]
         public PartialViewResult GetNutrition(int id)
         {
             var nutrition = this.nutritionService.GetById(id);

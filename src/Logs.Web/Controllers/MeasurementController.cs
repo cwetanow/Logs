@@ -102,6 +102,7 @@ namespace Logs.Web.Controllers
             return this.PartialView(model);
         }
 
+        [OutputCache(Duration = 60 * 10, VaryByParam = "id")]
         public PartialViewResult GetMeasurement(int id)
         {
             var measurement = this.measurementService.GetById(id);
