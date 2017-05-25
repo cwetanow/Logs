@@ -37,6 +37,30 @@ namespace Logs.Web.Tests.Infrastructure.Interception.CachingInterceptorTests
             mockedMethodInfo.Verify(m => m.Name, Times.Once);
         }
 
+        [Test]
+        public void TestIntercept_ShouldCallInvocationRequestArguments()
+        {
+            // Arrange
+            var mockedCachingProvider = new Mock<ICachingProvider>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+
+            var interceptor = new CachingInterceptor(mockedCachingProvider.Object, mockedDateTimeProvider.Object);
+
+            var mockedMethodInfo = new Mock<MethodInfo>();
+
+            var mockedRequest = new Mock<IProxyRequest>();
+            mockedRequest.Setup(r => r.Method).Returns(mockedMethodInfo.Object);
+
+            var mockedInvocation = new Mock<IInvocation>();
+            mockedInvocation.Setup(i => i.Request).Returns(mockedRequest.Object);
+
+            // Act
+            interceptor.Intercept(mockedInvocation.Object);
+
+            // Assert
+            mockedRequest.Verify(m => m.Arguments, Times.Once);
+        }
+
         [TestCase("MyAwesomeMethod")]
         [TestCase("DoSomething")]
         public void TestIntercept_ShouldCallCachingProviderGetItem(string methodName)
