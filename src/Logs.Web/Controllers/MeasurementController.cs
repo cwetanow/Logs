@@ -76,6 +76,8 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Load(InputViewModel model)
         {
+            var viewModel = (MeasurementViewModel)null;
+
             if (this.ModelState.IsValid)
             {
                 var date = model.Date;
@@ -83,14 +85,12 @@ namespace Logs.Web.Controllers
 
                 var measurement = this.measurementService.GetByDate(userId, date);
 
-                var viewModel = this.factory.CreateMeasurementViewModel(measurement, date);
-
-                return this.PartialView(viewModel);
+                viewModel = this.factory.CreateMeasurementViewModel(measurement, date);
             }
 
-            return null;
+            return this.PartialView(viewModel);
         }
-        
+
         public ActionResult Stats()
         {
             var userId = this.authenticationProvider.CurrentUserId;

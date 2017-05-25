@@ -91,6 +91,8 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Load(InputViewModel model)
         {
+            var viewModel = (NutritionViewModel)null;
+
             if (this.ModelState.IsValid)
             {
                 var date = model.Date;
@@ -98,12 +100,10 @@ namespace Logs.Web.Controllers
 
                 var nutrition = this.nutritionService.GetByDate(userId, date);
 
-                var viewModel = this.viewModelFactory.CreateNutritionViewModel(nutrition, date);
-
-                return this.PartialView(viewModel);
+                viewModel = this.viewModelFactory.CreateNutritionViewModel(nutrition, date);
             }
 
-            return null;
+            return this.PartialView(viewModel);
         }
 
         public ActionResult Stats()
