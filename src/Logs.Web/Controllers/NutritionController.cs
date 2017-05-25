@@ -7,7 +7,6 @@ using Logs.Web.Infrastructure.Factories;
 using Logs.Web.Models.Nutrition;
 using Logs.Models;
 using Logs.Common;
-using System.Linq;
 
 namespace Logs.Web.Controllers
 {
@@ -92,7 +91,7 @@ namespace Logs.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Load(InputViewModel model)
         {
-            var viewModel = new NutritionViewModel();
+            var viewModel = (NutritionViewModel)null;
 
             if (this.ModelState.IsValid)
             {
@@ -103,8 +102,6 @@ namespace Logs.Web.Controllers
 
                 viewModel = this.viewModelFactory.CreateNutritionViewModel(nutrition, date);
             }
-
-            viewModel.SaveResult = string.Join(", ", ModelState.SelectMany(e => e.Value.Errors).Select(e => e.ErrorMessage));
 
             return this.PartialView(viewModel);
         }

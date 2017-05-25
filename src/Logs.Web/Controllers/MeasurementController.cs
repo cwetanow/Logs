@@ -87,7 +87,6 @@ namespace Logs.Web.Controllers
 
                 viewModel = this.factory.CreateMeasurementViewModel(measurement, date);
             }
-            viewModel.SaveResult = string.Join(", ", ModelState.SelectMany(e => e.Value.Errors).Select(e => e.ErrorMessage));
 
             return this.PartialView(viewModel);
         }
