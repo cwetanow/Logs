@@ -17,7 +17,7 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
     public class LoadTests
     {
         [Test]
-        public void TestLoad_ModelStateIsNotValid_ShouldReturnNull()
+        public void TestLoad_ModelStateIsNotValid_ShouldRenderCorrectView()
         {
             // Arrange
             var mockedFactory = new Mock<IViewModelFactory>();
@@ -25,15 +25,14 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             var mockedMeasurementService = new Mock<IMeasurementService>();
             var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
 
-            var controller = new MeasurementController(mockedAuthenticationProvider.Object,  
+            var controller = new MeasurementController(mockedAuthenticationProvider.Object,
             mockedMeasurementService.Object, mockedFactory.Object);
             controller.ModelState.AddModelError("", "");
 
-            // Act
-            var result = controller.Load(new InputViewModel());
-
-            // Assert
-            Assert.IsNull(result);
+            // Act, Assert
+            controller
+                .WithCallTo(c => c.Load(new InputViewModel()))
+                .ShouldRenderDefaultPartialView();
         }
 
         [Test]
