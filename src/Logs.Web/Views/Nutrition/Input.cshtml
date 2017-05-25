@@ -24,7 +24,7 @@
                   new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.HiddenFor(m => m.Date, new { id = "nutrition-model-date" })
+                    @Html.HiddenFor(m => m.Date, new { id = "nutrition-model-date", data_format = "DD/MM/YYYY" })
                     <input type="submit" class="btn btn-default btn-lg" value="Nutrition" />
                 }
             </li>
@@ -35,7 +35,7 @@
               new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.HiddenFor(m => m.Date, new { id = "measurements-model-date" })
+                    @Html.HiddenFor(m => m.Date, new { id = "measurements-model-date", data_format = "DD/MM/YYYY" })
                     <input type="submit" class="btn btn-default btn-lg" value="Measurements" />
                 }
             </li>
