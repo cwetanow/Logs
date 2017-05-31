@@ -109,5 +109,20 @@ namespace Logs.Services
         {
             return this.repository.GetById(id);
         }
+
+        public bool DeleteMeasurement(int id, string userId)
+        {
+            var measurement = this.repository.GetById(id);
+
+            if (measurement != null && measurement.UserId == userId)
+            {
+                this.repository.Delete(measurement);
+                this.unitOfWork.Commit();
+
+                return true;
+            }
+
+            return false;
+        }
     }
 }
