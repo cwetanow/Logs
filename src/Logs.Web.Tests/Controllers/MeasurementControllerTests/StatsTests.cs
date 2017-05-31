@@ -16,7 +16,7 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
     public class StatsTests
     {
         [Test]
-        public void TestStats_ShouldCallAuthenticationProviderCurrentUserId()
+        public void TestStats_WithoutId_ShouldCallAuthenticationProviderCurrentUserId()
         {
             // Arrange
             var mockedFactory = new Mock<IViewModelFactory>();
@@ -28,7 +28,7 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             mockedMeasurementService.Object, mockedFactory.Object);
 
             // Act
-            controller.Stats();
+            controller.Stats(null);
 
             // Assert
             mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Once);
@@ -36,7 +36,47 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
 
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestStats_ShouldCallMeasurementServiceGetUserMeasurementsSortedByDate(string userId)
+        public void TestStats_WithId_ShouldNotCallAuthenticationProviderCurrentUserId(string userId)
+        {
+            // Arrange
+            var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+            var mockedMeasurementService = new Mock<IMeasurementService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new MeasurementController(mockedAuthenticationProvider.Object,
+            mockedMeasurementService.Object, mockedFactory.Object);
+
+            // Act
+            controller.Stats(userId);
+
+            // Assert
+            mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Never);
+        }
+
+        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
+        public void TestStats_WithId_ShouldCallMeasurementServiceGetUserMeasurementsSortedByDate(string userId)
+        {
+            // Arrange
+            var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+            var mockedMeasurementService = new Mock<IMeasurementService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new MeasurementController(mockedAuthenticationProvider.Object,
+            mockedMeasurementService.Object, mockedFactory.Object);
+
+            // Act
+            controller.Stats(userId);
+
+            // Assert
+            mockedMeasurementService.Verify(s => s.GetUserMeasurementsSortedByDate(userId), Times.Once);
+        }
+
+        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
+        public void TestStats_WithoutId_ShouldCallMeasurementServiceGetUserMeasurementsSortedByDate(string userId)
         {
             // Arrange
             var mockedFactory = new Mock<IViewModelFactory>();
@@ -50,7 +90,7 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             mockedMeasurementService.Object, mockedFactory.Object);
 
             // Act
-            controller.Stats();
+            controller.Stats(null);
 
             // Assert
             mockedMeasurementService.Verify(s => s.GetUserMeasurementsSortedByDate(userId), Times.Once);
@@ -76,7 +116,7 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             mockedMeasurementService.Object, mockedFactory.Object);
 
             // Act
-            controller.Stats();
+            controller.Stats(null);
 
             // Assert
             mockedFactory.Verify(f => f.CreateMeasurementStatsViewModel(measurements), Times.Once);
@@ -101,12 +141,9 @@ namespace Logs.Web.Tests.Controllers.MeasurementControllerTests
             var controller = new MeasurementController(mockedAuthenticationProvider.Object,
             mockedMeasurementService.Object, mockedFactory.Object);
 
-            // Act
-            controller.Stats();
-
-            // Assert
+            // Act, Assert
             controller
-                .WithCallTo(c => c.Stats())
+                .WithCallTo(c => c.Stats(null))
                 .ShouldRenderDefaultPartialView()
                 .WithModel<MeasurementStatsViewModel>(m => Assert.AreSame(model, m));
         }
