@@ -115,5 +115,16 @@ namespace Logs.Web.Controllers
 
             return this.PartialView("MeasurementDetails", model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMeasurement(int id)
+        {
+            var userId = this.authenticationProvider.CurrentUserId;
+
+            this.measurementService.DeleteMeasurement(id, userId);
+
+            return null;
+        }
     }
 }
