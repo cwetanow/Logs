@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Web.Mvc;
-using Logs.Authentication.Contracts;
+﻿using Logs.Authentication.Contracts;
 using Logs.Factories;
 using Logs.Web.Controllers;
 using Moq;
@@ -11,10 +8,10 @@ using TestStack.FluentMVCTesting;
 namespace Logs.Web.Tests.Controllers.AccountControllerTests
 {
     [TestFixture]
-    public class LogOut
+    public class LogOutTests
     {
         [Test]
-        public void TestLogOff_ShouldCallProviderSignOut()
+        public void TestLogOut_ShouldCallProviderSignOut()
         {
             // Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
@@ -30,7 +27,7 @@ namespace Logs.Web.Tests.Controllers.AccountControllerTests
         }
 
         [Test]
-        public void TestLogOff_ShouldReturnRedirectToAction()
+        public void TestLogOut_ShouldReturnRedirectToAction()
         {
             // Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();

@@ -148,7 +148,8 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\AccountControllerTests\LoginTests.cs" />
-    <Compile Include="Controllers\AccountControllerTests\LogOut.cs" />
+    <Compile Include="Controllers\AccountControllerTests\LogOffTests.cs" />
+    <Compile Include="Controllers\AccountControllerTests\LogOutTests.cs" />
     <Compile Include="Controllers\AccountControllerTests\PostLoginTests.cs" />
     <Compile Include="Controllers\AccountControllerTests\PostRegisterTests.cs" />
     <Compile Include="Controllers\AccountControllerTests\RegisterTests.cs" />
