@@ -135,5 +135,16 @@ namespace Logs.Web.Controllers
         {
             return this.View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteNutrition(int id)
+        {
+            var userId = this.authenticationProvider.CurrentUserId;
+
+            this.nutritionService.DeleteNutrition(id, userId);
+
+            return null;
+        }
     }
 }
