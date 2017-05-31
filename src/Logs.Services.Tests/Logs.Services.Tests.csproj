@@ -96,6 +96,7 @@
     <Compile Include="MeasurementServiceTests\GetUserMeasurementsSortedByDateTests.cs" />
     <Compile Include="NutritionServiceTests\ConstructorTests.cs" />
     <Compile Include="NutritionServiceTests\CreateNutritionTests.cs" />
+    <Compile Include="NutritionServiceTests\DeleteNutritionTests.cs" />
     <Compile Include="NutritionServiceTests\EditNutritionTests.cs" />
     <Compile Include="NutritionServiceTests\GetByDateTests.cs" />
     <Compile Include="NutritionServiceTests\GetByIdTests.cs" />
