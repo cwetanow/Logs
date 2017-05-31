@@ -173,11 +173,13 @@
     <Compile Include="Controllers\HomeControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\ListControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\ConstructorTests.cs" />
+    <Compile Include="Controllers\MeasurementControllerTests\DeleteMeasurementTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\GetMeasurementTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\LoadTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\SaveTests.cs" />
     <Compile Include="Controllers\MeasurementControllerTests\StatsTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\ConstructorTests.cs" />
+    <Compile Include="Controllers\NutritionControllerTests\DeleteNutritionTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\GetNutritionTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\NutritionControllerTests\InputTests.cs" />
