@@ -190,6 +190,7 @@
     <Compile Include="Controllers\SearchControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\SearchTests.cs" />
+    <Compile Include="Controllers\Users\NutritionControllerTests\ConstructorTests.cs" />
     <Compile Include="Infrastructure\Interception\CachingInterceptorTests\ConstructorTests.cs" />
     <Compile Include="Infrastructure\Interception\CachingInterceptorTests\InterceptTests.cs" />
     <Compile Include="Controllers\LogsControllerTests\ConstructorTests.cs" />
