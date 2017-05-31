@@ -99,5 +99,20 @@ namespace Logs.Services
                 .OrderBy(n => n.Date)
                 .ToList();
         }
+
+        public bool DeleteNutrition(int id, string userId)
+        {
+            var nutrition = this.nutritionRepository.GetById(id);
+
+            if (nutrition != null && nutrition.UserId == userId)
+            {
+                this.nutritionRepository.Delete(nutrition);
+                this.unitOfWork.Commit();
+
+                return true;
+            }
+
+            return false;
+        }
     }
 }

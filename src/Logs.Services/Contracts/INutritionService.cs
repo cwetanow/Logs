@@ -17,5 +17,7 @@ namespace Logs.Services.Contracts
         Nutrition GetById(int id);
 
         IEnumerable<Nutrition> GetUserNutritionsSortedByDate(string userId);
+
+        bool DeleteNutrition(int id, string userId);
     }
 }
