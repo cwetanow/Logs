@@ -105,11 +105,14 @@ namespace Logs.Web.Controllers
             return this.PartialView(viewModel);
         }
 
-        public ActionResult Stats()
+        public ActionResult Stats(string id)
         {
-            var userId = this.authenticationProvider.CurrentUserId;
+            if (string.IsNullOrEmpty(id))
+            {
+                id = this.authenticationProvider.CurrentUserId;
+            }
 
-            var nutritions = this.nutritionService.GetUserNutritionsSortedByDate(userId);
+            var nutritions = this.nutritionService.GetUserNutritionsSortedByDate(id);
 
             var model = this.viewModelFactory.CreateNutritionStatsViewModel(nutritions);
 
