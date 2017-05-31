@@ -1,6 +1,7 @@
 ﻿using Logs.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Logs.Web.Models.Nutrition
@@ -37,8 +38,10 @@ namespace Logs.Web.Models.Nutrition
 
         public IEnumerable<int> Height { get; set; }
 
+        [DisplayName("Weight")]
         public IEnumerable<double> WeightKg { get; set; }
 
+        [DisplayName("Body Fat")]
         public IEnumerable<double> BodyFatPercent { get; set; }
 
         public IEnumerable<int> Chest { get; set; }
