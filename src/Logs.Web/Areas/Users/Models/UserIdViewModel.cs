@@ -7,6 +7,11 @@
             this.UserId = userId;
         }
 
+        public UserIdViewModel()
+        {
+
+        }
+
         public string UserId { get; set; }
     }
 }
