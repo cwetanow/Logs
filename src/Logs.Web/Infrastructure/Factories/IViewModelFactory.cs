@@ -9,6 +9,7 @@ using Logs.Web.Models.Profile;
 using Logs.Web.Models.Upload;
 using PagedList;
 using System.Collections.Generic;
+using Logs.Web.Areas.Users.Models;
 
 namespace Logs.Web.Infrastructure.Factories
 {
@@ -45,5 +46,7 @@ namespace Logs.Web.Infrastructure.Factories
         MeasurementStatsViewModel CreateMeasurementStatsViewModel(IEnumerable<Measurement> measurements);
 
         NutritionStatsViewModel CreateNutritionStatsViewModel(IEnumerable<Nutrition> nutritions);
+
+        UserIdViewModel CreateUserIdViewModel(string userId);
     }
 }
