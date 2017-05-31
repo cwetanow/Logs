@@ -255,6 +255,7 @@
     <Compile Include="Areas\Administration\Controllers\UserAdministrationController.cs" />
     <Compile Include="Areas\Administration\Models\UserViewModel.cs" />
     <Compile Include="Areas\Users\Controllers\NutritionController.cs" />
+    <Compile Include="Areas\Users\Models\UserIdViewModel.cs" />
     <Compile Include="Areas\Users\UsersAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
@@ -343,6 +344,7 @@
     <Content Include="Scripts\ckeditor\ckeditor.pack" />
     <Content Include="Areas\Users\Views\web.config" />
     <Content Include="Areas\Users\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Users\Views\Nutrition\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ckeditor\ckeditor_source.js" />
     <Content Include="Scripts\ckeditor\config.js" />
@@ -759,8 +761,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Users\Models\" />
-    <Folder Include="Areas\Users\Views\Nutrition\" />
     <Folder Include="Areas\Users\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
