@@ -44,5 +44,7 @@ namespace Logs.Services.Contracts
         IEnumerable<Measurement> GetUserMeasurementsSortedByDate(string userId);
 
         Measurement GetById(int id);
+
+        bool DeleteMeasurement(int id, string userId);
     }
 }

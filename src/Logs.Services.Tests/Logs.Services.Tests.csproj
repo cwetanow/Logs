@@ -90,6 +90,7 @@
     <Compile Include="LogsServiceTests\SearchTest.cs" />
     <Compile Include="MeasurementServiceTests\ConstructorTests.cs" />
     <Compile Include="MeasurementServiceTests\CreateMeasurementTests.cs" />
+    <Compile Include="MeasurementServiceTests\DeleteMeasurementTests.cs" />
     <Compile Include="MeasurementServiceTests\EditMeasurementTests.cs" />
     <Compile Include="MeasurementServiceTests\GetByDateTests.cs" />
     <Compile Include="MeasurementServiceTests\GetByIdTests.cs" />
