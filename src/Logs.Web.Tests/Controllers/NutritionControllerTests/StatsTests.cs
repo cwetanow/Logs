@@ -20,7 +20,7 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
     public class StatsTests
     {
         [Test]
-        public void TestStats_ShouldCallAuthenticationProviderCurrentUserId()
+        public void TestStats_NoIdProvided_ShouldCallAuthenticationProviderCurrentUserId()
         {
             // Arrange
             var mockedFactory = new Mock<IViewModelFactory>();
@@ -32,7 +32,7 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
                 mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            controller.Stats();
+            controller.Stats(null);
 
             // Assert
             mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Once);
@@ -40,7 +40,27 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
 
         [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestStats_ShouldCallNutritionServiceGetUserNutritionsSortedByDate(string userId)
+        public void TestStats_WithId_ShouldNotCallAuthenticationProviderCurrentUserId(string userId)
+        {
+            // Arrange
+            var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+            var mockedNutritionService = new Mock<INutritionService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new NutritionController(mockedFactory.Object, mockedDateTimeProvider.Object,
+                mockedNutritionService.Object, mockedAuthenticationProvider.Object);
+
+            // Act
+            controller.Stats(userId);
+
+            // Assert
+            mockedAuthenticationProvider.Verify(p => p.CurrentUserId, Times.Never);
+        }
+
+        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
+        public void TestStats_WithoutId_ShouldCallNutritionServiceGetUserNutritionsSortedByDate(string userId)
         {
             // Arrange
             var mockedFactory = new Mock<IViewModelFactory>();
@@ -54,7 +74,27 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
                 mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            controller.Stats();
+            controller.Stats(null);
+
+            // Assert
+            mockedNutritionService.Verify(s => s.GetUserNutritionsSortedByDate(userId), Times.Once);
+        }
+
+        [TestCase("d547a40d-c45f-4c43-99de-0bfe9199ff95")]
+        [TestCase("99ae8dd3-1067-4141-9675-62e94bb6caaa")]
+        public void TestStats_WithId_ShouldCallNutritionServiceGetUserNutritionsSortedByDate(string userId)
+        {
+            // Arrange
+            var mockedFactory = new Mock<IViewModelFactory>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+            var mockedNutritionService = new Mock<INutritionService>();
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+
+            var controller = new NutritionController(mockedFactory.Object, mockedDateTimeProvider.Object,
+                mockedNutritionService.Object, mockedAuthenticationProvider.Object);
+
+            // Act
+            controller.Stats(userId);
 
             // Assert
             mockedNutritionService.Verify(s => s.GetUserNutritionsSortedByDate(userId), Times.Once);
@@ -80,7 +120,7 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
                mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
             // Act
-            controller.Stats();
+            controller.Stats(null);
 
             // Assert
             mockedFactory.Verify(f => f.CreateNutritionStatsViewModel(Nutritions), Times.Once);
@@ -105,12 +145,9 @@ namespace Logs.Web.Tests.Controllers.NutritionControllerTests
             var controller = new NutritionController(mockedFactory.Object, mockedDateTimeProvider.Object,
                mockedNutritionService.Object, mockedAuthenticationProvider.Object);
 
-            // Act
-            controller.Stats();
-
-            // Assert
+            // Act, Assert
             controller
-                .WithCallTo(c => c.Stats())
+                .WithCallTo(c => c.Stats(null))
                 .ShouldRenderDefaultPartialView()
                 .WithModel<NutritionStatsViewModel>(m => Assert.AreSame(model, m));
         }
