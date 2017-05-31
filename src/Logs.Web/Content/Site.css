@@ -38,10 +38,6 @@ pre {
     font-size: 18px;
 }
 
-body{
-    word-wrap: break-word;
-}
-
 #description {
     background-color: transparent;
     border: none;
