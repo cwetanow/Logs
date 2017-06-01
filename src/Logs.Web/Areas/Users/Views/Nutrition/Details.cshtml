@@ -13,7 +13,7 @@
             UpdateTargetId = "main",
             InsertionMode = InsertionMode.Replace,
             HttpMethod = "GET"
-        }, null))
+        }, new { id = "nutrition-form" }))
             {
 
                 <div class="form-horizontal">
@@ -45,4 +45,9 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
+    <script>
+        $(document).ready(function () {
+            $('#nutrition-form').submit();
+        });
+    </script>
 }
