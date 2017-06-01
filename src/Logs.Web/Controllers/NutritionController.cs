@@ -105,13 +105,21 @@ namespace Logs.Web.Controllers
             return this.PartialView(viewModel);
         }
 
-        public ActionResult Stats()
+        [AllowAnonymous]
+        public ActionResult Stats(string id)
         {
-            var userId = this.authenticationProvider.CurrentUserId;
+            var canDelete = false;
 
-            var nutritions = this.nutritionService.GetUserNutritionsSortedByDate(userId);
+            if (string.IsNullOrEmpty(id) && this.authenticationProvider.IsAuthenticated)
+            {
+                id = this.authenticationProvider.CurrentUserId;
+                canDelete = true;
+            }
+
+            var nutritions = this.nutritionService.GetUserNutritionsSortedByDate(id);
 
             var model = this.viewModelFactory.CreateNutritionStatsViewModel(nutritions);
+            model.CanDelete = canDelete;
 
             return this.PartialView(model);
         }

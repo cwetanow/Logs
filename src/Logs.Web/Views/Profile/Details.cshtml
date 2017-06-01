@@ -41,6 +41,8 @@
     {
         @Html.ActionLink("User Log", "Details", "Logs", new { id = Model.LogId }, new { @class = "btn btn-default" })
     }
+
+    @Html.ActionLink("User Nutrition", "Details", "Nutrition", new { area = "Users", username = Model.Username }, new { @class = "btn btn-default" })
 </div>
 
 

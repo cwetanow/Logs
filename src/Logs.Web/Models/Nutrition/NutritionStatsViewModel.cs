@@ -45,5 +45,7 @@ namespace Logs.Web.Models.Nutrition
 
         [DisplayName("Water")]
         public IEnumerable<double> WaterInLitres { get; private set; }
+
+        public bool CanDelete { get; set; }
     }
 }

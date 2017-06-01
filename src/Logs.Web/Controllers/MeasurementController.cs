@@ -90,13 +90,20 @@ namespace Logs.Web.Controllers
             return this.PartialView(viewModel);
         }
 
-        public ActionResult Stats()
+        public ActionResult Stats(string id)
         {
-            var userId = this.authenticationProvider.CurrentUserId;
+            var canDelete = false;
 
-            var measurements = this.measurementService.GetUserMeasurementsSortedByDate(userId);
+            if (string.IsNullOrEmpty(id) && this.authenticationProvider.IsAuthenticated)
+            {
+                id = this.authenticationProvider.CurrentUserId;
+                canDelete = true;
+            }
+
+            var measurements = this.measurementService.GetUserMeasurementsSortedByDate(id);
 
             var model = this.factory.CreateMeasurementStatsViewModel(measurements);
+            model.CanDelete = canDelete;
 
             return this.PartialView(model);
         }

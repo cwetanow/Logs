@@ -44,31 +44,34 @@
         {
 
             <div id="nutrition-@item.Id">
-                @using (Ajax.BeginForm("DeleteNutrition", new { controller = "Nutrition", id = item.Id },
-                new AjaxOptions
+                @if (Model.CanDelete)
                 {
-                    UpdateTargetId = string.Format("nutrition-{0}", item.Id),
-                    InsertionMode = InsertionMode.Replace,
-                    HttpMethod = "POST"
-                }, null))
-                {
+                    using (Ajax.BeginForm("DeleteNutrition", new { controller = "Nutrition", id = item.Id },
+                        new AjaxOptions
+                        {
+                            UpdateTargetId = $"nutrition-{item.Id}",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "POST"
+                        }, null))
+                    {
 
-                    @Html.AntiForgeryToken()
-                    <div class="form-horizontal">
-                        <hr />
-                        @Html.HiddenFor(model => item.Id)
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            <hr />
+                            @Html.HiddenFor(model => item.Id)
 
-                        <button type="submit" class="pull-right  glyphicon glyphicon-remove "></button>
-                    </div>
+                            <button type="submit" class="pull-right  glyphicon glyphicon-remove "></button>
+                        </div>
+                    }
                 }
 
                 @using (Ajax.BeginForm("GetNutrition", new { controller = "Nutrition", id = item.Id },
-                new AjaxOptions
-                {
-                    UpdateTargetId = "nutrition-details",
-                    InsertionMode = InsertionMode.Replace,
-                    HttpMethod = "GET"
-                }, null))
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "nutrition-details",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "GET"
+                    }, null))
                 {
 
                     <div class="form-horizontal">
