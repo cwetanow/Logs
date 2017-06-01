@@ -8,8 +8,8 @@
 <div class="row">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
-        @Html.LabelFor(m => m.Date)
-        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker", data_format = "DD/MM/YYYY" })
+        @Html.DisplayNameFor(m => m.Date)
+        <input class="form-control" id="datetimepicker" />
     </div>
 </div>
 
@@ -65,11 +65,17 @@
                 format: 'DD/MM/YYYY'
             });
 
+            $('#nutrition-form').hide();
+            $('#measurement-form').hide();
+
             $('#datetimepicker').on("dp.change", function (e) {
                 var date = $('#datetimepicker').val();
                 var parts = date.split('/');
 
-                var datetime = new Date(parts[2], (+parts[1]) - 1, (+parts[0]) + 1).toISOString();
+                var datetime = new Date(parts[2], (+parts[1]) - 1, (+parts[0])).toISOString();
+
+                $('#nutrition-form').show();
+                $('#measurement-form').show();
 
                 $('#nutrition-model-date').val(datetime);
                 $('#measurements-model-date').val(datetime);
