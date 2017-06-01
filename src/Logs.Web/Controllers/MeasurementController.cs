@@ -92,14 +92,18 @@ namespace Logs.Web.Controllers
 
         public ActionResult Stats(string id)
         {
-            if (string.IsNullOrEmpty(id))
+            var canDelete = false;
+
+            if (string.IsNullOrEmpty(id) && this.authenticationProvider.IsAuthenticated)
             {
                 id = this.authenticationProvider.CurrentUserId;
+                canDelete = true;
             }
 
             var measurements = this.measurementService.GetUserMeasurementsSortedByDate(id);
 
             var model = this.factory.CreateMeasurementStatsViewModel(measurements);
+            model.CanDelete = canDelete;
 
             return this.PartialView(model);
         }
