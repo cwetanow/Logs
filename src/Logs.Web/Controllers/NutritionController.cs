@@ -105,16 +105,21 @@ namespace Logs.Web.Controllers
             return this.PartialView(viewModel);
         }
 
+        [AllowAnonymous]
         public ActionResult Stats(string id)
         {
-            if (string.IsNullOrEmpty(id))
+            var canDelete = false;
+
+            if (string.IsNullOrEmpty(id) && this.authenticationProvider.IsAuthenticated)
             {
                 id = this.authenticationProvider.CurrentUserId;
+                canDelete = true;
             }
 
             var nutritions = this.nutritionService.GetUserNutritionsSortedByDate(id);
 
             var model = this.viewModelFactory.CreateNutritionStatsViewModel(nutritions);
+            model.CanDelete = canDelete;
 
             return this.PartialView(model);
         }
