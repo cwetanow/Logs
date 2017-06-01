@@ -64,30 +64,33 @@
         @foreach (var item in Model.ListModel)
         {
             <div id="measurement-@item.Id">
-                @using (Ajax.BeginForm("DeleteMeasurement", new { controller = "Measurement", id = item.Id },
+                @if (Model.CanDelete)
+                {
+                    using (Ajax.BeginForm("DeleteMeasurement", new { controller = "Measurement", id = item.Id },
                     new AjaxOptions
                     {
-                        UpdateTargetId = string.Format("measurement-{0}", item.Id),
+                        UpdateTargetId = $"measurement-{item.Id}",
                         InsertionMode = InsertionMode.Replace,
                         HttpMethod = "POST"
                     }, null))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-horizontal">
-                        <hr />
-                        @Html.HiddenFor(model => item.Id)
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            <hr />
+                            @Html.HiddenFor(model => item.Id)
 
-                        <button type="submit" class="pull-right  glyphicon glyphicon-remove "></button>
-                    </div>
+                            <button type="submit" class="pull-right  glyphicon glyphicon-remove "></button>
+                        </div>
+                    }
                 }
 
                 @using (Ajax.BeginForm("GetMeasurement", new { controller = "Measurement", id = item.Id },
-                new AjaxOptions
-                {
-                    UpdateTargetId = "measurement-details",
-                    InsertionMode = InsertionMode.Replace,
-                    HttpMethod = "GET"
-                }, null))
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "measurement-details",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "GET"
+                    }, null))
                 {
 
                     <div class="form-horizontal">

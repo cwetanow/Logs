@@ -69,5 +69,7 @@ namespace Logs.Web.Models.Nutrition
         public IEnumerable<string> Dates { get; set; }
 
         public IEnumerable<DateIdViewModel> ListModel { get; set; }
+
+        public bool CanDelete { get; set; }
     }
 }
