@@ -17,6 +17,10 @@ namespace Logs.Web
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datepicker").Include(
+                        "~/Scripts/moment.min.js",
+                        "~/Scripts/bootstrap-datetimepicker.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/plotly").Include(
                        "~/Scripts/Plotly/plotly.min.js"));
 
