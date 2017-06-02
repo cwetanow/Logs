@@ -337,6 +337,7 @@
     <Content Include="Areas\Users\Views\Nutrition\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\details.js" />
+    <Content Include="Scripts\editor-config.js" />
     <Content Include="Scripts\image-upload.js" />
     <Content Include="Scripts\input.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
