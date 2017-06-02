@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Web.Mvc;
 
 namespace Logs.Web.Models.Nutrition
 {
@@ -52,6 +53,7 @@ namespace Logs.Web.Models.Nutrition
 
         public int Sugar { get; set; }
 
+        [AllowHtml]
         public string Notes { get; set; }
     }
 }

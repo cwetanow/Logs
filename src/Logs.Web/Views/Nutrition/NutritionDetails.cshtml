@@ -6,7 +6,7 @@
     {
         <div class="col-md-4">
             <dl class="dl-horizontal">
-                
+
                 <dt>
                     @Html.DisplayNameFor(model => model.Calories)
                 </dt>
@@ -35,13 +35,13 @@
                 <dd>
                     @Html.DisplayFor(model => model.Fats)
                 </dd>
-               
+
             </dl>
         </div>
         <div class="col-md-4">
             <dl class="dl-horizontal">
-               
-                
+
+
                 <dt>
                     @Html.DisplayNameFor(model => model.Fiber)
                 </dt>
@@ -68,7 +68,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.Notes)
+                    @Html.Raw(Model.Notes)
                 </dd>
             </dl>
         </div>
