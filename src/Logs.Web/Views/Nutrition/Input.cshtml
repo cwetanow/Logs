@@ -20,8 +20,8 @@
         <ul class="list-inline intro-social-buttons">
             <li>
                 @using (Ajax.BeginForm("Load", "Nutrition",
-          new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
-          new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
+  new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "nutrition" },
+  new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "nutrition-form" }))
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="nutrition-model-date" name="date" />
@@ -31,8 +31,8 @@
             <li>
 
                 @using (Ajax.BeginForm("Load", new { controller = "Measurement" },
-      new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
-      new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
+new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "measurements" },
+new { @class = "form-horizontal form col-md-12 center-block", role = "form", id = "measurement-form" }))
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="measurements-model-date" name="date" />
@@ -56,40 +56,6 @@
 </div>
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
-    <script type="text/javascript" src="/scripts/moment.min.js"></script>
-    <script type="text/javascript" src="/scripts/bootstrap-datetimepicker.js"></script>
-
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker').datetimepicker({
-                format: 'DD/MM/YYYY'
-            });
-
-            $('#nutrition-form').hide();
-            $('#measurement-form').hide();
-
-            $('#datetimepicker').on("dp.change", function (e) {
-                var date = $('#datetimepicker').val();
-                var parts = date.split('/');
-
-                var datetime = new Date(parts[2], (+parts[1]) - 1, (+parts[0]) + 1).toISOString();
-
-                $('#nutrition-form').show();
-                $('#measurement-form').show();
-
-                $('#nutrition-model-date').val(datetime);
-                $('#measurements-model-date').val(datetime);
-            });
-
-            $('#nutrition-form').submit(() => {
-                $('#measurements').hide();
-                $('#nutrition').show();
-            });
-
-            $('#measurement-form').submit(() => {
-                $('#nutrition').hide();
-                $('#measurements').show();
-            });
-        });
-    </script>
+    @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/scripts/input.js")
 }
