@@ -45,9 +45,5 @@
 
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
-    <script>
-        $(document).ready(function () {
-            $('#nutrition-form').submit();
-        });
-    </script>
+    @Scripts.Render("~/scripts/nutrition-details.js")
 }
