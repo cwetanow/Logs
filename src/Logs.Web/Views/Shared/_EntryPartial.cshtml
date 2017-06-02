@@ -12,7 +12,7 @@
         </span>
     </h3>
 
-    <span id="@($"entry{Model.EntryId}")" class="lead"> @Html.Raw("<pre>" + Model.Content + "</pre>")</span>
+    <span id="@($"entry{Model.EntryId}")" class="lead"> @Html.Raw("<pre>" + Html.Encode(Model.Content) + "</pre>")</span>
     @if (Model.CanEdit)
     {
         using (Ajax.BeginForm("EditEntry", "Entries", null,
