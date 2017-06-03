@@ -36,6 +36,7 @@ textarea {
 
 pre {
     font-size: 18px;
+    word-break: normal;
 }
 
 #description {
