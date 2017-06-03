@@ -18,5 +18,6 @@
     branding: false,
     menubar: false,
     resize: false,
-    statusbar: false
+    statusbar: false,
+    forced_root_block: false
 });
