@@ -1,5 +1,6 @@
 ﻿using System;
 using Logs.Data.Contracts;
+using System.Threading.Tasks;
 
 namespace Logs.Data
 {
@@ -22,7 +23,7 @@ namespace Logs.Data
             this.dbContext.SaveChanges();
         }
 
-        public async void CommitAsync()
+        public async Task CommitAsync()
         {
             await this.dbContext.SaveChangesAsync();
         }

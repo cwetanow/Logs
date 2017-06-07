@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Logs.Data.Contracts
 {
@@ -6,6 +7,6 @@ namespace Logs.Data.Contracts
     {
         void Commit();
 
-        void CommitAsync();
+        Task CommitAsync();
     }
 }
