@@ -50,6 +50,20 @@ namespace Logs.Models.Tests.UserTests
         }
 
         [Test]
+        public void TestProperties_ShouldSetSubscriptionsCorrectly()
+        {
+            // Arrange
+            var subscriptions = new List<Subscription>();
+            var user = new User();
+
+            // Act
+            user.Subscriptions = subscriptions;
+
+            // Assert
+            CollectionAssert.AreEqual(subscriptions, user.Subscriptions);
+        }
+
+        [Test]
         public void TestProperties_ShouldSetNutritionsCorrectly()
         {
             // Arrange
