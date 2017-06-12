@@ -63,6 +63,7 @@
     <Compile Include="Contracts\ILogService.cs" />
     <Compile Include="Contracts\IMeasurementService.cs" />
     <Compile Include="Contracts\INutritionService.cs" />
+    <Compile Include="Contracts\ISubscriptionService.cs" />
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Contracts\IVoteService.cs" />
     <Compile Include="EntryService.cs" />
