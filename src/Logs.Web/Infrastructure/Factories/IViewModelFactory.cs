@@ -10,6 +10,7 @@ using Logs.Web.Models.Upload;
 using PagedList;
 using System.Collections.Generic;
 using Logs.Web.Areas.Users.Models;
+using Logs.Web.Models.Subscription;
 
 namespace Logs.Web.Infrastructure.Factories
 {
@@ -48,5 +49,7 @@ namespace Logs.Web.Infrastructure.Factories
         NutritionStatsViewModel CreateNutritionStatsViewModel(IEnumerable<Nutrition> nutritions);
 
         UserIdViewModel CreateUserIdViewModel(string userId);
+
+        SubscribeViewModel CreateSubscribeViewModel(bool isSubscribed);
     }
 }
