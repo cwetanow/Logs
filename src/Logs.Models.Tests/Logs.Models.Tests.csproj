@@ -70,6 +70,8 @@
     <Compile Include="NutritionTests\ConstructorTests.cs" />
     <Compile Include="NutritionTests\PropertiesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubscriptionTests\ConstructorTests.cs" />
+    <Compile Include="SubscriptionTests\PropertiesTests.cs" />
     <Compile Include="TrainingLogTests\ConstructorTests.cs" />
     <Compile Include="TrainingLogTests\PropertiesTests.cs" />
     <Compile Include="UserTests\ConstructorTests.cs" />
