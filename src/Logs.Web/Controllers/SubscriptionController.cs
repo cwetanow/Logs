@@ -57,7 +57,7 @@ namespace Logs.Web.Controllers
             var isUnsubscribed = this.subscriptionService.Unsubscribe(logId, userId);
             var isSubscribed = !isUnsubscribed;
 
-            var model = this.viewModelFactory.CreateSubscribeViewModel(!isSubscribed);
+            var model = this.viewModelFactory.CreateSubscribeViewModel(isSubscribed);
 
             return this.PartialView("_SubscriptionPartial", model);
         }
