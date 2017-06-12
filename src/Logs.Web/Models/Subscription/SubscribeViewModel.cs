@@ -2,6 +2,11 @@
 {
     public class SubscribeViewModel
     {
+        public SubscribeViewModel()
+        {
+
+        }
+
         public SubscribeViewModel(bool isSubscribed)
         {
             this.IsSubscribed = isSubscribed;
