@@ -13,6 +13,30 @@ namespace Logs.Services
         private readonly IUnitOfWork unitOfWork;
         private readonly ISubscriptionFactory factory;
 
+        public SubscriptionService(IRepository<Subscription> repository,
+            IUnitOfWork unitOfWork,
+            ISubscriptionFactory factory)
+        {
+            if (repository == null)
+            {
+                throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException(nameof(unitOfWork));
+            }
+
+            if (factory == null)
+            {
+                throw new ArgumentNullException(nameof(factory));
+            }
+
+            this.repository = repository;
+            this.unitOfWork = unitOfWork;
+            this.factory = factory;
+        }
+
         public bool IsSubscribed(int logId, string userId)
         {
             var subscription = this.GetSubscription(logId, userId);
