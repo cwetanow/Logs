@@ -1,5 +1,6 @@
 ﻿using Logs.Authentication.Contracts;
 using Logs.Services.Contracts;
+using Logs.Web.Infrastructure.Factories;
 using System;
 using System.Web.Mvc;
 
@@ -9,8 +10,11 @@ namespace Logs.Web.Controllers
     {
         private readonly ISubscriptionService subscriptionService;
         private readonly IAuthenticationProvider authenticationProvider;
+        private readonly IViewModelFactory viewModelFactory;
 
-        public SubscriptionController(ISubscriptionService subscriptionService, IAuthenticationProvider authenticationProvider)
+        public SubscriptionController(ISubscriptionService subscriptionService, 
+            IAuthenticationProvider authenticationProvider,
+            IViewModelFactory viewModelFactory)
         {
             if (subscriptionService == null)
             {
@@ -22,8 +26,14 @@ namespace Logs.Web.Controllers
                 throw new ArgumentNullException(nameof(authenticationProvider));
             }
 
+            if (viewModelFactory == null)
+            {
+                throw new ArgumentNullException(nameof(viewModelFactory));
+            }
+
             this.subscriptionService = subscriptionService;
             this.authenticationProvider = authenticationProvider;
+            this.viewModelFactory = viewModelFactory;
         }
     }
 }
