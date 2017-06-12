@@ -2,6 +2,17 @@
 {
     public class Subscription
     {
+        public Subscription()
+        {
+
+        }
+
+        public Subscription(int logId, string userId)
+        {
+            this.UserId = userId;
+            this.TrainingLogId = logId;
+        }
+
         public int SubscriptionId { get; set; }
 
         public string UserId { get; set; }
