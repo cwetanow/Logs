@@ -1,4 +1,6 @@
-﻿namespace Logs.Services.Contracts
+﻿using Logs.Models;
+
+namespace Logs.Services.Contracts
 {
     public interface ISubscriptionService
     {
@@ -7,5 +9,7 @@
         bool Unsubscribe(int logId, string userId);
 
         bool IsSubscribed(int logId, string userId);
+
+        Subscription GetSubscription(int logId, string userId);
     }
 }
