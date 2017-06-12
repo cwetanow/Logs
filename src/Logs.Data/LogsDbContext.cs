@@ -34,6 +34,8 @@ namespace Logs.Data
 
         public DbSet<Vote> Votes { get; set; }
 
+        public DbSet<Subscription> Subscriptions { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -45,6 +47,7 @@ namespace Logs.Data
             modelBuilder.Configurations.Add(new NutritionMap());
             modelBuilder.Configurations.Add(new TrainingLogMap());
             modelBuilder.Configurations.Add(new VoteMap());
+            modelBuilder.Configurations.Add(new SubscriptionMap());
         }
 
         public IDbSet<TEntity> DbSet<TEntity>() where TEntity : class
