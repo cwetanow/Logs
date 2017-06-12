@@ -61,6 +61,7 @@
     <Compile Include="ILogEntryFactory.cs" />
     <Compile Include="IMeasurementFactory.cs" />
     <Compile Include="INutritionFactory.cs" />
+    <Compile Include="ISubscriptionFactory.cs" />
     <Compile Include="ITrainingLogFactory.cs" />
     <Compile Include="IUserFactory.cs" />
     <Compile Include="IVoteFactory.cs" />
