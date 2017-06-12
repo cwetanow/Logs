@@ -192,6 +192,7 @@
     <Compile Include="Controllers\SearchControllerTests\SearchTests.cs" />
     <Compile Include="Controllers\SubscriptionControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\SubscriptionControllerTests\SubscribeTests.cs" />
+    <Compile Include="Controllers\SubscriptionControllerTests\SubscriptionTests.cs" />
     <Compile Include="Controllers\SubscriptionControllerTests\UnsubscribeTests.cs" />
     <Compile Include="Controllers\Users\NutritionControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\Users\NutritionControllerTests\DetailsTests.cs" />
