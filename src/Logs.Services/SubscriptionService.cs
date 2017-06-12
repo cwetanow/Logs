@@ -1,8 +1,9 @@
-﻿using System;
-using Logs.Services.Contracts;
+﻿using Logs.Services.Contracts;
 using Logs.Data.Contracts;
 using Logs.Models;
 using Logs.Factories;
+using System.Linq;
+using System;
 
 namespace Logs.Services
 {
@@ -11,20 +12,52 @@ namespace Logs.Services
         private readonly IRepository<Subscription> repository;
         private readonly IUnitOfWork unitOfWork;
         private readonly ISubscriptionFactory factory;
-        
+
         public bool IsSubscribed(int logId, string userId)
         {
-            throw new NotImplementedException();
+            var subscription = this.GetSubscription(logId, userId);
+
+            var isSubscribed = subscription != null;
+
+            return isSubscribed;
         }
 
         public bool Subscribe(int logId, string userId)
         {
-            throw new NotImplementedException();
+            if (!this.IsSubscribed(logId, userId) && !string.IsNullOrEmpty(userId))
+            {
+                var subscription = this.factory.CreateSubscription(logId, userId);
+
+                this.repository.Add(subscription);
+                this.unitOfWork.Commit();
+
+                return true;
+            }
+
+            return false;
         }
 
         public bool Unsubscribe(int logId, string userId)
         {
-            throw new NotImplementedException();
+            var subscription = this.GetSubscription(logId, userId);
+
+            if (subscription != null && !string.IsNullOrEmpty(userId))
+            {
+                this.repository.Delete(subscription);
+                this.unitOfWork.Commit();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public Subscription GetSubscription(int logId, string userId)
+        {
+            var subscription = this.repository.All
+                .FirstOrDefault(s => s.TrainingLogId == logId && s.UserId == userId);
+
+            return subscription;
         }
     }
 }
