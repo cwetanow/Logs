@@ -66,7 +66,7 @@ namespace Logs.Web.Controllers
         {
             var userId = this.authenticationProvider.CurrentUserId;
 
-            var isSubscribed = this.subscriptionService.Unsubscribe(logId, userId);
+            var isSubscribed = this.subscriptionService.IsSubscribed(logId, userId);
 
             var model = this.viewModelFactory.CreateSubscribeViewModel(isSubscribed);
 
