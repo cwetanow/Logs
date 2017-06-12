@@ -13,24 +13,6 @@ namespace Logs.Services.Tests.SubscriptionServiceTests
     {
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
         [TestCase(423, "99ae8dd3-1067-4141-9675-62e94bb6caaa")]
-        public void TestIsSubscribed_ShouldCallRepositoryAll(int logId, string userId)
-        {
-            // Arrange
-            var mockedRepository = new Mock<IRepository<Subscription>>();
-            var mockedUnitOfWork = new Mock<IUnitOfWork>();
-            var mockedFactory = new Mock<ISubscriptionFactory>();
-
-            var service = new SubscriptionService(mockedRepository.Object, mockedUnitOfWork.Object, mockedFactory.Object);
-
-            // Act
-            service.IsSubscribed(logId, userId);
-
-            // Assert
-            mockedRepository.Verify(r => r.All, Times.Once);
-        }
-
-        [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
-        [TestCase(423, "99ae8dd3-1067-4141-9675-62e94bb6caaa")]
         public void TestIsSubscribed_NoSubscription_ShouldReturnFalse(int logId, string userId)
         {
             // Arrange
