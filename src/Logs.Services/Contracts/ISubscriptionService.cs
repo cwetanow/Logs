@@ -5,5 +5,7 @@
         bool Subscribe(int logId, string userId);
 
         bool Unsubscribe(int logId, string userId);
+
+        bool IsSubscribed(int logId, string userId);
     }
 }
