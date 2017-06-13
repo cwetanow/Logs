@@ -1,1 +1,34 @@
 ﻿@model Logs.Web.Models.Subscription.SubscribeViewModel
+
+@if (Model.IsSubscribed)
+{
+    using (Ajax.BeginForm("Unsubscribe", "Subscription", null,
+                                                    new AjaxOptions
+                                                    {
+                                                        UpdateTargetId = "subscription",
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        HttpMethod = "POST"
+                                                    }, null))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.LogId)
+
+        <input type="submit" value="Unsubscribe" class="btn btn-primary" />
+    }
+}
+else
+{
+    using (Ajax.BeginForm("Subscribe", "Subscription", null,
+                                                    new AjaxOptions
+                                                    {
+                                                        UpdateTargetId = "subscription",
+                                                        InsertionMode = InsertionMode.Replace,
+                                                        HttpMethod = "POST"
+                                                    }, null))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.LogId)
+
+        <input type="submit" value="Subscribe" class="btn btn-primary" />
+    }
+}
