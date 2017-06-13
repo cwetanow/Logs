@@ -107,6 +107,7 @@
     <Compile Include="SubscriptionServiceTests\GetSubscriptionTests.cs" />
     <Compile Include="SubscriptionServiceTests\IsSubscribedTests.cs" />
     <Compile Include="SubscriptionServiceTests\SubscribeTests.cs" />
+    <Compile Include="SubscriptionServiceTests\UnsubscribeTests.cs" />
     <Compile Include="UserServiceTests\ChangeProfilePictureTests.cs" />
     <Compile Include="UserServiceTests\ConstructorTests.cs" />
     <Compile Include="UserServiceTests\EditUserTests.cs" />
