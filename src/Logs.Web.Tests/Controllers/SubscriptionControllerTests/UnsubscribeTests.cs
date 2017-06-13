@@ -71,7 +71,7 @@ namespace Logs.Web.Tests.Controllers.SubscriptionControllerTests
             controller.Unsubscribe(logId);
 
             // Assert
-            mockedFactory.Verify(f => f.CreateSubscribeViewModel(!isSubscribed), Times.Once);
+            mockedFactory.Verify(f => f.CreateSubscribeViewModel(!isSubscribed, logId), Times.Once);
         }
 
         [TestCase(1, "d547a40d-c45f-4c43-99de-0bfe9199ff95")]
@@ -85,7 +85,7 @@ namespace Logs.Web.Tests.Controllers.SubscriptionControllerTests
             var model = new SubscribeViewModel();
 
             var mockedFactory = new Mock<IViewModelFactory>();
-            mockedFactory.Setup(f => f.CreateSubscribeViewModel(It.IsAny<bool>()))
+            mockedFactory.Setup(f => f.CreateSubscribeViewModel(It.IsAny<bool>(), It.IsAny<int>()))
                 .Returns(model);
 
             var controller = new SubscriptionController(mockedService.Object, mockedProvider.Object, mockedFactory.Object);
