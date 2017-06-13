@@ -15,10 +15,10 @@
                 @Html.Action("Subscription", "Subscription", new { logId = Model.LogId })
             </div>
         }
-          <div id="description">
+        <div id="description">
             @Html.Partial("_LogDescription", Model)
         </div>
-      
+
         @if (Model.CanEdit)
         {
             <div id="edit-form">
