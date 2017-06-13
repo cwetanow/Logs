@@ -50,6 +50,6 @@ namespace Logs.Web.Infrastructure.Factories
 
         UserIdViewModel CreateUserIdViewModel(string userId);
 
-        SubscribeViewModel CreateSubscribeViewModel(bool isSubscribed);
+        SubscribeViewModel CreateSubscribeViewModel(bool isSubscribed, int logId);
     }
 }
