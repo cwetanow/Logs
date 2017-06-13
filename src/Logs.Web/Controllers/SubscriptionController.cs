@@ -38,18 +38,20 @@ namespace Logs.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Subscribe(int logId)
         {
             var userId = this.authenticationProvider.CurrentUserId;
 
             var isSubscribed = this.subscriptionService.Subscribe(logId, userId);
 
-            var model = this.viewModelFactory.CreateSubscribeViewModel(isSubscribed);
+            var model = this.viewModelFactory.CreateSubscribeViewModel(isSubscribed, logId);
 
             return this.PartialView("_SubscriptionPartial", model);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Unsubscribe(int logId)
         {
             var userId = this.authenticationProvider.CurrentUserId;
@@ -57,7 +59,7 @@ namespace Logs.Web.Controllers
             var isUnsubscribed = this.subscriptionService.Unsubscribe(logId, userId);
             var isSubscribed = !isUnsubscribed;
 
-            var model = this.viewModelFactory.CreateSubscribeViewModel(isSubscribed);
+            var model = this.viewModelFactory.CreateSubscribeViewModel(isSubscribed, logId);
 
             return this.PartialView("_SubscriptionPartial", model);
         }
@@ -68,7 +70,7 @@ namespace Logs.Web.Controllers
 
             var isSubscribed = this.subscriptionService.IsSubscribed(logId, userId);
 
-            var model = this.viewModelFactory.CreateSubscribeViewModel(isSubscribed);
+            var model = this.viewModelFactory.CreateSubscribeViewModel(isSubscribed, logId);
 
             return this.PartialView("_SubscriptionPartial", model);
         }
