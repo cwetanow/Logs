@@ -240,6 +240,7 @@
     <Compile Include="ViewModelsTests\Nutrition\NutritionViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Profile\NewLogViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Profile\UserProfileViewModelTests\ConstructorTests.cs" />
+    <Compile Include="ViewModelsTests\Subscription\SubscribeViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Upload\UploadVIewModelTests\PropertiesTests.cs" />
   </ItemGroup>
   <ItemGroup>
