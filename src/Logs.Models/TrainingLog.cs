@@ -53,5 +53,7 @@ namespace Logs.Models
         public virtual LogEntry LastLogEntry { get; set; }
 
         public virtual ICollection<Vote> Votes { get; set; }
+
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
     }
 }

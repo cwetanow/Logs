@@ -9,9 +9,16 @@
 <div class="row">
 
     <div class="col-lg-12">
+        @if (Model.IsAuthenticated)
+        {
+            <div id="subscription" class="pull-right">
+                @Html.Action("Subscription", "Subscription", new { logId = Model.LogId })
+            </div>
+        }
         <div id="description">
             @Html.Partial("_LogDescription", Model)
         </div>
+
         @if (Model.CanEdit)
         {
             <div id="edit-form">

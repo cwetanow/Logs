@@ -49,5 +49,19 @@ namespace Logs.Models.Tests.TrainingLogTests
             // Assert
             CollectionAssert.AreEqual(users, log.Users);
         }
+
+        [Test]
+        public void TestProperties_ShouldSetSubscriptionsCorrectly()
+        {
+            // Arrange
+            var subscriptions = new List<Subscription>();
+            var log = new TrainingLog();
+
+            // Act
+            log.Subscriptions = subscriptions;
+
+            // Assert
+            CollectionAssert.AreEqual(subscriptions, log.Subscriptions);
+        }
     }
 }

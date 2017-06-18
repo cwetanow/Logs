@@ -51,6 +51,8 @@ namespace Logs.Models
 
         public virtual ICollection<Measurement> Measurements { get; set; }
 
+        public virtual ICollection<Subscription> Subscriptions { get; set; }
+
         public virtual ICollection<Nutrition> Nutritions { get; set; }
     }
 }

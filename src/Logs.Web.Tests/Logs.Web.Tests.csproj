@@ -190,6 +190,10 @@
     <Compile Include="Controllers\SearchControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\IndexTests.cs" />
     <Compile Include="Controllers\SearchControllerTests\SearchTests.cs" />
+    <Compile Include="Controllers\SubscriptionControllerTests\ConstructorTests.cs" />
+    <Compile Include="Controllers\SubscriptionControllerTests\SubscribeTests.cs" />
+    <Compile Include="Controllers\SubscriptionControllerTests\SubscriptionTests.cs" />
+    <Compile Include="Controllers\SubscriptionControllerTests\UnsubscribeTests.cs" />
     <Compile Include="Controllers\Users\NutritionControllerTests\ConstructorTests.cs" />
     <Compile Include="Controllers\Users\NutritionControllerTests\DetailsTests.cs" />
     <Compile Include="Infrastructure\Interception\CachingInterceptorTests\ConstructorTests.cs" />
@@ -236,6 +240,7 @@
     <Compile Include="ViewModelsTests\Nutrition\NutritionViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Profile\NewLogViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Profile\UserProfileViewModelTests\ConstructorTests.cs" />
+    <Compile Include="ViewModelsTests\Subscription\SubscribeViewModelTests\ConstructorTests.cs" />
     <Compile Include="ViewModelsTests\Upload\UploadVIewModelTests\PropertiesTests.cs" />
   </ItemGroup>
   <ItemGroup>

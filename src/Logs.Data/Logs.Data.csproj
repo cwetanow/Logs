@@ -66,12 +66,17 @@
     <Compile Include="Mappings\LogEntryMap.cs" />
     <Compile Include="Mappings\MeasurementMap.cs" />
     <Compile Include="Mappings\NutritionMap.cs" />
+    <Compile Include="Mappings\SubscriptionMap.cs" />
     <Compile Include="Mappings\TrainingLogMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\VoteMap.cs" />
     <Compile Include="Migrations\201706070812207_Initial.cs" />
     <Compile Include="Migrations\201706070812207_Initial.Designer.cs">
       <DependentUpon>201706070812207_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706121251229_Subscriptions.cs" />
+    <Compile Include="Migrations\201706121251229_Subscriptions.Designer.cs">
+      <DependentUpon>201706121251229_Subscriptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +99,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706070812207_Initial.resx">
       <DependentUpon>201706070812207_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706121251229_Subscriptions.resx">
+      <DependentUpon>201706121251229_Subscriptions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
