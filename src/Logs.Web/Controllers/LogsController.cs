@@ -64,6 +64,7 @@ namespace Logs.Web.Controllers
             }
 
             var entries = log.LogEntries
+                .OrderBy(e => e.EntryDate)
                 .Select(e => LogEntryViewModel.FromEntry(e, currentUserId, isAdmin))
                 .ToPagedList(page, count);
 
