@@ -46,5 +46,29 @@ namespace Logs.Data.Tests.EfGenericRepositoryTests
             // Assert
             mockedDbContext.Verify(db => db.DbSet<FakeGenericRepositoryType>(), Times.Once);
         }
+
+        [Test]
+        public void TestAll_ShouldReturnCorrectly()
+        {
+            // Arrange
+            var data = this.GetData();
+
+            var mockedSet = new Mock<IDbSet<FakeGenericRepositoryType>>();
+            mockedSet.Setup(m => m.Provider).Returns(data.Provider);
+            mockedSet.Setup(m => m.Expression).Returns(data.Expression);
+            mockedSet.Setup(m => m.ElementType).Returns(data.ElementType);
+            mockedSet.Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockedDbContext = new Mock<ILogsDbContext>();
+            mockedDbContext.Setup(x => x.DbSet<FakeGenericRepositoryType>()).Returns(mockedSet.Object);
+
+            var repository = new EntityFrameworkRepository<FakeGenericRepositoryType>(mockedDbContext.Object);
+
+            // Act
+            var result = repository.All;
+
+            // Assert
+            CollectionAssert.AreEqual(mockedSet.Object, result);
+        }
     }
 }
